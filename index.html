@@ -1498,8 +1498,8 @@ const LESSONS = {
         body: { lv: 'Abas puses ir līdzsvarā. Ja vienā pusē pieskaiti, atņem, reizini vai dali, tas pats jādara arī otrā pusē. Mērķis: atstāt x vienu.', ru: 'Обе части в равновесии. Если в одной части прибавляешь, вычитаешь, умножаешь или делишь, то же нужно сделать и в другой. Цель — оставить x одного.' },
         fig: () => balance('3x − 6', 'x + 4') },
       { h: { lv: 'Pārnesot zīme mainās', ru: 'При переносе знак меняется' },
-        body: { lv: 'Atver iekavas: 3(x − 2) = 3x − 6. Pārnes x pa kreisi un −6 pa labi, mainot zīmes: 3x − x = 4 + 6. Tātad 2x = 10 un x = 5.', ru: 'Раскрой скобки: 3(x − 2) = 3x − 6. Перенеси x влево, а −6 вправо, меняя знаки: 3x − x = 4 + 6. Значит 2x = 10 и x = 5.' },
-        fig: () => `<div class="m big center">3x − 6 = x + 4</div><div class="m big center">3x − x = 4 + 6</div><div class="m big center"><span class="mk">x = 5</span></div>` },
+        body: { lv: 'Vienādojums: 3(x − 2) = x + 4. Atver iekavas: 3(x − 2) = 3x − 6. Pārnes x pa kreisi un −6 pa labi, mainot zīmes: 3x − x = 4 + 6. Tātad 2x = 10 un x = 5.', ru: 'Уравнение: 3(x − 2) = x + 4. Раскрой скобки: 3(x − 2) = 3x − 6. Перенеси x влево, а −6 вправо, меняя знаки: 3x − x = 4 + 6. Значит 2x = 10 и x = 5.' },
+        fig: () => `<div class="m big center">3(x − 2) = x + 4</div><div class="m big center">3x − 6 = x + 4</div><div class="m big center">3x − x = 4 + 6</div><div class="m big center"><span class="mk">x = 5</span></div>` },
       { h: { lv: 'Kvadrātvienādojums: diskriminants', ru: 'Квадратное уравнение: дискриминант' },
         body: { lv: 'ax² + bx + c = 0. Aprēķini D = b² − 4ac. Ja D > 0, ir divas saknes; ja D = 0, viena; ja D < 0, sakņu nav.', ru: 'ax² + bx + c = 0. Посчитай D = b² − 4ac. Если D > 0 — два корня; если D = 0 — один; если D < 0 — корней нет.' },
         fig: () => `<div class="m big center">D = b² − 4ac</div><div class="m big center">x = ${F('−b ± √D', '2a')}</div>` },
@@ -1630,7 +1630,7 @@ const LESSONS = {
         { lv: 'Pārbaude ar Pitagoru: 7² + (7√3)² = 49 + 147 = 196 = 14². Sakrīt.', ru: 'Проверка по Пифагору: 7² + (7√3)² = 49 + 147 = 196 = 14². Сходится.' },
       ] },
     tasks: [
-      { id: 't1', type: 'num', u: 'cm', q: { lv: 'Taisnleņķa trijstūra katetes ir 9 cm un 12 cm. Aprēķini hipotenūzu.', ru: 'Катеты прямоугольного треугольника 9 см и 12 см. Найди гипотенузу.' }, ans: 15,
+      { id: 't1', type: 'num', u: { lv: 'cm', ru: 'см' }, q: { lv: 'Taisnleņķa trijstūra katetes ir 9 cm un 12 cm. Aprēķini hipotenūzu.', ru: 'Катеты прямоугольного треугольника 9 см и 12 см. Найди гипотенузу.' }, ans: 15,
         wrong: [
           { v: 21, fb: { lv: 'Katešu garumus nesaskaita: c² = 81 + 144 = 225.', ru: 'Длины катетов не складывают: c² = 81 + 144 = 225.' } },
           { v: 225, fb: { lv: '225 ir c². c = √225 = 15.', ru: '225 — это c². c = √225 = 15.' } },
@@ -1639,7 +1639,7 @@ const LESSONS = {
         ],
         hint: { lv: 'c² = a² + b²', ru: 'c² = a² + b²' },
         sol: { lv: 'c = √(81 + 144) = √225 = 15 cm', ru: 'c = √(81 + 144) = √225 = 15 см' } },
-      { id: 't2', type: 'num', u: 'cm', q: { lv: 'Hipotenūza ir 10 cm, viena katete — 6 cm. Aprēķini otru kateti.', ru: 'Гипотенуза 10 см, один катет 6 см. Найди другой катет.' }, ans: 8,
+      { id: 't2', type: 'num', u: { lv: 'cm', ru: 'см' }, q: { lv: 'Hipotenūza ir 10 cm, viena katete — 6 cm. Aprēķini otru kateti.', ru: 'Гипотенуза 10 см, один катет 6 см. Найди другой катет.' }, ans: 8,
         wrong: [
           { v: Math.sqrt(136), fb: { lv: 'Katete ir īsāka par hipotenūzu. Atņem: 100 − 36 = 64.', ru: 'Катет короче гипотенузы. Вычитай: 100 − 36 = 64.' } },
           { v: 4, fb: { lv: 'Atņem nevis malas, bet to kvadrātus: 10² − 6² = 64.', ru: 'Вычитают не стороны, а их квадраты: 10² − 6² = 64.' } },
@@ -1687,7 +1687,7 @@ const LESSONS = {
         { lv: 'Slazds: 12 · 2,5 = 30 cm² ir nepareizi, jo laukumu reizina ar k², nevis ar k.', ru: 'Ловушка: 12 · 2,5 = 30 см² — неверно, потому что площадь умножают на k², а не на k.' },
       ] },
     tasks: [
-      { id: 'l1', type: 'num', u: 'cm²', q: { lv: 'Trapeces pamati ir 5 cm un 9 cm, augstums — 4 cm. Aprēķini trapeces laukumu.', ru: 'Основания трапеции 5 см и 9 см, высота 4 см. Найди площадь трапеции.' }, ans: 28,
+      { id: 'l1', type: 'num', u: { lv: 'cm²', ru: 'см²' }, q: { lv: 'Trapeces pamati ir 5 cm un 9 cm, augstums — 4 cm. Aprēķini trapeces laukumu.', ru: 'Основания трапеции 5 см и 9 см, высота 4 см. Найди площадь трапеции.' }, ans: 28,
         wrong: [
           { v: 56, fb: { lv: 'Neaizmirsti dalīt ar 2: (5 + 9) : 2 · 4 = 28.', ru: 'Не забудь разделить на 2: (5 + 9) : 2 · 4 = 28.' } },
           { v: 180, fb: { lv: 'Pamatus saskaita, nevis reizina: (5 + 9) : 2 · 4.', ru: 'Основания складывают, а не умножают: (5 + 9) : 2 · 4.' } },
@@ -1695,7 +1695,7 @@ const LESSONS = {
         ],
         hint: { lv: 'S = (a + b) : 2 · h', ru: 'S = (a + b) : 2 · h' },
         sol: { lv: '(5 + 9) : 2 · 4 = 7 · 4 = 28 cm²', ru: '(5 + 9) : 2 · 4 = 7 · 4 = 28 см²' } },
-      { id: 'l2', type: 'num', u: 'π cm³', q: { lv: 'Cilindra diametrs ir 10 cm, augstums — 3 cm. Tilpums ir V = …π cm³. Ieraksti skaitli pirms π.', ru: 'Диаметр цилиндра 10 см, высота 3 см. Объём V = …π см³. Впиши число перед π.' }, pre: 'V =', ans: 75,
+      { id: 'l2', type: 'num', u: { lv: 'π cm³', ru: 'π см³' }, q: { lv: 'Cilindra diametrs ir 10 cm, augstums — 3 cm. Tilpums ir V = …π cm³. Ieraksti skaitli pirms π.', ru: 'Диаметр цилиндра 10 см, высота 3 см. Объём V = …π см³. Впиши число перед π.' }, pre: 'V =', ans: 75,
         wrong: [
           { v: 300, fb: { lv: 'Tu izmantoji diametru. r = 10 : 2 = 5, tātad V = π · 25 · 3 = 75π.', ru: 'Здесь взят диаметр, а нужен радиус: r = 10 : 2 = 5, значит V = π · 25 · 3 = 75π.' } },
           { v: 15, fb: { lv: 'Rādiuss jākāpina kvadrātā: r² = 25.', ru: 'Радиус нужно возвести в квадрат: r² = 25.' } },
@@ -1727,7 +1727,7 @@ const LESSONS = {
         body: { lv: 'P(nav A) = 1 − P(A). Varbūtība, ka bumbiņa nav zila: 1 − 5/12 = 7/12. Varbūtība vienmēr ir no 0 līdz 1.', ru: 'P(не A) = 1 − P(A). Вероятность, что шарик не синий: 1 − 5/12 = 7/12. Вероятность всегда от 0 до 1.' },
         fig: () => `<div class="m big center">1 − ${F(5, 12)} = ${F(7, 12)}</div>` },
       { h: { lv: 'Vidējais aritmētiskais', ru: 'Среднее арифметическое' },
-        body: { lv: 'Vidējais = summa : skaits. Ja jāatrod trūkstošais skaitlis, vispirms aprēķini vajadzīgo summu: vidējais · skaits.', ru: 'Среднее = сумма : количество. Чтобы найти недостающее число, сначала посчитай нужную сумму: среднее · количество.' },
+        body: { lv: 'Vidējais = summa : skaits. Ja jāatrod trūkstošais skaitlis, vispirms aprēķini vajadzīgo summu: vidējais · skaits. Piemērs: trīs darbos vidējā atzīme ir 6, tātad summa 3 · 6 = 18. Lai četros darbos vidējā būtu 7, vajag summu 4 · 7 = 28, tātad ceturtajā darbā jāsaņem 28 − 18 = 10.', ru: 'Среднее = сумма : количество. Чтобы найти недостающее число, сначала посчитай нужную сумму: среднее · количество. Пример: средняя оценка за три работы — 6, значит сумма 3 · 6 = 18. Чтобы за четыре работы средняя стала 7, нужна сумма 4 · 7 = 28, значит за четвёртую нужно 28 − 18 = 10.' },
         fig: () => `<div class="m big center">4 · 7 = 28 &nbsp;→&nbsp; 28 − 18 = 10</div>` },
       { h: { lv: 'Pilnā pārlase', ru: 'Полный перебор' },
         body: { lv: 'Raksti visus variantus sistemātiski, piemēram, augošā secībā. Trīsciparu skaitļi no cipariem 1, 2, 3 bez atkārtošanās: 123, 132, 213, 231, 312, 321. Kopā 6 = 3!.', ru: 'Выписывай все варианты по системе, например по возрастанию. Трёхзначные числа из цифр 1, 2, 3 без повторений: 123, 132, 213, 231, 312, 321. Всего 6 = 3!.' },
