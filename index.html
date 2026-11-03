@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matemātikas eksāmena tests 9. klasei</title>
+<meta name="description" content="Bezmaksas tests 9. klases matemātikas eksāmenam: 16 uzdevumi, rezultāts pa tēmām un demo nodarbības tavām vājākajām tēmām. Latviešu un krievu valodā.">
+<meta property="og:title" content="Uzzini, kuras tēmas tev jāatkārto pirms matemātikas eksāmena">
+<meta property="og:description" content="Bezmaksas tests: 16 eksāmena tipa uzdevumi, ~15 minūtes. Rezultāts pa tēmām un demo nodarbības.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Manrope:wght@700..800&family=Onest:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Layout: a math notebook. Squared-paper page, white "sheets" for the work, a red margin rule on task sheets. One column; a sidebar only in the demo course. */
+  --bg: #F2F5FA;
+  --grid: rgba(37, 72, 196, 0.07);
+  --paper: #FFFFFF;
+  --ink: #14213A;
+  --muted: #56647C;
+  --line: #DAE1EC;
+  --soft: #EDF1F7;
+  --accent: #2448C4;
+  --accent-2: #1A389F;
+  --on-accent: #FFFFFF;
+  --accent-soft: #E6ECFF;
+  --mark: #FFE15A;
+  --margin: #E5484D;
+  --c2: #D9480F;
+  --c3: #0E8A6A;
+  --good: #11744F; --good-bg: #E2F4EB;
+  --warn: #9A5B00; --warn-bg: #FFF1D6;
+  --bad: #B42F39; --bad-bg: #FCE8EA;
+  --ball-r: #E5484D; --ball-b: #2F6FEB; --ball-g: #23A26B;
+  --f-display: "Manrope", "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-body: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-hand: "Caveat", "Segoe Print", "Comic Sans MS", cursive;
+  --r: 16px;
+  --shadow: 0 1px 2px rgba(20, 33, 58, .05), 0 10px 30px rgba(20, 33, 58, .06);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1320; --grid: rgba(150, 175, 230, 0.06); --paper: #131C2D; --ink: #E7ECF6; --muted: #9AA7BE; --line: #26324A; --soft: #1A2539;
+    --accent: #8AA8FF; --accent-2: #A9C0FF; --on-accent: #0C1320; --accent-soft: #1D2A4A; --mark: rgba(255, 214, 10, .32); --margin: #F0656A;
+    --c2: #FF8A4C; --c3: #3CC7A0; --good: #4CD39A; --good-bg: #12301F; --warn: #F2B24E; --warn-bg: #33270F; --bad: #FF7A83; --bad-bg: #3A161B;
+    --ball-r: #F0656A; --ball-b: #6E9BFF; --ball-g: #3CC78A;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1320; --grid: rgba(150, 175, 230, 0.06); --paper: #131C2D; --ink: #E7ECF6; --muted: #9AA7BE; --line: #26324A; --soft: #1A2539;
+  --accent: #8AA8FF; --accent-2: #A9C0FF; --on-accent: #0C1320; --accent-soft: #1D2A4A; --mark: rgba(255, 214, 10, .32); --margin: #F0656A;
+  --c2: #FF8A4C; --c3: #3CC7A0; --good: #4CD39A; --good-bg: #12301F; --warn: #F2B24E; --warn-bg: #33270F; --bad: #FF7A83; --bad-bg: #3A161B;
+  --ball-r: #F0656A; --ball-b: #6E9BFF; --ball-g: #3CC78A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 30px rgba(0, 0, 0, .25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 76px; }
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+  font: 400 17px/1.55 var(--f-body); color: var(--ink);
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-variant-numeric: tabular-nums;
+}
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.15; letter-spacing: -0.015em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.2vw, 44px); font-weight: 800; }
+h2 { font-size: 24px; font-weight: 800; }
+h3 { font-size: 20px; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.wrap.narrow { max-width: 720px; }
+.wrap.mid { max-width: 980px; }
+.wrap.wide { max-width: 1240px; }
+main#view { flex: 1; padding: 28px 0 64px; }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 20px; min-height: 62px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.logo-mark { width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font: 800 20px var(--f-display); position: relative; overflow: hidden; }
+.logo-mark::after { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--margin); opacity: .9; }
+.logo-txt { font: 800 17px/1.1 var(--f-display); }
+.logo-txt small { display: block; font: 500 12.5px var(--f-body); color: var(--muted); }
+.stepper { display: flex; gap: 6px; list-style: none; margin: 0 auto; padding: 0; }
+.stepper li { display: flex; align-items: center; gap: 7px; font-size: 14px; color: var(--muted); padding: 4px 10px 4px 4px; border-radius: 99px; }
+.stepper .sn { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--soft); font-weight: 700; font-size: 12.5px; }
+.stepper li.now { color: var(--ink); background: var(--accent-soft); font-weight: 600; }
+.stepper li.now .sn { background: var(--accent); color: var(--on-accent); }
+.stepper li.done .sn { background: var(--good); color: var(--paper); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; margin-left: auto; }
+.stepper:not([hidden]) + .lang { margin-left: 0; }
+.lang button { border: 0; background: transparent; padding: 7px 12px; font-weight: 700; font-size: 14px; cursor: pointer; color: var(--muted); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.preview-bar { background: var(--warn-bg); color: var(--warn); font-size: 14px; }
+.preview-bar .wrap { display: flex; align-items: center; gap: 12px; min-height: 40px; }
+.preview-bar span { flex: 1; }
+.preview-bar button { border: 0; background: none; color: inherit; font-size: 20px; line-height: 1; cursor: pointer; padding: 4px 8px; }
+
+/* basics */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 12px; padding: 12px 20px; font: 650 16px/1.2 var(--f-body); cursor: pointer; text-decoration: none; transition: background .15s, transform .1s; }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-2); }
+.btn-ghost { background: var(--soft); color: var(--ink); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--soft) 70%, var(--line)); }
+.btn-lg { padding: 15px 24px; font-size: 17px; }
+.btn.wide { width: 100%; }
+.btn:disabled, .btn.disabled { opacity: .45; cursor: not-allowed; }
+.btn-link { border: 0; background: none; color: var(--accent); padding: 4px 0; cursor: pointer; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.btn-link.inline { padding: 0; font-weight: 500; }
+.btn-link.danger { color: var(--bad); }
+.sheet { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); padding: 22px 24px; }
+.sheet.nb { position: relative; padding-left: 58px; }
+.sheet.nb::before { content: ""; position: absolute; left: 40px; top: 0; bottom: 0; width: 2px; background: var(--margin); opacity: .55; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); background: var(--soft); border-radius: 99px; padding: 4px 11px; text-decoration: none; }
+.chip.link { color: var(--accent); background: var(--accent-soft); }
+.chips { list-style: none; padding: 0; margin: 12px 0 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.pill { display: inline-block; font: 700 12px/1 var(--f-body); letter-spacing: .02em; padding: 6px 10px; border-radius: 99px; white-space: nowrap; }
+.pill.gap { background: var(--bad-bg); color: var(--bad); }
+.pill.mid { background: var(--warn-bg); color: var(--warn); }
+.pill.ok { background: var(--good-bg); color: var(--good); }
+.ic { flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; background: var(--accent-soft); color: var(--accent); display: inline-grid; place-items: center; font: 800 15px var(--f-display); }
+.m { font-weight: 600; white-space: nowrap; }
+.m.big { font-size: 24px; font-weight: 650; letter-spacing: .01em; }
+.center { text-align: center; }
+.mk { background: linear-gradient(transparent 52%, var(--mark) 52%); padding: 0 .12em; }
+.hand { font-family: var(--f-hand); font-size: 25px; color: var(--margin); font-weight: 600; white-space: nowrap; }
+.fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .86em; line-height: 1.12; margin: 0 .12em; }
+.fr i { font-style: normal; padding: 0 .2em; }
+.fr i:first-child { border-bottom: 1.6px solid currentColor; }
+.sys { display: inline-flex; align-items: center; gap: 4px; }
+.sys .br { font-size: 2.3em; font-weight: 300; line-height: 1; margin-top: -.08em; }
+.sys .rows { display: flex; flex-direction: column; line-height: 1.35; }
+.eyebrow { font-size: 14px; font-weight: 600; color: var(--muted); }
+.eyebrow b { color: var(--margin); white-space: nowrap; }
+.eyebrow-s { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.lead { font-size: 19px; color: var(--ink); }
+.note { font-size: 14px; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+
+/* options */
+.opts { display: grid; gap: 10px; margin-top: 16px; }
+.opts-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.opt { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; border: 2px solid var(--line); background: var(--paper); border-radius: 12px; padding: 11px 14px; font-size: 18px; font-weight: 550; cursor: pointer; transition: border-color .15s, background .15s; min-height: 56px; }
+.opt:hover:not(:disabled) { border-color: var(--accent); }
+.opt .key { flex: 0 0 30px; height: 30px; border-radius: 8px; background: var(--soft); display: grid; place-items: center; font-weight: 700; font-size: 14px; color: var(--muted); }
+.opt .ot { flex: 1; min-width: 0; }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.opt[aria-pressed="true"] .key { background: var(--accent); color: var(--on-accent); }
+.opt[data-state="right"] { border-color: var(--good); background: var(--good-bg); }
+.opt[data-state="right"] .key { background: var(--good); color: var(--paper); }
+.opt[data-state="wrong"] { border-color: var(--bad); background: var(--bad-bg); }
+.opt[data-state="wrong"] .ot { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.opt:disabled { cursor: default; }
+.fb:empty { display: none; }
+.fb { margin-top: 14px; }
+.good, .bad, .hintbox, .solbox { border-radius: 12px; padding: 12px 15px; font-size: 16px; }
+.good { background: var(--good-bg); color: var(--ink); border-left: 4px solid var(--good); }
+.good b { color: var(--good); margin-right: 4px; }
+.bad { background: var(--bad-bg); color: var(--ink); border-left: 4px solid var(--bad); }
+.hintbox { background: var(--warn-bg); border-left: 4px solid var(--warn); }
+.solbox { background: var(--accent-soft); border-left: 4px solid var(--accent); font-weight: 550; }
+.hint-s { font-size: 14px; color: var(--muted); }
+.q-lv { font-size: 19px; font-weight: 600; }
+.q-ru { font-size: 15.5px; color: var(--muted); margin-top: 3px; }
+.qmath { margin-top: 10px; }
+.figbox { margin: 14px 0 4px; display: flex; justify-content: center; }
+
+/* landing */
+.hero { display: grid; grid-template-columns: 1.08fr .92fr; gap: 44px; align-items: center; padding-top: 18px; padding-bottom: 12px; }
+.hero-txt { display: flex; flex-direction: column; gap: 18px; }
+.hero h1 { font-size: clamp(32px, 4.6vw, 52px); }
+.cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; }
+.facts { list-style: none; display: flex; gap: 28px; padding: 0; margin: 4px 0 0; }
+.facts li { display: flex; flex-direction: column; }
+.facts b { font: 800 30px/1 var(--f-display); }
+.facts span { font-size: 14px; color: var(--muted); }
+.sample .sheet-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.band { margin-top: 60px; }
+.band > h2 { margin-bottom: 18px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.stat { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.stat b { font: 800 40px/1 var(--f-display); color: var(--bad); }
+.stat b small { font-size: 22px; margin-left: 2px; }
+.stat .meter { height: 6px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.stat .meter i { display: block; height: 100%; background: var(--bad); border-radius: 99px; }
+.stat p { font-size: 15px; }
+.src { font-size: 13.5px; color: var(--muted); margin-top: 12px; }
+.how { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.how li { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.how .hn { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent); color: var(--accent); display: grid; place-items: center; font: 800 15px var(--f-display); margin-bottom: 4px; }
+.how p { font-size: 15px; color: var(--muted); }
+.tchips { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.tchips li { display: flex; align-items: center; gap: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-weight: 600; font-size: 15.5px; }
+.parents { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.parents p { max-width: 62ch; margin-top: 8px; color: var(--muted); }
+
+/* form */
+.form { display: flex; flex-direction: column; gap: 14px; }
+.form h1 { font-size: 32px; }
+.seg { border: 0; padding: 0; margin: 4px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.seg legend { font-weight: 600; margin-bottom: 8px; padding: 0; }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.seg span { display: block; text-align: center; border: 2px solid var(--line); border-radius: 12px; padding: 11px 10px; font-weight: 600; cursor: pointer; }
+.seg input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.seg input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.parent-note { background: var(--soft); border-radius: 10px; padding: 10px 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 600; }
+.opt-l { font-weight: 400; color: var(--muted); font-size: 14px; }
+.field input, .numin, .relsel { border: 2px solid var(--line); background: var(--paper); border-radius: 12px; padding: 12px 14px; font-size: 17px; width: 100%; }
+.field input:focus, .numin:focus, .relsel:focus { outline: none; border-color: var(--accent); }
+.field input[aria-invalid="true"] { border-color: var(--bad); }
+.err { color: var(--bad); font-size: 14px; min-height: 0; }
+.err:empty { display: none; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin-top: 2px; flex: 0 0 auto; accent-color: var(--accent); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* test */
+.test-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+.tcount { font-weight: 700; }
+.progress { height: 8px; background: var(--soft); border-radius: 99px; overflow: hidden; margin-bottom: 16px; }
+.progress i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .3s; }
+.qcard { min-height: 300px; }
+.dk { margin-top: 12px; border: 2px dashed var(--line); background: transparent; border-radius: 12px; padding: 10px 16px; font-weight: 600; color: var(--muted); cursor: pointer; width: 100%; }
+.dk[aria-pressed="true"] { border-style: solid; border-color: var(--muted); color: var(--ink); background: var(--soft); }
+.test-nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 16px; }
+.nocalc { font-family: var(--f-hand); font-size: 20px; color: var(--margin); text-align: center; }
+
+/* results */
+.results { display: flex; flex-direction: column; gap: 18px; }
+.res-head { display: flex; gap: 26px; align-items: center; }
+.score { flex: 0 0 auto; width: 124px; height: 124px; border-radius: 50%; border: 6px solid var(--accent); display: flex; align-items: baseline; justify-content: center; padding-top: 34px; }
+.score b { font: 800 44px/1 var(--f-display); }
+.score span { font-size: 18px; color: var(--muted); margin-left: 3px; }
+.res-head h1 { font-size: 30px; margin-bottom: 8px; }
+.res-head .muted { margin-top: 6px; font-size: 15px; }
+.res-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; align-items: start; }
+.res-grid h2, .results > .sheet > h2 { margin-bottom: 14px; }
+.trows { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+.trow { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.trow:first-child { border-top: 0; }
+.tname { flex: 1; min-width: 0; }
+.tname b { display: block; font-weight: 650; font-size: 16px; }
+.tname small { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.35; }
+.dots { display: flex; gap: 5px; }
+.dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: var(--good); }
+.trow.gap .dots i:not(.on) { background: var(--bad); opacity: .45; }
+.cta-card { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 6px; border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.cta-card .btn { margin-top: 6px; }
+.cta-card .small { margin-top: 8px; }
+.mis-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.mis { border-left: 3px solid var(--bad); background: var(--soft); border-radius: 0 12px 12px 0; padding: 12px 16px; }
+.mis.none { border-left-color: var(--good); }
+.mis-h { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+.mis-n { color: var(--muted); font-weight: 700; font-size: 14px; }
+.mis-q { font-weight: 600; }
+.mis-a { margin-top: 6px; font-size: 15.5px; }
+.mis-a s { color: var(--bad); }
+.mis-a b { color: var(--good); }
+.mis-why { margin-top: 6px; }
+.lbl { color: var(--muted); font-size: 14px; }
+.review summary { cursor: pointer; font: 700 18px var(--f-display); }
+.rev { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.rev li { display: flex; gap: 12px; }
+.rn { flex: 0 0 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-weight: 700; font-size: 13px; background: var(--good-bg); color: var(--good); }
+.r-bad .rn { background: var(--bad-bg); color: var(--bad); }
+.r-a { font-size: 15px; margin-top: 3px; }
+.r-x { font-size: 15px; color: var(--muted); }
+
+/* demo */
+.demo { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 30px; align-items: start; }
+.side { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100vh - 100px); overflow: auto; padding-bottom: 8px; }
+.side-h { font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 8px 0 2px; }
+.side-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.side-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px; text-decoration: none; color: var(--ink); background: var(--paper); border: 1px solid var(--line); }
+.side-item:hover { border-color: var(--accent); }
+.side-item.on { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
+.side-t { flex: 1; min-width: 0; font-weight: 600; font-size: 14.5px; line-height: 1.25; }
+.side-t small { display: block; color: var(--muted); font-weight: 500; font-size: 12.5px; margin-top: 2px; }
+.side-cta { margin-top: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 15px; }
+.lesson { display: flex; flex-direction: column; gap: 34px; min-width: 0; }
+.side { min-width: 0; }
+.vals { border-collapse: collapse; font-size: 19px; font-weight: 600; }
+.vals th, .vals td { padding: 8px 16px; text-align: center; border-bottom: 1px solid var(--line); }
+.vals thead th { color: var(--muted); font-size: 15px; }
+.vals tbody th { color: var(--accent); text-align: left; }
+.perm { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.perm li { background: var(--soft); border-radius: 10px; padding: 8px 14px; font-weight: 700; font-size: 20px; letter-spacing: .08em; }
+.m.muted { color: var(--muted); font-weight: 500; }
+.lesson-h .kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); font-weight: 600; font-size: 14.5px; margin-bottom: 10px; }
+.lesson-h h1 { font-size: clamp(26px, 3.4vw, 36px); }
+.lsec > h2 { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 22px; flex-wrap: wrap; }
+.lsec > h2 .num { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-size: 15px; }
+.solved-c { font: 600 14px var(--f-body); color: var(--muted); margin-left: auto; }
+.player { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+.p-top { display: flex; justify-content: space-between; align-items: center; padding: 9px 18px; border-bottom: 1px solid var(--line); background: var(--soft); }
+.pcount { font-weight: 700; font-size: 14px; color: var(--muted); }
+.pdots { display: flex; gap: 8px; }
+.pdot { position: relative; width: 30px; height: 26px; border: 0; border-radius: 6px; background: none; cursor: pointer; padding: 0; }
+.pdot::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 6px; margin-top: -3px; border-radius: 99px; background: var(--line); }
+.pdot.on::before { background: var(--accent); }
+.slide { padding: 22px 26px 6px; min-height: 280px; display: flex; flex-direction: column; gap: 12px; }
+.slide p { max-width: 66ch; font-size: 17.5px; }
+.slide-fig { margin: 8px 0 6px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.p-nav { display: flex; justify-content: space-between; padding: 14px 18px 18px; }
+.figpair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%; }
+.figpair .cap, .cap { text-align: center; font-weight: 600; font-size: 15px; margin-top: 4px; }
+.flipdemo { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 0; }
+.flipdemo .sg { display: inline-grid; place-items: center; width: 1.5em; height: 1.5em; border-radius: 50%; }
+.flipdemo .sg.flip { background: var(--mark); color: var(--ink); }
+.sysfig { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+.formulas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 520px; }
+.formulas div { background: var(--soft); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.formulas b { font-size: 20px; font-weight: 650; }
+.lv-term { font-size: 13.5px; color: var(--muted); }
+.example .steps { margin: 16px 0 0; padding-left: 0; list-style: none; counter-reset: st; display: flex; flex-direction: column; gap: 10px; }
+.example .steps li { counter-increment: st; position: relative; padding: 12px 14px 12px 50px; background: var(--soft); border-radius: 12px; animation: rise .25s ease-out; }
+.example .steps li::before { content: counter(st); position: absolute; left: 14px; top: 11px; width: 26px; height: 26px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+@keyframes rise { from { transform: translateY(4px); opacity: .6; } to { transform: none; opacity: 1; } }
+.task { margin-bottom: 14px; }
+.task.solved { border-color: color-mix(in srgb, var(--good) 45%, var(--line)); }
+.task-top { display: flex; gap: 12px; align-items: flex-start; }
+.tnum { flex: 0 0 30px; height: 30px; border-radius: 8px; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-weight: 700; }
+.task.solved .tnum { background: var(--good); }
+.tq { flex: 1; min-width: 0; }
+.numrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 14px; }
+.numrow .pre { font-size: 20px; }
+.numin { width: 150px; }
+.relsel { width: 84px; font-size: 20px; padding: 10px; }
+.unit { color: var(--muted); font-weight: 600; }
+.ineq-prev { margin-top: 12px; background: var(--soft); border-radius: 12px; padding: 8px 10px 4px; }
+.ineq-prev .cap { text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; margin: 0 0 2px; }
+.tools { display: flex; gap: 18px; margin-top: 10px; }
+.course { display: flex; flex-direction: column; gap: 18px; }
+.clist { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; counter-reset: c; }
+.clist li { counter-increment: c; display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); font-weight: 550; font-size: 15px; }
+.clist li span::before { content: counter(c) ". "; color: var(--muted); }
+.clist li small { font-size: 12px; font-weight: 700; white-space: nowrap; }
+.clist li.in { background: var(--good-bg); border-color: transparent; }
+.clist li.in small { color: var(--good); }
+.clist li.lock small { color: var(--muted); }
+.clist li.lock small::before { content: "🔒 "; }
+.course-cta { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line); padding-top: 18px; }
+.course-cta p { color: var(--muted); font-size: 15px; margin-top: 4px; max-width: 60ch; }
+
+/* subscription */
+.sub > h1 { margin-bottom: 8px; }
+.sub-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; align-items: start; margin-top: 22px; }
+.pick { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 8px; }
+.pick-i { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 12px; cursor: pointer; }
+.pick-i:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.pick-i input { width: 20px; height: 20px; accent-color: var(--accent); flex: 0 0 auto; }
+.pick-t { flex: 1; font-weight: 600; }
+.price-card { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 10px; }
+.price { display: flex; align-items: baseline; gap: 8px; }
+.price b { font: 800 46px/1 var(--f-display); }
+.price span { color: var(--muted); }
+.calc { font-weight: 600; }
+.deal { font-size: 14.5px; color: var(--accent); font-weight: 600; }
+.incl { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.incl li { padding-left: 24px; position: relative; }
+.incl li::before { content: "✓"; position: absolute; left: 2px; color: var(--good); font-weight: 800; }
+.price-card h3 { font-size: 16px; margin-top: 8px; }
+.launch { font-size: 14.5px; background: var(--soft); border-radius: 12px; padding: 12px; margin-top: 4px; }
+.fine { font-size: 13.5px; color: var(--muted); text-align: center; }
+.thanks { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 36px 28px; }
+.big-check { width: 64px; height: 64px; border-radius: 50%; background: var(--good-bg); color: var(--good); display: grid; place-items: center; font-size: 32px; font-weight: 800; }
+.thanks .chips { justify-content: center; margin: 0; }
+.small-p b { font-size: 26px; }
+
+/* footer & modal */
+footer { border-top: 1px solid var(--line); background: var(--paper); font-size: 14px; color: var(--muted); }
+.foot-in { display: flex; justify-content: space-between; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 18px; padding-bottom: 18px; }
+.foot-act { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.reset-q { display: inline-flex; gap: 10px; align-items: center; }
+#modal { position: fixed; inset: 0; z-index: 50; background: rgba(8, 14, 26, .55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.modal-card { background: var(--paper); color: var(--ink); border-radius: var(--r); max-width: 640px; width: 100%; max-height: 86vh; overflow: auto; padding: 22px 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, .3); }
+.modal-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.modal-top h2 { min-width: 0; overflow-wrap: anywhere; }
+.modal-x { flex-shrink: 0; width: 44px; height: 44px; padding: 0; font-size: 26px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+@media (max-width: 480px) { .modal-top h2 { font-size: 22px; } .modal-card { padding: 18px 18px; } }
+.pv dt { font-weight: 700; margin-top: 12px; }
+.pv dd { margin: 3px 0 0; color: var(--muted); }
+
+/* figures */
+.fig { max-width: 100%; height: auto; display: block; overflow: visible; }
+.fig .st { stroke: var(--ink); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.fig .st.thin { stroke-width: 1.6; }
+.fig .st.thick { stroke-width: 4; }
+.fig .st.solid { fill: var(--soft); }
+.fig .st.dash { stroke-dasharray: 6 6; stroke-width: 1.6; }
+.fig .st.acc { stroke: var(--accent); stroke-width: 3; }
+.fig .st.arc { stroke: var(--margin); stroke-width: 2.4; }
+.fig .st.step { stroke: var(--margin); stroke-width: 2.4; stroke-dasharray: 5 5; }
+.fig .axis { stroke: var(--muted); stroke-width: 1.8; }
+.fig .tick { stroke: var(--muted); stroke-width: 1.5; }
+.fig .grid { stroke: var(--line); stroke-width: 1; }
+.fig .tx { fill: var(--ink); font: 600 17px var(--f-body); }
+.fig .sm { font-size: 15px; font-weight: 600; fill: var(--muted); }
+.fig .xs { font-size: 12.5px; font-weight: 500; fill: var(--muted); }
+.fig .it { font-style: italic; }
+.fig .big { font-size: 26px; font-weight: 700; }
+.fig .vx { font-size: 18px; font-weight: 700; }
+.fig .ang { fill: var(--margin); font-size: 17px; font-weight: 700; }
+.fig .lab { font-size: 19px; font-weight: 700; }
+.fig .lab-a { fill: var(--accent); font-size: 21px; font-weight: 800; font-style: italic; }
+.fig .lab-b { fill: var(--c2); font-size: 21px; font-weight: 800; font-style: italic; }
+.fig .lab-c { fill: var(--c3); font-size: 21px; font-weight: 800; font-style: italic; }
+.fig .hand, .fig .hand-s { font-family: var(--f-hand); fill: var(--margin); font-size: 28px; font-weight: 600; }
+.fig .hand-s { font-size: 24px; }
+.fig .on-acc { fill: var(--on-accent); }
+.fig .acc-t { fill: var(--accent); }
+.fig .seg { stroke-width: 6; stroke-linecap: round; fill: none; }
+.fig .seg-ar { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.fig .seg-a { stroke: var(--accent); } .fig .seg-b { stroke: var(--c2); } .fig .seg-c { stroke: var(--c3); }
+.fig .pt-in, .fig .pt-out { stroke-width: 3; }
+.fig .pt-in.pt-a { fill: var(--accent); stroke: var(--accent); } .fig .pt-out.pt-a { fill: var(--paper); stroke: var(--accent); }
+.fig .pt-in.pt-b { fill: var(--c2); stroke: var(--c2); } .fig .pt-out.pt-b { fill: var(--paper); stroke: var(--c2); }
+.fig .pt-in.pt-c { fill: var(--c3); stroke: var(--c3); } .fig .pt-out.pt-c { fill: var(--paper); stroke: var(--c3); }
+.fig .curve { stroke: var(--accent); stroke-width: 3.4; fill: none; stroke-linejoin: round; }
+.fig .tri { fill: var(--accent-soft); stroke: var(--ink); stroke-width: 2.2; stroke-linejoin: round; }
+.fig .tri-2 { fill: color-mix(in srgb, var(--c2) 14%, var(--paper)); }
+.fig .tri-in { fill: none; stroke: var(--c2); stroke-width: 1.8; stroke-dasharray: 5 4; }
+.fig .side { stroke-width: 4.5; stroke-linecap: round; }
+.fig .side-a { stroke: var(--accent); } .fig .side-b { stroke: var(--c2); } .fig .side-c { stroke: var(--c3); }
+.fig .dot { fill: var(--ink); }
+.fig .cell { stroke: var(--paper); stroke-width: 3; }
+.fig .c1 { fill: var(--accent-soft); } .fig .c2 { fill: color-mix(in srgb, var(--c2) 20%, var(--paper)); } .fig .c3 { fill: color-mix(in srgb, var(--c3) 22%, var(--paper)); }
+.fig .bar-keep { fill: var(--accent); }
+.fig .bar-cut { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 6 5; }
+.fig .pan { fill: var(--soft); stroke: var(--ink); stroke-width: 2; }
+.fig .body { fill: var(--accent-soft); stroke: var(--ink); stroke-width: 2.2; }
+.fig .top { fill: color-mix(in srgb, var(--accent) 22%, var(--paper)); stroke: var(--ink); stroke-width: 2.2; }
+.fig .box { fill: var(--soft); stroke: var(--line); stroke-width: 2; }
+.fig .ball { stroke: var(--paper); stroke-width: 2; }
+.fig .ball-r { fill: var(--ball-r); } .fig .ball-b { fill: var(--ball-b); } .fig .ball-g { fill: var(--ball-g); }
+
+/* survey on the results page */
+.results > .survey > h2 { margin-bottom: 6px; }
+.sv-opts { border: 0; padding: 0; margin: 16px 0 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+.sv-opt { position: relative; }
+.sv-opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.sv-opt span { display: inline-flex; align-items: center; gap: 9px; border: 2px solid var(--line); border-radius: 99px; padding: 9px 15px; background: var(--paper); font-weight: 600; font-size: 15.5px; cursor: pointer; transition: border-color .15s, background .15s; }
+.sv-opt span::before { content: ""; flex: 0 0 auto; width: 16px; height: 16px; border-radius: 5px; border: 2px solid var(--line); background: var(--paper); }
+.sv-opt:hover span { border-color: var(--accent); }
+.sv-opt input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.sv-opt input:checked + span::before { background: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 3px var(--paper); }
+.sv-opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sv-other { max-width: 440px; margin-bottom: 14px; }
+.survey .err { margin-bottom: 10px; }
+
+/* exam cheat sheet for parents */
+.ex-head { display: flex; flex-direction: column; gap: 12px; max-width: 780px; margin-bottom: 24px; }
+.ex-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; align-items: start; }
+.ex-grid h2 { margin-bottom: 12px; }
+.xdates { list-style: none; padding: 0; margin: 0 0 14px; }
+.xdates li { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 14px; padding: 12px 0; border-top: 1px solid var(--line); }
+.xdates li:first-child { border-top: 0; padding-top: 2px; }
+.xd { font: 800 17px/1.4 var(--f-display); color: var(--accent); white-space: nowrap; }
+.xt b { display: block; font-weight: 650; line-height: 1.4; }
+.xt small { display: block; margin-top: 3px; font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+.badge { display: inline-block; vertical-align: 2px; margin-left: 6px; padding: 4px 8px; border-radius: 99px; font: 700 11.5px/1 var(--f-body); letter-spacing: .05em; text-transform: uppercase; color: var(--c2); background: color-mix(in srgb, var(--c2) 13%, transparent); }
+.xknow { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.xknow li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; align-items: baseline; }
+.xknow b { font: 800 30px/1 var(--f-display); color: var(--bad); white-space: nowrap; }
+.xknow p { font-size: 15.5px; }
+.ex-cta { margin-top: 28px; border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+.ex-cta .btn { white-space: nowrap; flex: 0 0 auto; }
+.ex-share { margin-top: 30px; }
+.ex-share h2 { font-size: 18px; margin-bottom: 12px; }
+.share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.copied { font-size: 14.5px; font-weight: 600; color: var(--good); }
+.ex-link { margin-top: 10px; font-weight: 650; }
+.exams .src { margin-top: 26px; max-width: 80ch; }
+
+/* responsive */
+@media (max-width: 1100px) {
+  .stepper .sl { display: none; }
+  .stepper li { padding-right: 4px; }
+}
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; }
+  .stats, .how { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tchips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .res-grid, .sub-grid, .ex-grid { grid-template-columns: 1fr; }
+  .cta-card, .price-card { position: static; }
+  .demo { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .side { position: static; max-height: none; overflow: visible; }
+  .side-list { flex-direction: row; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; }
+  .side-list li { flex: 0 0 auto; scroll-snap-align: start; }
+  .side-item { max-width: 260px; }
+  .side-cta { display: none; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .stepper { display: none !important; }
+  .lang { margin-left: auto !important; }
+  main#view { padding-top: 18px; }
+  .sheet { padding: 18px 16px; }
+  .sheet.nb { padding-left: 34px; }
+  .sheet.nb::before { left: 20px; }
+  .opts-2 { grid-template-columns: 1fr; }
+  .stats, .how, .tchips { grid-template-columns: 1fr; }
+  .facts { gap: 22px; }
+  .parents, .course-cta { flex-direction: column; align-items: stretch; }
+  .res-head { flex-direction: column; text-align: center; gap: 14px; }
+  .test-nav .nocalc { display: none; }
+  .figpair { grid-template-columns: 1fr; }
+  .clist { grid-template-columns: 1fr; }
+  .slide { padding: 18px 16px 4px; min-height: 0; }
+  .p-nav { padding: 12px 16px 16px; }
+  .m.big { font-size: 21px; }
+  .q-lv { font-size: 18px; }
+  .logo-txt small { display: none; }
+  .solved-c { margin-left: 0; width: 100%; }
+  .dots { display: none; }
+  .trow { gap: 10px; }
+  .xdates li { grid-template-columns: 1fr; gap: 2px; }
+  .xknow li { grid-template-columns: 64px minmax(0, 1fr); }
+  .ex-cta .btn { white-space: normal; }
+  .xknow b { font-size: 25px; }
+  .sv-opt span { font-size: 15px; padding: 8px 13px; }
+}
+@media print {
+  .top, #footer, .preview-bar, .ex-share, .ex-cta .btn { display: none !important; }
+  body { background: none; }
+  main#view { padding: 0; }
+  .sheet, .how li { box-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Matemātika 9<small id="tagline">9. klases eksāmenam</small></span></a>
+    <ol class="stepper" id="stepper" hidden></ol>
+    <div class="lang" id="lang-group" role="group" aria-label="Valoda"><button type="button" data-act="lang" data-v="lv" aria-pressed="true">LV</button><button type="button" data-act="lang" data-v="ru" aria-pressed="false">RU</button></div>
+  </div>
+</header>
+<div class="preview-bar" id="preview-bar" hidden><div class="wrap"><span id="preview-text"></span><button type="button" id="pv-close" data-act="pv-close" aria-label="Aizvērt">×</button></div></div>
+<main id="view"></main>
+<footer id="footer"></footer>
+<div id="modal" hidden></div>
+<script>
+// ---------- Settings: fill these in before going live ----------
+const CONFIG = {
+  brand: 'Matemātika 9',
+  endpoint: 'https://script.google.com/macros/s/AKfycbyvCPXmKgrMTif8uRQeMhD1Y7sJCOS_MJllcFOLlICQN4FUw_hYgbKg3T9BjhnCDpel/exec', // Google Apps Script web app URL (…/exec). Empty = preview mode, nothing is sent.
+  payLinks: null,             // Stripe/Payhip links by topic count, e.g. { 1: 'https://…', 2: '…', 3: '…', all: '…' }. Empty = free reservation.
+  pricePerTopic: 5,           // € per topic per month
+  priceAll: 19,               // € per month for all topics (cap)
+  examDate: '2027-05-25',
+  launchDate: '2026-12-15',
+  earlyDiscount: 50,          // % off the first month for reservations
+  controller: 'Matemātika 9', // who collects the data: name, surname or company
+  contactEmail: 'ai.skolens@gmail.com', // where people can ask to delete their data
+};
+
+const I18N = {
+  lv: {
+    tagline: '9. klases eksāmenam',
+    steps: ['Pieteikums', 'Tests', 'Rezultāts', 'Demo kurss'],
+    lang_label: 'Valoda',
+    eyebrow: 'Matemātikas eksāmens 9. klasei · {date}',
+    days_left: 'līdz eksāmenam {n} {w}',
+    hero_h: 'Uzzini, kuras tēmas tev jāatkārto pirms eksāmena',
+    hero_p: 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes. Uzreiz redzēsi, kur ir robi, un saņemsi demo nodarbības tieši šīm tēmām.',
+    hero_cta: 'Sākt bezmaksas testu',
+    hero_note: 'Bez maksas. Rezultātus nosūtīsim arī uz e-pastu.',
+    facts: [['16', 'uzdevumi'], ['8', 'tēmas'], ['~15', 'minūtes']],
+    sample_label: 'Uzdevums no testa',
+    sample_try: 'Izvēlies atbildi',
+    stats_h: 'Kur skolēni zaudē punktus',
+    stats_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA eksāmena rezultātu analīze.',
+    how_h: 'Kā tas notiek',
+    how: [
+      ['Pieteikums', 'Ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.'],
+      ['Tests', '16 uzdevumi bez kalkulatora, tāpat kā eksāmena 1. daļā. Ja nezini, spied „Nezinu“.'],
+      ['Rezultāts', 'Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.'],
+      ['Demo kurss', 'Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.'],
+    ],
+    topics_h: '8 tēmas, ko pārbauda tests',
+    parents_h: 'Vecākiem',
+    parents_p: 'Bērns mācās savā tempā, bez grafika un bez skolotāja. Katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Testa rezultātu saņemsiet e-pastā un redzēsiet, ar ko sākt.',
+
+    contact_h: 'Kam nosūtīt rezultātus?',
+    contact_p: 'Pēc testa nosūtīsim rezultātu un demo kursa saiti uz šo e-pastu.',
+    who: 'Kas aizpilda?',
+    who_student: 'Es esmu skolēns',
+    who_parent: 'Es esmu vecāks',
+    parent_note: 'Testu pēc tam pilda bērns: vienkārši nododiet viņam ierīci.',
+    f_name: 'Vārds', f_name_ph: 'Piemēram, Anna',
+    f_email: 'E-pasts', f_email_ph: 'vards@epasts.lv',
+    f_phone: 'Tālrunis', f_phone_opt: 'neobligāts', f_phone_ph: '+371 2…',
+    f_consent: 'Piekrītu, ka mani dati tiek izmantoti, lai nosūtītu testa rezultātus un demo nodarbības.',
+    f_privacy: 'Privātuma politika',
+    f_news: 'Paziņot man, kad sāksies pilnais kurss',
+    f_submit: 'Sākt testu',
+    err_name: 'Ieraksti vārdu.',
+    err_email: 'Pārbaudi e-pasta adresi, piemēram, vards@epasts.lv.',
+    err_consent: 'Lai turpinātu, atzīmē piekrišanu.',
+
+    test_of: 'Uzdevums {i} no {n}',
+    test_nocalc: 'Bez kalkulatora, tāpat kā eksāmena 1. daļā',
+    dont_know: 'Nezinu',
+    next: 'Tālāk', to_example: 'Uz piemēru ↓',
+    prev: 'Atpakaļ',
+    finish: 'Pabeigt testu',
+
+    res_h: 'Tavs rezultāts: {s} no {n}',
+    res_p: 'Šis nav eksāmena vērtējums. Tas parāda, ar kurām tēmām sākt.',
+    band: [
+      'Daudzas tēmas jāsāk no pamatiem, un tas ir normāli. Sāc ar vienu tēmu un ej pa soļiem.',
+      'Pamati ir, bet vairākās tēmās ir robi. Tieši tur var iegūt visvairāk punktu.',
+      'Labs rezultāts! Atliek aizlāpīt dažus robus.',
+      'Izcili! Robu gandrīz nav. Pamēģini eksāmena līmeņa uzdevumus demo kursā.',
+    ],
+    res_topics_h: 'Tēmas',
+    st: { gap: 'Robs', mid: 'Jāatkārto', ok: 'Labi' },
+    res_exam: '2025. gada eksāmenā: {t}, vidējā izpilde {p} %',
+    res_mistakes_h: 'Tavas kļūdas un kā tās labot',
+    res_none: 'Kļūdainu atbilžu nav.',
+    res_dk: ['Uz {n} uzdevumu atbildēji „Nezinu“. Tas ir iekļauts demo kursā.', 'Uz {n} uzdevumiem atbildēji „Nezinu“. Tie ir iekļauti demo kursā.'],
+    res_demo_h: 'Tavs demo kurss ir gatavs',
+    res_demo_p: 'Sāksim ar tēmām, kurās var iegūt visvairāk punktu:',
+    res_demo_all: 'Robu nav, tāpēc demo kursā ir visas tēmas.',
+    res_demo_btn: 'Atvērt demo kursu',
+    res_sent: 'Rezultāta kopiju nosūtījām uz {email}.',
+    res_preview: 'Priekšskatījumā e-pasts netiek sūtīts.',
+    res_review: 'Visi uzdevumi un pareizās atbildes',
+    your_answer: 'Tava atbilde',
+    correct_answer: 'Pareizi',
+
+    demo_yours: 'Tavas tēmas',
+    demo_other: 'Citas tēmas',
+    demo_lesson: 'Demo nodarbība · ~{m} min',
+    sec_idea: 'Galvenā doma',
+    sec_example: 'Piemērs soli pa solim',
+    sec_tasks: 'Pamēģini pats',
+    sec_course: 'Pilnajā kursā',
+    next_step: 'Rādīt nākamo soli',
+    all_steps: 'Rādīt visu',
+    check: 'Pārbaudīt',
+    hint: 'Padoms',
+    show_solution: 'Rādīt risinājumu',
+    right: 'Pareizi!',
+    wrong_generic: 'Vēl nav pareizi. Pamēģini vēlreiz vai apskati padomu.',
+    not_number: 'Ieraksti skaitli, piemēram, −4 vai 0,5.',
+    answer_ph: 'Atbilde',
+    solved: ['Atrisināts {k} no {n}', 'Atrisināti {k} no {n}'],
+    in_demo: 'demo kursā',
+    locked: 'pilnajā kursā',
+    cta_full_h: 'Patika? Pilnajā kursā ir viss pārējais',
+    cta_full_p: 'Katrā tēmā 6–8 nodarbības ar video skaidrojumiem, daudz uzdevumu ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs, kuram jautājumus var uzdot arī balsī.',
+    cta_full_btn: 'Izvēlēties tēmas',
+    your_answer_line: 'Tava atbilde uz skaitļu ass',
+
+    sub_h: 'Pilnais kurss tavām tēmām',
+    sub_p: 'Atzīmē tēmas, kuras gribi apgūt. Testa robi jau ir atzīmēti.',
+    sub_all: 'Atzīmēt visas',
+    per_month: 'mēnesī',
+    sub_calc: '{n} × {pp} €',
+    sub_capped: 'Visas tēmas par {pa} € — vairāk nebūs jāmaksā',
+    sub_all_deal: 'Visas 8 tēmas — {pa} € mēnesī',
+    sub_incl_h: 'Abonementā',
+    sub_incl: ['Video skaidrojumi ar latviešu terminiem', 'Uzdevumi ar tūlītēju pārbaudi un kļūdu skaidrojumu', 'Eksāmena tipa uzdevumi ar risinājumiem', 'MI palīgs: jautā rakstot vai balsī', 'Progresa pārskats vecākiem e-pastā', 'Atcelt var jebkurā brīdī'],
+    sub_launch: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim. Mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.',
+    sub_reserve: 'Rezervēt vietu bez maksas',
+    sub_pay: 'Abonēt par {p} € mēnesī',
+    sub_fine: 'Rezervācija tevi ne pie kā nesaista.',
+    sub_pick_one: 'Atzīmē vismaz vienu tēmu.',
+    thanks_h: 'Vieta rezervēta!',
+    thanks_p: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim.',
+    thanks_topics: 'Tavas tēmas',
+    thanks_back: 'Turpināt demo kursu',
+
+    preview_bar: 'Priekšskatījums: pieteikumi netiek saglabāti, jo nav pieslēgta Google tabula.',
+    close: 'Aizvērt',
+    footer_note: 'Tests veidots pēc VIAA 9. klases matemātikas eksāmena programmas tēmām.',
+    footer_reset: 'Sākt no jauna',
+    reset_q: 'Dzēst atbildes šajā ierīcē?',
+    yes: 'Jā, dzēst', no: 'Nē',
+    privacy_h: 'Privātuma politika',
+    privacy: [
+      ['Kas apstrādā datus', '{controller}. Saziņai: {email}.'],
+      ['Kādus datus', 'Vārds, e-pasts, tālrunis (ja to norādi), vai aizpilda skolēns vai vecāks, testa atbildes un rezultāts, demo nodarbībās atrisinātie uzdevumi, izvēlētās tēmas un atbilde uz jautājumu „Kas vēl noderētu?“, ja to sniedz.'],
+      ['Kāpēc', 'Lai nosūtītu testa rezultātu un demo nodarbības, lai saprastu, kādus kursus gatavot, un, ja piekriti, lai paziņotu par pilnā kursa sākumu.'],
+      ['Tiesiskais pamats', 'Tava piekrišana (VDAR 6. panta 1. punkta a) apakšpunkts). To var atsaukt jebkurā brīdī.'],
+      ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
+      ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs.'],
+      ['Tavas tiesības', 'Vari lūgt datus parādīt, labot vai dzēst, rakstot uz {email}. Sūdzību vari iesniegt Datu valsts inspekcijā (dvi.gov.lv).'],
+      ['Ja tev nav 13 gadu', 'Lūdz vecākam aizpildīt pieteikumu.'],
+    ],
+    tbd: '[jāaizpilda]',
+
+    doc_title: 'Matemātikas eksāmena tests 9. klasei',
+    ex_doc_title: '9. klases eksāmeni 2027: atgādne vecākiem',
+    ex_eyebrow: 'Atgādne vecākiem · 2026./2027. mācību gads',
+    ex_h: '9. klases eksāmeni 2027',
+    ex_lead: 'Trīs centralizētie eksāmeni maijā un jūnijā. Lai saņemtu apliecību, latviešu valodā un matemātikā jāiegūst vismaz 20 %.',
+    ex_dates_h: 'Datumi',
+    ex_new: 'jauns',
+    ex_dates: [
+      ['6. aprīlis', 'Svešvaloda: monitoringa darbs', 'Rakstu daļa. Mutvārdu daļa notiek no 6. līdz 30. aprīlim. Jāpiedalās, bet rezultāts apliecību neietekmē.', ''],
+      ['17.–20. maijs', 'Latviešu valoda: mutvārdu daļa', 'Notiek vienā no šīm dienām.', ''],
+      ['20. maijs', 'Latviešu valoda: rakstu daļa', '', ''],
+      ['25. maijs', 'Matemātika', '', ''],
+      ['2. jūnijs', 'Dabaszinātnes', '2027. gadā minimālais slieksnis šim eksāmenam netiek piemērots.', 'new'],
+    ],
+    ex_makeup: 'Papildtermiņi, ja ir attaisnojošs iemesls: latviešu valoda — 7. jūnijs, matemātika — 9. jūnijs, dabaszinātnes — 11. jūnijs.',
+    ex_know_h: 'Kas jāzina',
+    ex_know: [
+      ['20 %', 'Apliecībai jāiegūst vismaz 20 % latviešu valodā un matemātikā. 2026. gadā pietika ar 15 %.'],
+      ['750', '2026. gadā matemātikas eksāmenu nenokārtoja 750 devītklasnieki no 15 955.'],
+      ['10.', 'Eksāmenu rezultāti ir svarīgi, iestājoties 10. klasē: daudzas skolas tos ņem vērā uzņemšanā.'],
+    ],
+    ex_todo_h: 'Ko darīt tagad',
+    ex_todo: [
+      ['Uzziniet, kur ir robi', 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes.'],
+      ['Atkārtojiet pa tēmām', 'Labāk 20–30 minūtes trīs reizes nedēļā nekā viens garš vakars pirms eksāmena.'],
+      ['Risiniet eksāmena uzdevumus', 'VIAA publicē iepriekšējo gadu eksāmenu uzdevumus. Sāciet ar 1. daļu bez kalkulatora.'],
+      ['Trenējieties ar taimeri', 'Mēnesi pirms eksāmena izpildiet vienu pilnu iepriekšējā gada darbu, ievērojot laiku.'],
+    ],
+    ex_cta_h: 'Sāciet ar bezmaksas testu',
+    ex_cta_done_h: 'Tests jau izpildīts',
+    ex_cta_p: '16 uzdevumi, apmēram 15 minūtes. Rezultāts pa tēmām un demo nodarbības vājākajām tēmām, kopija — e-pastā.',
+    ex_cta_done: 'Atvērt rezultātu',
+    ex_share_h: 'Nosūtiet atgādni citiem klases vecākiem',
+    ex_share_text: '9. klases eksāmeni 2027: datumi, 20 % slieksnis un ko darīt tagad',
+    ex_share_btn: 'Dalīties…',
+    ex_copy: 'Kopēt saiti',
+    ex_copied: 'Saite nokopēta',
+    ex_src: 'Avoti: IZM 2026. gada 17. septembra lēmums Nr. 1-4e/26/236 par valsts pārbaudes darbu norises laikiem, LV portāls (9.09.2026), VIAA eksāmenu rezultāti (14.07.2026). Noteikumi var mainīties: aktuālo informāciju skatiet viaa.gov.lv.',
+    ex_link: 'Eksāmenu atgādne vecākiem',
+    f_exams: 'Eksāmeni 2027: atgādne',
+
+    sv_h: 'Kas vēl noderētu?',
+    sv_p: 'Atzīmē visu, kas noderētu. Tā sapratīsim, ko gatavot tālāk.',
+    sv_opts: [['lv_exam', 'Latviešu valodas eksāmens'], ['sci_exam', 'Dabaszinātņu eksāmens (jauns)'], ['homework', 'Palīdzība ar mājasdarbiem, 5.–9. klase'], ['grade12', '12. klases eksāmeni'], ['other', 'Cits']],
+    sv_other_l: 'Kas tieši?',
+    sv_other_ph: 'Piemēram, ķīmija',
+    sv_send: 'Nosūtīt atbildi',
+    sv_pick: 'Atzīmē vismaz vienu variantu.',
+    sv_thanks: 'Paldies! Ņemsim to vērā, plānojot nākamos kursus.',
+  },
+
+  ru: {
+    tagline: 'к экзамену 9 класса',
+    steps: ['Заявка', 'Тест', 'Результат', 'Демо-курс'],
+    lang_label: 'Язык',
+    eyebrow: 'Экзамен по математике, 9 класс · {date}',
+    days_left: 'до экзамена {n} {w}',
+    hero_h: 'Узнай, какие темы нужно повторить перед экзаменом',
+    hero_p: 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут. Сразу увидишь, где пробелы, и получишь демо-уроки именно по этим темам.',
+    hero_cta: 'Пройти бесплатный тест',
+    hero_note: 'Бесплатно. Результат пришлём и на e-mail.',
+    facts: [['16', 'задач'], ['8', 'тем'], ['~15', 'минут']],
+    sample_label: 'Задача из теста',
+    sample_try: 'Выбери ответ',
+    stats_h: 'Где ученики теряют баллы',
+    stats_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: анализ результатов экзамена VIAA.',
+    how_h: 'Как это работает',
+    how: [
+      ['Заявка', 'Впиши имя и e-mail, куда прислать результат.'],
+      ['Тест', '16 задач без калькулятора, как в 1-й части экзамена. Если не знаешь, жми «Не знаю».'],
+      ['Результат', 'Видно состояние каждой темы и твои типичные ошибки с объяснением.'],
+      ['Демо-курс', 'Короткие уроки по слабым темам: объяснение, пример и задачи с мгновенной проверкой.'],
+    ],
+    topics_h: '8 тем, которые проверяет тест',
+    parents_h: 'Родителям',
+    parents_p: 'Ребёнок занимается в своём темпе, без расписания и без репетитора. Каждая задача проверяется сразу, а ошибка объясняется. Результат теста придёт вам на e-mail, и будет видно, с чего начать.',
+
+    contact_h: 'Куда прислать результат?',
+    contact_p: 'После теста пришлём результат и ссылку на демо-курс на этот e-mail.',
+    who: 'Кто заполняет?',
+    who_student: 'Я ученик',
+    who_parent: 'Я родитель',
+    parent_note: 'Тест потом проходит ребёнок: просто передайте ему устройство.',
+    f_name: 'Имя', f_name_ph: 'Например, Анна',
+    f_email: 'E-mail', f_email_ph: 'imja@pochta.lv',
+    f_phone: 'Телефон', f_phone_opt: 'необязательно', f_phone_ph: '+371 2…',
+    f_consent: 'Согласен(-на), что мои данные используются, чтобы прислать результат теста и демо-уроки.',
+    f_privacy: 'Политика конфиденциальности',
+    f_news: 'Сообщить мне, когда начнётся полный курс',
+    f_submit: 'Начать тест',
+    err_name: 'Впиши имя.',
+    err_email: 'Проверь адрес e-mail, например imja@pochta.lv.',
+    err_consent: 'Чтобы продолжить, отметь согласие.',
+
+    test_of: 'Задача {i} из {n}',
+    test_nocalc: 'Без калькулятора, как в 1-й части экзамена',
+    dont_know: 'Не знаю',
+    next: 'Дальше', to_example: 'К примеру ↓',
+    prev: 'Назад',
+    finish: 'Завершить тест',
+
+    res_h: 'Твой результат: {s} из {n}',
+    res_p: 'Это не оценка за экзамен. Результат показывает, с каких тем начать.',
+    band: [
+      'Многие темы придётся начать с основ, и это нормально. Начни с одной темы и иди по шагам.',
+      'Основа есть, но в нескольких темах пробелы. Именно там можно набрать больше всего баллов.',
+      'Хороший результат! Осталось закрыть несколько пробелов.',
+      'Отлично! Пробелов почти нет. Попробуй задачи уровня экзамена в демо-курсе.',
+    ],
+    res_topics_h: 'Темы',
+    st: { gap: 'Пробел', mid: 'Повторить', ok: 'Хорошо' },
+    res_exam: 'На экзамене 2025 года: {t}, среднее выполнение {p} %',
+    res_mistakes_h: 'Твои ошибки и как их исправить',
+    res_none: 'Неверных ответов нет.',
+    res_dk: ['«Не знаю» — в {n} задаче. Она есть в демо-курсе.', '«Не знаю» — в {n} задачах. Они есть в демо-курсе.'],
+    res_demo_h: 'Твой демо-курс готов',
+    res_demo_p: 'Начнём с тем, где можно набрать больше всего баллов:',
+    res_demo_all: 'Пробелов нет, поэтому в демо-курсе все темы.',
+    res_demo_btn: 'Открыть демо-курс',
+    res_sent: 'Копию результата отправили на {email}.',
+    res_preview: 'В предпросмотре письмо не отправляется.',
+    res_review: 'Все задачи и правильные ответы',
+    your_answer: 'Твой ответ',
+    correct_answer: 'Правильно',
+
+    demo_yours: 'Твои темы',
+    demo_other: 'Другие темы',
+    demo_lesson: 'Демо-урок · ~{m} мин',
+    sec_idea: 'Главная мысль',
+    sec_example: 'Пример по шагам',
+    sec_tasks: 'Попробуй сам',
+    sec_course: 'В полном курсе',
+    next_step: 'Показать следующий шаг',
+    all_steps: 'Показать всё',
+    check: 'Проверить',
+    hint: 'Подсказка',
+    show_solution: 'Показать решение',
+    right: 'Верно!',
+    wrong_generic: 'Пока неверно. Попробуй ещё раз или посмотри подсказку.',
+    not_number: 'Впиши число, например −4 или 0,5.',
+    answer_ph: 'Ответ',
+    solved: ['Решено {k} из {n}', 'Решено {k} из {n}'],
+    in_demo: 'в демо',
+    locked: 'в полном курсе',
+    cta_full_h: 'Понравилось? В полном курсе всё остальное',
+    cta_full_p: 'В каждой теме 6–8 уроков с видеообъяснениями, много задач с проверкой, задачи как на экзамене и ИИ-помощник, которому можно задавать вопросы и голосом.',
+    cta_full_btn: 'Выбрать темы',
+    your_answer_line: 'Твой ответ на числовой прямой',
+
+    sub_h: 'Полный курс по твоим темам',
+    sub_p: 'Отметь темы, которые хочешь пройти. Пробелы из теста уже отмечены.',
+    sub_all: 'Отметить все',
+    per_month: 'в месяц',
+    sub_calc: '{n} × {pp} €',
+    sub_capped: 'Все темы за {pa} €, больше платить не придётся',
+    sub_all_deal: 'Все 8 тем — {pa} € в месяц',
+    sub_incl_h: 'В подписке',
+    sub_incl: ['Видеообъяснения с латышскими терминами', 'Задачи с мгновенной проверкой и разбором ошибок', 'Задачи как на экзамене с решениями', 'ИИ-помощник: спрашивай текстом или голосом', 'Отчёт о прогрессе для родителей на e-mail', 'Отменить можно в любой момент'],
+    sub_launch: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату со скидкой −{d} % на первый месяц. Месяц отсчитаем с того дня, когда откроется твоя первая тема.',
+    sub_reserve: 'Забронировать бесплатно',
+    sub_pay: 'Подписаться за {p} € в месяц',
+    sub_fine: 'Бронь ни к чему не обязывает.',
+    sub_pick_one: 'Отметь хотя бы одну тему.',
+    thanks_h: 'Место забронировано!',
+    thanks_p: 'До старта курса ({date}) пришлём на {email} ссылку на оплату со скидкой −{d} % на первый месяц.',
+    thanks_topics: 'Твои темы',
+    thanks_back: 'Продолжить демо-курс',
+
+    preview_bar: 'Предпросмотр: заявки не сохраняются, Google-таблица не подключена.',
+    close: 'Закрыть',
+    footer_note: 'Тест составлен по темам программы экзамена VIAA по математике для 9 класса.',
+    footer_reset: 'Начать заново',
+    reset_q: 'Удалить ответы на этом устройстве?',
+    yes: 'Да, удалить', no: 'Нет',
+    privacy_h: 'Политика конфиденциальности',
+    privacy: [
+      ['Кто обрабатывает данные', '{controller}. Для связи: {email}.'],
+      ['Какие данные', 'Имя, e-mail, телефон (если укажешь), кто заполняет — ученик или родитель, ответы и результат теста, решённые задачи в демо-уроках, выбранные темы и ответ на вопрос «Что ещё нужно?», если ты его дашь.'],
+      ['Зачем', 'Чтобы прислать результат теста и демо-уроки, понять, какие курсы готовить дальше, а если ты согласен(-на) — сообщить о старте полного курса.'],
+      ['Правовое основание', 'Твоё согласие (статья 6, пункт 1, подпункт a) GDPR). Его можно отозвать в любой момент.'],
+      ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
+      ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком.'],
+      ['Твои права', 'Можно попросить показать, исправить или удалить данные, написав на {email}. Жалобу можно подать в Государственную инспекцию данных (dvi.gov.lv).'],
+      ['Если тебе нет 13 лет', 'Попроси родителя заполнить заявку.'],
+    ],
+    tbd: '[заполнить]',
+
+    doc_title: 'Тест к экзамену по математике для 9 класса',
+    ex_doc_title: 'Экзамены 9 класса 2027: шпаргалка для родителей',
+    ex_eyebrow: 'Шпаргалка для родителей · 2026/27 учебный год',
+    ex_h: 'Экзамены 9 класса — 2027',
+    ex_lead: 'Три централизованных экзамена в мае и июне. Чтобы получить аттестат, по латышскому и математике нужно набрать не меньше 20 %.',
+    ex_dates_h: 'Даты',
+    ex_new: 'новый',
+    ex_dates: [
+      ['6 апреля', 'Иностранный язык: мониторинг', 'Письменная часть. Устная — с 6 по 30 апреля. Участвовать обязательно, но на аттестат результат не влияет.', ''],
+      ['17–20 мая', 'Латышский язык: устная часть', 'Проходит в один из этих дней.', ''],
+      ['20 мая', 'Латышский язык: письменная часть', '', ''],
+      ['25 мая', 'Математика', '', ''],
+      ['2 июня', 'Естественные науки', 'В 2027 году минимальный порог для этого экзамена не применяется.', 'new'],
+    ],
+    ex_makeup: 'Запасные дни для тех, кто пропустил по уважительной причине: латышский — 7 июня, математика — 9 июня, естественные науки — 11 июня.',
+    ex_know_h: 'Что важно знать',
+    ex_know: [
+      ['20 %', 'Для аттестата нужно набрать не меньше 20 % по латышскому и математике. В 2026 году хватало 15 %.'],
+      ['750', 'В 2026 году экзамен по математике не сдали 750 девятиклассников из 15 955.'],
+      ['10', 'Результаты важны при поступлении в 10 класс: многие школы их учитывают.'],
+      ['LV', 'Все задания — только на латышском. Важно понимать термины: nevienādība — неравенство, saucējs — знаменатель, vienādojums — уравнение.'],
+    ],
+    ex_todo_h: 'Что делать сейчас',
+    ex_todo: [
+      ['Узнайте, где пробелы', 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут.'],
+      ['Повторяйте по темам', 'Лучше 20–30 минут три раза в неделю, чем один долгий вечер перед экзаменом.'],
+      ['Решайте задания экзамена', 'VIAA публикует задания прошлых лет. Начните с 1-й части без калькулятора.'],
+      ['Учите термины по-латышски', 'Выпишите слова из заданий, которые ребёнок не понимает, и повторяйте их вместе.'],
+    ],
+    ex_cta_h: 'Начните с бесплатного теста',
+    ex_cta_done_h: 'Тест уже пройден',
+    ex_cta_p: '16 задач, около 15 минут. Результат по темам и демо-уроки по слабым темам, копия — на e-mail.',
+    ex_cta_done: 'Открыть результат',
+    ex_share_h: 'Отправьте шпаргалку другим родителям класса',
+    ex_share_text: 'Экзамены 9 класса 2027: даты, порог 20 % и что делать сейчас',
+    ex_share_btn: 'Поделиться…',
+    ex_copy: 'Скопировать ссылку',
+    ex_copied: 'Ссылка скопирована',
+    ex_src: 'Источники: решение IZM № 1-4e/26/236 от 17 сентября 2026 года о датах экзаменов, LV portāls (9.09.2026), результаты экзаменов VIAA (14.07.2026). Правила могут меняться: актуальная информация — на viaa.gov.lv.',
+    ex_link: 'Шпаргалка по экзаменам для родителей',
+    f_exams: 'Экзамены 2027: шпаргалка',
+
+    sv_h: 'Что ещё нужно?',
+    sv_p: 'Отметь всё, что пригодилось бы. Так мы поймём, что готовить дальше.',
+    sv_opts: [['lv_exam', 'Экзамен по латышскому'], ['sci_exam', 'Экзамен по естественным наукам (новый)'], ['homework', 'Помощь с домашкой на латышском, 5–9 класс'], ['grade12', 'Экзамены 12 класса'], ['other', 'Другое']],
+    sv_other_l: 'Что именно?',
+    sv_other_ph: 'Например, химия',
+    sv_send: 'Отправить ответ',
+    sv_pick: 'Отметь хотя бы один вариант.',
+    sv_thanks: 'Спасибо! Учтём, когда будем готовить следующие курсы.',
+  },
+};
+
+const MONTHS = {
+  lv: { loc: ['janvārī', 'februārī', 'martā', 'aprīlī', 'maijā', 'jūnijā', 'jūlijā', 'augustā', 'septembrī', 'oktobrī', 'novembrī', 'decembrī'] },
+  ru: { gen: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'] },
+};
+
+// ---------- SVG figures (colors come from CSS tokens, so they follow light/dark theme) ----------
+const MINUS = '−';
+const fmtNum = v => {
+  const r = Math.round(v * 1000) / 1000;
+  return (r < 0 ? MINUS + String(-r) : String(r)).replace('.', ',');
+};
+const SV = {
+  svg(w, h, inner, label = '') {
+    return `<svg class="fig" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img" aria-label="${label}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+  },
+  ln: (x1, y1, x2, y2, c = 'st') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${c}"/>`,
+  tx: (x, y, t, c = 'tx', a = 'middle') => `<text x="${x}" y="${y}" class="${c}" text-anchor="${a}">${t}</text>`,
+  dot: (x, y, r = 5, c = 'dot') => `<circle cx="${x}" cy="${y}" r="${r}" class="${c}"/>`,
+  path: (d, c = 'st') => `<path d="${d}" class="${c}"/>`,
+  poly: (pts, c = 'st') => `<polyline points="${pts.map(p => p.join(',')).join(' ')}" class="${c}"/>`,
+  arR: (x, y, c = 'st') => `<path d="M${x - 9},${y - 6} L${x},${y} L${x - 9},${y + 6}" class="${c}"/>`,
+  arL: (x, y, c = 'st') => `<path d="M${x + 9},${y - 6} L${x},${y} L${x + 9},${y + 6}" class="${c}"/>`,
+};
+
+// Number line. segs: [{a, b, aIn, bIn, row, c}] where a/b may be ±Infinity; row 0 = on the axis.
+function nl({ min = -6, max = 6, segs = [], w = 480, label = '' } = {}) {
+  const rows = Math.max(0, ...segs.map(s => s.row || 0));
+  const ay = 22 + rows * 20, h = ay + 34;
+  const L = 18, R = w - 30, X = v => L + 16 + (v - min) / (max - min) * (R - L - 30);
+  let s = SV.ln(L - 4, ay, R, ay, 'st axis') + SV.arR(R, ay, 'st axis') + SV.tx(w - 13, ay + 6, 'x', 'tx it');
+  for (let v = min; v <= max; v++) s += SV.ln(X(v), ay - 5, X(v), ay + 5, 'st tick') + SV.tx(X(v), ay + 24, fmtNum(v), 'tx sm');
+  segs.forEach(g => {
+    const y = ay - (g.row || 0) * 20, c = g.c || 'a';
+    const xa = g.a === -Infinity ? L + 2 : X(g.a), xb = g.b === Infinity ? R - 12 : X(g.b);
+    s += SV.ln(xa, y, xb, y, `seg seg-${c}`);
+    if (g.a === -Infinity) s += SV.arL(xa - 3, y, `seg-ar seg-${c}`);
+    if (g.b === Infinity) s += SV.arR(xb + 3, y, `seg-ar seg-${c}`);
+    if (isFinite(g.a)) s += SV.dot(X(g.a), y, 6.5, `${g.aIn ? 'pt-in' : 'pt-out'} pt-${c}`);
+    if (isFinite(g.b)) s += SV.dot(X(g.b), y, 6.5, `${g.bIn ? 'pt-in' : 'pt-out'} pt-${c}`);
+  });
+  return SV.svg(w, h, s, label);
+}
+
+// Coordinate plane with optional functions, points and extra drawing (extra receives X, Y mappers).
+function plot({ xmin, xmax, ymin, ymax, unit = 32, fns = [], pts = [], extra = null, label = '' }) {
+  const pad = 26, w = (xmax - xmin) * unit + pad * 2, h = (ymax - ymin) * unit + pad * 2;
+  const X = x => pad + (x - xmin) * unit, Y = y => pad + (ymax - y) * unit;
+  let s = '';
+  for (let x = Math.ceil(xmin); x <= xmax; x++) s += SV.ln(X(x), pad, X(x), h - pad, 'grid');
+  for (let y = Math.ceil(ymin); y <= ymax; y++) s += SV.ln(pad, Y(y), w - pad, Y(y), 'grid');
+  s += SV.ln(pad - 8, Y(0), w - pad + 10, Y(0), 'st axis') + SV.arR(w - pad + 10, Y(0), 'st axis');
+  s += SV.ln(X(0), h - pad + 8, X(0), pad - 10, 'st axis') + `<path d="M${X(0) - 6},${pad - 1} L${X(0)},${pad - 10} L${X(0) + 6},${pad - 1}" class="st axis"/>`;
+  s += SV.tx(w - pad + 6, Y(0) - 10, 'x', 'tx it') + SV.tx(X(0) + 12, pad - 4, 'y', 'tx it', 'start');
+  for (let x = Math.ceil(xmin); x <= xmax; x++) if (x !== 0) s += SV.tx(X(x), Y(0) + 17, fmtNum(x), 'tx xs');
+  for (let y = Math.ceil(ymin); y <= ymax; y++) if (y !== 0) s += SV.tx(X(0) - 7, Y(y) + 4, fmtNum(y), 'tx xs', 'end');
+  s += SV.tx(X(0) - 7, Y(0) + 17, '0', 'tx xs', 'end');
+  fns.forEach(fn => {
+    const P = [];
+    for (let i = 0; i <= 160; i++) {
+      const x = fn.x0 + (fn.x1 - fn.x0) * i / 160, y = fn.f(x);
+      if (y >= ymin - 0.3 && y <= ymax + 0.3) P.push([X(x).toFixed(1), Y(y).toFixed(1)]);
+    }
+    s += SV.poly(P, fn.c || 'curve');
+  });
+  if (extra) s += extra(X, Y);
+  pts.forEach(p => {
+    s += SV.dot(X(p.x), Y(p.y), 5.5, `pt-in pt-${p.c || 'a'}`);
+    if (p.l) s += SV.tx(X(p.x) + (p.dx ?? 10), Y(p.y) + (p.dy ?? -10), p.l, 'tx sm', p.anchor || 'start');
+  });
+  return SV.svg(w, h, s, label);
+}
+
+// Right triangle: C bottom-left (right angle), A bottom-right, B top-left. Angle at A is `deg`.
+function triFig({ deg = 30, A = 'A', B = 'B', C = 'C', ab = '', bc = '', ac = '', alpha = '', label = '', colored = false } = {}) {
+  const Cx = 58, Cy = 196, Ax = 330, Ay = 196, Bx = 58, By = 196 - 272 * Math.tan(deg * Math.PI / 180);
+  const r = 44, t = deg * Math.PI / 180;
+  let s = `<polygon points="${Cx},${Cy} ${Ax},${Ay} ${Bx},${By.toFixed(1)}" class="tri"/>`;
+  if (colored) {
+    s += SV.ln(Bx, By, Cx, Cy, 'side side-a') + SV.ln(Cx, Cy, Ax, Ay, 'side side-b') + SV.ln(Ax, Ay, Bx, By, 'side side-c');
+  }
+  s += SV.path(`M${Cx + 16},${Cy} L${Cx + 16},${Cy - 16} L${Cx},${Cy - 16}`, 'st thin');
+  s += SV.path(`M${Ax - r},${Ay} A${r},${r} 0 0 1 ${(Ax - r * Math.cos(t)).toFixed(1)},${(Ay - r * Math.sin(t)).toFixed(1)}`, 'st arc');
+  if (alpha) s += SV.tx(Ax - r - 26, Ay - 9, alpha, 'tx ang');
+  s += SV.tx(Ax + 14, Ay + 6, A, 'tx vx', 'start') + SV.tx(Bx - 14, By + 4, B, 'tx vx', 'end') + SV.tx(Cx - 14, Cy + 6, C, 'tx vx', 'end');
+  const mx = (Ax + Bx) / 2, my = (Ay + By) / 2;
+  if (ab) s += SV.tx(mx + 16, my - 12, ab, colored ? 'tx lab-c' : 'tx lab', 'start');
+  if (bc) s += SV.tx(Bx - 14, (By + Cy) / 2 + 6, bc, colored ? 'tx lab-a' : 'tx lab', 'end');
+  if (ac) s += SV.tx((Ax + Cx) / 2, Cy + 30, ac, colored ? 'tx lab-b' : 'tx lab');
+  return SV.svg(380, 236, s, label);
+}
+
+// (a + b)² as an area model
+function areaModel() {
+  const o = 30, A = 150, B = 70;
+  let s = '';
+  s += `<rect x="${o}" y="${o}" width="${A}" height="${A}" class="cell c1"/>`;
+  s += `<rect x="${o + A}" y="${o}" width="${B}" height="${A}" class="cell c2"/>`;
+  s += `<rect x="${o}" y="${o + A}" width="${A}" height="${B}" class="cell c2"/>`;
+  s += `<rect x="${o + A}" y="${o + A}" width="${B}" height="${B}" class="cell c3"/>`;
+  s += SV.tx(o + A / 2, o + A / 2 + 8, 'a²', 'tx big') + SV.tx(o + A + B / 2, o + A / 2 + 6, 'ab', 'tx') + SV.tx(o + A / 2, o + A + B / 2 + 6, 'ab', 'tx') + SV.tx(o + A + B / 2, o + A + B / 2 + 6, 'b²', 'tx');
+  s += SV.tx(o + A / 2, o - 10, 'a', 'tx it') + SV.tx(o + A + B / 2, o - 10, 'b', 'tx it') + SV.tx(o - 12, o + A / 2 + 6, 'a', 'tx it') + SV.tx(o - 12, o + A + B / 2 + 6, 'b', 'tx it');
+  return SV.svg(o * 2 + A + B, o * 2 + A + B, s, '(a + b)²');
+}
+
+// Percent bar: 100 % = 40 €, 15 % taken away
+function pctBar() {
+  const x = 10, w = 440, y = 40, h = 44, cut = 0.15;
+  let s = `<rect x="${x}" y="${y}" width="${w * (1 - cut)}" height="${h}" rx="8" class="bar-keep"/>`;
+  s += `<rect x="${x + w * (1 - cut) + 4}" y="${y}" width="${w * cut - 4}" height="${h}" rx="8" class="bar-cut"/>`;
+  s += SV.tx(x + w * (1 - cut) / 2, y + 28, '85 % = 34 €', 'tx on-acc');
+  s += SV.tx(x + w * (1 - cut) + w * cut / 2 + 2, y + 28, '15 %', 'tx');
+  s += SV.tx(x + w * (1 - cut) + w * cut / 2 + 2, y + h + 24, '6 €', 'tx sm');
+  s += SV.tx(x, 24, '100 % = 40 €', 'tx', 'start');
+  return SV.svg(460, 116, s, '100 % = 40 €');
+}
+
+// Balance scale for equations
+function balance(left, right) {
+  let s = SV.path('M210,190 L180,236 L240,236 Z', 'st solid');
+  s += SV.ln(210, 190, 210, 64, 'st') + SV.ln(70, 64, 350, 64, 'st thick');
+  s += SV.ln(90, 64, 70, 112, 'st thin') + SV.ln(90, 64, 110, 112, 'st thin') + SV.ln(330, 64, 310, 112, 'st thin') + SV.ln(330, 64, 350, 112, 'st thin');
+  s += `<rect x="22" y="112" width="136" height="44" rx="10" class="pan"/>` + `<rect x="262" y="112" width="136" height="44" rx="10" class="pan"/>`;
+  s += SV.tx(90, 141, left, 'tx') + SV.tx(330, 141, right, 'tx');
+  s += SV.dot(210, 64, 6, 'dot');
+  return SV.svg(420, 246, s, `${left} = ${right}`);
+}
+
+// Similar triangles: k = 2, the large one is split into 4 copies of the small one
+function similarFig() {
+  const s1 = [[30, 160], [110, 160], [58, 100]];
+  const big = [[190, 196], [350, 196], [246, 76]];
+  const mid = (p, q) => [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+  const m1 = mid(big[0], big[1]), m2 = mid(big[1], big[2]), m3 = mid(big[2], big[0]);
+  const pts = a => a.map(p => p.join(',')).join(' ');
+  let s = `<polygon points="${pts(s1)}" class="tri"/>`;
+  s += `<polygon points="${pts(big)}" class="tri tri-2"/>`;
+  s += `<polygon points="${pts([m1, m2, m3])}" class="tri-in"/>`;
+  s += SV.tx(70, 186, 'S', 'tx big') + SV.tx(270, 228, '4S', 'tx big');
+  s += SV.tx(160, 40, 'k = 2', 'tx hand');
+  return SV.svg(380, 240, s, 'k = 2');
+}
+
+// Cylinder with radius and height
+function cylFig() {
+  const cx = 150, rx = 80, ry = 22, top = 46, bot = 196;
+  let s = `<path d="M${cx - rx},${top} L${cx - rx},${bot} A${rx},${ry} 0 0 0 ${cx + rx},${bot} L${cx + rx},${top}" class="body"/>`;
+  s += `<ellipse cx="${cx}" cy="${top}" rx="${rx}" ry="${ry}" class="top"/>`;
+  s += SV.path(`M${cx - rx},${bot} A${rx},${ry} 0 0 1 ${cx + rx},${bot}`, 'st dash');
+  s += SV.ln(cx, bot, cx + rx, bot, 'st acc') + SV.dot(cx, bot, 4, 'dot');
+  s += SV.tx(cx + rx / 2, bot - 8, 'r', 'tx it acc-t');
+  s += SV.ln(cx + rx + 22, top, cx + rx + 22, bot, 'st thin') + SV.tx(cx + rx + 36, (top + bot) / 2 + 6, 'h', 'tx it', 'start');
+  s += SV.ln(cx - rx, top, cx + rx, top, 'st thin dash') + SV.tx(cx, top - 30, 'd = 2r', 'tx sm');
+  return SV.svg(300, 236, s, 'V = πr²h');
+}
+
+// Balls in a box: 4 red, 5 blue, 3 green
+function ballsFig() {
+  const cols = ['r', 'r', 'r', 'r', 'b', 'b', 'b', 'b', 'b', 'g', 'g', 'g'];
+  let s = `<rect x="8" y="8" width="404" height="104" rx="16" class="box"/>`;
+  cols.forEach((c, i) => { s += `<circle cx="${40 + i * 31}" cy="${i % 2 ? 72 : 52}" r="13" class="ball ball-${c}"/>`; });
+  return SV.svg(420, 120, s, '4 + 5 + 3');
+}
+
+// Trig values without a calculator
+function trigTable() {
+  const r = (h, a, b, c) => `<tr><th>${h}</th><td>${a}</td><td>${b}</td><td>${c}</td></tr>`;
+  return `<table class="vals"><thead><tr><th></th><th>30°</th><th>45°</th><th>60°</th></tr></thead><tbody>
+    ${r('sin', '½', F('√2', 2), F('√3', 2))}${r('cos', F('√3', 2), F('√2', 2), '½')}${r('tg', F('√3', 3), '1', '√3')}</tbody></table>`;
+}
+
+// ---------- Content: topics, diagnostic test, demo lessons (LV + RU) ----------
+const F = (a, b) => `<span class="fr"><i>${a}</i><i>${b}</i></span>`;
+const SYS = rows => `<span class="sys"><span class="br">{</span><span class="rows">${rows.map(r => `<span>${r}</span>`).join('')}</span></span>`;
+const M = t => `<span class="m">${t}</span>`;
+
+const TOPICS = [
+  { id: 'izt', ic: 'x²', lv: 'Pakāpes, saknes un izteiksmes', ru: 'Степени, корни и выражения',
+    stat: { lv: 'Binoma kāpināšana kvadrātā', ru: 'Квадрат двучлена', p: 62 } },
+  { id: 'proc', ic: '%', lv: 'Procenti un teksta uzdevumi', ru: 'Проценты и текстовые задачи',
+    stat: { lv: 'Procenti jaunā situācijā (2. daļa)', ru: 'Проценты в новой ситуации (2-я часть)', p: 18 } },
+  { id: 'vien', ic: '=', lv: 'Vienādojumi', ru: 'Уравнения',
+    stat: { lv: 'Pilnais kvadrātvienādojums', ru: 'Полное квадратное уравнение', p: 70 } },
+  { id: 'nev', ic: '≤', lv: 'Nevienādības', ru: 'Неравенства',
+    stat: { lv: 'Nevienādību sistēmas atrisinājums ar intervālu', ru: 'Решение системы неравенств интервалом', p: 33 } },
+  { id: 'fun', ic: 'y', lv: 'Funkcijas un grafiki', ru: 'Функции и графики',
+    stat: { lv: 'Pamatot, ka punkts nepieder grafikam', ru: 'Обосновать, что точка не лежит на графике', p: 41 } },
+  { id: 'tri', ic: '∟', lv: 'Taisnleņķa trijstūris', ru: 'Прямоугольный треугольник',
+    stat: { lv: 'Malas garums, ja dots leņķis', ru: 'Длина стороны по известному углу', p: 51 } },
+  { id: 'lauk', ic: 'S', lv: 'Laukumi, tilpumi un līdzība', ru: 'Площади, объёмы и подобие',
+    stat: { lv: 'Līdzīga trijstūra laukums', ru: 'Площадь подобного треугольника', p: 34 } },
+  { id: 'stat', ic: 'P', lv: 'Statistika un varbūtība', ru: 'Статистика и вероятность',
+    stat: { lv: 'Pilnā pārlase (kombinatorika)', ru: 'Полный перебор (комбинаторика)', p: 32 } },
+];
+
+// Landing: average completion of exam tasks, VIAA analysis of the 2024/25 exam
+const EXAM_STATS = [
+  { lv: 'Nevienādību sistēmas atrisinājums ar intervālu', ru: 'Решение системы неравенств интервалом', p: 33 },
+  { lv: 'Līdzīga trijstūra laukums', ru: 'Площадь подобного треугольника', p: 34 },
+  { lv: 'Pilnā pārlase (kombinatorika)', ru: 'Полный перебор (комбинаторика)', p: 32 },
+  { lv: 'Procenti jaunā situācijā (2. daļa)', ru: 'Проценты в новой ситуации (2-я часть)', p: 18 },
+];
+
+// ---------- Diagnostic test: 16 tasks, 2 per topic. Wrong options carry the typical mistake. ----------
+const DIAG = [
+  { id: 'd1', topic: 'izt',
+    q: { lv: 'Kāpini kvadrātā:', ru: 'Возведи в квадрат:' }, math: '(x + 3)²',
+    opts: [
+      { t: 'x² + 9', why: { lv: 'Pazaudēji vidējo locekli 2 · x · 3. Formula: (a + b)² = a² + 2ab + b².', ru: 'Потерян средний член 2 · x · 3. Формула: (a + b)² = a² + 2ab + b².' } },
+      { t: 'x² + 6x + 9', ok: true },
+      { t: 'x² + 3x + 9', why: { lv: 'Vidējais loceklis ir 2ab = 2 · x · 3 = 6x, nevis 3x.', ru: 'Средний член — 2ab = 2 · x · 3 = 6x, а не 3x.' } },
+      { t: '2x + 6', why: { lv: 'Kāpināt kvadrātā nozīmē reizināt ar sevi: (x + 3)(x + 3), nevis reizināt ar 2.', ru: 'Возвести в квадрат — значит умножить на себя: (x + 3)(x + 3), а не умножить на 2.' } },
+    ],
+    explain: { lv: '(x + 3)² = x² + 2 · x · 3 + 3² = x² + 6x + 9', ru: '(x + 3)² = x² + 2 · x · 3 + 3² = x² + 6x + 9' } },
+
+  { id: 'd2', topic: 'izt',
+    q: { lv: 'Aprēķini:', ru: 'Вычисли:' }, math: '0,2³',
+    opts: [
+      { t: '0,6', why: { lv: 'Tu reizināji 0,2 · 3. Pakāpe nozīmē 0,2 · 0,2 · 0,2.', ru: 'Это 0,2 · 3, а степень — это 0,2 · 0,2 · 0,2.' } },
+      { t: '0,08', why: { lv: '2 · 2 · 2 = 8, bet aiz komata jābūt 1 + 1 + 1 = 3 cipariem: 0,008.', ru: '2 · 2 · 2 = 8, но после запятой должно быть 1 + 1 + 1 = 3 знака: 0,008.' } },
+      { t: '0,008', ok: true },
+      { t: '0,0008', why: { lv: 'Saskaiti ciparus aiz komata: katrā reizinātājā ir viens, kopā trīs. Tātad 0,008.', ru: 'Посчитай знаки после запятой: в каждом множителе по одному, всего три. Значит 0,008.' } },
+    ],
+    explain: { lv: '0,2³ = 0,2 · 0,2 · 0,2 = 0,008', ru: '0,2³ = 0,2 · 0,2 · 0,2 = 0,008' } },
+
+  { id: 'd3', topic: 'proc',
+    q: { lv: 'Jaka maksāja 40 €. Cenu samazināja par 15 %. Cik jaka maksā tagad?', ru: 'Куртка стоила 40 €. Цену снизили на 15 %. Сколько куртка стоит теперь?' },
+    opts: [
+      { t: '34 €', ok: true },
+      { t: '25 €', why: { lv: 'Tu atņēmi 15 eiro, nevis 15 procentus. 15 % no 40 € ir 6 €.', ru: 'Вычитать нужно 15 %, а не 15 евро: 15 % от 40 € — это 6 €.' } },
+      { t: '6 €', why: { lv: '6 € ir atlaide. Jaunā cena: 40 − 6 = 34 €.', ru: '6 € — это скидка. Новая цена: 40 − 6 = 34 €.' } },
+      { t: '46 €', why: { lv: 'Cenu samazināja, tāpēc atlaide jāatņem, nevis jāpieskaita.', ru: 'Цену снизили, поэтому скидку вычитают, а не прибавляют.' } },
+    ],
+    explain: { lv: '15 % no 40 € = 0,15 · 40 = 6 €; 40 − 6 = 34 €. Vai uzreiz: 40 · 0,85 = 34 €.', ru: '15 % от 40 € = 0,15 · 40 = 6 €; 40 − 6 = 34 €. Или сразу: 40 · 0,85 = 34 €.' } },
+
+  { id: 'd4', topic: 'proc',
+    q: { lv: 'Pēc 20 % atlaides prece maksā 48 €. Cik tā maksāja pirms atlaides?', ru: 'После скидки 20 % товар стоит 48 €. Сколько он стоил до скидки?' },
+    opts: [
+      { t: '57,60 €', why: { lv: 'Tu pieskaitīji 20 % no 48 €. Bet 20 % rēķina no sākotnējās cenas: 0,8 · x = 48.', ru: 'Здесь прибавлено 20 % от 48 €. Но 20 % считают от исходной цены: 0,8 · x = 48.' } },
+      { t: '60 €', ok: true },
+      { t: '68 €', why: { lv: 'Tu pieskaitīji 20 eiro. Jāatrisina 0,8 · x = 48, tātad x = 60 €.', ru: 'Здесь прибавлено 20 евро. Нужно решить 0,8 · x = 48, то есть x = 60 €.' } },
+      { t: '38,40 €', why: { lv: 'Tu vēlreiz atņēmi 20 %. Jāiet atpakaļ: 48 : 0,8 = 60 €.', ru: 'Здесь 20 % вычтено ещё раз. Нужно идти назад: 48 : 0,8 = 60 €.' } },
+    ],
+    explain: { lv: 'Pēc atlaides paliek 80 % cenas: 0,8 · x = 48, x = 48 : 0,8 = 60 €.', ru: 'После скидки остаётся 80 % цены: 0,8 · x = 48, x = 48 : 0,8 = 60 €.' } },
+
+  { id: 'd5', topic: 'vien',
+    q: { lv: 'Atrisini vienādojumu:', ru: 'Реши уравнение:' }, math: '3(x − 2) = x + 4',
+    opts: [
+      { t: 'x = 3', why: { lv: 'Atverot iekavas, ar 3 jāreizina abi locekļi: 3(x − 2) = 3x − 6, nevis 3x − 2.', ru: 'Раскрывая скобки, умножай на 3 оба члена: 3(x − 2) = 3x − 6, а не 3x − 2.' } },
+      { t: 'x = −1', why: { lv: 'Pārnesot −6 uz labo pusi, tas maina zīmi un kļūst par +6: 2x = 4 + 6.', ru: 'При переносе вправо −6 меняет знак и становится +6: 2x = 4 + 6.' } },
+      { t: 'x = 2,5', why: { lv: 'Pārnesot x uz kreiso pusi, tas kļūst par −x: 3x − x = 2x, nevis 4x.', ru: 'При переносе влево x становится −x: 3x − x = 2x, а не 4x.' } },
+      { t: 'x = 5', ok: true },
+    ],
+    explain: { lv: '3x − 6 = x + 4 → 3x − x = 4 + 6 → 2x = 10 → x = 5', ru: '3x − 6 = x + 4 → 3x − x = 4 + 6 → 2x = 10 → x = 5' } },
+
+  { id: 'd6', topic: 'vien',
+    q: { lv: 'Atrisini vienādojumu:', ru: 'Реши уравнение:' }, math: 'x² + 2x − 15 = 0',
+    opts: [
+      { t: 'x₁ = 3, x₂ = −5', ok: true },
+      { t: 'x₁ = −3, x₂ = 5', why: { lv: 'Zīmes otrādi. Formulā ir −b, un b = 2: x = (−2 ± 8) : 2, tātad 3 un −5.', ru: 'Знаки наоборот. В формуле −b, а b = 2: x = (−2 ± 8) : 2, то есть 3 и −5.' } },
+      { t: 'x₁ = 3, x₂ = 5', why: { lv: 'Pārbaudi ar ievietošanu: 5² + 2 · 5 − 15 = 20 ≠ 0. Pareizās saknes: 3 un −5.', ru: 'Проверь подстановкой: 5² + 2 · 5 − 15 = 20 ≠ 0. Верные корни: 3 и −5.' } },
+      { t: { lv: 'Vienādojumam nav sakņu', ru: 'Корней нет' }, why: { lv: 'D = b² − 4ac = 4 − 4 · 1 · (−15) = 4 + 60 = 64. Ja c ir negatīvs, −4ac kļūst pozitīvs.', ru: 'D = b² − 4ac = 4 − 4 · 1 · (−15) = 4 + 60 = 64. Если c отрицательное, −4ac становится положительным.' } },
+    ],
+    explain: { lv: 'D = 2² − 4 · 1 · (−15) = 64; x = (−2 ± 8) : 2 → x₁ = 3, x₂ = −5', ru: 'D = 2² − 4 · 1 · (−15) = 64; x = (−2 ± 8) : 2 → x₁ = 3, x₂ = −5' } },
+
+  { id: 'd7', topic: 'nev',
+    q: { lv: 'Atrisini nevienādību:', ru: 'Реши неравенство:' }, math: '−3x + 2 > 11',
+    opts: [
+      { t: 'x > −3', why: { lv: 'Dalot ar negatīvu skaitli (−3), nevienādības zīme mainās uz pretējo: > kļūst par <.', ru: 'При делении на отрицательное число (−3) знак неравенства меняется на противоположный: > становится <.' } },
+      { t: 'x < −3', ok: true },
+      { t: 'x < 3', why: { lv: '9 : (−3) = −3, nevis 3.', ru: '9 : (−3) = −3, а не 3.' } },
+      { t: `x < −${F(13, 3)}`, why: { lv: 'Pārnesot +2 uz labo pusi, tas kļūst par −2: −3x > 11 − 2 = 9.', ru: 'При переносе вправо +2 становится −2: −3x > 11 − 2 = 9.' } },
+    ],
+    explain: { lv: '−3x > 9 → dalām ar −3 un mainām zīmi → x < −3, tātad x ∈ (−∞; −3)', ru: '−3x > 9 → делим на −3 и меняем знак → x < −3, то есть x ∈ (−∞; −3)' } },
+
+  { id: 'd8', topic: 'nev',
+    q: { lv: 'Kurš intervāls ir nevienādību sistēmas atrisinājums?', ru: 'Какой интервал — решение системы неравенств?' }, math: SYS(['x ≥ −2', 'x < 4']),
+    opts: [
+      { t: '(−2; 4]', why: { lv: 'Iekavas ir sajauktas: x ≥ −2 nozīmē, ka −2 pieder, tātad „[“; x < 4 nozīmē, ka 4 nepieder, tātad „)“.', ru: 'Скобки перепутаны: x ≥ −2 — число −2 входит, значит «[»; x < 4 — число 4 не входит, значит «)».' } },
+      { t: '[−2; 4]', why: { lv: 'x < 4 ir stingra nevienādība: skaitlis 4 nepieder, iekava ir apaļā.', ru: 'x < 4 — строгое неравенство: число 4 не входит, скобка круглая.' } },
+      { t: '(−∞; 4)', why: { lv: 'Sistēmā der tikai tie x, kas apmierina abas nevienādības. x ≥ −2 nogriež visu, kas mazāks par −2.', ru: 'В системе подходят только x, которые удовлетворяют обоим неравенствам. x ≥ −2 отсекает всё, что меньше −2.' } },
+      { t: '[−2; 4)', ok: true },
+    ],
+    explain: { lv: 'Kopīgā daļa ir no −2 (ieskaitot) līdz 4 (neieskaitot): [−2; 4)', ru: 'Общая часть — от −2 (включительно) до 4 (не включая): [−2; 4)' } },
+
+  { id: 'd9', topic: 'fun',
+    q: { lv: 'Aprēķini parabolas virsotnes abscisu:', ru: 'Найди абсциссу вершины параболы:' }, math: 'y = 2x² − 8x + 1',
+    opts: [
+      { t: 'x = 4', why: { lv: 'Formulas saucējā ir 2a: x = −b : (2a) = 8 : 4 = 2.', ru: 'В знаменателе формулы стоит 2a: x = −b : (2a) = 8 : 4 = 2.' } },
+      { t: 'x = 2', ok: true },
+      { t: 'x = −2', why: { lv: 'Formulā ir −b. Šeit b = −8, tātad −b = 8 un x = 8 : 4 = 2.', ru: 'В формуле −b. Здесь b = −8, значит −b = 8 и x = 8 : 4 = 2.' } },
+      { t: 'x = 1', why: { lv: 'Koeficients c = 1 rāda krustpunktu ar y asi, nevis virsotni. Virsotne: x = −b : (2a) = 2.', ru: 'Коэффициент c = 1 — это пересечение с осью y, а не вершина. Вершина: x = −b : (2a) = 2.' } },
+    ],
+    explain: { lv: 'x = −b : (2a) = 8 : (2 · 2) = 2', ru: 'x = −b : (2a) = 8 : (2 · 2) = 2' } },
+
+  { id: 'd10', topic: 'fun',
+    q: { lv: 'Vai punkts A(2; 5) pieder funkcijas y = 3x − 1 grafikam?', ru: 'Принадлежит ли точка A(2; 5) графику функции y = 3x − 1?' },
+    opts: [
+      { t: { lv: 'Jā, jo 3 · 2 − 1 = 5', ru: 'Да, потому что 3 · 2 − 1 = 5' }, ok: true },
+      { t: { lv: 'Nē, jo 3 · 5 − 1 ≠ 2', ru: 'Нет, потому что 3 · 5 − 1 ≠ 2' }, why: { lv: 'Koordinātas ir sajauktas: pirmā ir x = 2, otrā y = 5. Ievieto x = 2 un salīdzini ar y.', ru: 'Координаты перепутаны: первая — x = 2, вторая — y = 5. Подставь x = 2 и сравни с y.' } },
+      { t: { lv: 'Nē, jo 2 + 5 ≠ 3 − 1', ru: 'Нет, потому что 2 + 5 ≠ 3 − 1' }, why: { lv: 'Punktu pārbauda, ievietojot x formulā: y = 3 · 2 − 1 = 5. Tas sakrīt ar punkta y.', ru: 'Точку проверяют, подставляя x в формулу: y = 3 · 2 − 1 = 5. Это совпадает с y точки.' } },
+      { t: { lv: 'To nevar noteikt bez grafika', ru: 'Без графика это не определить' }, why: { lv: 'Grafiks nav vajadzīgs: pietiek ievietot x = 2 formulā un salīdzināt ar y = 5.', ru: 'График не нужен: достаточно подставить x = 2 в формулу и сравнить с y = 5.' } },
+    ],
+    explain: { lv: 'y = 3 · 2 − 1 = 5, un punkta y = 5. Sakrīt, tātad pieder.', ru: 'y = 3 · 2 − 1 = 5, а y точки = 5. Совпадает, значит принадлежит.' } },
+
+  { id: 'd11', topic: 'tri', u: { lv: ' cm', ru: ' см' },
+    q: { lv: 'Taisnleņķa trijstūra katetes ir 6 cm un 8 cm. Aprēķini hipotenūzu.', ru: 'Катеты прямоугольного треугольника 6 см и 8 см. Найди гипотенузу.' },
+    opts: [
+      { t: '14', why: { lv: 'Katešu garumus nesaskaita: c² = 6² + 8² = 36 + 64 = 100, c = 10.', ru: 'Длины катетов не складывают: c² = 6² + 8² = 36 + 64 = 100, c = 10.' } },
+      { t: '100', why: { lv: '100 ir c². Neaizmirsti izvilkt kvadrātsakni: c = √100 = 10.', ru: '100 — это c². Не забудь извлечь корень: c = √100 = 10.' } },
+      { t: '10', ok: true },
+      { t: '√28', why: { lv: 'Hipotenūzu atrod ar summu: c² = a² + b². Atņem tikai tad, ja meklē kateti.', ru: 'Гипотенузу находят через сумму: c² = a² + b². Вычитают, только когда ищут катет.' } },
+    ],
+    explain: { lv: 'c = √(6² + 8²) = √100 = 10 cm', ru: 'c = √(6² + 8²) = √100 = 10 см' } },
+
+  { id: 'd12', topic: 'tri',
+    q: { lv: 'Trijstūrī ABC ∠C = 90°, ∠A = 30°, AB = 12. Aprēķini BC.', ru: 'В треугольнике ABC ∠C = 90°, ∠A = 30°, AB = 12. Найди BC.' },
+    fig: () => triFig({ ab: '12', bc: '?', alpha: '30°', label: 'ABC' }),
+    opts: [
+      { t: '6', ok: true },
+      { t: '6√3', why: { lv: 'BC atrodas pretī ∠A, tā ir pretkatete, tāpēc vajag sinusu: BC = 12 · sin 30° = 6. Ar kosinusu atrod AC.', ru: 'BC лежит напротив ∠A — это противолежащий катет, нужен синус: BC = 12 · sin 30° = 6. Косинус даёт AC.' } },
+      { t: '24', why: { lv: 'sin 30° = BC : AB, tāpēc BC = AB · sin 30° = 12 · 0,5 = 6. Jāreizina, nevis jādala.', ru: 'sin 30° = BC : AB, поэтому BC = AB · sin 30° = 12 · 0,5 = 6. Умножаем, а не делим.' } },
+      { t: '4√3', why: { lv: 'Tangenss ir katešu attiecība, bet dota hipotenūza AB. Vajag sinusu: BC = 12 · sin 30° = 6.', ru: 'Тангенс — отношение катетов, а дана гипотенуза AB. Нужен синус: BC = 12 · sin 30° = 6.' } },
+    ],
+    explain: { lv: 'BC = AB · sin 30° = 12 · ½ = 6', ru: 'BC = AB · sin 30° = 12 · ½ = 6' } },
+
+  { id: 'd13', topic: 'lauk', u: { lv: ' cm²', ru: ' см²' },
+    q: { lv: 'Divi trijstūri ir līdzīgi, līdzības koeficients k = 3. Mazākā trijstūra laukums ir 5 cm². Cik liels ir lielākā trijstūra laukums?', ru: 'Два треугольника подобны, коэффициент подобия k = 3. Площадь меньшего — 5 см². Какова площадь большего?' },
+    opts: [
+      { t: '15', why: { lv: 'Malas ir 3 reizes garākas, bet laukums ir k² = 9 reizes lielāks: 5 · 9 = 45 cm².', ru: 'Стороны длиннее в 3 раза, а площадь больше в k² = 9 раз: 5 · 9 = 45 см².' } },
+      { t: '8', why: { lv: 'Līdzības koeficients nozīmē „cik reizes“, nevis pieskaitīšanu. Laukums: 5 · 3² = 45 cm².', ru: 'Коэффициент подобия — это «во сколько раз», а не прибавка. Площадь: 5 · 3² = 45 см².' } },
+      { t: '135', why: { lv: 'k³ ir tilpumiem. Laukumu attiecība ir k² = 9: 5 · 9 = 45 cm².', ru: 'k³ — для объёмов. Площади относятся как k² = 9: 5 · 9 = 45 см².' } },
+      { t: '45', ok: true },
+    ],
+    explain: { lv: 'S₂ = S₁ · k² = 5 · 9 = 45 cm²', ru: 'S₂ = S₁ · k² = 5 · 9 = 45 см²' } },
+
+  { id: 'd14', topic: 'lauk', u: { lv: ' cm³', ru: ' см³' },
+    q: { lv: 'Cilindra diametrs ir 6 cm, augstums — 10 cm. Aprēķini cilindra tilpumu.', ru: 'Диаметр цилиндра 6 см, высота 10 см. Найди объём цилиндра.' },
+    opts: [
+      { t: '360π', why: { lv: 'Formulā V = πr²h ir rādiuss, nevis diametrs: r = 6 : 2 = 3 cm, V = π · 9 · 10 = 90π cm³.', ru: 'В формуле V = πr²h — радиус, а не диаметр: r = 6 : 2 = 3 см, V = π · 9 · 10 = 90π см³.' } },
+      { t: '60π', why: { lv: '2πrh ir sānu virsmas laukums. Tilpums: V = πr²h = π · 3² · 10 = 90π cm³.', ru: '2πrh — площадь боковой поверхности. Объём: V = πr²h = π · 3² · 10 = 90π см³.' } },
+      { t: '90π', ok: true },
+      { t: '30π', why: { lv: 'Rādiuss jākāpina kvadrātā: r² = 9, tātad V = π · 9 · 10 = 90π cm³.', ru: 'Радиус нужно возвести в квадрат: r² = 9, значит V = π · 9 · 10 = 90π см³.' } },
+    ],
+    explain: { lv: 'r = 3 cm; V = πr²h = π · 9 · 10 = 90π cm³ (≈ 282,7 cm³)', ru: 'r = 3 см; V = πr²h = π · 9 · 10 = 90π см³ (≈ 282,7 см³)' } },
+
+  { id: 'd15', topic: 'stat',
+    q: { lv: 'Kastē ir 4 sarkanas, 5 zilas un 3 zaļas bumbiņas. Uz labu laimi izņem vienu bumbiņu. Kāda ir varbūtība, ka tā NAV zila?', ru: 'В коробке 4 красных, 5 синих и 3 зелёных шарика. Наугад достают один. Какова вероятность, что он НЕ синий?' },
+    fig: () => ballsFig(),
+    opts: [
+      { t: F(5, 12), why: { lv: `${F(5, 12)} ir varbūtība, ka bumbiņa IR zila. Nav zila: 1 − ${F(5, 12)} = ${F(7, 12)}.`, ru: `${F(5, 12)} — вероятность, что шарик синий. Не синий: 1 − ${F(5, 12)} = ${F(7, 12)}.` } },
+      { t: F(2, 3), why: { lv: 'Skaita bumbiņas, nevis krāsas: der 4 + 3 = 7 bumbiņas no 12.', ru: 'Считают шарики, а не цвета: подходят 4 + 3 = 7 шариков из 12.' } },
+      { t: F(7, 5), why: { lv: 'Varbūtība nevar būt lielāka par 1. Dala ar visu bumbiņu skaitu: 7 no 12.', ru: 'Вероятность не может быть больше 1. Делят на число всех шариков: 7 из 12.' } },
+      { t: F(7, 12), ok: true },
+    ],
+    explain: { lv: `P = (4 + 3) : 12 = ${F(7, 12)}`, ru: `P = (4 + 3) : 12 = ${F(7, 12)}` } },
+
+  { id: 'd16', topic: 'stat',
+    q: { lv: 'Trīs kontroldarbos vidējā atzīme ir 6. Kāda atzīme jāsaņem ceturtajā darbā, lai vidējā atzīme būtu 7?', ru: 'Средняя оценка за три контрольные — 6. Какую оценку нужно получить за четвёртую, чтобы средняя стала 7?' },
+    opts: [
+      { t: '8', why: { lv: 'Vidējais ir no 4 darbiem, nevis no 2 skaitļiem. Vajag summu 4 · 7 = 28, jau ir 3 · 6 = 18, tātad 28 − 18 = 10.', ru: 'Среднее считается по 4 работам, а не по 2 числам. Нужна сумма 4 · 7 = 28, уже есть 3 · 6 = 18, значит 28 − 18 = 10.' } },
+      { t: '7', why: { lv: 'Ar 7 vidējā atzīme būtu (18 + 7) : 4 = 6,25. Vajag 28 − 18 = 10.', ru: 'С оценкой 7 средняя будет (18 + 7) : 4 = 6,25. Нужно 28 − 18 = 10.' } },
+      { t: '10', ok: true },
+      { t: '9', why: { lv: 'Ar 9 vidējā atzīme būtu (18 + 9) : 4 = 6,75. Vajadzīgā summa ir 28, tātad 28 − 18 = 10.', ru: 'С 9 средняя будет (18 + 9) : 4 = 6,75. Нужна сумма 28, значит 28 − 18 = 10.' } },
+    ],
+    explain: { lv: 'Vajadzīgā summa: 4 · 7 = 28. Jau ir: 3 · 6 = 18. 28 − 18 = 10.', ru: 'Нужная сумма: 4 · 7 = 28. Уже есть: 3 · 6 = 18. 28 − 18 = 10.' } },
+];
+
+// ---------- Demo lessons ----------
+const LESSONS = {
+  nev: {
+    title: { lv: 'Nevienādības: no skaitļu ass līdz sistēmai', ru: 'Неравенства: от числовой прямой до системы' }, min: 12,
+    slides: [
+      { h: { lv: 'Atrisinājums ir daudz skaitļu', ru: 'Решение — это много чисел' },
+        body: { lv: 'Vienādojumam x = 2 der viens skaitlis. Nevienādībai x > 2 der visi skaitļi, kas lielāki par 2: 2,1; 3; 100… Tos attēlo uz skaitļu ass un pieraksta ar intervālu: x ∈ (2; +∞).', ru: 'Уравнению x = 2 подходит одно число. Неравенству x > 2 — все числа больше 2: 2,1; 3; 100… Их показывают на числовой прямой (skaitļu ass) и записывают интервалом: x ∈ (2; +∞).' },
+        fig: () => nl({ segs: [{ a: 2, b: Infinity, aIn: false }], label: 'x > 2' }) },
+      { h: { lv: 'Tukšs vai iekrāsots punkts', ru: 'Пустая или закрашенная точка' },
+        body: { lv: 'Stingrā nevienādībā (<, >) robežpunkts nepieder: punkts ir tukšs, iekava — apaļā ( ). Nestingrā (≤, ≥) robežpunkts pieder: punkts iekrāsots, iekava — kvadrātiekava [ ]. Pie ∞ iekava vienmēr apaļā.', ru: 'В строгом неравенстве (<, >) граничная точка не входит: точка пустая, скобка круглая ( ). В нестрогом (≤, ≥) — входит: точка закрашена, скобка квадратная [ ]. У ∞ скобка всегда круглая.' },
+        fig: () => `<div class="figpair"><div>${nl({ segs: [{ a: -Infinity, b: 1, bIn: false }], label: 'x < 1' })}<p class="cap">x < 1 → (−∞; 1)</p></div><div>${nl({ segs: [{ a: -2, b: Infinity, aIn: true }], label: 'x ≥ −2' })}<p class="cap">x ≥ −2 → [−2; +∞)</p></div></div>` },
+      { h: { lv: 'Galvenais slazds: negatīvs skaitlis', ru: 'Главная ловушка: отрицательное число' },
+        body: { lv: 'Nevienādību risina kā vienādojumu. Bet, reizinot vai dalot ar negatīvu skaitli, zīme mainās uz pretējo. Pārbaude: x = 0 der abās rindās, jo −2 · 0 = 0 < 6 un 0 > −3.', ru: 'Неравенство решают как уравнение. Но при умножении или делении на отрицательное число знак меняется на противоположный. Проверка: x = 0 подходит в обеих строках, потому что −2 · 0 = 0 < 6 и 0 > −3.' },
+        fig: () => `<div class="flipdemo"><div class="m big">−2x <span class="sg">&lt;</span> 6</div><div class="hand">${L({ lv: ': (−2) — zīme mainās!', ru: ': (−2) — знак меняется!' })}</div><div class="m big">x <span class="sg flip">&gt;</span> −3</div></div>` },
+      { h: { lv: 'Sistēma: kopīgā daļa', ru: 'Система: общая часть' },
+        body: { lv: 'Sistēmā x jāder abām nevienādībām reizē. Uzzīmē abas uz vienas ass un ņem daļu, kur tās pārklājas: no −2 (ieskaitot) līdz 4 (neieskaitot), tātad x ∈ [−2; 4).', ru: 'В системе x должен подходить обоим неравенствам сразу. Нарисуй оба на одной прямой и возьми часть, где они перекрываются: от −2 (включительно) до 4 (не включая), то есть x ∈ [−2; 4).' },
+        fig: () => `<div class="sysfig"><div class="m">${SYS(['x ≥ −2', 'x < 4'])}</div>${nl({ segs: [{ a: -2, b: Infinity, aIn: true, row: 2, c: 'b' }, { a: -Infinity, b: 4, bIn: false, row: 1, c: 'c' }, { a: -2, b: 4, aIn: true, bIn: false }], label: '[−2; 4)' })}</div>` },
+    ],
+    example: {
+      task: { lv: 'Atrisini nevienādību un pieraksti atbildi ar intervālu:', ru: 'Реши неравенство и запиши ответ интервалом:' }, math: '5 − 2x ≥ 11',
+      steps: [
+        { lv: 'Pārnes 5 uz labo pusi, mainot zīmi: −2x ≥ 11 − 5, tātad −2x ≥ 6.', ru: 'Перенеси 5 вправо с противоположным знаком: −2x ≥ 11 − 5, то есть −2x ≥ 6.' },
+        { lv: 'Dali abas puses ar −2. Skaitlis ir negatīvs, tāpēc ≥ kļūst par ≤: x ≤ −3.', ru: 'Раздели обе части на −2. Число отрицательное, поэтому ≥ становится ≤: x ≤ −3.' },
+        { lv: 'Uz skaitļu ass: iekrāsots punkts pie −3 (jo ≤) un ēnojums pa kreisi.', ru: 'На числовой прямой: закрашенная точка в −3 (потому что ≤) и штриховка влево.', fig: () => nl({ segs: [{ a: -Infinity, b: -3, bIn: true }], label: 'x ≤ −3' }) },
+        { lv: 'Atbilde: x ∈ (−∞; −3].', ru: 'Ответ: x ∈ (−∞; −3].' },
+        { lv: 'Pārbaude: x = −4 → 5 − 2 · (−4) = 13, un 13 ≥ 11. Der.', ru: 'Проверка: x = −4 → 5 − 2 · (−4) = 13, и 13 ≥ 11. Подходит.' },
+      ] },
+    tasks: [
+      { id: 'n1', type: 'ineq', q: { lv: 'Atrisini nevienādību:', ru: 'Реши неравенство:' }, math: '3x − 7 < 8', ans: { rel: '<', v: 5 },
+        wrong: [
+          { rel: '>', v: 5, fb: { lv: 'Dalot ar pozitīvu skaitli 3, zīme nemainās: x < 5.', ru: 'При делении на положительное число 3 знак не меняется: x < 5.' } },
+          { rel: '<', v: 1 / 3, fb: { lv: 'Pārnesot −7 uz labo pusi, tas kļūst par +7: 3x < 8 + 7 = 15.', ru: 'При переносе вправо −7 становится +7: 3x < 8 + 7 = 15.' } },
+          { rel: '≤', v: 5, fb: { lv: 'Zīme ir stingra (<), tāpēc skaitlis 5 nepieder: x < 5.', ru: 'Знак строгий (<), поэтому число 5 не входит: x < 5.' } },
+        ],
+        hint: { lv: 'Vispirms pārnes −7 uz labo pusi.', ru: 'Сначала перенеси −7 вправо.' },
+        sol: { lv: '3x < 8 + 7 → 3x < 15 → x < 5, tātad x ∈ (−∞; 5)', ru: '3x < 8 + 7 → 3x < 15 → x < 5, то есть x ∈ (−∞; 5)' } },
+      { id: 'n2', type: 'ineq', q: { lv: 'Atrisini nevienādību:', ru: 'Реши неравенство:' }, math: '−4x ≥ 12', ans: { rel: '≤', v: -3 },
+        wrong: [
+          { rel: '≥', v: -3, fb: { lv: 'Dalot ar −4, zīme mainās uz pretējo: ≥ kļūst par ≤.', ru: 'При делении на −4 знак меняется: ≥ становится ≤.' } },
+          { rel: '≤', v: 3, fb: { lv: '12 : (−4) = −3, nevis 3.', ru: '12 : (−4) = −3, а не 3.' } },
+          { rel: '<', v: -3, fb: { lv: 'Zīme ≥ ir nestingra, un pēc maiņas tā paliek nestingra: ≤.', ru: 'Знак ≥ нестрогий, и после смены он остаётся нестрогим: ≤.' } },
+          { rel: '≥', v: 3, fb: { lv: 'Divas kļūdas: 12 : (−4) = −3, un zīme jāmaina uz ≤.', ru: 'Две ошибки: 12 : (−4) = −3, и знак нужно сменить на ≤.' } },
+        ],
+        hint: { lv: 'Dalot ar negatīvu skaitli, zīme mainās.', ru: 'При делении на отрицательное число знак меняется.' },
+        sol: { lv: 'x ≤ 12 : (−4) → x ≤ −3, tātad x ∈ (−∞; −3]', ru: 'x ≤ 12 : (−4) → x ≤ −3, то есть x ∈ (−∞; −3]' } },
+      { id: 'n3', type: 'mc', q: { lv: 'Atrisini sistēmu:', ru: 'Реши систему:' }, math: SYS(['2x − 1 > 3', 'x ≤ 6']),
+        opts: [
+          { t: '[2; 6]', fb: { lv: '2x − 1 > 3 dod x > 2. Nevienādība ir stingra, tāpēc pie 2 iekava ir apaļā.', ru: '2x − 1 > 3 даёт x > 2. Неравенство строгое, поэтому у 2 скобка круглая.' } },
+          { t: '(2; 6]', ok: true },
+          { t: '(2; 6)', fb: { lv: 'x ≤ 6 nozīmē, ka 6 pieder, tāpēc „6]“.', ru: 'x ≤ 6 означает, что 6 входит, поэтому «6]».' } },
+          { t: '(2; +∞)', fb: { lv: 'Neaizmirsti otru nevienādību: x ≤ 6 nogriež visu, kas lielāks par 6.', ru: 'Не забудь второе неравенство: x ≤ 6 отсекает всё, что больше 6.' } },
+        ],
+        explain: { lv: '2x > 4 → x > 2; kopā ar x ≤ 6 iegūst x ∈ (2; 6]', ru: '2x > 4 → x > 2; вместе с x ≤ 6 получаем x ∈ (2; 6]' } },
+    ],
+    course: { lv: ['Skaitļu ass un intervāli', 'Lineāras nevienādības', 'Dalīšana ar negatīvu skaitli', 'Nevienādību sistēmas', 'Dubultās nevienādības', 'Kvadrātnevienādības ar parabolas skici', 'Teksta uzdevumi ar nevienādībām', 'Eksāmena tipa uzdevumi'],
+              ru: ['Числовая прямая и интервалы', 'Линейные неравенства', 'Деление на отрицательное число', 'Системы неравенств', 'Двойные неравенства', 'Квадратные неравенства по эскизу параболы', 'Текстовые задачи с неравенствами', 'Задачи как на экзамене'] },
+    demo: [0, 1, 2, 3],
+  },
+
+  izt: {
+    title: { lv: 'Pakāpes, saknes un saīsinātās reizināšanas formulas', ru: 'Степени, корни и формулы сокращённого умножения' }, min: 12,
+    slides: [
+      { h: { lv: 'Pakāpe ir atkārtota reizināšana', ru: 'Степень — это повторное умножение' },
+        body: { lv: 'aⁿ = a · a · … · a (n reizes). Decimāldaļām cipari aiz komata saskaitās: katrā reizinātājā ir viens, tāpēc atbildē ir trīs.', ru: 'aⁿ = a · a · … · a (n раз). У десятичных дробей знаки после запятой складываются: в каждом множителе по одному, поэтому в ответе три.' },
+        fig: () => `<div class="m big center">0,2³ = 0,2 · 0,2 · 0,2 = 0,<span class="mk">008</span></div>` },
+      { h: { lv: 'Negatīvs kāpinātājs ir daļa', ru: 'Отрицательный показатель — это дробь' },
+        body: { lv: 'Mīnuss kāpinātājā nepadara skaitli negatīvu. Tas nozīmē daļu: a⁻ⁿ = 1 : aⁿ. Un jebkuram a ≠ 0 ir a⁰ = 1.', ru: 'Минус в показателе не делает число отрицательным. Он означает дробь: a⁻ⁿ = 1 : aⁿ. И для любого a ≠ 0 верно a⁰ = 1.' },
+        fig: () => `<div class="m big center">2⁻³ = ${F(1, '2³')} = ${F(1, 8)} <span class="hand">${L({ lv: 'nevis −8!', ru: 'а не −8!' })}</span></div>` },
+      { h: { lv: '(a + b)² ir kvadrāts no četrām daļām', ru: '(a + b)² — квадрат из четырёх частей' },
+        body: { lv: 'Kvadrātā ar malu a + b ir a², b² un divi taisnstūri ab. Tāpēc (a + b)² = a² + 2ab + b², nevis a² + b². Līdzīgi (a − b)² = a² − 2ab + b² un (a − b)(a + b) = a² − b².', ru: 'В квадрате со стороной a + b есть a², b² и два прямоугольника ab. Поэтому (a + b)² = a² + 2ab + b², а не a² + b². Так же (a − b)² = a² − 2ab + b² и (a − b)(a + b) = a² − b².' },
+        fig: () => areaModel() },
+      { h: { lv: 'Saknes: iznes reizinātāju', ru: 'Корни: выноси множитель' },
+        body: { lv: '√(a · b) = √a · √b, tāpēc √12 = √(4 · 3) = 2√3. Saskaitīt var tikai vienādas saknes: √12 + √27 = 2√3 + 3√3 = 5√3. Bet √12 + √27 ≠ √39.', ru: '√(a · b) = √a · √b, поэтому √12 = √(4 · 3) = 2√3. Складывать можно только одинаковые корни: √12 + √27 = 2√3 + 3√3 = 5√3. Но √12 + √27 ≠ √39.' },
+        fig: () => `<div class="m big center">√12 + √27 = 2√3 + 3√3 = <span class="mk">5√3</span></div><div class="m center muted">√12 + √27 ≠ √39</div>` },
+    ],
+    example: {
+      task: { lv: 'Vienkāršo izteiksmi:', ru: 'Упрости выражение:' }, math: '(x − 4)² − x(x − 8)',
+      steps: [
+        { lv: 'Pēc formulas: (x − 4)² = x² − 8x + 16.', ru: 'По формуле: (x − 4)² = x² − 8x + 16.' },
+        { lv: 'Atver iekavas: x(x − 8) = x² − 8x.', ru: 'Раскрой скобки: x(x − 8) = x² − 8x.' },
+        { lv: 'Pirms iekavām ir mīnuss, tāpēc zīmes mainās: x² − 8x + 16 − x² + 8x.', ru: 'Перед скобками минус, поэтому знаки меняются: x² − 8x + 16 − x² + 8x.' },
+        { lv: 'Savelk līdzīgos locekļus: x² − x² = 0 un −8x + 8x = 0. Atbilde: 16.', ru: 'Приводим подобные: x² − x² = 0 и −8x + 8x = 0. Ответ: 16.' },
+        { lv: 'Pārbaude ar x = 1: (1 − 4)² − 1 · (1 − 8) = 9 + 7 = 16. Sakrīt.', ru: 'Проверка при x = 1: (1 − 4)² − 1 · (1 − 8) = 9 + 7 = 16. Сходится.' },
+      ] },
+    tasks: [
+      { id: 'i1', type: 'mc', q: { lv: 'Kāpini kvadrātā:', ru: 'Возведи в квадрат:' }, math: '(2x + 1)²',
+        opts: [
+          { t: '4x² + 1', fb: { lv: 'Trūkst vidējā locekļa 2 · 2x · 1 = 4x.', ru: 'Не хватает среднего члена 2 · 2x · 1 = 4x.' } },
+          { t: '2x² + 4x + 1', fb: { lv: '(2x)² = 4x²: kvadrātā kāpina arī skaitli 2.', ru: '(2x)² = 4x²: в квадрат возводится и число 2.' } },
+          { t: '4x² + 4x + 1', ok: true },
+          { t: '4x² + 2x + 1', fb: { lv: 'Vidējais loceklis ir 2ab = 2 · 2x · 1 = 4x.', ru: 'Средний член: 2ab = 2 · 2x · 1 = 4x.' } },
+        ],
+        explain: { lv: '(2x + 1)² = (2x)² + 2 · 2x · 1 + 1² = 4x² + 4x + 1', ru: '(2x + 1)² = (2x)² + 2 · 2x · 1 + 1² = 4x² + 4x + 1' } },
+      { id: 'i2', type: 'num', q: { lv: 'Aprēķini. Atbildi raksti kā decimāldaļu vai daļu (piemēram, 1/4).', ru: 'Вычисли. Ответ запиши десятичной дробью или дробью (например, 1/4).' }, math: '5⁻²', ans: 0.04,
+        wrong: [
+          { v: -25, fb: { lv: 'Mīnuss kāpinātājā nozīmē daļu: 5⁻² = 1 : 5² = 1/25.', ru: 'Минус в показателе означает дробь: 5⁻² = 1 : 5² = 1/25.' } },
+          { v: -10, fb: { lv: 'Bāzi nereizina ar kāpinātāju. 5⁻² = 1 : (5 · 5).', ru: 'Основание не умножают на показатель. 5⁻² = 1 : (5 · 5).' } },
+          { v: 25, fb: { lv: 'Tā ir 5². Ar mīnusu kāpinātājā: 1/25 = 0,04.', ru: 'Это 5². С минусом в показателе: 1/25 = 0,04.' } },
+        ],
+        hint: { lv: 'a⁻ⁿ = 1 : aⁿ', ru: 'a⁻ⁿ = 1 : aⁿ' },
+        sol: { lv: '5⁻² = 1 : 5² = 1/25 = 0,04', ru: '5⁻² = 1 : 5² = 1/25 = 0,04' } },
+      { id: 'i3', type: 'mc', q: { lv: 'Aprēķini:', ru: 'Вычисли:' }, math: '√50 + √18',
+        opts: [
+          { t: '√68', fb: { lv: 'Skaitļus zem saknes nesaskaita. √50 = 5√2 un √18 = 3√2.', ru: 'Числа под корнем не складывают. √50 = 5√2 и √18 = 3√2.' } },
+          { t: '15√2', fb: { lv: '5√2 + 3√2 = 8√2: koeficientus saskaita, nevis reizina.', ru: '5√2 + 3√2 = 8√2: коэффициенты складывают, а не умножают.' } },
+          { t: '8', fb: { lv: 'Pazaudēji √2: 5√2 + 3√2 = (5 + 3)√2 = 8√2.', ru: 'Потерян √2: 5√2 + 3√2 = (5 + 3)√2 = 8√2.' } },
+          { t: '8√2', ok: true },
+        ],
+        explain: { lv: '√50 = √(25 · 2) = 5√2; √18 = √(9 · 2) = 3√2; kopā 8√2', ru: '√50 = √(25 · 2) = 5√2; √18 = √(9 · 2) = 3√2; вместе 8√2' } },
+    ],
+    course: { lv: ['Pakāpes ar naturālu kāpinātāju', 'Negatīvs un nulles kāpinātājs', 'Pakāpju īpašības', 'Skaitļa standartpieraksts', 'Kvadrātsaknes un to vienkāršošana', 'Saīsinātās reizināšanas formulas', 'Sadalīšana reizinātājos', 'Eksāmena tipa uzdevumi'],
+              ru: ['Степени с натуральным показателем', 'Отрицательный и нулевой показатель', 'Свойства степеней', 'Стандартный вид числа', 'Квадратные корни и их упрощение', 'Формулы сокращённого умножения', 'Разложение на множители', 'Задачи как на экзамене'] },
+    demo: [0, 1, 4, 5],
+  },
+
+  proc: {
+    title: { lv: 'Procenti: atlaides, kāpumi un ceļš atpakaļ', ru: 'Проценты: скидки, рост цены и обратный путь' }, min: 10,
+    slides: [
+      { h: { lv: '1 % ir simtā daļa', ru: '1 % — это сотая часть' },
+        body: { lv: 'p % no skaitļa = p : 100 · skaitlis. 15 % no 40 € = 0,15 · 40 = 6 €. Procentus vienmēr rēķina no tā lieluma, kas ir 100 %.', ru: 'p % от числа = p : 100 · число. 15 % от 40 € = 0,15 · 40 = 6 €. Проценты всегда считают от той величины, которая равна 100 %.' },
+        fig: () => pctBar() },
+      { h: { lv: 'Viens reizinātājs izmaiņai', ru: 'Один множитель на изменение' },
+        body: { lv: 'Samazināt par 15 % nozīmē paturēt 85 %, tātad reizināt ar 0,85. Palielināt par 20 % nozīmē reizināt ar 1,2.', ru: 'Снизить на 15 % — значит оставить 85 %, то есть умножить на 0,85. Увеличить на 20 % — умножить на 1,2.' },
+        fig: () => `<div class="m big center">40 · 0,85 = 34 €</div><div class="m center">−15 % → · 0,85 &nbsp;&nbsp; +20 % → · 1,2</div>` },
+      { h: { lv: 'Ceļš atpakaļ: dala, nevis pieskaita', ru: 'Обратный путь: делим, а не прибавляем' },
+        body: { lv: 'Pēc 20 % atlaides prece maksā 48 €. Tas ir 80 % no sākotnējās cenas: 0,8 · x = 48, tātad x = 48 : 0,8 = 60 €. Ja pieskaitītu 20 % no 48 €, iegūtu 57,60 €, un tas ir nepareizi.', ru: 'После скидки 20 % товар стоит 48 €. Это 80 % исходной цены: 0,8 · x = 48, значит x = 48 : 0,8 = 60 €. Если прибавить 20 % от 48 €, получится 57,60 €, и это неверно.' },
+        fig: () => `<div class="m big center">0,8 · x = 48 → x = 60 €</div>` },
+      { h: { lv: 'Divas izmaiņas pēc kārtas reizina', ru: 'Два изменения подряд перемножают' },
+        body: { lv: '+10 % un pēc tam −10 % nenozīmē, ka nekas nemainījās: 1,1 · 0,9 = 0,99. Kopumā cena samazinās par 1 %.', ru: '+10 %, а потом −10 % не значит, что ничего не изменилось: 1,1 · 0,9 = 0,99. Итого цена снижается на 1 %.' },
+        fig: () => `<div class="m big center">1,1 · 0,9 = 0,99 → −1 %</div>` },
+    ],
+    example: {
+      task: { lv: 'Telefons maksāja 250 €. Akcijā cenu samazināja par 12 %, bet pēc nedēļas jauno cenu palielināja par 5 %. Cik telefons maksā tagad?', ru: 'Телефон стоил 250 €. В акцию цену снизили на 12 %, а через неделю новую цену подняли на 5 %. Сколько телефон стоит теперь?' },
+      steps: [
+        { lv: 'Reizinātāji: −12 % → 0,88; +5 % → 1,05.', ru: 'Множители: −12 % → 0,88; +5 % → 1,05.' },
+        { lv: 'Pēc atlaides: 250 · 0,88 = 220 €.', ru: 'После скидки: 250 · 0,88 = 220 €.' },
+        { lv: 'Pēc kāpuma: 220 · 1,05 = 231 €.', ru: 'После повышения: 220 · 1,05 = 231 €.' },
+        { lv: 'Atbilde: 231 €. Slazds: −12 % + 5 % = −7 % dotu 232,50 €, bet tas ir nepareizi, jo 5 % rēķina no jaunās cenas.', ru: 'Ответ: 231 €. Ловушка: −12 % + 5 % = −7 % дало бы 232,50 €, но это неверно: 5 % считают от новой цены.' },
+      ] },
+    tasks: [
+      { id: 'p1', type: 'num', u: '€', q: { lv: 'Velosipēds maksāja 320 €. Atlaide ir 25 %. Cik velosipēds maksā tagad?', ru: 'Велосипед стоил 320 €. Скидка 25 %. Сколько он стоит теперь?' }, ans: 240,
+        wrong: [
+          { v: 295, fb: { lv: 'Tu atņēmi 25 eiro, nevis 25 %. 25 % no 320 € ir 80 €.', ru: 'Вычитать нужно 25 %, а не 25 евро: 25 % от 320 € — это 80 €.' } },
+          { v: 80, fb: { lv: '80 € ir atlaide. Jaunā cena: 320 − 80 = 240 €.', ru: '80 € — это скидка. Новая цена: 320 − 80 = 240 €.' } },
+          { v: 400, fb: { lv: 'Cena samazinājās, tāpēc atlaide jāatņem.', ru: 'Цена снизилась, поэтому скидку вычитают.' } },
+        ],
+        hint: { lv: 'Samazināt par 25 % nozīmē reizināt ar 0,75.', ru: 'Снизить на 25 % — значит умножить на 0,75.' },
+        sol: { lv: '320 · 0,75 = 240 €', ru: '320 · 0,75 = 240 €' } },
+      { id: 'p2', type: 'num', u: '€', q: { lv: 'Pēc 30 % cenu kāpuma biļete maksā 26 €. Cik tā maksāja pirms kāpuma?', ru: 'После подорожания на 30 % билет стоит 26 €. Сколько он стоил до подорожания?' }, ans: 20,
+        wrong: [
+          { v: 18.2, fb: { lv: 'Tu atņēmi 30 % no jaunās cenas. Bet 30 % rēķina no vecās cenas: 1,3 · x = 26.', ru: 'Здесь вычтено 30 % от новой цены. Но 30 % считают от старой цены: 1,3 · x = 26.' } },
+          { v: 33.8, fb: { lv: 'Tu vēlreiz pieskaitīji 30 %. Jāiet atpakaļ: 26 : 1,3.', ru: 'Здесь 30 % прибавлено ещё раз. Нужно идти назад: 26 : 1,3.' } },
+          { v: -4, fb: { lv: 'Cena nevar būt negatīva. Jaunā cena ir 130 % no vecās: 1,3 · x = 26.', ru: 'Цена не может быть отрицательной. Новая цена — 130 % от старой: 1,3 · x = 26.' } },
+        ],
+        hint: { lv: 'Jaunā cena ir 130 % no vecās: 1,3 · x = 26.', ru: 'Новая цена — 130 % от старой: 1,3 · x = 26.' },
+        sol: { lv: 'x = 26 : 1,3 = 20 €', ru: 'x = 26 : 1,3 = 20 €' } },
+      { id: 'p3', type: 'mc', q: { lv: 'Algu vispirms palielināja par 20 %, pēc tam samazināja par 20 %. Kā mainījās alga salīdzinājumā ar sākotnējo?', ru: 'Зарплату сначала повысили на 20 %, потом снизили на 20 %. Как она изменилась по сравнению с исходной?' },
+        opts: [
+          { t: { lv: 'Nemainījās', ru: 'Не изменилась' }, fb: { lv: 'Otros 20 % rēķina no lielākas summas: 1,2 · 0,8 = 0,96.', ru: 'Вторые 20 % считают от большей суммы: 1,2 · 0,8 = 0,96.' } },
+          { t: { lv: 'Samazinājās par 4 %', ru: 'Уменьшилась на 4 %' }, ok: true },
+          { t: { lv: 'Palielinājās par 4 %', ru: 'Увеличилась на 4 %' }, fb: { lv: '1,2 · 0,8 = 0,96, un tas ir mazāk par 1, tātad alga samazinājās.', ru: '1,2 · 0,8 = 0,96, это меньше 1, значит зарплата уменьшилась.' } },
+          { t: { lv: 'Samazinājās par 20 %', ru: 'Уменьшилась на 20 %' }, fb: { lv: 'Sareizini abus reizinātājus: 1,2 · 0,8 = 0,96, tātad −4 %.', ru: 'Перемножь оба множителя: 1,2 · 0,8 = 0,96, то есть −4 %.' } },
+        ],
+        explain: { lv: '1,2 · 0,8 = 0,96 → 96 % no sākotnējās algas, tātad −4 %.', ru: '1,2 · 0,8 = 0,96 → 96 % от исходной зарплаты, то есть −4 %.' } },
+    ],
+    course: { lv: ['Procenti un daļas', 'Procentu aprēķināšana', 'Izmaiņa procentos', 'Sākotnējās vērtības atrašana', 'Secīgas izmaiņas', 'Proporcijas un attiecības', 'Izteiksmes sastādīšana pēc teksta', 'Eksāmena tipa uzdevumi'],
+              ru: ['Проценты и дроби', 'Вычисление процентов', 'Изменение в процентах', 'Нахождение исходного значения', 'Последовательные изменения', 'Пропорции и отношения', 'Составление выражения по тексту', 'Задачи как на экзамене'] },
+    demo: [1, 2, 3, 4],
+  },
+
+  vien: {
+    title: { lv: 'Vienādojumi: lineārie un kvadrātvienādojumi', ru: 'Уравнения: линейные и квадратные' }, min: 12,
+    slides: [
+      { h: { lv: 'Vienādojums ir svari', ru: 'Уравнение — это весы' },
+        body: { lv: 'Abas puses ir līdzsvarā. Ja vienā pusē pieskaiti, atņem, reizini vai dali, tas pats jādara arī otrā pusē. Mērķis: atstāt x vienu.', ru: 'Обе части в равновесии. Если в одной части прибавляешь, вычитаешь, умножаешь или делишь, то же нужно сделать и в другой. Цель — оставить x одного.' },
+        fig: () => balance('3x − 6', 'x + 4') },
+      { h: { lv: 'Pārnesot zīme mainās', ru: 'При переносе знак меняется' },
+        body: { lv: 'Atver iekavas: 3(x − 2) = 3x − 6. Pārnes x pa kreisi un −6 pa labi, mainot zīmes: 3x − x = 4 + 6. Tātad 2x = 10 un x = 5.', ru: 'Раскрой скобки: 3(x − 2) = 3x − 6. Перенеси x влево, а −6 вправо, меняя знаки: 3x − x = 4 + 6. Значит 2x = 10 и x = 5.' },
+        fig: () => `<div class="m big center">3x − 6 = x + 4</div><div class="m big center">3x − x = 4 + 6</div><div class="m big center"><span class="mk">x = 5</span></div>` },
+      { h: { lv: 'Kvadrātvienādojums: diskriminants', ru: 'Квадратное уравнение: дискриминант' },
+        body: { lv: 'ax² + bx + c = 0. Aprēķini D = b² − 4ac. Ja D > 0, ir divas saknes; ja D = 0, viena; ja D < 0, sakņu nav.', ru: 'ax² + bx + c = 0. Посчитай D = b² − 4ac. Если D > 0 — два корня; если D = 0 — один; если D < 0 — корней нет.' },
+        fig: () => `<div class="m big center">D = b² − 4ac</div><div class="m big center">x = ${F('−b ± √D', '2a')}</div>` },
+      { h: { lv: 'Uzmanies ar zīmēm', ru: 'Осторожно со знаками' },
+        body: { lv: 'x² + 2x − 15 = 0: a = 1, b = 2, c = −15. D = 2² − 4 · 1 · (−15) = 4 + 60 = 64. Mīnuss reiz mīnuss dod plusu! Saknes: x = (−2 ± 8) : 2, tātad x₁ = 3 un x₂ = −5.', ru: 'x² + 2x − 15 = 0: a = 1, b = 2, c = −15. D = 2² − 4 · 1 · (−15) = 4 + 60 = 64. Минус на минус даёт плюс! Корни: x = (−2 ± 8) : 2, то есть x₁ = 3 и x₂ = −5.' },
+        fig: () => `<div class="m big center">D = 2² − 4 · 1 · (−15) = 4 <span class="mk">+ 60</span> = 64</div>` },
+    ],
+    example: {
+      task: { lv: 'Atrisini vienādojumu:', ru: 'Реши уравнение:' }, math: '2x² − 3x − 2 = 0',
+      steps: [
+        { lv: 'Koeficienti: a = 2, b = −3, c = −2.', ru: 'Коэффициенты: a = 2, b = −3, c = −2.' },
+        { lv: 'D = (−3)² − 4 · 2 · (−2) = 9 + 16 = 25, tātad √D = 5.', ru: 'D = (−3)² − 4 · 2 · (−2) = 9 + 16 = 25, значит √D = 5.' },
+        { lv: 'x₁ = (3 + 5) : 4 = 2; x₂ = (3 − 5) : 4 = −0,5.', ru: 'x₁ = (3 + 5) : 4 = 2; x₂ = (3 − 5) : 4 = −0,5.' },
+        { lv: 'Pārbaude: 2 · 2² − 3 · 2 − 2 = 8 − 6 − 2 = 0. Der.', ru: 'Проверка: 2 · 2² − 3 · 2 − 2 = 8 − 6 − 2 = 0. Подходит.' },
+      ] },
+    tasks: [
+      { id: 'v1', type: 'num', q: { lv: 'Atrisini vienādojumu. Ieraksti x vērtību.', ru: 'Реши уравнение. Впиши значение x.' }, math: '5x + 3 = 2x − 9', pre: 'x =', ans: -4,
+        wrong: [
+          { v: -2, fb: { lv: 'Pārnesot +3 uz labo pusi, tas kļūst par −3: 3x = −9 − 3 = −12.', ru: 'При переносе вправо +3 становится −3: 3x = −9 − 3 = −12.' } },
+          { v: 4, fb: { lv: '−12 : 3 = −4. Pieskaties zīmei.', ru: '−12 : 3 = −4. Обрати внимание на знак.' } },
+          { v: -12 / 7, fb: { lv: 'Pārnesot 2x uz kreiso pusi, tas kļūst par −2x: 5x − 2x = 3x.', ru: 'При переносе влево 2x становится −2x: 5x − 2x = 3x.' } },
+        ],
+        hint: { lv: 'Saliec x kreisajā pusē, skaitļus — labajā.', ru: 'Собери x слева, числа — справа.' },
+        sol: { lv: '5x − 2x = −9 − 3 → 3x = −12 → x = −4', ru: '5x − 2x = −9 − 3 → 3x = −12 → x = −4' } },
+      { id: 'v2', type: 'num', q: { lv: 'Aprēķini diskriminantu vienādojumam', ru: 'Найди дискриминант уравнения' }, math: 'x² − 4x − 5 = 0', pre: 'D =', ans: 36,
+        wrong: [
+          { v: -4, fb: { lv: 'c = −5, tāpēc −4 · 1 · (−5) = +20, un D = 16 + 20 = 36.', ru: 'c = −5, поэтому −4 · 1 · (−5) = +20, и D = 16 + 20 = 36.' } },
+          { v: 4, fb: { lv: 'b² = (−4)² = 16: kvadrāts nekad nav negatīvs.', ru: 'b² = (−4)² = 16: квадрат никогда не бывает отрицательным.' } },
+          { v: -36, fb: { lv: 'Divas zīmju kļūdas: (−4)² = 16 un −4 · 1 · (−5) = +20.', ru: 'Две ошибки в знаках: (−4)² = 16 и −4 · 1 · (−5) = +20.' } },
+        ],
+        hint: { lv: 'D = b² − 4ac. Ievieto ar zīmēm: b = −4, c = −5.', ru: 'D = b² − 4ac. Подставь со знаками: b = −4, c = −5.' },
+        sol: { lv: 'D = (−4)² − 4 · 1 · (−5) = 16 + 20 = 36', ru: 'D = (−4)² − 4 · 1 · (−5) = 16 + 20 = 36' } },
+      { id: 'v3', type: 'mc', q: { lv: 'Atrisini vienādojumu:', ru: 'Реши уравнение:' }, math: 'x² − 4x − 5 = 0',
+        opts: [
+          { t: 'x₁ = −5, x₂ = 1', fb: { lv: 'Zīmes otrādi: x = (4 ± 6) : 2, tātad 5 un −1.', ru: 'Знаки наоборот: x = (4 ± 6) : 2, то есть 5 и −1.' } },
+          { t: 'x₁ = 5, x₂ = −1', ok: true },
+          { t: 'x₁ = 5, x₂ = 1', fb: { lv: 'Pārbaudi x = 1: 1 − 4 − 5 = −8 ≠ 0.', ru: 'Проверь x = 1: 1 − 4 − 5 = −8 ≠ 0.' } },
+          { t: { lv: 'Sakņu nav', ru: 'Корней нет' }, fb: { lv: 'D = 36 > 0, tātad ir divas saknes.', ru: 'D = 36 > 0, значит корней два.' } },
+        ],
+        explain: { lv: 'x = (4 ± √36) : 2 = (4 ± 6) : 2 → x₁ = 5, x₂ = −1', ru: 'x = (4 ± √36) : 2 = (4 ± 6) : 2 → x₁ = 5, x₂ = −1' } },
+    ],
+    course: { lv: ['Lineāri vienādojumi', 'Vienādojumi ar iekavām un daļām', 'Vienādojumu sistēmas', 'Nepilnie kvadrātvienādojumi', 'Diskriminants un saknes', 'Vjeta teorēma', 'Teksta uzdevumi ar vienādojumiem', 'Eksāmena tipa uzdevumi'],
+              ru: ['Линейные уравнения', 'Уравнения со скобками и дробями', 'Системы уравнений', 'Неполные квадратные уравнения', 'Дискриминант и корни', 'Теорема Виета', 'Текстовые задачи с уравнениями', 'Задачи как на экзамене'] },
+    demo: [0, 1, 4],
+  },
+
+  fun: {
+    title: { lv: 'Funkcijas: taisne un parabola', ru: 'Функции: прямая и парабола' }, min: 12,
+    slides: [
+      { h: { lv: 'y = kx + b ir taisne', ru: 'y = kx + b — это прямая' },
+        body: { lv: 'b rāda, kur taisne krusto y asi. k rāda, par cik mainās y, ja x palielinās par 1. Funkcijai y = 2x + 1 krustpunkts ir (0; 1), un katrs solis pa labi dod +2 uz augšu.', ru: 'b показывает, где прямая пересекает ось y. k — на сколько меняется y, когда x увеличивается на 1. У функции y = 2x + 1 точка пересечения (0; 1), и каждый шаг вправо даёт +2 вверх.' },
+        fig: () => plot({ xmin: -2, xmax: 4, ymin: -1, ymax: 6, unit: 32, fns: [{ f: x => 2 * x + 1, x0: -1, x1: 2.5 }],
+          extra: (X, Y) => SV.path(`M${X(0)},${Y(1)} L${X(1)},${Y(1)} L${X(1)},${Y(3)}`, 'st step') + SV.tx(X(0.5), Y(1) + 20, '+1', 'tx hand-s') + SV.tx(X(1) + 8, Y(2) + 6, '+2', 'tx hand-s', 'start'),
+          pts: [{ x: 0, y: 1, l: '(0; 1)', dx: -10, dy: -10, anchor: 'end' }, { x: 1, y: 3 }], label: 'y = 2x + 1' }) },
+      { h: { lv: 'Vai punkts pieder grafikam?', ru: 'Принадлежит ли точка графику?' },
+        body: { lv: 'Ievieto punkta x formulā un salīdzini ar punkta y. A(2; 5) un y = 3x − 1: 3 · 2 − 1 = 5, sakrīt, tātad pieder. B(2; 3): 3 · 2 − 1 = 5 ≠ 3, tātad nepieder.', ru: 'Подставь x точки в формулу и сравни с y точки. A(2; 5) и y = 3x − 1: 3 · 2 − 1 = 5, совпадает — принадлежит. B(2; 3): 3 · 2 − 1 = 5 ≠ 3 — не принадлежит.' },
+        fig: () => plot({ xmin: -1, xmax: 4, ymin: -2, ymax: 6, unit: 30, fns: [{ f: x => 3 * x - 1, x0: -1 / 3, x1: 7 / 3 }], pts: [{ x: 2, y: 5, l: 'A(2; 5)', dx: 10, dy: 5 }, { x: 2, y: 3, l: 'B(2; 3)', dx: 10, dy: 5, c: 'b' }], label: 'y = 3x − 1' }) },
+      { h: { lv: 'Parabola y = ax² + bx + c', ru: 'Парабола y = ax² + bx + c' },
+        body: { lv: 'Ja a > 0, zari vērsti uz augšu; ja a < 0, uz leju. c ir krustpunkts ar y asi. Virsotnes abscisa: x = −b : (2a), un ordinātu iegūst, ievietojot šo x formulā.', ru: 'Если a > 0, ветви направлены вверх; если a < 0 — вниз. c — точка пересечения с осью y. Абсцисса вершины: x = −b : (2a), а ординату получают, подставив этот x в формулу.' },
+        fig: () => plot({ xmin: -1, xmax: 7, ymin: -5, ymax: 6, unit: 25, fns: [{ f: x => x * x - 6 * x + 5, x0: -0.15, x1: 6.15 }],
+          pts: [{ x: 3, y: -4, l: 'V(3; −4)', dx: 10, dy: 6 }, { x: 1, y: 0 }, { x: 5, y: 0 }, { x: 0, y: 5, l: '(0; 5)', dx: 8, dy: -8 }], label: 'y = x² − 6x + 5' }) },
+      { h: { lv: 'Krustpunkti ar x asi', ru: 'Точки пересечения с осью x' },
+        body: { lv: 'Kur grafiks krusto x asi, tur y = 0. Tāpēc jāatrisina ax² + bx + c = 0. Parabolai y = x² − 6x + 5 tie ir x = 1 un x = 5.', ru: 'Где график пересекает ось x, там y = 0. Поэтому решаем ax² + bx + c = 0. Для параболы y = x² − 6x + 5 это x = 1 и x = 5.' },
+        fig: () => plot({ xmin: -1, xmax: 7, ymin: -5, ymax: 6, unit: 25, fns: [{ f: x => x * x - 6 * x + 5, x0: -0.15, x1: 6.15 }], pts: [{ x: 1, y: 0, l: '(1; 0)', dx: -8, dy: -10, anchor: 'end', c: 'b' }, { x: 5, y: 0, l: '(5; 0)', dx: 8, dy: -10, c: 'b' }], label: 'y = 0' }) },
+    ],
+    example: {
+      task: { lv: 'Atrodi parabolas virsotni:', ru: 'Найди вершину параболы:' }, math: 'y = x² − 6x + 5',
+      steps: [
+        { lv: 'Koeficienti: a = 1, b = −6, c = 5.', ru: 'Коэффициенты: a = 1, b = −6, c = 5.' },
+        { lv: 'Virsotnes abscisa: x = −b : (2a) = 6 : 2 = 3.', ru: 'Абсцисса вершины: x = −b : (2a) = 6 : 2 = 3.' },
+        { lv: 'Ordināta: y = 3² − 6 · 3 + 5 = 9 − 18 + 5 = −4.', ru: 'Ордината: y = 3² − 6 · 3 + 5 = 9 − 18 + 5 = −4.' },
+        { lv: 'Virsotne V(3; −4). a = 1 > 0, tāpēc zari vērsti uz augšu un virsotne ir zemākais punkts.', ru: 'Вершина V(3; −4). a = 1 > 0, поэтому ветви направлены вверх и вершина — самая низкая точка.' },
+      ] },
+    tasks: [
+      { id: 'f1', type: 'mc', q: { lv: 'Kura formula atbilst grafikam?', ru: 'Какая формула соответствует графику?' },
+        fig: () => plot({ xmin: -2, xmax: 4, ymin: -1, ymax: 6, unit: 38, fns: [{ f: x => 2 * x + 1, x0: -1, x1: 2.5 }], pts: [{ x: 0, y: 1 }, { x: 1, y: 3 }, { x: 2, y: 5 }], label: '?' }),
+        opts: [
+          { t: 'y = x + 1', fb: { lv: 'Pārbaudi punktu (1; 3): 1 + 1 = 2 ≠ 3. Taisne kāpj par 2 uz katru soli.', ru: 'Проверь точку (1; 3): 1 + 1 = 2 ≠ 3. Прямая поднимается на 2 на каждом шаге.' } },
+          { t: 'y = 2x − 1', fb: { lv: 'Taisne krusto y asi punktā (0; 1), tātad b = +1.', ru: 'Прямая пересекает ось y в точке (0; 1), значит b = +1.' } },
+          { t: 'y = 2x + 1', ok: true },
+          { t: 'y = 0,5x + 1', fb: { lv: 'k = 0,5 nozīmētu +0,5 uz katru soli. Šeit katrs solis pa labi dod +2.', ru: 'k = 0,5 означало бы +0,5 на каждом шаге. Здесь каждый шаг вправо даёт +2.' } },
+        ],
+        explain: { lv: 'b = 1 (krustpunkts ar y asi), k = 2 (solis pa labi dod +2): y = 2x + 1', ru: 'b = 1 (пересечение с осью y), k = 2 (шаг вправо даёт +2): y = 2x + 1' } },
+      { id: 'f2', type: 'num', q: { lv: 'Aprēķini parabolas virsotnes abscisu:', ru: 'Найди абсциссу вершины параболы:' }, math: 'y = −x² + 4x + 1', pre: 'x =', ans: 2,
+        wrong: [
+          { v: -2, fb: { lv: 'a = −1, tāpēc 2a = −2 un x = −4 : (−2) = 2.', ru: 'a = −1, поэтому 2a = −2 и x = −4 : (−2) = 2.' } },
+          { v: 4, fb: { lv: 'Saucējā ir 2a = −2, nevis a: x = −4 : (−2) = 2.', ru: 'В знаменателе 2a = −2, а не a: x = −4 : (−2) = 2.' } },
+        ],
+        hint: { lv: 'x = −b : (2a), un šeit a = −1.', ru: 'x = −b : (2a), и здесь a = −1.' },
+        sol: { lv: 'x = −4 : (2 · (−1)) = 2', ru: 'x = −4 : (2 · (−1)) = 2' } },
+      { id: 'f3', type: 'mc', q: { lv: 'Kurš punkts NEPIEDER funkcijas y = −2x + 3 grafikam?', ru: 'Какая точка НЕ принадлежит графику функции y = −2x + 3?' },
+        opts: [
+          { t: '(0; 3)', fb: { lv: '−2 · 0 + 3 = 3, tātad šis punkts pieder.', ru: '−2 · 0 + 3 = 3, значит эта точка принадлежит.' } },
+          { t: '(1; 1)', fb: { lv: '−2 · 1 + 3 = 1, tātad šis punkts pieder.', ru: '−2 · 1 + 3 = 1, значит эта точка принадлежит.' } },
+          { t: '(2; −1)', fb: { lv: '−2 · 2 + 3 = −1, tātad šis punkts pieder.', ru: '−2 · 2 + 3 = −1, значит эта точка принадлежит.' } },
+          { t: '(−1; 1)', ok: true },
+        ],
+        explain: { lv: 'x = −1: −2 · (−1) + 3 = 5 ≠ 1, tātad punkts (−1; 1) nepieder.', ru: 'x = −1: −2 · (−1) + 3 = 5 ≠ 1, значит точка (−1; 1) не принадлежит.' } },
+    ],
+    course: { lv: ['Funkcija un tās grafiks', 'Lineāra funkcija', 'Grafiku lasīšana: kustība un cenas', 'Kvadrātfunkcija', 'Parabolas virsotne un krustpunkti', 'Aritmētiskā progresija', 'Eksāmena tipa uzdevumi'],
+              ru: ['Функция и её график', 'Линейная функция', 'Чтение графиков: движение и цены', 'Квадратичная функция', 'Вершина параболы и точки пересечения', 'Арифметическая прогрессия', 'Задачи как на экзамене'] },
+    demo: [1, 3, 4],
+  },
+
+  tri: {
+    title: { lv: 'Taisnleņķa trijstūris: Pitagors un sin, cos, tg', ru: 'Прямоугольный треугольник: Пифагор и sin, cos, tg' }, min: 12,
+    slides: [
+      { h: { lv: 'Pitagora teorēma', ru: 'Теорема Пифагора' },
+        body: { lv: 'Hipotenūza c atrodas pretī taisnajam leņķim un ir garākā mala. c² = a² + b². Ja katetes ir 6 un 8, tad c² = 36 + 64 = 100 un c = 10.', ru: 'Гипотенуза c лежит напротив прямого угла и самая длинная. c² = a² + b². Если катеты 6 и 8, то c² = 36 + 64 = 100 и c = 10.' },
+        fig: () => triFig({ deg: 36.87, ab: 'c', bc: 'a', ac: 'b', colored: true, A: '', B: '', C: '', label: 'c² = a² + b²' }) },
+      { h: { lv: 'Kateti atrod ar atņemšanu', ru: 'Катет находят вычитанием' },
+        body: { lv: 'a² = c² − b². Ja hipotenūza ir 13 un katete 5, tad a² = 169 − 25 = 144 un a = 12. Katete vienmēr ir īsāka par hipotenūzu, un tā ir laba pārbaude.', ru: 'a² = c² − b². Если гипотенуза 13, а катет 5, то a² = 169 − 25 = 144 и a = 12. Катет всегда короче гипотенузы — это хорошая проверка.' },
+        fig: () => triFig({ deg: 22.62, ab: '13', bc: '5', ac: '?', A: '', B: '', C: '', label: '13, 5, ?' }) },
+      { h: { lv: 'sin, cos un tg', ru: 'sin, cos и tg' },
+        body: { lv: 'Leņķim α: sin α = pretkatete : hipotenūza; cos α = piekatete : hipotenūza; tg α = pretkatete : piekatete.', ru: 'Для угла α: sin α = противолежащий катет (pretkatete) : гипотенуза; cos α = прилежащий катет (piekatete) : гипотенуза; tg α = противолежащий : прилежащий.' },
+        fig: () => triFig({ deg: 33, ab: 'c', bc: 'a', ac: 'b', alpha: 'α', colored: true, A: '', B: '', C: '', label: 'sin α = a : c' }) },
+      { h: { lv: 'Vērtības bez kalkulatora', ru: 'Значения без калькулятора' },
+        body: { lv: 'Eksāmena 1. daļā kalkulatoru izmantot nedrīkst. Iegaumē: sin 30° = cos 60° = ½; sin 60° = cos 30° = √3/2; sin 45° = cos 45° = √2/2; tg 45° = 1.', ru: 'В 1-й части экзамена калькулятором пользоваться нельзя. Запомни: sin 30° = cos 60° = ½; sin 60° = cos 30° = √3/2; sin 45° = cos 45° = √2/2; tg 45° = 1.' },
+        fig: () => trigTable() },
+    ],
+    example: {
+      task: { lv: 'Trijstūrī ABC ∠C = 90°, ∠A = 30°, AB = 14 cm. Aprēķini BC un AC.', ru: 'В треугольнике ABC ∠C = 90°, ∠A = 30°, AB = 14 см. Найди BC и AC.' },
+      fig: () => triFig({ ab: '14', bc: '?', ac: '?', alpha: '30°', label: 'ABC' }),
+      steps: [
+        { lv: 'AB ir hipotenūza, jo atrodas pretī taisnajam leņķim C.', ru: 'AB — гипотенуза: лежит напротив прямого угла C.' },
+        { lv: 'BC atrodas pretī ∠A, tā ir pretkatete: BC = AB · sin 30° = 14 · ½ = 7 cm.', ru: 'BC лежит напротив ∠A — это противолежащий катет: BC = AB · sin 30° = 14 · ½ = 7 см.' },
+        { lv: 'AC ir piekatete: AC = AB · cos 30° = 14 · √3/2 = 7√3 cm.', ru: 'AC — прилежащий катет: AC = AB · cos 30° = 14 · √3/2 = 7√3 см.' },
+        { lv: 'Pārbaude ar Pitagoru: 7² + (7√3)² = 49 + 147 = 196 = 14². Sakrīt.', ru: 'Проверка по Пифагору: 7² + (7√3)² = 49 + 147 = 196 = 14². Сходится.' },
+      ] },
+    tasks: [
+      { id: 't1', type: 'num', u: 'cm', q: { lv: 'Taisnleņķa trijstūra katetes ir 9 cm un 12 cm. Aprēķini hipotenūzu.', ru: 'Катеты прямоугольного треугольника 9 см и 12 см. Найди гипотенузу.' }, ans: 15,
+        wrong: [
+          { v: 21, fb: { lv: 'Katešu garumus nesaskaita: c² = 81 + 144 = 225.', ru: 'Длины катетов не складывают: c² = 81 + 144 = 225.' } },
+          { v: 225, fb: { lv: '225 ir c². c = √225 = 15.', ru: '225 — это c². c = √225 = 15.' } },
+          { v: 3, fb: { lv: 'Hipotenūza ir garākā mala, tā nevar būt īsāka par kateti.', ru: 'Гипотенуза — самая длинная сторона, она не может быть короче катета.' } },
+          { v: Math.sqrt(63), fb: { lv: 'Hipotenūzai kvadrātus saskaita, nevis atņem: 81 + 144.', ru: 'Для гипотенузы квадраты складывают, а не вычитают: 81 + 144.' } },
+        ],
+        hint: { lv: 'c² = a² + b²', ru: 'c² = a² + b²' },
+        sol: { lv: 'c = √(81 + 144) = √225 = 15 cm', ru: 'c = √(81 + 144) = √225 = 15 см' } },
+      { id: 't2', type: 'num', u: 'cm', q: { lv: 'Hipotenūza ir 10 cm, viena katete — 6 cm. Aprēķini otru kateti.', ru: 'Гипотенуза 10 см, один катет 6 см. Найди другой катет.' }, ans: 8,
+        wrong: [
+          { v: Math.sqrt(136), fb: { lv: 'Katete ir īsāka par hipotenūzu. Atņem: 100 − 36 = 64.', ru: 'Катет короче гипотенузы. Вычитай: 100 − 36 = 64.' } },
+          { v: 4, fb: { lv: 'Atņem nevis malas, bet to kvadrātus: 10² − 6² = 64.', ru: 'Вычитают не стороны, а их квадраты: 10² − 6² = 64.' } },
+          { v: 64, fb: { lv: '64 ir a². a = √64 = 8.', ru: '64 — это a². a = √64 = 8.' } },
+        ],
+        hint: { lv: 'a² = c² − b²', ru: 'a² = c² − b²' },
+        sol: { lv: 'a = √(100 − 36) = √64 = 8 cm', ru: 'a = √(100 − 36) = √64 = 8 см' } },
+      { id: 't3', type: 'mc', q: { lv: 'Kura attiecība ir sin α?', ru: 'Какое отношение равно sin α?' },
+        fig: () => triFig({ deg: 33, ab: 'c', bc: 'a', ac: 'b', alpha: 'α', A: '', B: '', C: '', label: 'α' }),
+        opts: [
+          { t: 'b : c', fb: { lv: 'b atrodas pie leņķa α, tā ir piekatete. b : c ir cos α.', ru: 'b прилегает к углу α — это прилежащий катет. b : c — это cos α.' } },
+          { t: 'a : b', fb: { lv: 'Pretkatete : piekatete ir tg α.', ru: 'Противолежащий : прилежащий — это tg α.' } },
+          { t: 'c : a', fb: { lv: 'Sinuss ir mazāks par 1, tāpēc hipotenūza ir saucējā.', ru: 'Синус меньше 1, поэтому гипотенуза в знаменателе.' } },
+          { t: 'a : c', ok: true },
+        ],
+        explain: { lv: 'sin α = pretkatete : hipotenūza = a : c', ru: 'sin α = противолежащий катет : гипотенуза = a : c' } },
+    ],
+    course: { lv: ['Pitagora teorēma', 'Pitagora teorēma teksta uzdevumos', 'sin, cos un tg taisnleņķa trijstūrī', 'Malas aprēķināšana, ja dots leņķis', 'Leņķa aprēķināšana', 'Eksāmena tipa uzdevumi'],
+              ru: ['Теорема Пифагора', 'Теорема Пифагора в текстовых задачах', 'sin, cos и tg в прямоугольном треугольнике', 'Нахождение стороны по углу', 'Нахождение угла', 'Задачи как на экзамене'] },
+    demo: [0, 2, 3],
+  },
+
+  lauk: {
+    title: { lv: 'Laukumi, tilpumi un līdzīgi trijstūri', ru: 'Площади, объёмы и подобные треугольники' }, min: 12,
+    slides: [
+      { h: { lv: 'Laukumu formulas', ru: 'Формулы площадей' },
+        body: { lv: 'Eksāmenā drīkst izmantot formulu lapu, bet jāzina, kuru formulu kad lietot.', ru: 'На экзамене можно пользоваться листом формул, но нужно знать, какую формулу когда применять.' },
+        fig: () => `<div class="formulas"><div><b>S = a · b</b><span class="lv-term">${L({ lv: 'taisnstūris', ru: 'прямоугольник · taisnstūris' })}</span></div><div><b>S = ${F('a · h', 2)}</b><span class="lv-term">${L({ lv: 'trijstūris', ru: 'треугольник · trijstūris' })}</span></div><div><b>S = ${F('a + b', 2)} · h</b><span class="lv-term">${L({ lv: 'trapece', ru: 'трапеция · trapece' })}</span></div><div><b>S = πr²</b><span class="lv-term">${L({ lv: 'riņķis', ru: 'круг · riņķis' })}</span></div></div>` },
+      { h: { lv: 'Cilindrs: rādiuss, nevis diametrs', ru: 'Цилиндр: радиус, а не диаметр' },
+        body: { lv: 'V = πr²h. Ja dots diametrs, vispirms dali to ar 2. Ja d = 6 cm un h = 10 cm, tad r = 3 un V = π · 9 · 10 = 90π cm³.', ru: 'V = πr²h. Если дан диаметр, сначала раздели его на 2. Если d = 6 см и h = 10 см, то r = 3 и V = π · 9 · 10 = 90π см³.' },
+        fig: () => cylFig() },
+      { h: { lv: 'Līdzīgi trijstūri: laukums k² reizes', ru: 'Подобные треугольники: площадь в k² раз' },
+        body: { lv: 'Ja visas malas ir k reizes garākas, laukums ir k² reizes lielāks. Kad k = 2, lielajā trijstūrī ietilpst 4 mazie. Tilpumiem attiecība ir k³.', ru: 'Если все стороны в k раз длиннее, площадь больше в k² раз. При k = 2 в большой треугольник помещаются 4 маленьких. Для объёмов отношение k³.' },
+        fig: () => similarFig() },
+      { h: { lv: 'Kā atrast k', ru: 'Как найти k' },
+        body: { lv: 'k ir atbilstošo malu attiecība: k = DE : AB. Ja AB = 4 un DE = 10, tad k = 2,5, un laukumu attiecība ir 2,5² = 6,25.', ru: 'k — отношение соответственных сторон: k = DE : AB. Если AB = 4 и DE = 10, то k = 2,5, а площади относятся как 2,5² = 6,25.' },
+        fig: () => `<div class="m big center">k = 10 : 4 = 2,5 &nbsp;→&nbsp; k² = <span class="mk">6,25</span></div>` },
+    ],
+    example: {
+      task: { lv: 'Trijstūri ABC un DEF ir līdzīgi. AB = 4 cm, DE = 10 cm, trijstūra ABC laukums ir 12 cm². Aprēķini trijstūra DEF laukumu.', ru: 'Треугольники ABC и DEF подобны. AB = 4 см, DE = 10 см, площадь ABC — 12 см². Найди площадь треугольника DEF.' },
+      steps: [
+        { lv: 'Līdzības koeficients: k = DE : AB = 10 : 4 = 2,5.', ru: 'Коэффициент подобия: k = DE : AB = 10 : 4 = 2,5.' },
+        { lv: 'Laukumu attiecība: k² = 2,5² = 6,25.', ru: 'Отношение площадей: k² = 2,5² = 6,25.' },
+        { lv: 'S(DEF) = 12 · 6,25 = 75 cm².', ru: 'S(DEF) = 12 · 6,25 = 75 см².' },
+        { lv: 'Slazds: 12 · 2,5 = 30 cm² ir nepareizi, jo laukumu reizina ar k², nevis ar k.', ru: 'Ловушка: 12 · 2,5 = 30 см² — неверно, потому что площадь умножают на k², а не на k.' },
+      ] },
+    tasks: [
+      { id: 'l1', type: 'num', u: 'cm²', q: { lv: 'Trapeces pamati ir 5 cm un 9 cm, augstums — 4 cm. Aprēķini trapeces laukumu.', ru: 'Основания трапеции 5 см и 9 см, высота 4 см. Найди площадь трапеции.' }, ans: 28,
+        wrong: [
+          { v: 56, fb: { lv: 'Neaizmirsti dalīt ar 2: (5 + 9) : 2 · 4 = 28.', ru: 'Не забудь разделить на 2: (5 + 9) : 2 · 4 = 28.' } },
+          { v: 180, fb: { lv: 'Pamatus saskaita, nevis reizina: (5 + 9) : 2 · 4.', ru: 'Основания складывают, а не умножают: (5 + 9) : 2 · 4.' } },
+          { v: 18, fb: { lv: 'Laukums nav visu skaitļu summa. S = (a + b) : 2 · h.', ru: 'Площадь — не сумма всех чисел. S = (a + b) : 2 · h.' } },
+        ],
+        hint: { lv: 'S = (a + b) : 2 · h', ru: 'S = (a + b) : 2 · h' },
+        sol: { lv: '(5 + 9) : 2 · 4 = 7 · 4 = 28 cm²', ru: '(5 + 9) : 2 · 4 = 7 · 4 = 28 см²' } },
+      { id: 'l2', type: 'num', u: 'π cm³', q: { lv: 'Cilindra diametrs ir 10 cm, augstums — 3 cm. Tilpums ir V = …π cm³. Ieraksti skaitli pirms π.', ru: 'Диаметр цилиндра 10 см, высота 3 см. Объём V = …π см³. Впиши число перед π.' }, pre: 'V =', ans: 75,
+        wrong: [
+          { v: 300, fb: { lv: 'Tu izmantoji diametru. r = 10 : 2 = 5, tātad V = π · 25 · 3 = 75π.', ru: 'Здесь взят диаметр, а нужен радиус: r = 10 : 2 = 5, значит V = π · 25 · 3 = 75π.' } },
+          { v: 15, fb: { lv: 'Rādiuss jākāpina kvadrātā: r² = 25.', ru: 'Радиус нужно возвести в квадрат: r² = 25.' } },
+          { v: 30, fb: { lv: '2πrh = 30π ir sānu virsma. Tilpums: πr²h = 75π.', ru: '2πrh = 30π — боковая поверхность. Объём: πr²h = 75π.' } },
+        ],
+        hint: { lv: 'V = πr²h, un r = d : 2.', ru: 'V = πr²h, а r = d : 2.' },
+        sol: { lv: 'r = 5 cm; V = π · 5² · 3 = 75π cm³', ru: 'r = 5 см; V = π · 5² · 3 = 75π см³' } },
+      { id: 'l3', type: 'mc', u: { lv: ' cm²', ru: ' см²' }, q: { lv: 'Divi trijstūri ir līdzīgi, k = 2. Mazākā trijstūra laukums ir 7 cm². Cik liels ir lielākā trijstūra laukums?', ru: 'Два треугольника подобны, k = 2. Площадь меньшего — 7 см². Какова площадь большего?' },
+        opts: [
+          { t: '14', fb: { lv: 'Laukums palielinās k² = 4 reizes: 7 · 4 = 28.', ru: 'Площадь увеличивается в k² = 4 раза: 7 · 4 = 28.' } },
+          { t: '28', ok: true },
+          { t: '9', fb: { lv: 'k nozīmē „cik reizes“, nevis pieskaitīšanu.', ru: 'k означает «во сколько раз», а не прибавку.' } },
+          { t: '56', fb: { lv: 'k³ = 8 ir tilpumiem. Laukumam vajag k² = 4.', ru: 'k³ = 8 — для объёмов. Для площади нужно k² = 4.' } },
+        ],
+        explain: { lv: 'S = 7 · 2² = 28 cm²', ru: 'S = 7 · 2² = 28 см²' } },
+    ],
+    course: { lv: ['Daudzstūru laukumi', 'Riņķis un riņķa līnija', 'Ķermeņu tilpumi', 'Trijstūru vienādības pazīmes', 'Līdzīgi trijstūri', 'Laukumu un tilpumu attiecība', 'Eksāmena tipa uzdevumi'],
+              ru: ['Площади многоугольников', 'Круг и окружность', 'Объёмы тел', 'Признаки равенства треугольников', 'Подобные треугольники', 'Отношение площадей и объёмов', 'Задачи как на экзамене'] },
+    demo: [0, 2, 4, 5],
+  },
+
+  stat: {
+    title: { lv: 'Varbūtība, vidējais un pilnā pārlase', ru: 'Вероятность, среднее и полный перебор' }, min: 10,
+    slides: [
+      { h: { lv: 'Varbūtība P = m : n', ru: 'Вероятность P = m : n' },
+        body: { lv: 'm ir labvēlīgo rezultātu skaits, n — visu vienādi iespējamo rezultātu skaits. Skaita bumbiņas, nevis krāsas: ja ir 4 sarkanas, 5 zilas un 3 zaļas, tad P(zila) = 5/12.', ru: 'm — число благоприятных исходов, n — число всех равновозможных исходов. Считают шарики, а не цвета: если 4 красных, 5 синих и 3 зелёных, то P(синий) = 5/12.' },
+        fig: () => ballsFig() },
+      { h: { lv: 'Pretējais notikums', ru: 'Противоположное событие' },
+        body: { lv: 'P(nav A) = 1 − P(A). Varbūtība, ka bumbiņa nav zila: 1 − 5/12 = 7/12. Varbūtība vienmēr ir no 0 līdz 1.', ru: 'P(не A) = 1 − P(A). Вероятность, что шарик не синий: 1 − 5/12 = 7/12. Вероятность всегда от 0 до 1.' },
+        fig: () => `<div class="m big center">1 − ${F(5, 12)} = ${F(7, 12)}</div>` },
+      { h: { lv: 'Vidējais aritmētiskais', ru: 'Среднее арифметическое' },
+        body: { lv: 'Vidējais = summa : skaits. Ja jāatrod trūkstošais skaitlis, vispirms aprēķini vajadzīgo summu: vidējais · skaits.', ru: 'Среднее = сумма : количество. Чтобы найти недостающее число, сначала посчитай нужную сумму: среднее · количество.' },
+        fig: () => `<div class="m big center">4 · 7 = 28 &nbsp;→&nbsp; 28 − 18 = 10</div>` },
+      { h: { lv: 'Pilnā pārlase', ru: 'Полный перебор' },
+        body: { lv: 'Raksti visus variantus sistemātiski, piemēram, augošā secībā. Trīsciparu skaitļi no cipariem 1, 2, 3 bez atkārtošanās: 123, 132, 213, 231, 312, 321. Kopā 6 = 3!.', ru: 'Выписывай все варианты по системе, например по возрастанию. Трёхзначные числа из цифр 1, 2, 3 без повторений: 123, 132, 213, 231, 312, 321. Всего 6 = 3!.' },
+        fig: () => `<ul class="perm">${['123', '132', '213', '231', '312', '321'].map(x => `<li>${x}</li>`).join('')}</ul>` },
+    ],
+    example: {
+      task: { lv: 'Dati: 3, 8, 5, 10, 8, 2. Atrodi vidējo aritmētisko, mediānu un modu.', ru: 'Данные: 3, 8, 5, 10, 8, 2. Найди среднее арифметическое, медиану и моду.' },
+      steps: [
+        { lv: 'Sakārto augošā secībā: 2, 3, 5, 8, 8, 10.', ru: 'Упорядочи по возрастанию: 2, 3, 5, 8, 8, 10.' },
+        { lv: 'Vidējais: (2 + 3 + 5 + 8 + 8 + 10) : 6 = 36 : 6 = 6.', ru: 'Среднее: (2 + 3 + 5 + 8 + 8 + 10) : 6 = 36 : 6 = 6.' },
+        { lv: 'Mediāna: skaitļu ir pāra skaits, tāpēc ņem abu vidējo skaitļu vidējo: (5 + 8) : 2 = 6,5.', ru: 'Медиана: чисел чётное количество, поэтому берём среднее двух средних: (5 + 8) : 2 = 6,5.' },
+        { lv: 'Moda ir skaitlis, kas sastopams visbiežāk: 8.', ru: 'Мода — число, которое встречается чаще всего: 8.' },
+      ] },
+    tasks: [
+      { id: 's1', type: 'mc', q: { lv: 'Met spēļu kauliņu. Kāda ir varbūtība, ka uzkritīs skaitlis, kas lielāks par 4?', ru: 'Бросают игральный кубик. Какова вероятность, что выпадет число больше 4?' },
+        opts: [
+          { t: F(1, 6), fb: { lv: 'Lielāki par 4 ir divi skaitļi: 5 un 6.', ru: 'Больше 4 — два числа: 5 и 6.' } },
+          { t: F(1, 2), fb: { lv: 'Der tikai 5 un 6, tie ir 2 no 6.', ru: 'Подходят только 5 и 6 — это 2 из 6.' } },
+          { t: F(1, 3), ok: true },
+          { t: F(2, 3), fb: { lv: `${F(2, 3)} būtu, ja derētu 4 skaitļi. Der tikai 5 un 6: ${F(2, 6)} = ${F(1, 3)}.`, ru: `${F(2, 3)} было бы, если бы подходили 4 числа. Подходят только 5 и 6: ${F(2, 6)} = ${F(1, 3)}.` } },
+        ],
+        explain: { lv: `P = ${F(2, 6)} = ${F(1, 3)}`, ru: `P = ${F(2, 6)} = ${F(1, 3)}` } },
+      { id: 's2', type: 'num', q: { lv: 'Trīs darbos vidējā atzīme ir 7. Kāda atzīme jāsaņem ceturtajā darbā, lai vidējā būtu 7,5?', ru: 'Средняя оценка за три работы — 7. Какую оценку нужно получить за четвёртую, чтобы средняя стала 7,5?' }, ans: 9,
+        wrong: [
+          { v: 8, fb: { lv: '(7 + x) : 2 neder, jo vidējais ir no 4 darbiem: 4 · 7,5 = 30; 30 − 21 = 9.', ru: '(7 + x) : 2 не подходит, потому что среднее по 4 работам: 4 · 7,5 = 30; 30 − 21 = 9.' } },
+          { v: 7.5, fb: { lv: 'Ar 7,5 vidējā būtu (21 + 7,5) : 4 ≈ 7,1. Vajag summu 30.', ru: 'С 7,5 средняя будет (21 + 7,5) : 4 ≈ 7,1. Нужна сумма 30.' } },
+        ],
+        hint: { lv: 'Vajadzīgā summa ir 4 · 7,5.', ru: 'Нужная сумма — 4 · 7,5.' },
+        sol: { lv: '4 · 7,5 = 30; 3 · 7 = 21; 30 − 21 = 9', ru: '4 · 7,5 = 30; 3 · 7 = 21; 30 − 21 = 9' } },
+      { id: 's3', type: 'num', q: { lv: 'Cik dažādus divciparu skaitļus var izveidot no cipariem 1, 4 un 7, ja cipari neatkārtojas?', ru: 'Сколько разных двузначных чисел можно составить из цифр 1, 4 и 7, если цифры не повторяются?' }, ans: 6,
+        wrong: [
+          { v: 9, fb: { lv: 'Tu ieskaitīji 11, 44 un 77, bet cipari nedrīkst atkārtoties.', ru: 'Здесь посчитаны 11, 44 и 77, но цифры не должны повторяться.' } },
+          { v: 3, fb: { lv: '14 un 41 ir dažādi skaitļi: secība ir svarīga.', ru: '14 и 41 — разные числа: порядок важен.' } },
+        ],
+        hint: { lv: 'Raksti sistemātiski: 14, 17, 41, …', ru: 'Выписывай по порядку: 14, 17, 41, …' },
+        sol: { lv: '14, 17, 41, 47, 71, 74 → 6 skaitļi', ru: '14, 17, 41, 47, 71, 74 → 6 чисел' } },
+    ],
+    course: { lv: ['Datu apkopošana un diagrammas', 'Vidējais, mediāna un moda', 'Pilnā pārlase un kombinatorika', 'Varbūtība', 'Pretējais notikums', 'Eksāmena tipa uzdevumi'],
+              ru: ['Сбор данных и диаграммы', 'Среднее, медиана и мода', 'Полный перебор и комбинаторика', 'Вероятность', 'Противоположное событие', 'Задачи как на экзамене'] },
+    demo: [1, 2, 3, 4],
+  },
+};
+
+// ---------- App ----------
+const STORE = 'm9_state_v1';
+const state = { lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null };
+const mem = { resetAsk: false, sendTimer: null };
+
+function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage may be unavailable */ } }
+function load() { try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && typeof s === 'object') Object.assign(state, s); } catch (e) { } }
+
+const nb = s => (typeof s === 'string' ? s.replace(/(\d) (%|€|cm|см|min|мин)/g, '$1\u00A0$2') : s);
+const L = x => nb(x == null ? '' : typeof x === 'string' ? x : (x[state.lang] ?? x.lv ?? ''));
+const T = (k, vars) => {
+  let s = I18N[state.lang][k] ?? I18N.lv[k] ?? k;
+  if (vars && typeof s === 'string') for (const [a, b] of Object.entries(vars)) s = s.split('{' + a + '}').join(b);
+  return Array.isArray(s) ? s.map(x => (Array.isArray(x) ? x.map(nb) : nb(x))) : nb(s);
+};
+// count-dependent text: the key holds [form for 1, 21, 31…, form for other numbers]; fits both lv and ru texts here
+const plIdx = n => (n % 10 === 1 && n % 100 !== 11 ? 0 : 1);
+const TN = (k, count, vars) => {
+  const f = T(k), s = Array.isArray(f) ? f[Math.min(plIdx(count), f.length - 1)] : f;
+  return Object.entries(vars || {}).reduce((acc, [x, y]) => acc.split('{' + x + '}').join(y), s);
+};
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const $ = (s, el = document) => el.querySelector(s);
+const topicById = id => TOPICS.find(t => t.id === id);
+
+// ---------- dates & plurals ----------
+function dateLong(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  return state.lang === 'ru' ? `${d} ${MONTHS.ru.gen[m - 1]} ${y}` : `${y}. gada ${d}. ${MONTHS.lv.loc[m - 1]}`;
+}
+function dateShort(iso) {
+  const [, m, d] = iso.split('-').map(Number);
+  return state.lang === 'ru' ? `${d} ${MONTHS.ru.gen[m - 1]}` : `${d}. ${MONTHS.lv.loc[m - 1]}`;
+}
+function daysWord(n) {
+  if (state.lang === 'ru') { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'день' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'дня' : 'дней'; }
+  return n % 10 === 1 && n % 100 !== 11 ? 'diena' : 'dienas';
+}
+function daysLeft() {
+  const [y, m, d] = CONFIG.examDate.split('-').map(Number);
+  const now = new Date(); const t0 = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.max(0, Math.round((Date.UTC(y, m - 1, d) - t0) / 86400000));
+}
+
+// ---------- lead sending ----------
+function uid() {
+  try { if (crypto.randomUUID) return crypto.randomUUID(); } catch (e) { }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); });
+}
+function send(stage, extra = {}) {
+  const payload = { id: state.lead && state.lead.id, stage, lang: state.lang, site: location.origin + location.pathname, ...extra };
+  if (!CONFIG.endpoint || !payload.id) { console.info('[preview] not sent:', payload); return; }
+  try {
+    fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { });
+  } catch (e) { }
+}
+const answersCode = () => DIAG.map((_, i) => (state.answers[i] == null ? 4 : state.answers[i])).join('');
+
+// ---------- results ----------
+function results() {
+  const per = {};
+  TOPICS.forEach(t => (per[t.id] = { c: 0, n: 0 }));
+  DIAG.forEach((d, i) => { const a = state.answers[i]; per[d.topic].n++; if (a != null && a < 4 && d.opts[a].ok) per[d.topic].c++; });
+  const status = id => (per[id].c === per[id].n ? 'ok' : per[id].c === 0 ? 'gap' : 'mid');
+  const score = Object.values(per).reduce((s, p) => s + p.c, 0);
+  const rank = { gap: 0, mid: 1, ok: 2 };
+  const order = TOPICS.map(t => t.id).sort((a, b) => rank[status(a)] - rank[status(b)]);
+  const mistakes = DIAG.map((d, i) => ({ d, i, a: state.answers[i] })).filter(m => m.a != null && m.a < 4 && !m.d.opts[m.a].ok);
+  const dk = state.answers.filter(a => a === 4).length;
+  return { per, status, score, order, mistakes, dk, weak: order.filter(id => status(id) !== 'ok') };
+}
+
+// ---------- shared bits ----------
+const pill = st => `<span class="pill ${st}">${T('st')[st]}</span>`;
+function qHTML(o) {
+  const ru = state.lang === 'ru' && o.q.ru ? `<p class="q-ru">${o.q.ru}</p>` : '';
+  return `<p class="q-lv">${o.q.lv}</p>${ru}${o.math ? `<div class="m big qmath">${o.math}</div>` : ''}`;
+}
+function optHTML(o, i, extra = '', unit = '') {
+  return `<button type="button" class="opt" ${extra}><span class="key">${'ABCD'[i]}</span><span class="ot">${L(o.t)}${unit}</span></button>`;
+}
+function renderHeader(view) {
+  const stepOf = { pieteikums: 0, tests: 1, rezultati: 2, demo: 3, abonements: 3, paldies: 3 }[view];
+  const st = $('#stepper');
+  if (stepOf == null) { st.hidden = true; } else {
+    st.hidden = false;
+    st.innerHTML = T('steps').map((s, i) => `<li class="${i < stepOf ? 'done' : i === stepOf ? 'now' : ''}"><span class="sn">${i < stepOf ? '✓' : i + 1}</span><span class="sl">${s}</span></li>`).join('');
+  }
+  $('#tagline').textContent = T('tagline');
+  document.querySelectorAll('[data-act="lang"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)));
+  $('#lang-group').setAttribute('aria-label', T('lang_label'));
+  const pv = $('#preview-bar');
+  pv.hidden = !!CONFIG.endpoint || state.pvHidden;
+  $('#preview-text').textContent = T('preview_bar');
+  $('#pv-close').setAttribute('aria-label', T('close'));
+  document.documentElement.lang = state.lang;
+}
+function renderFooter() {
+  $('#footer').innerHTML = `<div class="wrap foot-in">
+    <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button>
+    ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
+      : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
+}
+
+// ---------- views ----------
+function viewLanding() {
+  const d = DIAG.find(x => x.id === 'd7');
+  const n = daysLeft();
+  return `<section class="wrap hero">
+    <div class="hero-txt">
+      <p class="eyebrow">${T('eyebrow', { date: dateLong(CONFIG.examDate) })}${n > 0 ? ` · <b>${T('days_left', { n, w: daysWord(n) })}</b>` : ''}</p>
+      <h1>${T('hero_h')}</h1>
+      <p class="lead">${T('hero_p')}</p>
+      <div class="cta-row"><a class="btn btn-primary btn-lg" href="#pieteikums">${T('hero_cta')}</a><span class="note">${T('hero_note')}</span></div>
+      <ul class="facts">${T('facts').map(f => `<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
+    </div>
+    <article class="sheet nb sample">
+      <div class="sheet-head"><span class="eyebrow-s">${T('sample_label')}</span><span class="chip">${L(topicById('nev'))}</span></div>
+      ${qHTML(d)}
+      <div class="opts opts-2">${d.opts.map((o, i) => optHTML(o, i, `data-act="sample" data-i="${i}"`)).join('')}</div>
+      <div class="fb" id="sample-fb" aria-live="polite"><p class="hint-s">${T('sample_try')}</p></div>
+    </article>
+  </section>
+  <section class="wrap band">
+    <h2>${T('stats_h')}</h2>
+    <div class="stats">${EXAM_STATS.map(s => `<div class="stat"><b>${s.p}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div>
+    <p class="src">${T('stats_note')}</p>
+  </section>
+  <section class="wrap band">
+    <h2>${T('how_h')}</h2>
+    <ol class="how">${T('how').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
+  </section>
+  <section class="wrap band">
+    <h2>${T('topics_h')}</h2>
+    <ul class="tchips">${TOPICS.map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+  </section>
+  <section class="wrap band">
+    <div class="sheet parents"><div><h2>${T('parents_h')}</h2><p>${T('parents_p')}</p><p class="ex-link"><a href="#eksameni">${T('ex_link')} →</a></p></div><a class="btn btn-primary btn-lg" href="#pieteikums">${T('hero_cta')}</a></div>
+  </section>`;
+}
+
+function viewContact() {
+  const ld = state.lead || {};
+  const role = ld.role || 'student';
+  return `<section class="wrap narrow">
+    <form class="sheet form" id="lead-form" novalidate>
+      <h1>${T('contact_h')}</h1>
+      <p class="muted">${T('contact_p')}</p>
+      <fieldset class="seg"><legend>${T('who')}</legend>
+        <label><input type="radio" name="role" value="student" ${role === 'student' ? 'checked' : ''}><span>${T('who_student')}</span></label>
+        <label><input type="radio" name="role" value="parent" ${role === 'parent' ? 'checked' : ''}><span>${T('who_parent')}</span></label>
+      </fieldset>
+      <p class="note parent-note" id="parent-note" ${role === 'parent' ? '' : 'hidden'}>${T('parent_note')}</p>
+      <div class="field"><label for="f-name">${T('f_name')}</label><input id="f-name" name="name" autocomplete="given-name" maxlength="60" placeholder="${T('f_name_ph')}" value="${esc(ld.name)}"><p class="err" id="e-name"></p></div>
+      <div class="field"><label for="f-email">${T('f_email')}</label><input id="f-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="${T('f_email_ph')}" value="${esc(ld.email)}"><p class="err" id="e-email"></p></div>
+      <div class="field"><label for="f-phone">${T('f_phone')} <span class="opt-l">${T('f_phone_opt')}</span></label><input id="f-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="${T('f_phone_ph')}" value="${esc(ld.phone)}"></div>
+      <div class="hp" aria-hidden="true"><label for="f-web">Website</label><input id="f-web" name="website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="f-consent" ${ld.consent ? 'checked' : ''}><span>${T('f_consent')} <button type="button" class="btn-link inline" data-act="privacy">${T('f_privacy')}</button></span></label>
+      <p class="err" id="e-consent"></p>
+      <label class="check"><input type="checkbox" id="f-news" ${ld.news ? 'checked' : ''}><span>${T('f_news')}</span></label>
+      <button class="btn btn-primary btn-lg wide" type="submit">${T('f_submit')}</button>
+    </form>
+  </section>`;
+}
+
+function viewTest() {
+  const i = Math.min(state.idx, DIAG.length - 1), d = DIAG[i], a = state.answers[i];
+  const unit = L(d.u);
+  return `<section class="wrap narrow test">
+    <div class="test-top"><span class="tcount">${T('test_of', { i: i + 1, n: DIAG.length })}</span><span class="chip">${L(topicById(d.topic))}</span></div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${DIAG.length}" aria-valuenow="${i}"><i style="width:${(i / DIAG.length) * 100}%"></i></div>
+    <article class="sheet nb qcard">
+      ${qHTML(d)}
+      ${d.fig ? `<div class="figbox">${d.fig()}</div>` : ''}
+      <div class="opts opts-2">${d.opts.map((o, k) => optHTML(o, k, `data-act="ans" data-i="${k}" aria-pressed="${a === k}"`, unit)).join('')}</div>
+      <button type="button" class="dk" data-act="ans" data-i="4" aria-pressed="${a === 4}">${T('dont_know')}</button>
+    </article>
+    <div class="test-nav">
+      <button type="button" class="btn btn-ghost" data-act="tprev" ${i === 0 ? 'disabled' : ''}>← ${T('prev')}</button>
+      <span class="nocalc">${T('test_nocalc')}</span>
+      <button type="button" class="btn btn-primary" data-act="tnext" ${a == null ? 'disabled' : ''}>${i === DIAG.length - 1 ? T('finish') : T('next') + ' →'}</button>
+    </div>
+  </section>`;
+}
+
+function viewResults() {
+  const R = results();
+  const n = DIAG.length, band = R.score <= 5 ? 0 : R.score <= 10 ? 1 : R.score <= 14 ? 2 : 3;
+  const rows = R.order.map(id => {
+    const t = topicById(id), p = R.per[id], st = R.status(id);
+    return `<li class="trow ${st}"><span class="ic">${t.ic}</span><div class="tname"><b>${L(t)}</b><small>${T('res_exam', { t: L(t.stat), p: t.stat.p })}</small></div>
+      <span class="dots" aria-label="${p.c}/${p.n}">${Array.from({ length: p.n }, (_, k) => `<i class="${k < p.c ? 'on' : ''}"></i>`).join('')}</span>${pill(st)}</li>`;
+  }).join('');
+  const weak = R.weak;
+  const mistakes = R.mistakes.length ? R.mistakes.map(m => `<li class="mis"><div class="mis-h"><span class="chip">${L(topicById(m.d.topic))}</span><span class="mis-n">${m.i + 1}.</span></div>
+      <div class="mis-q">${L(m.d.q)} ${m.d.math ? `<span class="m">${m.d.math}</span>` : ''}</div>
+      <p class="mis-a"><span class="lbl">${T('your_answer')}:</span> <s>${L(m.d.opts[m.a].t)}${L(m.d.u)}</s> · <span class="lbl">${T('correct_answer')}:</span> <b>${L(m.d.opts.find(o => o.ok).t)}${L(m.d.u)}</b></p>
+      <p class="mis-why">${L(m.d.opts[m.a].why)}</p></li>`).join('') : `<li class="mis none">${T('res_none')}</li>`;
+  const review = DIAG.map((d, i) => {
+    const a = state.answers[i], ok = a != null && a < 4 && d.opts[a].ok;
+    return `<li class="${ok ? 'r-ok' : 'r-bad'}"><span class="rn">${i + 1}</span><div><div>${L(d.q)} ${d.math ? `<span class="m">${d.math}</span>` : ''}</div>
+      <p class="r-a"><span class="lbl">${T('your_answer')}:</span> ${a === 4 || a == null ? T('dont_know') : L(d.opts[a].t) + L(d.u)} ${ok ? '✓' : ''}</p>
+      <p class="r-x">${L(d.explain)}</p></div></li>`;
+  }).join('');
+  return `<section class="wrap mid results">
+    <div class="sheet res-head">
+      <div class="score"><b>${R.score}</b><span>/ ${n}</span></div>
+      <div><h1>${T('res_h', { s: R.score, n })}</h1><p class="lead">${T('band')[band]}</p><p class="muted">${T('res_p')}</p></div>
+    </div>
+    <div class="res-grid">
+      <div class="sheet"><h2>${T('res_topics_h')}</h2><ul class="trows">${rows}</ul></div>
+      <div class="sheet cta-card">
+        <h2>${T('res_demo_h')}</h2>
+        ${weak.length ? `<p>${T('res_demo_p')}</p><ul class="chips">${weak.slice(0, 4).map(id => `<li><a class="chip link" href="#demo-${id}">${L(topicById(id))}</a></li>`).join('')}</ul>` : `<p>${T('res_demo_all')}</p>`}
+        <a class="btn btn-primary btn-lg wide" href="#demo">${T('res_demo_btn')}</a>
+        <p class="muted small">${CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>
+      </div>
+    </div>
+    ${surveyHTML()}
+    <div class="sheet"><h2>${T('res_mistakes_h')}</h2><ul class="mis-list">${mistakes}</ul>${R.dk ? `<p class="muted">${TN('res_dk', R.dk, { n: R.dk })}</p>` : ''}</div>
+    <details class="sheet review"><summary>${T('res_review')}</summary><ol class="rev">${review}</ol></details>
+  </section>`;
+}
+
+// "What else would help?" on the results page: answers go to the sheet as their own column
+function surveyHTML() {
+  const sv = state.survey || {};
+  if (sv.sent) return `<div class="sheet survey" id="survey"><h2>${T('sv_h')}</h2><div class="good"><b>✓</b> ${T('sv_thanks')}</div></div>`;
+  const needs = sv.needs || [];
+  return `<div class="sheet survey" id="survey">
+    <h2>${T('sv_h')}</h2><p class="muted">${T('sv_p')}</p>
+    <fieldset class="sv-opts"><legend class="sr">${T('sv_h')}</legend>
+      ${T('sv_opts').map(([k, l]) => `<label class="sv-opt"><input type="checkbox" data-sv="${k}" ${needs.includes(k) ? 'checked' : ''}><span>${l}</span></label>`).join('')}
+    </fieldset>
+    <div class="field sv-other" id="sv-other-box" ${needs.includes('other') ? '' : 'hidden'}><label for="sv-other">${T('sv_other_l')}</label><input id="sv-other" maxlength="120" autocomplete="off" placeholder="${T('sv_other_ph')}" value="${esc(sv.other || '')}"></div>
+    <p class="err" id="e-sv" aria-live="polite"></p>
+    <button type="button" class="btn btn-primary" data-act="sv-send">${T('sv_send')}</button>
+  </div>`;
+}
+
+// Exam cheat sheet for parents: open page, no contact form, shared in parents' chats
+function shareUrl(src) {
+  return `${location.href.split(/[?#]/)[0]}?l=${state.lang}&utm_source=${src}&utm_medium=share&utm_campaign=eksameni#eksameni`;
+}
+function viewExams() {
+  const enc = encodeURIComponent, text = T('ex_share_text');
+  const dates = T('ex_dates').map(([d, t, n, f]) => `<li><span class="xd">${d}</span><div class="xt"><b>${t}${f === 'new' ? ` <span class="badge">${T('ex_new')}</span>` : ''}</b>${n ? `<small>${n}</small>` : ''}</div></li>`).join('');
+  const know = T('ex_know').map(([b, t]) => `<li><b>${b}</b><p>${t}</p></li>`).join('');
+  const todo = T('ex_todo').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('');
+  return `<section class="wrap mid exams">
+    <header class="ex-head"><p class="eyebrow">${T('ex_eyebrow')}</p><h1>${T('ex_h')}</h1><p class="lead">${T('ex_lead')}</p></header>
+    <div class="ex-grid">
+      <div class="sheet nb ex-dates"><h2>${T('ex_dates_h')}</h2><ol class="xdates">${dates}</ol><p class="note">${T('ex_makeup')}</p></div>
+      <div class="sheet ex-know"><h2>${T('ex_know_h')}</h2><ul class="xknow">${know}</ul></div>
+    </div>
+    <section class="band ex-todo"><h2>${T('ex_todo_h')}</h2><ol class="how">${todo}</ol></section>
+    <div class="sheet parents ex-cta"><div><h2>${state.done ? T('ex_cta_done_h') : T('ex_cta_h')}</h2><p>${T('ex_cta_p')}</p></div><a class="btn btn-primary btn-lg" href="${state.done ? '#rezultati' : '#pieteikums'}">${state.done ? T('ex_cta_done') : T('hero_cta')}</a></div>
+    <div class="ex-share"><h2>${T('ex_share_h')}</h2>
+      <div class="share-row">
+        ${navigator.share ? `<button type="button" class="btn btn-primary" data-act="share-native">${T('ex_share_btn')}</button>` : ''}
+        <a class="btn btn-ghost" href="https://wa.me/?text=${enc(text + '\n' + shareUrl('whatsapp'))}" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" href="https://t.me/share/url?url=${enc(shareUrl('telegram'))}&amp;text=${enc(text)}" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn btn-ghost" href="viber://forward?text=${enc(text + ' ' + shareUrl('viber'))}">Viber</a>
+        <button type="button" class="btn btn-ghost" data-act="copy-link">${T('ex_copy')}</button>
+        <span class="copied" id="copied" aria-live="polite"></span>
+      </div>
+    </div>
+    <p class="src">${T('ex_src')}</p>
+  </section>`;
+}
+function copyText(s) {
+  const ta = document.createElement('textarea');
+  ta.value = s; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch (e) { }
+  ta.remove();
+}
+
+function slidesHTML(tid) {
+  const les = LESSONS[tid], n = les.slides.length, i = Math.min(state.slide[tid] || 0, n - 1), s = les.slides[i];
+  return `<div class="player" id="player">
+    <div class="p-top"><span class="pcount">${i + 1} / ${n}</span><div class="pdots">${les.slides.map((x, k) => `<button type="button" class="pdot ${k === i ? 'on' : ''}" data-act="slide" data-i="${k}" aria-label="${k + 1}: ${esc(L(x.h))}"></button>`).join('')}</div></div>
+    <div class="slide"><h3>${L(s.h)}</h3><p>${L(s.body)}</p>${s.fig ? `<div class="slide-fig">${s.fig()}</div>` : ''}</div>
+    <div class="p-nav"><button type="button" class="btn btn-ghost" data-act="slide" data-i="${i - 1}" ${i === 0 ? 'disabled' : ''}>← ${T('prev')}</button>
+    ${i < n - 1 ? `<button type="button" class="btn btn-primary" data-act="slide" data-i="${i + 1}">${T('next')} →</button>` : `<button type="button" class="btn btn-primary" data-act="to-example">${T('to_example')}</button>`}</div>
+  </div>`;
+}
+function exampleHTML(tid) {
+  const ex = LESSONS[tid].example, k = Math.min(state.steps[tid] || 1, ex.steps.length);
+  const ru = state.lang === 'ru' ? `<p class="q-ru">${ex.task.ru}</p>` : '';
+  return `<div class="sheet example" id="example">
+    <p class="q-lv">${ex.task.lv}</p>${ru}${ex.math ? `<div class="m big qmath">${ex.math}</div>` : ''}
+    ${ex.fig ? `<div class="figbox">${ex.fig()}</div>` : ''}
+    <ol class="steps">${ex.steps.slice(0, k).map(s => `<li><p>${L(s)}</p>${s.fig ? `<div class="figbox">${s.fig()}</div>` : ''}</li>`).join('')}</ol>
+    ${k < ex.steps.length ? `<div class="row"><button type="button" class="btn btn-primary" data-act="step">${T('next_step')}</button><button type="button" class="btn btn-ghost" data-act="steps-all">${T('all_steps')}</button></div>` : ''}
+  </div>`;
+}
+const REL = ['<', '≤', '>', '≥'];
+function ineqSegs(rel, v) {
+  if (!isFinite(v)) return [];
+  return rel === '<' || rel === '≤' ? [{ a: -Infinity, b: v, bIn: rel === '≤' }] : [{ a: v, b: Infinity, aIn: rel === '≥' }];
+}
+function ineqLine(rel, v) {
+  const lo = Math.min(-6, Math.floor(v) - 1), hi = Math.max(6, Math.ceil(v) + 1);
+  if (!isFinite(v) || hi - lo > 16) return nl({});
+  return nl({ min: lo, max: hi, segs: ineqSegs(rel, v), label: `x ${rel} ${fmtNum(v)}` });
+}
+function taskHTML(t, k) {
+  const st = state.demo[t.id] || {};
+  const unit = L(t.u);
+  let body = '';
+  if (t.type === 'mc') {
+    body = `<div class="opts opts-2">${t.opts.map((o, i) => optHTML(o, i, `data-act="mc" data-task="${t.id}" data-i="${i}" ${st.solved ? 'disabled' : ''}${st.solved && o.ok ? ' data-state="right"' : ''}`, unit)).join('')}</div>`;
+  } else if (t.type === 'num') {
+    body = `<form class="numrow" data-act-form="num" data-task="${t.id}">${t.pre ? `<span class="m pre">${t.pre}</span>` : ''}<label class="sr" for="in-${t.id}">${T('answer_ph')}</label><input id="in-${t.id}" class="numin" autocomplete="off" placeholder="${T('answer_ph')}" ${st.solved ? `value="${fmtNum(t.ans)}" disabled` : ''}>${unit ? `<span class="unit">${unit}</span>` : ''}<button class="btn btn-primary" ${st.solved ? 'disabled' : ''}>${T('check')}</button></form>`;
+  } else if (t.type === 'ineq') {
+    const rel = st.solved ? t.ans.rel : (st.rel || '<'), v = st.solved ? t.ans.v : (st.v ?? '');
+    body = `<form class="numrow" data-act-form="ineq" data-task="${t.id}"><span class="m pre">x</span><label class="sr" for="rel-${t.id}">${T('answer_ph')}</label><select id="rel-${t.id}" class="relsel" ${st.solved ? 'disabled' : ''}>${REL.map(r => `<option ${r === rel ? 'selected' : ''}>${r}</option>`).join('')}</select><input id="in-${t.id}" class="numin" autocomplete="off" placeholder="${T('answer_ph')}" value="${v === '' ? '' : fmtNum(v)}" ${st.solved ? 'disabled' : ''}><button class="btn btn-primary" ${st.solved ? 'disabled' : ''}>${T('check')}</button></form>
+      <div class="ineq-prev"><p class="cap">${T('your_answer_line')}</p><div id="pv-${t.id}">${ineqLine(rel, typeof v === 'number' ? v : parseNum(v))}</div></div>`;
+  }
+  const solvedBox = st.solved ? `<div class="good"><b>${T('right')}</b> ${L(t.explain || t.sol)}</div>` : '';
+  const tools = st.solved ? '' : `<div class="tools">${t.hint ? `<button type="button" class="btn-link" data-act="hint" data-task="${t.id}">${T('hint')}</button>` : ''}${(st.tries || 0) >= 2 ? `<button type="button" class="btn-link" data-act="sol" data-task="${t.id}">${T('show_solution')}</button>` : ''}</div>`;
+  return `<article class="sheet task ${st.solved ? 'solved' : ''}" id="task-${t.id}">
+    <div class="task-top"><span class="tnum">${k + 1}</span><div class="tq">${qHTML(t)}</div></div>
+    ${t.fig ? `<div class="figbox">${t.fig()}</div>` : ''}
+    ${body}
+    <div class="fb" id="fb-${t.id}" aria-live="polite">${solvedBox}</div>
+    ${tools}
+  </article>`;
+}
+function solvedCount(tid) { return LESSONS[tid].tasks.filter(t => state.demo[t.id] && state.demo[t.id].solved).length; }
+
+function viewDemo(topic) {
+  const R = results();
+  const yours = R.weak.length ? R.weak : TOPICS.map(t => t.id);
+  const others = R.weak.length ? R.order.filter(id => !yours.includes(id)) : [];
+  const tid = topic && LESSONS[topic] ? topic : yours[0];
+  const les = LESSONS[tid], t = topicById(tid), st = R.status(tid);
+  const item = id => `<li><a class="side-item ${id === tid ? 'on' : ''}" href="#demo-${id}" ${id === tid ? 'aria-current="page"' : ''}><span class="ic">${topicById(id).ic}</span><span class="side-t">${L(topicById(id))}<small>${TN('solved', solvedCount(id), { k: solvedCount(id), n: LESSONS[id].tasks.length })}</small></span>${pill(R.status(id))}</a></li>`;
+  const course = les.course[state.lang] || les.course.lv;
+  return `<section class="wrap wide demo">
+    <aside class="side">
+      <p class="side-h">${T('demo_yours')}</p><ul class="side-list">${yours.map(item).join('')}</ul>
+      ${others.length ? `<p class="side-h">${T('demo_other')}</p><ul class="side-list">${others.map(item).join('')}</ul>` : ''}
+      <div class="side-cta"><b>${T('cta_full_h')}</b><a class="btn btn-primary wide" href="#abonements">${T('cta_full_btn')}</a></div>
+    </aside>
+    <div class="lesson">
+      <header class="lesson-h"><p class="kicker"><span class="ic">${t.ic}</span>${L(t)} · ${T('demo_lesson', { m: les.min })} ${pill(st)}</p><h1>${L(les.title)}</h1></header>
+      <section class="lsec"><h2><span class="num">1</span>${T('sec_idea')}</h2>${slidesHTML(tid)}</section>
+      <section class="lsec"><h2><span class="num">2</span>${T('sec_example')}</h2>${exampleHTML(tid)}</section>
+      <section class="lsec"><h2><span class="num">3</span>${T('sec_tasks')} <span class="solved-c" id="solved-c">${TN('solved', solvedCount(tid), { k: solvedCount(tid), n: les.tasks.length })}</span></h2>${les.tasks.map(taskHTML).join('')}</section>
+      <section class="lsec"><h2><span class="num">4</span>${T('sec_course')}</h2>
+        <div class="sheet course"><ol class="clist">${course.map((c, i) => `<li class="${les.demo.includes(i) ? 'in' : 'lock'}"><span>${c}</span><small>${les.demo.includes(i) ? T('in_demo') : T('locked')}</small></li>`).join('')}</ol>
+        <div class="course-cta"><div><b>${T('cta_full_h')}</b><p>${T('cta_full_p')}</p></div><a class="btn btn-primary btn-lg" href="#abonements">${T('cta_full_btn')}</a></div></div>
+      </section>
+    </div>
+  </section>`;
+}
+
+function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFIG.priceAll); }
+function viewSub() {
+  const R = results();
+  if (!Array.isArray(state.sel)) state.sel = R.weak.length ? R.weak.slice() : TOPICS.map(t => t.id);
+  const n = state.sel.length, p = price(n), capped = n * CONFIG.pricePerTopic > CONFIG.priceAll;
+  const link = CONFIG.payLinks ? (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all) : null;
+  const href = link && state.lead ? `${link}${link.includes('?') ? '&' : '?'}client_reference_id=${encodeURIComponent(state.lead.id)}${state.lead.email ? '&prefilled_email=' + encodeURIComponent(state.lead.email) : ''}` : link;
+  return `<section class="wrap mid sub">
+    <h1>${T('sub_h')}</h1><p class="lead">${T('sub_p')}</p>
+    <div class="sub-grid">
+      <div class="sheet">
+        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" data-sel="${id}" ${state.sel.includes(id) ? 'checked' : ''}><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
+        <button type="button" class="btn btn-ghost" data-act="sel-all">${T('sub_all')}</button>
+      </div>
+      <aside class="sheet price-card">
+        <p class="price"><b>${p} €</b><span>${T('per_month')}</span></p>
+        <p class="calc">${n ? (capped ? T('sub_capped', { pa: CONFIG.priceAll }) : T('sub_calc', { n, pp: CONFIG.pricePerTopic })) : T('sub_pick_one')}</p>
+        ${!capped && n < TOPICS.length ? `<p class="deal">${T('sub_all_deal', { pa: CONFIG.priceAll })}</p>` : ''}
+        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
+        ${link ? `<a class="btn btn-primary btn-lg wide ${n ? '' : 'disabled'}" href="${esc(href)}" rel="noopener" data-act="checkout">${T('sub_pay', { p })}</a>`
+          : `<p class="launch">${T('sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve" ${n ? '' : 'disabled'}>${T('sub_reserve')}</button><p class="fine">${T('sub_fine')}</p>`}
+      </aside>
+    </div>
+  </section>`;
+}
+
+function viewThanks() {
+  const r = state.reserve || { topics: [] };
+  return `<section class="wrap narrow">
+    <div class="sheet thanks"><span class="big-check" aria-hidden="true">✓</span><h1>${T('thanks_h')}</h1>
+    <p class="lead">${T('thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
+    <p class="side-h">${T('thanks_topics')}</p><ul class="chips">${r.topics.map(id => `<li><span class="chip">${L(topicById(id))}</span></li>`).join('')}</ul>
+    <p class="price small-p"><b>${r.price} €</b> ${T('per_month')}</p>
+    <a class="btn btn-primary btn-lg" href="#demo">${T('thanks_back')}</a></div>
+  </section>`;
+}
+
+function privacyHTML() {
+  const tbd = T('tbd');
+  const fill = s => s.split('{controller}').join(esc(CONFIG.controller || tbd)).split('{email}').join(esc(CONFIG.contactEmail || tbd));
+  return `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pv-h"><div class="modal-top"><h2 id="pv-h">${T('privacy_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div>
+    <dl class="pv">${T('privacy').map(p => `<dt>${p[0]}</dt><dd>${fill(p[1])}</dd>`).join('')}</dl></div>`;
+}
+
+// ---------- router ----------
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewDemo, abonements: viewSub, paldies: viewThanks };
+let current = '';
+function route(keepScroll = false) {
+  let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
+  if (h.startsWith('demo-')) { topic = h.slice(5); h = 'demo'; }
+  let want = h;
+  if (!VIEWS[want]) want = 'sakums';
+  if (want === 'tests' && !state.lead) want = 'pieteikums';
+  if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done) want = state.lead ? 'tests' : 'pieteikums';
+  if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
+  if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
+  const y = window.scrollY;
+  current = want;
+  renderHeader(want);
+  document.title = want === 'eksameni' ? T('ex_doc_title') : T('doc_title');
+  $('#view').innerHTML = VIEWS[want](topic);
+  $('#view').dataset.view = want;
+  renderFooter();
+  window.scrollTo(0, keepScroll ? y : 0);
+}
+function rerender() { route(true); }
+
+// ---------- checking ----------
+function parseNum(s) {
+  s = String(s ?? '').trim().replace(/\s+/g, '').replace(/[−–]/g, '-').replace(/,/g, '.').replace(/(€|cm²|cm³|cm|см²|см³|см|°|π)$/i, '');
+  const fr = s.match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+  if (fr) { const d = parseFloat(fr[2]); return d === 0 ? NaN : parseFloat(fr[1]) / d; }
+  return /^-?(\d+\.?\d*|\.\d+)$/.test(s) ? parseFloat(s) : NaN;
+}
+const near = (a, b) => Math.abs(a - b) < 0.011;
+function lessonTask(id) { for (const [tid, les] of Object.entries(LESSONS)) { const t = les.tasks.find(x => x.id === id); if (t) return { t, tid }; } return {}; }
+function markSolved(t, tid) {
+  const st = (state.demo[t.id] = state.demo[t.id] || {});
+  st.solved = true; save();
+  const el = $('#task-' + t.id); if (el) el.outerHTML = taskHTML(t, LESSONS[tid].tasks.indexOf(t));
+  const c = $('#solved-c'); if (c) c.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length });
+  document.querySelectorAll(`.side-item[href="#demo-${tid}"] small`).forEach(s => (s.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length })));
+  clearTimeout(mem.sendTimer);
+  mem.sendTimer = setTimeout(() => send('demo', { solved: Object.values(state.demo).filter(x => x.solved).length }), 3000);
+}
+function wrongTry(t, msg) {
+  const st = (state.demo[t.id] = state.demo[t.id] || {});
+  st.tries = (st.tries || 0) + 1; save();
+  const fb = $('#fb-' + t.id); if (fb) fb.innerHTML = `<div class="bad">${msg}</div>`;
+  const tools = $('#task-' + t.id + ' .tools');
+  if (tools && st.tries >= 2 && !tools.querySelector('[data-act="sol"]')) tools.insertAdjacentHTML('beforeend', `<button type="button" class="btn-link" data-act="sol" data-task="${t.id}">${T('show_solution')}</button>`);
+}
+
+// ---------- events ----------
+const ACT = {
+  lang(b) { state.lang = b.dataset.v; save(); rerender(); },
+  privacy() { const m = $('#modal'); m.innerHTML = privacyHTML(); m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus(); },
+  'close-modal'() { $('#modal').hidden = true; },
+  'pv-close'() { state.pvHidden = true; save(); $('#preview-bar').hidden = true; },
+  reset() { mem.resetAsk = true; renderFooter(); },
+  'reset-no'() { mem.resetAsk = false; renderFooter(); },
+  'reset-yes'() { const lang = state.lang; try { localStorage.removeItem(STORE); } catch (e) { } Object.assign(state, { lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, sentResults: false, survey: null, lang }); mem.resetAsk = false; save(); location.hash = 'sakums'; rerender(); },
+  'sv-send'() {
+    const sv = state.survey || (state.survey = { needs: [] });
+    if (!sv.needs || !sv.needs.length) { const e = $('#e-sv'); if (e) e.textContent = T('sv_pick'); return; }
+    send('survey', { needs: sv.needs, other: sv.needs.includes('other') ? String(sv.other || '').trim().slice(0, 120) : '' });
+    sv.sent = true; save();
+    $('#survey').outerHTML = surveyHTML();
+  },
+  'copy-link'() {
+    const url = shareUrl('copy'), done = () => { const c = $('#copied'); if (c) c.textContent = T('ex_copied'); };
+    try { navigator.clipboard.writeText(url).then(done, () => { copyText(url); done(); }); } catch (e) { copyText(url); done(); }
+  },
+  'share-native'() { try { navigator.share({ title: T('ex_h'), text: T('ex_share_text'), url: shareUrl('native') }).catch(() => { }); } catch (e) { } },
+  sample(b) {
+    const d = DIAG.find(x => x.id === 'd7'), i = +b.dataset.i, o = d.opts[i];
+    b.closest('.opts').querySelectorAll('.opt').forEach((x, k) => { x.dataset.state = k === i ? (o.ok ? 'right' : 'wrong') : ''; });
+    $('#sample-fb').innerHTML = o.ok ? `<div class="good"><b>${T('right')}</b> ${L(d.explain)}</div>` : `<div class="bad">${L(o.why)}</div>`;
+  },
+  ans(b) {
+    state.answers[state.idx] = +b.dataset.i; save();
+    document.querySelectorAll('.qcard [data-act="ans"]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const nx = $('[data-act="tnext"]'); if (nx) { nx.disabled = false; nx.focus({ preventScroll: true }); }
+  },
+  tprev() { if (state.idx > 0) { state.idx--; save(); rerender(); } },
+  tnext() {
+    if (state.answers[state.idx] == null) return;
+    if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
+    state.done = true; save();
+    const R = results();
+    if (!state.sentResults) { send('results', { code: answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
+    location.hash = 'rezultati';
+  },
+  slide(b) {
+    const tid = currentTopic(); const n = LESSONS[tid].slides.length, i = +b.dataset.i;
+    if (i < 0 || i >= n) return;
+    state.slide[tid] = i; save();
+    $('#player').outerHTML = slidesHTML(tid);
+    const nb = $('#player .p-nav .btn-primary'); if (nb && !nb.disabled) nb.focus({ preventScroll: true });
+  },
+  'to-example'() { const ex = $('#example'); if (!ex) return; ex.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); const b = ex.querySelector('button.btn-primary'); if (b) b.focus({ preventScroll: true }); },
+  step() { const tid = currentTopic(); state.steps[tid] = (state.steps[tid] || 1) + 1; save(); $('#example').outerHTML = exampleHTML(tid); },
+  'steps-all'() { const tid = currentTopic(); state.steps[tid] = 99; save(); $('#example').outerHTML = exampleHTML(tid); },
+  mc(b) {
+    const { t, tid } = lessonTask(b.dataset.task), i = +b.dataset.i, o = t.opts[i];
+    if (o.ok) { markSolved(t, tid); return; }
+    b.dataset.state = 'wrong';
+    wrongTry(t, L(o.fb) || T('wrong_generic'));
+  },
+  hint(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="hintbox"><b>${T('hint')}:</b> ${L(t.hint)}</div>`; },
+  sol(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="solbox">${L(t.sol || t.explain)}</div>`; },
+  'sel-all'() { state.sel = TOPICS.map(t => t.id); save(); rerender(); },
+  reserve() {
+    if (!state.sel || !state.sel.length) return;
+    const p = price(state.sel.length);
+    state.reserve = { topics: state.sel.slice(), price: p, at: new Date().toISOString() }; save();
+    send('reserve', { topics: state.sel, price: p });
+    location.hash = 'paldies';
+  },
+  checkout() { send('checkout', { topics: state.sel, price: price((state.sel || []).length) }); },
+};
+function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
+
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]');
+  if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
+  const f = ACT[b.dataset.act]; if (!f) return;
+  if (b.tagName === 'BUTTON') e.preventDefault();
+  f(b, e);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('#modal').hidden) $('#modal').hidden = true;
+  if (current === 'tests' && !e.target.closest('input,select,textarea')) {
+    const k = '1234'.indexOf(e.key) >= 0 ? '1234'.indexOf(e.key) : 'abcd'.indexOf(e.key.toLowerCase());
+    if (k >= 0 && e.key.length === 1) { const b = $(`.qcard [data-act="ans"][data-i="${k}"]`); if (b) ACT.ans(b); }
+  }
+});
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') $('#modal').hidden = true; });
+
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.name === 'role') { const pn = $('#parent-note'); if (pn) pn.hidden = t.value !== 'parent'; }
+  if (t.dataset.sel) {
+    const id = t.dataset.sel, set = new Set(state.sel || []);
+    t.checked ? set.add(id) : set.delete(id);
+    state.sel = TOPICS.map(x => x.id).filter(x => set.has(x)); save(); rerender();
+  }
+  if (t.classList.contains('relsel')) ineqPreview(t.closest('form'));
+  if (t.dataset.sv) {
+    const sv = state.survey || (state.survey = { needs: [] }), set = new Set(sv.needs || []);
+    t.checked ? set.add(t.dataset.sv) : set.delete(t.dataset.sv);
+    sv.needs = T('sv_opts').map(o => o[0]).filter(k => set.has(k)); save();
+    const ob = $('#sv-other-box'); if (ob) ob.hidden = !set.has('other');
+    const er = $('#e-sv'); if (er) er.textContent = '';
+  }
+});
+document.addEventListener('input', e => {
+  if (e.target.classList.contains('numin')) { const f = e.target.closest('form[data-act-form="ineq"]'); if (f) ineqPreview(f); }
+  if (e.target.id === 'sv-other') { const sv = state.survey || (state.survey = { needs: [] }); sv.other = e.target.value.slice(0, 120); save(); }
+});
+function ineqPreview(f) {
+  const id = f.dataset.task, rel = $('#rel-' + id).value, v = parseNum($('#in-' + id).value);
+  const st = (state.demo[id] = state.demo[id] || {}); st.rel = rel; st.v = isFinite(v) ? v : '';
+  $('#pv-' + id).innerHTML = ineqLine(rel, v);
+}
+
+document.addEventListener('submit', e => {
+  const f = e.target;
+  if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
+  const kind = f.dataset.actForm; if (!kind) return;
+  e.preventDefault();
+  const { t, tid } = lessonTask(f.dataset.task);
+  const v = parseNum($('#in-' + t.id).value);
+  if (!isFinite(v)) { const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="bad">${T('not_number')}</div>`; return; }
+  if (kind === 'num') {
+    if (near(v, t.ans)) return markSolved(t, tid);
+    const w = (t.wrong || []).find(x => near(v, x.v));
+    return wrongTry(t, w ? L(w.fb) : T('wrong_generic'));
+  }
+  const rel = $('#rel-' + t.id).value;
+  if (rel === t.ans.rel && near(v, t.ans.v)) return markSolved(t, tid);
+  const w = (t.wrong || []).find(x => x.rel === rel && near(v, x.v));
+  wrongTry(t, w ? L(w.fb) : T('wrong_generic'));
+});
+
+function submitLead(f) {
+  const name = $('#f-name').value.trim(), email = $('#f-email').value.trim(), phone = $('#f-phone').value.trim();
+  const consent = $('#f-consent').checked, news = $('#f-news').checked, role = (f.querySelector('input[name="role"]:checked') || {}).value || 'student';
+  const errs = { name: !name ? T('err_name') : '', email: !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? T('err_email') : '', consent: !consent ? T('err_consent') : '' };
+  ['name', 'email', 'consent'].forEach(k => { const el = $('#e-' + k); el.textContent = errs[k]; });
+  $('#f-name').setAttribute('aria-invalid', String(!!errs.name)); $('#f-email').setAttribute('aria-invalid', String(!!errs.email));
+  const first = ['name', 'email', 'consent'].find(k => errs[k]);
+  if (first) { const el = $(first === 'consent' ? '#f-consent' : '#f-' + first); el.focus({ preventScroll: true }); (el.closest('.field, .check') || el).scrollIntoView({ block: 'center' }); return; }
+  const isNew = !state.lead || !state.lead.id;
+  state.lead = { ...(state.lead || {}), id: (state.lead && state.lead.id) || uid(), role, name, email, phone, consent: true, news };
+  save();
+  if (!$('#f-web').value) send('contact', { role, name, email, phone, consent: true, news, utm: state.utm || {}, isNew });
+  location.hash = 'tests';
+}
+
+// ---------- start ----------
+function boot() {
+  load();
+  try {
+    const q = new URLSearchParams(location.search);
+    const l = q.get('l'); if (l === 'lv' || l === 'ru') state.lang = l;
+    const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { const v = q.get(k); if (v) utm[k] = v.slice(0, 60); });
+    if (Object.keys(utm).length && !state.utm) state.utm = utm;
+    const r = q.get('r'), id = q.get('id');
+    if (r && new RegExp(`^[0-4]{${DIAG.length}}$`).test(r)) {
+      state.answers = r.split('').map(Number); state.done = true; state.idx = DIAG.length - 1; state.sentResults = true;
+      if (id && /^[0-9a-f-]{36}$/i.test(id)) state.lead = (state.lead && state.lead.id === id) ? state.lead : { id };
+    }
+  } catch (e) { }
+  save();
+  window.addEventListener('hashchange', () => route());
+  route();
+}
+boot();
+
+</script>
+</body>
+</html>
