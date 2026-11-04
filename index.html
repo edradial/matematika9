@@ -548,6 +548,11 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
+/* narrated demo video */
+.vid { margin: 0 0 18px; }
+.vid video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #0f172a; box-shadow: 0 1px 0 var(--line), 0 10px 30px -18px rgba(15, 23, 42, .45); }
+.vid figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+
 </style>
 </head>
 <body>
@@ -624,7 +629,7 @@ const I18N = {
     test_of: 'Uzdevums {i} no {n}',
     test_nocalc: 'Bez kalkulatora, tāpat kā eksāmena 1. daļā',
     dont_know: 'Nezinu',
-    next: 'Tālāk', to_example: 'Uz piemēru ↓',
+    next: 'Tālāk', to_example: 'Uz piemēru ↓', video_note: 'Video nodarbība ar balsi. Zemāk — tas pats slaidos, savā tempā.',
     prev: 'Atpakaļ',
     finish: 'Pabeigt testu',
 
@@ -811,7 +816,7 @@ const I18N = {
     test_of: 'Задача {i} из {n}',
     test_nocalc: 'Без калькулятора, как в 1-й части экзамена',
     dont_know: 'Не знаю',
-    next: 'Дальше', to_example: 'К примеру ↓',
+    next: 'Дальше', to_example: 'К примеру ↓', video_note: 'Видеоурок с озвучкой. Ниже — то же самое на слайдах, в своём темпе.',
     prev: 'Назад',
     finish: 'Завершить тест',
 
@@ -988,7 +993,7 @@ function nl({ min = -6, max = 6, segs = [], w = 480, label = '' } = {}) {
   segs.forEach(g => {
     const y = ay - (g.row || 0) * 20, c = g.c || 'a';
     const xa = g.a === -Infinity ? L + 2 : X(g.a), xb = g.b === Infinity ? R - 12 : X(g.b);
-    s += SV.ln(xa, y, xb, y, `seg seg-${c}`);
+    s += SV.ln(xa, y, xb, y, `seg seg-${c}`).replace('<line ', `<line data-from="${g.a === -Infinity ? 'b' : 'a'}" data-row="${g.row || 0}" `);
     if (g.a === -Infinity) s += SV.arL(xa - 3, y, `seg-ar seg-${c}`);
     if (g.b === Infinity) s += SV.arR(xb + 3, y, `seg-ar seg-${c}`);
     if (isFinite(g.a)) s += SV.dot(X(g.a), y, 6.5, `${g.aIn ? 'pt-in' : 'pt-out'} pt-${c}`);
@@ -1128,6 +1133,9 @@ function trigTable() {
 const F = (a, b) => `<span class="fr"><i>${a}</i><i>${b}</i></span>`;
 const SYS = rows => `<span class="sys"><span class="br">{</span><span class="rows">${rows.map(r => `<span>${r}</span>`).join('')}</span></span>`;
 const M = t => `<span class="m">${t}</span>`;
+
+// Demo lessons that have a narrated video (files in video/<id>-<lang>.mp4/.vtt/.jpg)
+const VIDEOS = { nev: true, izt: true };
 
 const TOPICS = [
   { id: 'izt', ic: 'x²', lv: 'Pakāpes, saknes un izteiksmes', ru: 'Степени, корни и выражения',
@@ -2120,7 +2128,7 @@ function viewDemo(topic) {
     </aside>
     <div class="lesson">
       <header class="lesson-h"><p class="kicker"><span class="ic">${t.ic}</span>${L(t)} · ${T('demo_lesson', { m: les.min })} ${pill(st)}</p><h1>${L(les.title)}</h1></header>
-      <section class="lsec"><h2><span class="num">1</span>${T('sec_idea')}</h2>${slidesHTML(tid)}</section>
+      <section class="lsec"><h2><span class="num">1</span>${T('sec_idea')}</h2>${videoHTML(tid)}${slidesHTML(tid)}</section>
       <section class="lsec"><h2><span class="num">2</span>${T('sec_example')}</h2>${exampleHTML(tid)}</section>
       <section class="lsec"><h2><span class="num">3</span>${T('sec_tasks')} <span class="solved-c" id="solved-c">${TN('solved', solvedCount(tid), { k: solvedCount(tid), n: les.tasks.length })}</span></h2>${les.tasks.map(taskHTML).join('')}</section>
       <section class="lsec"><h2><span class="num">4</span>${T('sec_course')}</h2>
@@ -2129,6 +2137,12 @@ function viewDemo(topic) {
       </section>
     </div>
   </section>`;
+}
+
+function videoHTML(tid) {
+  if (!VIDEOS[tid]) return '';
+  const v = `video/${tid}-${state.lang}`;
+  return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')}</figcaption></figure>`;
 }
 
 function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFIG.priceAll); }

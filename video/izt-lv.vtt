@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:06.556
+Sveiki! Šī ir demo nodarbība par pakāpēm, saknēm un saīsinātās reizināšanas formulām.
+
+2
+00:00:07.106 --> 00:00:13.239
+Apskatīsim trīs lietas, kurās eksāmenā visbiežāk zaudē punktus: pakāpes, summas kvadrātu un saknes.
+
+3
+00:00:14.439 --> 00:00:21.849
+Pakāpe ir atkārtota reizināšana. Nulle komats divi kubā ir nulle komats divi, reizināts pats ar sevi trīs reizes.
+
+4
+00:00:22.399 --> 00:00:29.178
+Galvenais slazds ir komats. Katrā reizinātājā ir viens cipars aiz komata, tātad atbildē tie ir trīs.
+
+5
+00:00:29.728 --> 00:00:33.701
+Iegūstam nulle komats nulle nulle astoņi, nevis nulle komats astoņi.
+
+6
+00:00:34.901 --> 00:00:40.176
+Tagad negatīvs kāpinātājs. Mīnuss kāpinātājā nepadara skaitli negatīvu.
+
+7
+00:00:40.726 --> 00:00:46.283
+Tas nozīmē daļu: divi pakāpē mīnus trīs ir viens, dalīts ar divi kubā, tātad viena astotā.
+
+8
+00:00:46.833 --> 00:00:49.110
+Nevis mīnus astoņi, bet viena astotā!
+
+9
+00:00:49.660 --> 00:00:54.449
+Un vēl viens likums: jebkurš skaitlis, izņemot nulli, nultajā pakāpē ir viens.
+
+10
+00:00:55.649 --> 00:00:58.283
+Biežākā kļūda eksāmenā ir summas kvadrāts.
+
+11
+00:00:58.833 --> 00:01:07.156
+Paskaties uz kvadrātu ar malu a plus bē. Tajā ir kvadrāts ar malu a, kvadrāts ar malu bē un divi vienādi taisnstūri a reiz bē.
+
+12
+00:01:07.706 --> 00:01:15.810
+Tāpēc a plus bē kvadrātā ir a kvadrātā plus divi a bē plus bē kvadrātā. Nevis vienkārši a kvadrātā plus bē kvadrātā.
+
+13
+00:01:16.360 --> 00:01:19.324
+Tāpat darbojas starpības kvadrāts un kvadrātu starpība.
+
+14
+00:01:20.524 --> 00:01:25.176
+Tagad saknes. Reizinājuma sakne ir vienāda ar sakņu reizinājumu.
+
+15
+00:01:25.726 --> 00:01:30.955
+Tāpēc kvadrātsakne no divpadsmit ir sakne no četri reiz trīs, tātad divas saknes no trīs.
+
+16
+00:01:31.505 --> 00:01:41.862
+Sakne no divdesmit septiņi ir trīs saknes no trīs. Saskaitīt var tikai vienādas saknes: divas saknes no trīs plus trīs saknes no trīs ir piecas saknes no trīs.
+
+17
+00:01:42.412 --> 00:01:46.230
+Bet sakne no trīsdesmit deviņi te nesanāk: saknes tā nesaskaita.
+
+18
+00:01:47.430 --> 00:01:54.409
+Atrisināsim piemēru: vienkāršo izteiksmi iks mīnus četri kvadrātā mīnus iks, reizināts ar iks mīnus astoņi.
+
+19
+00:01:54.959 --> 00:01:59.547
+Vispirms starpības kvadrāts: iks kvadrātā mīnus astoņi iks plus sešpadsmit.
+
+20
+00:02:00.747 --> 00:02:06.380
+Tagad atveram otrās iekavas: iks reiz iks mīnus astoņi ir iks kvadrātā mīnus astoņi iks.
+
+21
+00:02:07.580 --> 00:02:11.651
+Pirms iekavām ir mīnuss, tāpēc visas zīmes iekavās mainās uz pretējām.
+
+22
+00:02:12.201 --> 00:02:18.339
+Iegūstam: iks kvadrātā mīnus astoņi iks plus sešpadsmit mīnus iks kvadrātā plus astoņi iks.
+
+23
+00:02:19.539 --> 00:02:29.255
+Savelkam līdzīgos locekļus. Iks kvadrātā un mīnus iks kvadrātā dod nulli. Mīnus astoņi iks un plus astoņi iks arī dod nulli.
+
+24
+00:02:29.805 --> 00:02:32.802
+Paliek sešpadsmit. Tā ir atbilde.
+
+25
+00:02:34.002 --> 00:02:39.007
+Pārbaudām ar iks vienāds ar viens. Viens mīnus četri kvadrātā ir deviņi.
+
+26
+00:02:39.557 --> 00:02:49.817
+Otrā daļa: viens reiz mīnus septiņi ir mīnus septiņi, un mēs to atņemam, tātad plus septiņi. Deviņi plus septiņi ir sešpadsmit. Sakrīt!
+
+27
+00:02:51.017 --> 00:02:55.783
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+28
+00:02:56.333 --> 00:02:59.207
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.
