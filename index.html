@@ -2198,7 +2198,8 @@ function route(keepScroll = false) {
   let want = h;
   if (!VIEWS[want]) want = 'sakums';
   if (want === 'tests' && !state.lead) want = 'pieteikums';
-  if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done) want = state.lead ? 'tests' : 'pieteikums';
+  const preview = /[?&]preview\b/.test(location.search); // owner's look at the demo lessons without the test
+  if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done && !(preview && want === 'demo')) want = state.lead ? 'tests' : 'pieteikums';
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
   const y = window.scrollY;
