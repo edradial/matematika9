@@ -805,9 +805,9 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 .flow-i small { color: var(--muted); font-size: 13px; }
 .flow-i.hl { background: color-mix(in srgb, var(--accent) 14%, var(--paper, #fff)); box-shadow: inset 0 0 0 2px var(--accent); }
 .flow-ar { color: var(--accent); font-size: 22px; font-weight: 700; }
-.pyr { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; max-width: 520px; margin: 0 auto; }
+.pyr { display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; width: 100%; max-width: 520px; margin: 0 auto; }
 .pyr div { min-width: 170px; background: var(--soft); border-radius: 10px; padding: 8px 10px; text-align: center; font-size: 16px; }
-.pyr div:last-child { background: color-mix(in srgb, var(--accent) 14%, var(--paper, #fff)); }
+.pyr div:first-child { background: color-mix(in srgb, var(--accent) 14%, var(--paper, #fff)); }
 .pyr small { color: var(--muted); }
 .dtab { font-size: 16px; }
 .dtab th, .dtab td { padding: 7px 12px; }
@@ -2501,7 +2501,7 @@ const DAB_LESSONS = {
         fig: () => FLOW([{ t: LL('Zāle', 'Трава'), s: LL('producents', 'продуцент') }, { t: LL('Sienāzis', 'Кузнечик'), s: LL('1. pakāpe', '1-й порядок') }, { t: LL('Varde', 'Лягушка'), s: LL('2. pakāpe', '2-й порядок'), hl: true }, { t: LL('Gārnis', 'Цапля'), s: LL('3. pakāpe', '3-й порядок') }]) },
       { h: { lv: 'Uz augšu enerģijas paliek mazāk', ru: 'Выше — меньше энергии' },
         body: { lv: 'Uz nākamo pakāpi pāriet tikai apmēram 10 % enerģijas, pārējā tiek patērēta dzīvības procesiem un izdalās kā siltums. Tāpēc plēsēju ir daudz mazāk nekā augēdāju, un barošanās ķēdes ir īsas.', ru: 'На следующий уровень переходит только около 10 % энергии, остальное тратится на жизнь и уходит в виде тепла. Поэтому хищников намного меньше, чем растительноядных, а пищевые цепи короткие.' },
-        fig: () => `<div class="pyr">${[[`10 000 ${LL('kJ', 'кДж')}`, LL('producenti', 'продуценты')], [`1000 ${LL('kJ', 'кДж')}`, LL('1. pakāpe', '1-й порядок')], [`100 ${LL('kJ', 'кДж')}`, LL('2. pakāpe', '2-й порядок')], [`10 ${LL('kJ', 'кДж')}`, LL('3. pakāpe', '3-й порядок')]].reverse().map(([a, b], i) => `<div style="width:${40 + i * 20}%"><b>${a}</b> <small>${b}</small></div>`).join('')}</div>` },
+        fig: () => `<div class="pyr">${[[`10 000 ${LL('kJ', 'кДж')}`, LL('producenti', 'продуценты')], [`1000 ${LL('kJ', 'кДж')}`, LL('1. pakāpe', '1-й порядок')], [`100 ${LL('kJ', 'кДж')}`, LL('2. pakāpe', '2-й порядок')], [`10 ${LL('kJ', 'кДж')}`, LL('3. pakāpe', '3-й порядок')]].map(([a, b], i) => `<div style="width:${100 - i * 20}%"><b>${a}</b> <small>${b}</small></div>`).join('')}</div>` },
       { h: { lv: 'Barošanās tīkls un daudzveidība', ru: 'Пищевая сеть и разнообразие' },
         body: { lv: 'Dabā ķēdes savijas tīklā. Ja izzūd viena suga, mainās arī tās barības un plēsēju skaits. Bioloģisko daudzveidību raksturo sugu skaits: jo vairāk sugu un saišu, jo stabilāka ekosistēma.', ru: 'В природе цепи сплетаются в сеть. Если исчезает один вид, меняется и численность его пищи и хищников. Биологическое разнообразие характеризует число видов: чем больше видов и связей, тем устойчивее экосистема.' },
         fig: () => FLOW([{ t: LL('Aļģes', 'Водоросли') }, { t: LL('Dafnijas', 'Дафнии') }, { t: LL('Raudas', 'Плотва') }, { t: LL('Līdakas', 'Щуки'), hl: true }]) },
