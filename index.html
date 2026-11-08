@@ -553,6 +553,204 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 .vid video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #0f172a; box-shadow: 0 1px 0 var(--line), 0 10px 30px -18px rgba(15, 23, 42, .45); }
 .vid figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
 
+/* ===== landing v2 (see DESIGN.md) ===== */
+:root { --band: #14213A; --on-band: #F2F5FA; --shadow-lg: 0 30px 60px -30px rgba(20, 33, 58, .35), 0 2px 6px rgba(20, 33, 58, .06); }
+:root[data-theme="dark"] { --band: #17213A; --shadow-lg: 0 30px 60px -30px rgba(0, 0, 0, .7); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --band: #17213A; --shadow-lg: 0 30px 60px -30px rgba(0, 0, 0, .7); } }
+.btn-xl { padding: 16px 22px; font-size: 17px; border-radius: 14px; }
+.btn-secondary { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
+.btn-secondary:hover { box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--accent); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.btn .play-ic { fill: currentColor; stroke: none; width: 16px; height: 16px; }
+.btn-primary .arr { transition: transform .15s; } .btn-primary:hover .arr { transform: translateX(3px); }
+
+.hero2 { padding: 56px 0 88px; }
+.hero2-in { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 52px; align-items: center; }
+.hero2-txt { display: flex; flex-direction: column; gap: 24px; }
+.hero2-eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin: 0; font-size: 14px; font-weight: 600; color: var(--muted); }
+.hero2-eyebrow .days { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px 6px 10px; border-radius: 999px; background: var(--bad-bg); color: var(--bad); font-weight: 700; }
+.hero2-eyebrow .days::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--margin); box-shadow: 0 0 0 4px color-mix(in srgb, var(--margin) 22%, transparent); }
+.hero2-eyebrow .days b { font: 800 15px/1 var(--f-display); }
+.hero2 h1 { font-size: clamp(40px, 5.6vw, 66px); line-height: 1.02; letter-spacing: -0.03em; }
+.hero2 h1 mark { background: linear-gradient(transparent 58%, var(--mark) 58%, var(--mark) 92%, transparent 92%); color: inherit; padding: 0 .06em; }
+.hero2-lead { margin: 0; font-size: 19px; line-height: 1.55; color: var(--muted); max-width: 34em; }
+.hero2-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero2-trust { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0; padding: 0; font-size: 14.5px; font-weight: 600; color: var(--muted); }
+.hero2-trust li { display: inline-flex; align-items: center; gap: 6px; }
+.hero2-trust svg { width: 18px; height: 18px; fill: none; stroke: var(--good); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.hero2-vid { margin: 0; position: relative; }
+.vid-frame { position: relative; border-radius: 24px; overflow: hidden; background: var(--band); box-shadow: var(--shadow-lg); aspect-ratio: 16 / 9; outline: 1px solid var(--line); outline-offset: -1px; transform: rotate(-1.2deg); transition: transform .3s; }
+.hero2-vid:hover .vid-frame, .hero2-vid.playing .vid-frame { transform: none; }
+.vid-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.vid-play { position: absolute; right: 22px; bottom: 22px; width: 84px; height: 84px; border: 0; border-radius: 50%; background: var(--accent); color: #fff; cursor: pointer; display: grid; place-items: center; box-shadow: 0 0 0 10px color-mix(in srgb, var(--accent) 22%, transparent), 0 14px 30px -10px rgba(20, 33, 58, .5); transition: transform .15s; }
+.vid-play:hover { transform: scale(1.06); } .vid-play:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.vid-play svg { width: 34px; height: 34px; fill: currentColor; margin-left: 4px; }
+.hero2-vid.playing .vid-play { display: none; }
+.hero2-vid figcaption { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; padding: 0 6px; }
+.vid-tag { white-space: nowrap; font-size: 14px; font-weight: 600; color: var(--muted); }
+.vid-note { font: 600 25px/1 var(--f-hand); color: var(--margin); transform: rotate(-3deg); white-space: nowrap; }
+.vid-note::before { content: "↖ "; }
+
+@media (max-width: 860px) {
+  .hero2 { padding: 28px 0 56px; }
+  .hero2-in { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .hero2-vid figcaption { flex-wrap: wrap; } .vid-note { white-space: normal; }
+  .hero2 h1 { font-size: clamp(36px, 10vw, 48px); }
+  .hero2-lead { font-size: 17px; }
+  .hero2-cta .btn { flex: 1 1 100%; }
+  .vid-frame { transform: none; border-radius: 18px; }
+  .vid-play { width: 68px; height: 68px; } .vid-play svg { width: 28px; height: 28px; }
+  .vid-note { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) { .vid-frame, .btn-primary .arr { transition: none; } }
+
+/* ---- shared section rhythm ---- */
+.sec { padding-top: 104px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 32px; margin-bottom: 32px; }
+.sec-head h2, .band-dark h2 { font-size: clamp(30px, 3.6vw, 44px); letter-spacing: -0.025em; line-height: 1.08; }
+.sec-head > p { margin: 0; max-width: 34em; color: var(--muted); font-size: 17px; }
+.sec-head .src { font-size: 13.5px; }
+.btn-mark { background: #FFE15A; color: #14213A; }
+.btn-mark:hover { background: #FFD60A; }
+.btn.wide { width: 100%; }
+
+/* ---- dark band: what a lesson looks like ---- */
+.band-dark { background: var(--band); color: var(--on-band); --muted-d: #A9B6CC; }
+.band-dark .src, .band-dark p { color: var(--muted-d); }
+.show { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 56px; align-items: center; padding-top: 88px; padding-bottom: 88px; }
+.show-txt h2 { color: #fff; margin-bottom: 18px; }
+.show-txt > p { font-size: 18px; margin: 0 0 28px; max-width: 30em; }
+.show-more { font-size: 14px !important; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin: 0 0 12px !important; }
+.show-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; }
+.show-chips li { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px 7px 8px; border-radius: 999px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); font-size: 14.5px; font-weight: 600; color: #E7ECF6; }
+.show-chips .ic { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; background: rgba(138, 168, 255, .18); color: #A9C0FF; font: 800 12px var(--f-display); }
+.show-vids { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.show-vids li:first-child:last-child { grid-column: 1 / -1; }
+.vcard { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px; width: 100%; cursor: pointer; }
+.vthumb { position: relative; display: block; border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 9; background: #1C2740; box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .7); outline: 1px solid rgba(255, 255, 255, .08); }
+.vthumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
+.vcard:hover .vthumb img { transform: scale(1.03); }
+.vplay { position: absolute; left: 14px; bottom: 14px; width: 48px; height: 48px; border-radius: 50%; background: #FFE15A; color: #14213A; display: grid; place-items: center; box-shadow: 0 8px 20px -6px rgba(0, 0, 0, .5); }
+.vplay svg { width: 20px; height: 20px; fill: currentColor; margin-left: 3px; }
+.vmeta { display: flex; flex-direction: column; gap: 2px; padding: 0 4px; }
+.vmeta b { font: 800 18px/1.25 var(--f-display); color: #fff; }
+.vmeta span { font-size: 14px; color: var(--muted-d); }
+.vcard:focus-visible .vthumb { outline: 3px solid var(--mark); outline-offset: 3px; }
+
+/* ---- stats ---- */
+.stats2 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.stat2 { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; padding: 26px 24px 22px; }
+.stat2 b { display: block; font: 800 56px/1 var(--f-display); letter-spacing: -0.03em; color: var(--bad); }
+.stat2 b small { font-size: 26px; margin-left: 2px; }
+.stat2 .meter { display: block; height: 6px; border-radius: 99px; background: var(--soft); margin: 18px 0 14px; overflow: hidden; }
+.stat2 .meter i { display: block; height: 100%; background: var(--bad); border-radius: inherit; }
+.stat2 p { margin: 0; font-weight: 600; font-size: 15.5px; line-height: 1.4; }
+
+/* ---- how it works ---- */
+.how2 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; counter-reset: h; border-top: 2px solid var(--ink); }
+.how2 li { padding: 22px 24px 0 0; position: relative; }
+.how2 li + li { padding-left: 24px; border-left: 1px solid var(--line); }
+.how2 .hn { display: block; font: 800 15px var(--f-display); color: var(--accent); margin-bottom: 26px; }
+.how2 .hn::before { content: "0"; }
+.how2 b { display: block; font: 800 22px/1.2 var(--f-display); margin-bottom: 8px; }
+.how2 p { margin: 0; color: var(--muted); font-size: 15.5px; }
+
+/* ---- what's included ---- */
+.inc-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.inc-grid li { display: flex; align-items: center; gap: 16px; padding: 20px 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 18px; font-weight: 600; font-size: 16.5px; line-height: 1.35; }
+.inc-ic { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 14px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+.inc-ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---- pricing ---- */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.plan { position: relative; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 30px 28px 28px; }
+.plan h3 { font: 800 22px/1.2 var(--f-display); }
+.plan-d { margin: 6px 0 0; color: var(--muted); font-size: 15px; min-height: 2.8em; }
+.plan-price { display: flex; align-items: baseline; gap: 8px; margin: 18px 0 20px; }
+.plan-price b { font: 800 60px/1 var(--f-display); letter-spacing: -0.035em; }
+.plan-price span { color: var(--muted); font-weight: 600; font-size: 15px; }
+.plan-f { list-style: none; margin: 0 0 26px; padding: 0; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.plan-f li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; }
+.plan-f svg { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px; fill: none; stroke: var(--good); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.plan-badge { position: absolute; top: -13px; left: 26px; padding: 5px 12px; border-radius: 999px; background: #FFE15A; color: #14213A; font-size: 13px; font-weight: 800; }
+.plan-hi { background: var(--band); color: var(--on-band); border-color: var(--band); box-shadow: var(--shadow-lg); transform: translateY(-10px); }
+.plan-hi .plan-d, .plan-hi .plan-price span { color: #A9B6CC; }
+.plan-hi .plan-f svg { stroke: #FFE15A; }
+:root[data-theme="dark"] .plan-hi { border-color: #3A4A6E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .plan-hi { border-color: #3A4A6E; } }
+.plans-early { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 30px 0 0; font-weight: 700; font-size: 15.5px; }
+.plans-early .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--margin); box-shadow: 0 0 0 4px color-mix(in srgb, var(--margin) 22%, transparent); }
+
+/* ---- FAQ ---- */
+.faq-list { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 4px; font: 800 19px/1.3 var(--f-display); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--soft); color: var(--accent); font: 700 22px/1 var(--f-body); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+.faq details p { margin: 0; padding: 0 60px 24px 4px; color: var(--muted); font-size: 16.5px; max-width: 46em; }
+.faq .ex-link a { font-weight: 700; }
+
+/* ---- final CTA ---- */
+.final { margin-top: 104px; }
+.final-in { display: flex; align-items: center; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; padding-top: 72px; padding-bottom: 72px; }
+.final h2 { color: #fff; font-size: clamp(34px, 4.4vw, 56px); }
+.final p { margin: 10px 0 0; font-size: 18px; }
+#view:has(.final) { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+
+/* ---- sticky phone CTA ---- */
+.sticky-cta { display: none; }
+
+/* ---- subscription page: plan switch ---- */
+.seg { display: inline-flex; padding: 4px; border-radius: 14px; background: var(--soft); border: 1px solid var(--line); margin: 6px 0 22px; gap: 4px; }
+.seg button { display: inline-flex; align-items: center; justify-content: center; gap: 2px; white-space: nowrap; border: 0; background: transparent; padding: 10px 18px; border-radius: 10px; font: 700 15px var(--f-body); color: var(--muted); cursor: pointer; }
+.seg button[aria-checked="true"] { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+.seg button:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.seg-save { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 99px; background: #FFE15A; color: #14213A; font-size: 12.5px; }
+.pick input:disabled + .ic { opacity: .9; }
+
+/* ---- video modal ---- */
+.vmodal { max-width: 960px !important; width: min(960px, 94vw) !important; }
+.vmodal video { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; background: #0f172a; margin-top: 12px; }
+
+/* ---- global refresh ---- */
+.sheet { border-radius: 20px; }
+.btn { border-radius: 14px; }
+.logo-mark { border-radius: 11px; }
+
+@media (max-width: 960px) {
+  .show { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-top: 64px; padding-bottom: 64px; }
+  .stats2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .how2 { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+  .how2 li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .inc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .plans { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; gap: 26px; }
+  .plan-hi { transform: none; }
+  .plan-d { min-height: 0; }
+}
+@media (max-width: 640px) {
+  .sec { padding-top: 64px; }
+  .sec-head { margin-bottom: 22px; }
+  .show-vids { grid-template-columns: minmax(0, 1fr); }
+  .stats2 { gap: 10px; }
+  .stat2 { padding: 18px 16px; } .stat2 b { font-size: 40px; } .stat2 b small { font-size: 20px; } .stat2 p { font-size: 14.5px; }
+  .how2 { grid-template-columns: minmax(0, 1fr); border-top: 0; row-gap: 0; }
+  .how2 li, .how2 li + li { padding: 18px 0 18px 0; border-left: 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 44px 1fr; column-gap: 8px; }
+  .how2 .hn { margin: 3px 0 0; grid-row: span 2; }
+  .inc-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .inc-grid li { padding: 16px; }
+  .plan { padding: 26px 22px 22px; } .plan-price b { font-size: 52px; }
+  .faq summary { font-size: 17px; padding: 18px 2px; } .faq details p { padding-right: 8px; }
+  .final { margin-top: 64px; } .final-in { padding-top: 56px; padding-bottom: 96px; } .final-in .btn { width: 100%; }
+  .sticky-cta:not([hidden]) { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--paper) 94%, transparent); border-top: 1px solid var(--line); box-shadow: 0 -10px 30px -16px rgba(20, 33, 58, .35); }
+  .sticky-cta .btn { width: 100%; padding-top: 14px; padding-bottom: 14px; }
+  .seg { display: flex; } .seg button { flex: 1; padding: 10px 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .vthumb img, .faq summary::after { transition: none; } }
+
 </style>
 </head>
 <body>
@@ -575,6 +773,7 @@ const CONFIG = {
   payLinks: null,             // Stripe/Payhip links by topic count, e.g. { 1: 'https://…', 2: '…', 3: '…', all: '…' }. Empty = free reservation.
   pricePerTopic: 5,           // € per topic per month
   priceAll: 19,               // € per month for all topics (cap)
+  priceExam: 69,              // € once: all topics until the exam
   examDate: '2027-05-25',
   launchDate: '2026-12-15',
   earlyDiscount: 50,          // % off the first month for reservations
@@ -589,6 +788,48 @@ const I18N = {
     lang_label: 'Valoda',
     eyebrow: 'Matemātikas eksāmens 9. klasei · {date}',
     days_left: 'līdz eksāmenam {n} {w}',
+    hero2_h: 'Matemātikas eksāmens bez <mark>robiem</mark>',
+    hero2_p: 'Bezmaksas tests 15 minūtēs parādīs, kuras no 8 tēmām tev jāatkārto. Īsas video nodarbības ar animācijām un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt.',
+    hero2_watch: 'Skatīt nodarbību',
+    hero2_trust: ['Bez maksas un bez kartes', 'Latviski un krieviski', 'Rezultāts arī e-pastā'],
+    hero2_vid: 'Video nodarbība',
+    hero2_vid_note: 'redzi, kā mainās zīme!',
+    hero2_days: 'līdz eksāmenam',
+    show_h: 'Tā izskatās nodarbība',
+    show_p: 'Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.',
+    show_more: 'Pārējās tēmas — kursā:',
+    show_play: 'Skatīties',
+    inc_h: 'Kas ir abonementā',
+    inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
+    plans_h: 'Izvēlies savu variantu',
+    plans_p: 'Vispirms — bezmaksas tests. Tas parādīs, kuras tēmas tev tiešām vajag.',
+    plan_topic: ['Viena tēma', 'Ja jāpievelk tikai dažas tēmas.'],
+    plan_all: ['Visas 8 tēmas', 'Viss kurss pa visām eksāmena tēmām.'],
+    plan_exam: ['Līdz eksāmenam', 'Visas tēmas līdz {date} vienā maksājumā.'],
+    plan_badge_all: 'Izdevīgāk no 4 tēmām',
+    plan_badge_exam: 'Ietaupi {s} €',
+    plan_once: 'vienreiz',
+    plan_per_topic: 'par tēmu mēnesī',
+    plan_feat_topic: ['Video un uzdevumi izvēlētajām tēmām', 'Atcelt var jebkurā brīdī'],
+    plan_feat_all: ['Viss kurss: 8 tēmas', 'MI palīgs un progresa pārskats', 'Atcelt var jebkurā brīdī'],
+    plan_feat_exam: ['Viss kurss līdz eksāmenam', 'Bez ikmēneša maksājumiem', 'Lētāk nekā {n} × {pa} € = {t} €'],
+    plan_cta: 'Sākt ar bezmaksas testu',
+    plan_early: 'Rezervē līdz {date} un saņem −{d} % pirmajam mēnesim.',
+    faq_h: 'Biežākie jautājumi',
+    faq: [
+      ['Kad sāksies kurss?', 'Kurss sāksies {launch}. Tēmas atvērsim pakāpeniski, un mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.'],
+      ['Kā notiek maksāšana?', 'Tagad vietu var rezervēt bez maksas. Pirms starta nosūtīsim uz e-pastu maksājuma saiti. Ikmēneša variantam pirmais mēnesis ir ar −{d} % atlaidi, variantu «Līdz eksāmenam» apmaksā vienu reizi.'],
+      ['Vai var atcelt?', 'Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.'],
+      ['Kādā valodā ir nodarbības?', 'Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.'],
+      ['Vai vajag skolotāju vai privātstundas?', 'Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Vecāki saņem progresa pārskatu e-pastā.'],
+      ['Kāpēc vispirms tests?', 'Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko.'],
+    ],
+    final_h: 'Sāc ar 15 minūtēm',
+    final_p: 'Bezmaksas tests parādīs, kur ir robi. Pēc tam izlem, vai turpināt.',
+    sub_mode_month: 'Pa mēnešiem',
+    sub_mode_exam: 'Līdz eksāmenam',
+    sub_exam_note: 'Visas 8 tēmas līdz {date}. Viens maksājums, bez atjaunošanas.',
+    sub_exam_save: 'Salīdzinot ar {n} mēn. × {pa} € ietaupi {s} €.',
     hero_h: 'Uzzini, kuras tēmas tev jāatkārto pirms eksāmena',
     hero_p: 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes. Uzreiz redzēsi, kur ir robi, un saņemsi demo nodarbības tieši šīm tēmām.',
     hero_cta: 'Sākt bezmaksas testu',
@@ -691,12 +932,15 @@ const I18N = {
     sub_incl_h: 'Abonementā',
     sub_incl: ['Video skaidrojumi ar latviešu terminiem', 'Uzdevumi ar tūlītēju pārbaudi un kļūdu skaidrojumu', 'Eksāmena tipa uzdevumi ar risinājumiem', 'MI palīgs: jautā rakstot vai balsī', 'Progresa pārskats vecākiem e-pastā', 'Atcelt var jebkurā brīdī'],
     sub_launch: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim. Mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.',
+    sub_launch_exam: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti. Piekļuve visām tēmām būs līdz pat eksāmenam.',
     sub_reserve: 'Rezervēt vietu bez maksas',
     sub_pay: 'Abonēt par {p} € mēnesī',
+    sub_pay_exam: 'Apmaksāt {p} €',
     sub_fine: 'Rezervācija tevi ne pie kā nesaista.',
     sub_pick_one: 'Atzīmē vismaz vienu tēmu.',
     thanks_h: 'Vieta rezervēta!',
     thanks_p: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim.',
+    thanks_p_exam: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti. Piekļuve visām tēmām būs līdz pat eksāmenam.',
     thanks_topics: 'Tavas tēmas',
     thanks_back: 'Turpināt demo kursu',
 
@@ -776,6 +1020,48 @@ const I18N = {
     lang_label: 'Язык',
     eyebrow: 'Экзамен по математике, 9 класс · {date}',
     days_left: 'до экзамена {n} {w}',
+    hero2_h: 'Экзамен по математике без <mark>пробелов</mark>',
+    hero2_p: 'Бесплатный тест за 15 минут покажет, какие из 8 тем нужно повторить. Короткие видеоуроки с анимацией и задачи с мгновенной проверкой помогут их закрыть.',
+    hero2_watch: 'Смотреть урок',
+    hero2_trust: ['Бесплатно и без карты', 'На латышском и русском', 'Результат и на e-mail'],
+    hero2_vid: 'Видеоурок',
+    hero2_vid_note: 'смотри, как меняется знак!',
+    hero2_days: 'до экзамена',
+    show_h: 'Так выглядит урок',
+    show_p: 'Короткое видео с голосом и анимацией: формула появляется ровно тогда, когда о ней говорят. После видео — задачи с мгновенной проверкой.',
+    show_more: 'Остальные темы — в курсе:',
+    show_play: 'Смотреть',
+    inc_h: 'Что входит в подписку',
+    inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
+    plans_h: 'Выбери свой вариант',
+    plans_p: 'Сначала — бесплатный тест. Он покажет, какие темы тебе действительно нужны.',
+    plan_topic: ['Одна тема', 'Если нужно подтянуть пару тем.'],
+    plan_all: ['Все 8 тем', 'Весь курс по всем темам экзамена.'],
+    plan_exam: ['До экзамена', 'Все темы до {date} одним платежом.'],
+    plan_badge_all: 'Выгоднее с 4 тем',
+    plan_badge_exam: 'Экономия {s} €',
+    plan_once: 'один раз',
+    plan_per_topic: 'за тему в месяц',
+    plan_feat_topic: ['Видео и задачи по выбранным темам', 'Отменить можно в любой момент'],
+    plan_feat_all: ['Весь курс: 8 тем', 'ИИ-помощник и отчёт о прогрессе', 'Отменить можно в любой момент'],
+    plan_feat_exam: ['Весь курс до экзамена', 'Без ежемесячных платежей', 'Дешевле, чем {n} × {pa} € = {t} €'],
+    plan_cta: 'Начать с бесплатного теста',
+    plan_early: 'Забронируй до {date} и получи −{d} % на первый месяц.',
+    faq_h: 'Частые вопросы',
+    faq: [
+      ['Когда стартует курс?', 'Курс стартует {launch}. Темы будем открывать постепенно, а месяц отсчитаем с того дня, когда откроется твоя первая тема.'],
+      ['Как проходит оплата?', 'Сейчас место можно забронировать бесплатно. До старта пришлём на e-mail ссылку на оплату. Для помесячной подписки первый месяц со скидкой −{d} %, вариант «До экзамена» оплачивается один раз.'],
+      ['Можно ли отменить?', 'Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается.'],
+      ['На каком языке уроки?', 'На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски.'],
+      ['Нужен ли репетитор?', 'Нет. Ребёнок занимается в своём темпе: каждый ответ проверяется сразу, а ошибки объясняются. Родители получают отчёт о прогрессе на e-mail.'],
+      ['Зачем сначала тест?', 'Тест за 15 минут показывает, какие из 8 тем слабые. Так ты не платишь за то, что уже знаешь, и начинаешь с главного.'],
+    ],
+    final_h: 'Начни с 15 минут',
+    final_p: 'Бесплатный тест покажет, где пробелы. Потом решишь, продолжать ли.',
+    sub_mode_month: 'Помесячно',
+    sub_mode_exam: 'До экзамена',
+    sub_exam_note: 'Все 8 тем до {date}. Один платёж, без продления.',
+    sub_exam_save: 'По сравнению с {n} мес. × {pa} € экономия {s} €.',
     hero_h: 'Узнай, какие темы нужно повторить перед экзаменом',
     hero_p: 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут. Сразу увидишь, где пробелы, и получишь демо-уроки именно по этим темам.',
     hero_cta: 'Пройти бесплатный тест',
@@ -878,12 +1164,15 @@ const I18N = {
     sub_incl_h: 'В подписке',
     sub_incl: ['Видеообъяснения с латышскими терминами', 'Задачи с мгновенной проверкой и разбором ошибок', 'Задачи как на экзамене с решениями', 'ИИ-помощник: спрашивай текстом или голосом', 'Отчёт о прогрессе для родителей на e-mail', 'Отменить можно в любой момент'],
     sub_launch: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату со скидкой −{d} % на первый месяц. Месяц отсчитаем с того дня, когда откроется твоя первая тема.',
+    sub_launch_exam: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
     sub_reserve: 'Забронировать бесплатно',
     sub_pay: 'Подписаться за {p} € в месяц',
+    sub_pay_exam: 'Оплатить {p} €',
     sub_fine: 'Бронь ни к чему не обязывает.',
     sub_pick_one: 'Отметь хотя бы одну тему.',
     thanks_h: 'Место забронировано!',
     thanks_p: 'До старта курса ({date}) пришлём на {email} ссылку на оплату со скидкой −{d} % на первый месяц.',
+    thanks_p_exam: 'До старта курса ({date}) пришлём на {email} ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
     thanks_topics: 'Твои темы',
     thanks_back: 'Продолжить демо-курс',
 
@@ -1886,38 +2175,74 @@ function renderFooter() {
 
 // ---------- views ----------
 function viewLanding() {
-  const d = DIAG.find(x => x.id === 'd7');
   const n = daysLeft();
-  return `<section class="wrap hero">
-    <div class="hero-txt">
-      <p class="eyebrow">${T('eyebrow', { date: dateLong(CONFIG.examDate) })}${n > 0 ? ` · <b>${T('days_left', { n, w: daysWord(n) })}</b>` : ''}</p>
-      <h1>${T('hero_h')}</h1>
-      <p class="lead">${T('hero_p')}</p>
-      <div class="cta-row"><a class="btn btn-primary btn-lg" href="#pieteikums">${T('hero_cta')}</a><span class="note">${T('hero_note')}</span></div>
-      <ul class="facts">${T('facts').map(f => `<li><b>${f[0]}</b><span>${f[1]}</span></li>`).join('')}</ul>
+  const v = `video/nev-${state.lang}`;
+  return `<section class="hero2">
+    <div class="wrap hero2-in">
+    <div class="hero2-txt">
+      <p class="hero2-eyebrow">${n > 0 ? `<span class="days"><b>${n}</b> ${daysWord(n)} ${T('hero2_days')}</span>` : ''}<span>${T('eyebrow', { date: dateLong(CONFIG.examDate) })}</span></p>
+      <h1>${T('hero2_h')}</h1>
+      <p class="hero2-lead">${T('hero2_p')}</p>
+      <div class="hero2-cta"><a class="btn btn-primary btn-xl" href="#pieteikums">${T('hero_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button type="button" class="btn btn-secondary btn-xl" data-act="heroPlay"><svg class="play-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>${T('hero2_watch')}</button></div>
+      <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
     </div>
-    <article class="sheet nb sample">
-      <div class="sheet-head"><span class="eyebrow-s">${T('sample_label')}</span><span class="chip">${L(topicById('nev'))}</span></div>
-      ${qHTML(d)}
-      <div class="opts opts-2">${d.opts.map((o, i) => optHTML(o, i, `data-act="sample" data-i="${i}"`)).join('')}</div>
-      <div class="fb" id="sample-fb" aria-live="polite"><p class="hint-s">${T('sample_try')}</p></div>
-    </article>
+    <figure class="hero2-vid">
+      <div class="vid-frame">
+        <video id="hero-video" preload="none" playsinline poster="${v}-hero.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video>
+        <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+      </div>
+      <figcaption><span class="vid-tag">${L(topicById('nev'))} · 2:53</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
+    </figure>
+    </div>
   </section>
-  <section class="wrap band">
-    <h2>${T('stats_h')}</h2>
-    <div class="stats">${EXAM_STATS.map(s => `<div class="stat"><b>${s.p}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div>
-    <p class="src">${T('stats_note')}</p>
+  <section class="band-dark" id="urok">
+    <div class="wrap show">
+      <div class="show-txt">
+        <h2>${T('show_h')}</h2>
+        <p>${T('show_p')}</p>
+        <p class="show-more">${T('show_more')}</p>
+        <ul class="show-chips">${TOPICS.filter(t => !VIDEOS[t.id]).map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+      </div>
+      <ul class="show-vids">${TOPICS.filter(t => VIDEOS[t.id]).map(t => `<li><button type="button" class="vcard" data-act="playVid" data-t="${t.id}"><span class="vthumb"><img src="video/${t.id}-${state.lang}-hero.jpg" alt="" loading="lazy" width="640" height="360"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span></span><span class="vmeta"><b>${L(t)}</b><span>${T('show_play')} · ~3 ${state.lang === 'ru' ? 'мин' : 'min'}</span></span></button></li>`).join('')}</ul>
+    </div>
   </section>
-  <section class="wrap band">
-    <h2>${T('how_h')}</h2>
-    <ol class="how">${T('how').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
+  <section class="wrap sec">
+    <div class="sec-head"><h2>${T('stats_h')}</h2><p class="src">${T('stats_note')}</p></div>
+    <div class="stats2">${EXAM_STATS.map(s => `<div class="stat2"><b>${s.p}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div>
   </section>
-  <section class="wrap band">
-    <h2>${T('topics_h')}</h2>
-    <ul class="tchips">${TOPICS.map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+  <section class="wrap sec">
+    <div class="sec-head"><h2>${T('how_h')}</h2></div>
+    <ol class="how2">${T('how').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
   </section>
-  <section class="wrap band">
-    <div class="sheet parents"><div><h2>${T('parents_h')}</h2><p>${T('parents_p')}</p><p class="ex-link"><a href="#eksameni">${T('ex_link')} →</a></p></div><a class="btn btn-primary btn-lg" href="#pieteikums">${T('hero_cta')}</a></div>
+  <section class="wrap sec inc">
+    <div class="sec-head"><h2>${T('inc_h')}</h2><p>${T('inc_p')}</p></div>
+    <ul class="inc-grid">${T('sub_incl').map((x, i) => `<li><span class="inc-ic"><svg viewBox="0 0 24 24" aria-hidden="true">${INC_IC[i]}</svg></span>${x}</li>`).join('')}</ul>
+  </section>
+  ${plansHTML()}
+  <section class="wrap sec faq">
+    <div class="sec-head"><h2>${T('faq_h')}</h2><p class="ex-link"><a href="#eksameni">${T('ex_link')} →</a></p></div>
+    <div class="faq-list">${T('faq').map(q => `<details><summary>${q[0]}</summary><p>${q[1].split('{launch}').join(dateLong(CONFIG.launchDate)).split('{d}').join(CONFIG.earlyDiscount)}</p></details>`).join('')}</div>
+  </section>
+  <section class="band-dark final">
+    <div class="wrap final-in"><div><h2>${T('final_h')}</h2><p>${T('final_p')}</p></div><a class="btn btn-mark btn-xl" href="#pieteikums">${T('hero_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </section>
+  <div class="sticky-cta" id="sticky-cta" hidden><a class="btn btn-primary btn-xl" href="#pieteikums">${T('hero_cta')}</a></div>`;
+}
+
+const INC_IC = ["<rect x=\"3\" y=\"5\" width=\"13\" height=\"14\" rx=\"3\"/><path d=\"M16 10l5-3v10l-5-3\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M8 12.5l2.8 2.8L16.5 9.5\"/>", "<path d=\"M7 3h7l5 5v13H7z\"/><path d=\"M14 3v5h5M10 13h6M10 17h4\"/>", "<path d=\"M12 3v3M12 18v3M3 12h3M18 12h3\"/><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"3\"/><path d=\"M10 12h4\"/>", "<path d=\"M4 20V10M10 20V4M16 20v-7M22 20H2\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>"];
+function examMonths() { const a = new Date(CONFIG.launchDate), b = new Date(CONFIG.examDate); return Math.max(1, Math.ceil((b - a) / (30.44 * 864e5))); }
+function plansHTML() {
+  const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
+  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(CONFIG.priceAll).split('{t}').join(m * CONFIG.priceAll)}</li>`).join('');
+  const card = (k, price, unit, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(CONFIG.examDate))}</p><p class="plan-price"><b>${price} €</b><span>${unit}</span></p><ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#pieteikums">${T('plan_cta')}</a></div>`;
+  return `<section class="wrap sec plans-sec" id="cenas">
+    <div class="sec-head"><h2>${T('plans_h')}</h2><p>${T('plans_p')}</p></div>
+    <div class="plans">
+      ${card('plan_topic', CONFIG.pricePerTopic, T('plan_per_topic'), 'plan_feat_topic', '', false)}
+      ${card('plan_all', CONFIG.priceAll, T('per_month'), 'plan_feat_all', T('plan_badge_all'), true)}
+      ${card('plan_exam', CONFIG.priceExam, T('plan_once'), 'plan_feat_exam', save > 0 ? T('plan_badge_exam', { s: save }) : '', false)}
+    </div>
+    ${CONFIG.payLinks ? '' : `<p class="plans-early"><span class="dot" aria-hidden="true"></span>${T('plan_early', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p>`}
   </section>`;
 }
 
@@ -2149,23 +2474,27 @@ function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFI
 function viewSub() {
   const R = results();
   if (!Array.isArray(state.sel)) state.sel = R.weak.length ? R.weak.slice() : TOPICS.map(t => t.id);
-  const n = state.sel.length, p = price(n), capped = n * CONFIG.pricePerTopic > CONFIG.priceAll;
-  const link = CONFIG.payLinks ? (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all) : null;
+  const exam = state.plan === 'exam';
+  const n = exam ? TOPICS.length : state.sel.length, p = exam ? CONFIG.priceExam : price(n), capped = !exam && n * CONFIG.pricePerTopic > CONFIG.priceAll;
+  const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
+  const link = CONFIG.payLinks ? (exam ? CONFIG.payLinks.exam : (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all)) : null;
   const href = link && state.lead ? `${link}${link.includes('?') ? '&' : '?'}client_reference_id=${encodeURIComponent(state.lead.id)}${state.lead.email ? '&prefilled_email=' + encodeURIComponent(state.lead.email) : ''}` : link;
   return `<section class="wrap mid sub">
     <h1>${T('sub_h')}</h1><p class="lead">${T('sub_p')}</p>
+    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')}</button><button type="button" role="radio" aria-checked="${exam}" data-act="plan" data-v="exam">${T('sub_mode_exam')}${save > 0 ? ` <span class="seg-save">−${save} €</span>` : ''}</button></div>
     <div class="sub-grid">
       <div class="sheet">
-        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" data-sel="${id}" ${state.sel.includes(id) ? 'checked' : ''}><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
-        <button type="button" class="btn btn-ghost" data-act="sel-all">${T('sub_all')}</button>
+        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" data-sel="${id}" ${exam || state.sel.includes(id) ? 'checked' : ''} ${exam ? 'disabled' : ''}><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
+        ${exam ? '' : `<button type="button" class="btn btn-ghost" data-act="sel-all">${T('sub_all')}</button>`}
       </div>
       <aside class="sheet price-card">
-        <p class="price"><b>${p} €</b><span>${T('per_month')}</span></p>
-        <p class="calc">${n ? (capped ? T('sub_capped', { pa: CONFIG.priceAll }) : T('sub_calc', { n, pp: CONFIG.pricePerTopic })) : T('sub_pick_one')}</p>
-        ${!capped && n < TOPICS.length ? `<p class="deal">${T('sub_all_deal', { pa: CONFIG.priceAll })}</p>` : ''}
-        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
-        ${link ? `<a class="btn btn-primary btn-lg wide ${n ? '' : 'disabled'}" href="${esc(href)}" rel="noopener" data-act="checkout">${T('sub_pay', { p })}</a>`
-          : `<p class="launch">${T('sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve" ${n ? '' : 'disabled'}>${T('sub_reserve')}</button><p class="fine">${T('sub_fine')}</p>`}
+        <p class="price"><b>${p} €</b><span>${exam ? T('plan_once') : T('per_month')}</span></p>
+        ${exam ? `<p class="calc">${T('sub_exam_note', { date: dateLong(CONFIG.examDate) })}</p>${save > 0 ? `<p class="deal">${T('sub_exam_save', { n: m, pa: CONFIG.priceAll, s: save })}</p>` : ''}`
+          : `<p class="calc">${n ? (capped ? T('sub_capped', { pa: CONFIG.priceAll }) : T('sub_calc', { n, pp: CONFIG.pricePerTopic })) : T('sub_pick_one')}</p>
+        ${!capped && n < TOPICS.length ? `<p class="deal">${T('sub_all_deal', { pa: CONFIG.priceAll })}</p>` : ''}`}
+        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').filter((x, i) => !(exam && i === 5)).map(x => `<li>${x}</li>`).join('')}</ul>
+        ${link ? `<a class="btn btn-primary btn-lg wide ${n ? '' : 'disabled'}" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p }) : T('sub_pay', { p })}</a>`
+          : `<p class="launch">${T(exam ? 'sub_launch_exam' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve" ${n ? '' : 'disabled'}>${T('sub_reserve')}</button><p class="fine">${T('sub_fine')}</p>`}
       </aside>
     </div>
   </section>`;
@@ -2175,9 +2504,9 @@ function viewThanks() {
   const r = state.reserve || { topics: [] };
   return `<section class="wrap narrow">
     <div class="sheet thanks"><span class="big-check" aria-hidden="true">✓</span><h1>${T('thanks_h')}</h1>
-    <p class="lead">${T('thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
+    <p class="lead">${T(r.plan === 'exam' ? 'thanks_p_exam' : 'thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
     <p class="side-h">${T('thanks_topics')}</p><ul class="chips">${r.topics.map(id => `<li><span class="chip">${L(topicById(id))}</span></li>`).join('')}</ul>
-    <p class="price small-p"><b>${r.price} €</b> ${T('per_month')}</p>
+    <p class="price small-p"><b>${r.price} €</b> ${r.plan === 'exam' ? T('plan_once') : T('per_month')}</p>
     <a class="btn btn-primary btn-lg" href="#demo">${T('thanks_back')}</a></div>
   </section>`;
 }
@@ -2210,6 +2539,17 @@ function route(keepScroll = false) {
   $('#view').dataset.view = want;
   renderFooter();
   window.scrollTo(0, keepScroll ? y : 0);
+  stickyCta();
+}
+// phone-only bottom CTA: shown once the hero buttons scroll away, hidden again at the final call to action
+let ctaObs = null;
+function stickyCta() {
+  if (ctaObs) { ctaObs.disconnect(); ctaObs = null; }
+  const bar = $('#sticky-cta'), watch = [$('.hero2-cta'), $('.final')].filter(Boolean);
+  if (!bar || !watch.length || !('IntersectionObserver' in window)) return;
+  const seen = new Set();
+  ctaObs = new IntersectionObserver(es => { es.forEach(e => (e.isIntersecting ? seen.add(e.target) : seen.delete(e.target))); bar.hidden = seen.size > 0; });
+  watch.forEach(w => ctaObs.observe(w));
 }
 function rerender() { route(true); }
 
@@ -2243,7 +2583,7 @@ function wrongTry(t, msg) {
 const ACT = {
   lang(b) { state.lang = b.dataset.v; save(); rerender(); },
   privacy() { const m = $('#modal'); m.innerHTML = privacyHTML(); m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus(); },
-  'close-modal'() { $('#modal').hidden = true; },
+  'close-modal'() { closeModal(); },
   'pv-close'() { state.pvHidden = true; save(); $('#preview-bar').hidden = true; },
   reset() { mem.resetAsk = true; renderFooter(); },
   'reset-no'() { mem.resetAsk = false; renderFooter(); },
@@ -2260,6 +2600,11 @@ const ACT = {
     try { navigator.clipboard.writeText(url).then(done, () => { copyText(url); done(); }); } catch (e) { copyText(url); done(); }
   },
   'share-native'() { try { navigator.share({ title: T('ex_h'), text: T('ex_share_text'), url: shareUrl('native') }).catch(() => { }); } catch (e) { } },
+  heroPlay() {
+    const vid = $('#hero-video'); if (!vid) return;
+    vid.controls = true; vid.closest('.hero2-vid').classList.add('playing'); vid.play().catch(() => {});
+    if (window.matchMedia('(max-width: 860px)').matches) vid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  },
   sample(b) {
     const d = DIAG.find(x => x.id === 'd7'), i = +b.dataset.i, o = d.opts[i];
     b.closest('.opts').querySelectorAll('.opt').forEach((x, k) => { x.dataset.state = k === i ? (o.ok ? 'right' : 'wrong') : ''; });
@@ -2298,14 +2643,22 @@ const ACT = {
   hint(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="hintbox"><b>${T('hint')}:</b> ${L(t.hint)}</div>`; },
   sol(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="solbox">${L(t.sol || t.explain)}</div>`; },
   'sel-all'() { state.sel = TOPICS.map(t => t.id); save(); rerender(); },
+  plan(b) { state.plan = b.dataset.v === 'exam' ? 'exam' : 'month'; save(); rerender(); },
   reserve() {
-    if (!state.sel || !state.sel.length) return;
-    const p = price(state.sel.length);
-    state.reserve = { topics: state.sel.slice(), price: p, at: new Date().toISOString() }; save();
-    send('reserve', { topics: state.sel, price: p });
+    const exam = state.plan === 'exam';
+    const topics = exam ? TOPICS.map(t => t.id) : state.sel || [];
+    if (!topics.length) return;
+    const p = exam ? CONFIG.priceExam : price(topics.length);
+    state.reserve = { topics: topics.slice(), price: p, plan: exam ? 'exam' : 'month', at: new Date().toISOString() }; save();
+    send('reserve', { topics, price: p, plan: exam ? 'exam' : 'month' });
     location.hash = 'paldies';
   },
-  checkout() { send('checkout', { topics: state.sel, price: price((state.sel || []).length) }); },
+  checkout() { const exam = state.plan === 'exam'; send('checkout', { topics: exam ? TOPICS.map(t => t.id) : state.sel, price: exam ? CONFIG.priceExam : price((state.sel || []).length), plan: exam ? 'exam' : 'month' }); },
+  playVid(b) {
+    const id = b.dataset.t, v = `video/${id}-${state.lang}`, m = $('#modal');
+    m.innerHTML = `<div class="modal-card vmodal" role="dialog" aria-modal="true" aria-label="${esc(L(topicById(id)))}"><div class="modal-top"><h2>${L(topicById(id))}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><video controls autoplay playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video></div>`;
+    m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus();
+  },
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
@@ -2317,13 +2670,14 @@ document.addEventListener('click', e => {
   f(b, e);
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !$('#modal').hidden) $('#modal').hidden = true;
+  if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
   if (current === 'tests' && !e.target.closest('input,select,textarea')) {
     const k = '1234'.indexOf(e.key) >= 0 ? '1234'.indexOf(e.key) : 'abcd'.indexOf(e.key.toLowerCase());
     if (k >= 0 && e.key.length === 1) { const b = $(`.qcard [data-act="ans"][data-i="${k}"]`); if (b) ACT.ans(b); }
   }
 });
-$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') $('#modal').hidden = true; });
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+function closeModal() { const m = $('#modal'); m.querySelectorAll('video').forEach(v => v.pause()); m.hidden = true; m.innerHTML = ''; }
 
 document.addEventListener('change', e => {
   const t = e.target;
