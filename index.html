@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Matemātikas eksāmena tests 9. klasei</title>
-<meta name="description" content="Bezmaksas tests 9. klases matemātikas eksāmenam: 16 uzdevumi, rezultāts pa tēmām un demo nodarbības tavām vājākajām tēmām. Latviešu un krievu valodā.">
-<meta property="og:title" content="Uzzini, kuras tēmas tev jāatkārto pirms matemātikas eksāmena">
-<meta property="og:description" content="Bezmaksas tests: 16 eksāmena tipa uzdevumi, ~15 minūtes. Rezultāts pa tēmām un demo nodarbības.">
+<title>Eksāmens 9 — matemātika un dabaszinātnes 9. klasei</title>
+<meta name="description" content="Bezmaksas testi 9. klases eksāmeniem matemātikā un dabaszinātnēs: rezultāts pa tēmām, video nodarbības un uzdevumi ar tūlītēju pārbaudi. Latviešu un krievu valodā.">
+<meta property="og:title" content="Uzzini, kuras tēmas tev jāatkārto pirms 9. klases eksāmeniem">
+<meta property="og:description" content="Bezmaksas testi matemātikā un dabaszinātnēs: 16 eksāmena tipa uzdevumi, ~15 minūtes. Rezultāts pa tēmām.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Manrope:wght@700..800&family=Onest:wght@400..700&display=swap" rel="stylesheet">
@@ -751,12 +751,60 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 }
 @media (prefers-reduced-motion: reduce) { .vthumb img, .faq summary::after { transition: none; } }
 
+/* ===== Eksāmens 9: two subjects ===== */
+.subj-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.subj { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 30px 30px 28px; border-radius: 24px; background: var(--paper); border: 1px solid var(--line); }
+.subj-dab { background: var(--band); color: var(--on-band); border-color: var(--band); box-shadow: var(--shadow-lg); }
+.subj-top { display: flex; align-items: center; justify-content: space-between; }
+.subj-ic { display: inline-grid; place-items: center; min-width: 52px; height: 52px; padding: 0 12px; border-radius: 16px; background: var(--accent-soft); color: var(--accent); font: 800 18px var(--f-display); }
+.subj-dab .subj-ic { background: rgba(255, 225, 90, .14); color: #FFE15A; }
+.subj-new { padding: 5px 12px; border-radius: 999px; background: #FFE15A; color: #14213A; font-size: 13px; font-weight: 800; }
+.subj h3 { font: 800 30px/1.1 var(--f-display); letter-spacing: -0.02em; margin-top: 6px; }
+.subj p { margin: 0; color: var(--muted); }
+.subj-dab p, .subj-dab .subj-topics li { color: #A9B6CC; }
+.subj-date { font-size: 15px; } .subj-date b { color: var(--ink); } .subj-dab .subj-date b { color: #fff; }
+.subj-topics { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.subj-topics li { font-size: 13.5px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); }
+.subj-dab .subj-topics li { background: rgba(255, 255, 255, .07); }
+.subj-meta { font-size: 14px; font-weight: 700; margin-top: auto !important; padding-top: 8px; }
+.subj .btn { margin-top: 8px; }
+.stats-block + .stats-block { margin-top: 40px; }
+.sec-head.sm { margin-bottom: 18px; } .sec-head.sm h3 { font: 800 22px/1.2 var(--f-display); }
+.plan-both { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px 32px; flex-wrap: wrap; margin-top: 20px; padding: 26px 30px; border-radius: 24px; background: var(--paper); border: 2px dashed var(--accent); }
+.plan-both h3 { font: 800 22px/1.2 var(--f-display); } .plan-both p { margin: 6px 0 0; color: var(--muted); }
+.plan-both .plan-price { margin: 0; }
+.final-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-ghost-d { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .35); }
+.btn-ghost-d:hover { box-shadow: inset 0 0 0 1.5px #FFE15A; color: #FFE15A; }
+.subj-pill { padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 800; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.subj-pill-dab { background: #FFE15A; color: #14213A; }
+.other-test { margin: 14px 0 0; font-size: 15px; color: var(--muted); }
+.other-test .btn-link { font-weight: 700; }
+@media (max-width: 960px) { .subj-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  .subj { padding: 24px 20px; } .subj h3 { font-size: 26px; }
+  .plan-both { padding: 22px 20px; }
+  .final-btns, .final-btns .btn { width: 100%; }
+  .top-in .subj-pill { display: none; }
+}
+.subj-sec { padding-bottom: 104px; }
+@media (max-width: 640px) { .subj-sec { padding-bottom: 64px; } }
+.plan-both .plan-badge { position: static; order: -1; flex-basis: 100%; width: fit-content; margin-bottom: -6px; }
+@media (max-width: 640px) {
+  .seg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); width: 100%; }
+  .seg button { white-space: normal; flex-wrap: wrap; gap: 4px; line-height: 1.25; }
+  .seg button:last-child { grid-column: 1 / -1; }
+}
+.vid-note { white-space: normal; text-align: right; max-width: 62%; line-height: 1.05; }
+@media (max-width: 860px) { .vid-note { text-align: left; max-width: none; } }
+
 </style>
 </head>
 <body>
 <header class="top">
   <div class="wrap top-in">
-    <a class="logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Matemātika 9<small id="tagline">9. klases eksāmenam</small></span></a>
+    <a class="logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small id="tagline">matemātika · dabaszinātnes</small></span></a>
+    <span class="subj-pill" id="subj-pill" hidden></span>
     <ol class="stepper" id="stepper" hidden></ol>
     <div class="lang" id="lang-group" role="group" aria-label="Valoda"><button type="button" data-act="lang" data-v="lv" aria-pressed="true">LV</button><button type="button" data-act="lang" data-v="ru" aria-pressed="false">RU</button></div>
   </div>
@@ -768,12 +816,14 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 <script>
 // ---------- Settings: fill these in before going live ----------
 const CONFIG = {
-  brand: 'Matemātika 9',
+  brand: 'Eksāmens 9',
   endpoint: 'https://script.google.com/macros/s/AKfycbyvCPXmKgrMTif8uRQeMhD1Y7sJCOS_MJllcFOLlICQN4FUw_hYgbKg3T9BjhnCDpel/exec', // Google Apps Script web app URL (…/exec). Empty = preview mode, nothing is sent.
   payLinks: null,             // Stripe/Payhip links by topic count, e.g. { 1: 'https://…', 2: '…', 3: '…', all: '…' }. Empty = free reservation.
   pricePerTopic: 5,           // € per topic per month
   priceAll: 19,               // € per month for all topics (cap)
-  priceExam: 69,              // € once: all topics until the exam
+  priceExam: 69,              // € once: all topics of one subject until the exam
+  priceBoth: 99,              // € once: both subjects until the exams
+  sciDate: '2027-06-02',      // centralised exam in natural sciences
   examDate: '2027-05-25',
   launchDate: '2026-12-15',
   earlyDiscount: 50,          // % off the first month for reservations
@@ -783,13 +833,13 @@ const CONFIG = {
 
 const I18N = {
   lv: {
-    tagline: '9. klases eksāmenam',
+    tagline: 'matemātika · dabaszinātnes',
     steps: ['Pieteikums', 'Tests', 'Rezultāts', 'Demo kurss'],
     lang_label: 'Valoda',
     eyebrow: 'Matemātikas eksāmens 9. klasei · {date}',
     days_left: 'līdz eksāmenam {n} {w}',
-    hero2_h: 'Matemātikas eksāmens bez <mark>robiem</mark>',
-    hero2_p: 'Bezmaksas tests 15 minūtēs parādīs, kuras no 8 tēmām tev jāatkārto. Īsas video nodarbības ar animācijām un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt.',
+    hero2_h: '9. klases eksāmeni bez <mark>robiem</mark>',
+    hero2_p: 'Matemātika un jaunais dabaszinātņu eksāmens. Bezmaksas tests 15 minūtēs parādīs, kuras tēmas tev jāatkārto, bet īsas video nodarbības un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt.',
     hero2_watch: 'Skatīt nodarbību',
     hero2_trust: ['Bez maksas un bez kartes', 'Latviski un krieviski', 'Rezultāts arī e-pastā'],
     hero2_vid: 'Video nodarbība',
@@ -803,9 +853,9 @@ const I18N = {
     inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
     plans_h: 'Izvēlies savu variantu',
     plans_p: 'Vispirms — bezmaksas tests. Tas parādīs, kuras tēmas tev tiešām vajag.',
-    plan_topic: ['Viena tēma', 'Ja jāpievelk tikai dažas tēmas.'],
-    plan_all: ['Visas 8 tēmas', 'Viss kurss pa visām eksāmena tēmām.'],
-    plan_exam: ['Līdz eksāmenam', 'Visas tēmas līdz {date} vienā maksājumā.'],
+    plan_topic: ['Viena tēma', 'Ja jāpievelk tikai dažas tēmas jebkurā priekšmetā.'],
+    plan_all: ['Visas 8 tēmas', 'Viss viena priekšmeta kurss.'],
+    plan_exam: ['Līdz eksāmenam', 'Visas viena priekšmeta tēmas līdz eksāmenam vienā maksājumā.'],
     plan_badge_all: 'Izdevīgāk no 4 tēmām',
     plan_badge_exam: 'Ietaupi {s} €',
     plan_once: 'vienreiz',
@@ -817,6 +867,7 @@ const I18N = {
     plan_early: 'Rezervē līdz {date} un saņem −{d} % pirmajam mēnesim.',
     faq_h: 'Biežākie jautājumi',
     faq: [
+      ['Kas būs dabaszinātņu eksāmenā?', 'Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.'],
       ['Kad sāksies kurss?', 'Kurss sāksies {launch}. Tēmas atvērsim pakāpeniski, un mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.'],
       ['Kā notiek maksāšana?', 'Tagad vietu var rezervēt bez maksas. Pirms starta nosūtīsim uz e-pastu maksājuma saiti. Ikmēneša variantam pirmais mēnesis ir ar −{d} % atlaidi, variantu «Līdz eksāmenam» apmaksā vienu reizi.'],
       ['Vai var atcelt?', 'Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.'],
@@ -830,6 +881,32 @@ const I18N = {
     sub_mode_exam: 'Līdz eksāmenam',
     sub_exam_note: 'Visas 8 tēmas līdz {date}. Viens maksājums, bez atjaunošanas.',
     sub_exam_save: 'Salīdzinot ar {n} mēn. × {pa} € ietaupi {s} €.',
+    subj_mat: 'Matemātika',
+    subj_dab: 'Dabaszinātnes',
+    subj_new: 'jauns eksāmens',
+    subj_pick_h: 'Izvēlies priekšmetu',
+    subj_pick_p: 'Katram priekšmetam ir savs bezmaksas tests un savs rezultāts pa tēmām. Var kārtot abus.',
+    subj_mat_d: 'Algebra, ģeometrija, statistika: 16 uzdevumi no 8 tēmām.',
+    subj_dab_d: 'Bioloģija, fizika, ķīmija un pētnieciskās prasmes: 16 uzdevumi no 8 tēmām.',
+    subj_mat_cta: 'Matemātikas tests',
+    subj_dab_cta: 'Dabaszinātņu tests',
+    subj_days: '{n} {w} līdz eksāmenam',
+    subj_switch: 'Mainīt priekšmetu',
+    subj_lessons: 'video nodarbības',
+    subj_soon: 'nodarbības drīzumā',
+    stats_mat_h: 'Matemātika: kur zaudē punktus',
+    stats_mat_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.',
+    stats_dab_h: 'Dabaszinātnes: vājākā vieta valstī',
+    stats_dab_note: 'Vidējais rezultāts 2026. gada diagnosticējošajā darbā (~15 000 skolēnu). Avots: VIAA, LSM.',
+    plan_both: ['Abi priekšmeti līdz eksāmeniem', 'Matemātika un dabaszinātnes — visas tēmas līdz {date} vienā maksājumā.'],
+    plan_both_save: 'Ietaupi {s} € salīdzinājumā ar diviem atsevišķiem',
+    sub_mode_both: 'Abi priekšmeti',
+    sub_both_note: 'Visas matemātikas un dabaszinātņu tēmas līdz {date}. Viens maksājums, bez atjaunošanas.',
+    sub_subj_h: 'Priekšmets: {s}',
+    res_dab_btn: 'Izvēlēties tēmas kursam',
+    res_dab_p: 'Dabaszinātņu video nodarbības gatavojam. Rezervē vietu kursā — tās būs pirmās, ko atvērsim.',
+    res_dab_sent: 'Rezultāts saglabāts šajā pārlūkā.',
+    res_other: 'Pamēģini arī otru testu:',
     hero_h: 'Uzzini, kuras tēmas tev jāatkārto pirms eksāmena',
     hero_p: 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes. Uzreiz redzēsi, kur ir robi, un saņemsi demo nodarbības tieši šīm tēmām.',
     hero_cta: 'Sākt bezmaksas testu',
@@ -842,7 +919,7 @@ const I18N = {
     how_h: 'Kā tas notiek',
     how: [
       ['Pieteikums', 'Ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.'],
-      ['Tests', '16 uzdevumi bez kalkulatora, tāpat kā eksāmena 1. daļā. Ja nezini, spied „Nezinu“.'],
+      ['Tests', '16 eksāmena tipa uzdevumi izvēlētajā priekšmetā. Ja nezini, spied „Nezinu“.'],
       ['Rezultāts', 'Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.'],
       ['Demo kurss', 'Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.'],
     ],
@@ -869,6 +946,7 @@ const I18N = {
 
     test_of: 'Uzdevums {i} no {n}',
     test_nocalc: 'Bez kalkulatora, tāpat kā eksāmena 1. daļā',
+    test_calc: 'Kalkulators atļauts, tāpat kā eksāmenā',
     dont_know: 'Nezinu',
     next: 'Tālāk', to_example: 'Uz piemēru ↓', video_note: 'Video nodarbība ar balsi. Zemāk — tas pats slaidos, savā tempā.',
     prev: 'Atpakaļ',
@@ -946,7 +1024,7 @@ const I18N = {
 
     preview_bar: 'Priekšskatījums: pieteikumi netiek saglabāti, jo nav pieslēgta Google tabula.',
     close: 'Aizvērt',
-    footer_note: 'Tests veidots pēc VIAA 9. klases matemātikas eksāmena programmas tēmām.',
+    footer_note: 'Testi veidoti pēc VIAA 9. klases eksāmenu programmu un paraugu tēmām.',
     footer_reset: 'Sākt no jauna',
     reset_q: 'Dzēst atbildes šajā ierīcē?',
     yes: 'Jā, dzēst', no: 'Nē',
@@ -963,7 +1041,7 @@ const I18N = {
     ],
     tbd: '[jāaizpilda]',
 
-    doc_title: 'Matemātikas eksāmena tests 9. klasei',
+    doc_title: 'Eksāmens 9 — matemātika un dabaszinātnes 9. klasei',
     ex_doc_title: '9. klases eksāmeni 2027: atgādne vecākiem',
     ex_eyebrow: 'Atgādne vecākiem · 2026./2027. mācību gads',
     ex_h: '9. klases eksāmeni 2027',
@@ -1015,13 +1093,13 @@ const I18N = {
   },
 
   ru: {
-    tagline: 'к экзамену 9 класса',
+    tagline: 'математика · естественные науки',
     steps: ['Заявка', 'Тест', 'Результат', 'Демо-курс'],
     lang_label: 'Язык',
     eyebrow: 'Экзамен по математике, 9 класс · {date}',
     days_left: 'до экзамена {n} {w}',
-    hero2_h: 'Экзамен по математике без <mark>пробелов</mark>',
-    hero2_p: 'Бесплатный тест за 15 минут покажет, какие из 8 тем нужно повторить. Короткие видеоуроки с анимацией и задачи с мгновенной проверкой помогут их закрыть.',
+    hero2_h: 'Экзамены 9 класса без <mark>пробелов</mark>',
+    hero2_p: 'Математика и новый экзамен по естественным наукам. Бесплатный тест за 15 минут покажет, какие темы нужно повторить, а короткие видеоуроки и задачи с мгновенной проверкой помогут их закрыть.',
     hero2_watch: 'Смотреть урок',
     hero2_trust: ['Бесплатно и без карты', 'На латышском и русском', 'Результат и на e-mail'],
     hero2_vid: 'Видеоурок',
@@ -1035,9 +1113,9 @@ const I18N = {
     inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
     plans_h: 'Выбери свой вариант',
     plans_p: 'Сначала — бесплатный тест. Он покажет, какие темы тебе действительно нужны.',
-    plan_topic: ['Одна тема', 'Если нужно подтянуть пару тем.'],
-    plan_all: ['Все 8 тем', 'Весь курс по всем темам экзамена.'],
-    plan_exam: ['До экзамена', 'Все темы до {date} одним платежом.'],
+    plan_topic: ['Одна тема', 'Если нужно подтянуть пару тем в любом предмете.'],
+    plan_all: ['Все 8 тем', 'Весь курс по одному предмету.'],
+    plan_exam: ['До экзамена', 'Все темы одного предмета до экзамена одним платежом.'],
     plan_badge_all: 'Выгоднее с 4 тем',
     plan_badge_exam: 'Экономия {s} €',
     plan_once: 'один раз',
@@ -1049,6 +1127,7 @@ const I18N = {
     plan_early: 'Забронируй до {date} и получи −{d} % на первый месяц.',
     faq_h: 'Частые вопросы',
     faq: [
+      ['Что будет на экзамене по естественным наукам?', 'Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс.'],
       ['Когда стартует курс?', 'Курс стартует {launch}. Темы будем открывать постепенно, а месяц отсчитаем с того дня, когда откроется твоя первая тема.'],
       ['Как проходит оплата?', 'Сейчас место можно забронировать бесплатно. До старта пришлём на e-mail ссылку на оплату. Для помесячной подписки первый месяц со скидкой −{d} %, вариант «До экзамена» оплачивается один раз.'],
       ['Можно ли отменить?', 'Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается.'],
@@ -1062,6 +1141,32 @@ const I18N = {
     sub_mode_exam: 'До экзамена',
     sub_exam_note: 'Все 8 тем до {date}. Один платёж, без продления.',
     sub_exam_save: 'По сравнению с {n} мес. × {pa} € экономия {s} €.',
+    subj_mat: 'Математика',
+    subj_dab: 'Естественные науки',
+    subj_new: 'новый экзамен',
+    subj_pick_h: 'Выбери предмет',
+    subj_pick_p: 'У каждого предмета свой бесплатный тест и свой результат по темам. Можно пройти оба.',
+    subj_mat_d: 'Алгебра, геометрия, статистика: 16 задач по 8 темам.',
+    subj_dab_d: 'Биология, физика, химия и исследовательские навыки: 16 задач по 8 темам.',
+    subj_mat_cta: 'Тест по математике',
+    subj_dab_cta: 'Тест по естественным наукам',
+    subj_days: '{n} {w} до экзамена',
+    subj_switch: 'Сменить предмет',
+    subj_lessons: 'видеоуроки',
+    subj_soon: 'уроки скоро',
+    stats_mat_h: 'Математика: где теряют баллы',
+    stats_mat_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: VIAA.',
+    stats_dab_h: 'Естественные науки: самое слабое место в стране',
+    stats_dab_note: 'Средний результат диагностической работы 2026 года (~15 000 учеников). Источник: VIAA, LSM.',
+    plan_both: ['Оба предмета до экзаменов', 'Математика и естественные науки — все темы до {date} одним платежом.'],
+    plan_both_save: 'Экономия {s} € по сравнению с двумя по отдельности',
+    sub_mode_both: 'Оба предмета',
+    sub_both_note: 'Все темы по математике и естественным наукам до {date}. Один платёж, без продления.',
+    sub_subj_h: 'Предмет: {s}',
+    res_dab_btn: 'Выбрать темы для курса',
+    res_dab_p: 'Видеоуроки по естественным наукам готовим. Забронируй место в курсе — их откроем первыми.',
+    res_dab_sent: 'Результат сохранён в этом браузере.',
+    res_other: 'Попробуй и второй тест:',
     hero_h: 'Узнай, какие темы нужно повторить перед экзаменом',
     hero_p: 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут. Сразу увидишь, где пробелы, и получишь демо-уроки именно по этим темам.',
     hero_cta: 'Пройти бесплатный тест',
@@ -1074,7 +1179,7 @@ const I18N = {
     how_h: 'Как это работает',
     how: [
       ['Заявка', 'Впиши имя и e-mail, куда прислать результат.'],
-      ['Тест', '16 задач без калькулятора, как в 1-й части экзамена. Если не знаешь, жми «Не знаю».'],
+      ['Тест', '16 задач как на экзамене по выбранному предмету. Если не знаешь, жми «Не знаю».'],
       ['Результат', 'Видно состояние каждой темы и твои типичные ошибки с объяснением.'],
       ['Демо-курс', 'Короткие уроки по слабым темам: объяснение, пример и задачи с мгновенной проверкой.'],
     ],
@@ -1101,6 +1206,7 @@ const I18N = {
 
     test_of: 'Задача {i} из {n}',
     test_nocalc: 'Без калькулятора, как в 1-й части экзамена',
+    test_calc: 'Калькулятор можно, как на экзамене',
     dont_know: 'Не знаю',
     next: 'Дальше', to_example: 'К примеру ↓', video_note: 'Видеоурок с озвучкой. Ниже — то же самое на слайдах, в своём темпе.',
     prev: 'Назад',
@@ -1178,7 +1284,7 @@ const I18N = {
 
     preview_bar: 'Предпросмотр: заявки не сохраняются, Google-таблица не подключена.',
     close: 'Закрыть',
-    footer_note: 'Тест составлен по темам программы экзамена VIAA по математике для 9 класса.',
+    footer_note: 'Тесты составлены по темам программ и образцов экзаменов VIAA для 9 класса.',
     footer_reset: 'Начать заново',
     reset_q: 'Удалить ответы на этом устройстве?',
     yes: 'Да, удалить', no: 'Нет',
@@ -1195,7 +1301,7 @@ const I18N = {
     ],
     tbd: '[заполнить]',
 
-    doc_title: 'Тест к экзамену по математике для 9 класса',
+    doc_title: 'Eksāmens 9 — математика и естественные науки, 9 класс',
     ex_doc_title: 'Экзамены 9 класса 2027: шпаргалка для родителей',
     ex_eyebrow: 'Шпаргалка для родителей · 2026/27 учебный год',
     ex_h: 'Экзамены 9 класса — 2027',
@@ -1424,9 +1530,9 @@ const SYS = rows => `<span class="sys"><span class="br">{</span><span class="row
 const M = t => `<span class="m">${t}</span>`;
 
 // Demo lessons that have a narrated video (files in video/<id>-<lang>.mp4/.vtt/.jpg)
-const VIDEOS = { nev: true, izt: true };
+let VIDEOS = { nev: true, izt: true };
 
-const TOPICS = [
+let TOPICS = [
   { id: 'izt', ic: 'x²', lv: 'Pakāpes, saknes un izteiksmes', ru: 'Степени, корни и выражения',
     stat: { lv: 'Binoma kāpināšana kvadrātā', ru: 'Квадрат двучлена', p: 62 } },
   { id: 'proc', ic: '%', lv: 'Procenti un teksta uzdevumi', ru: 'Проценты и текстовые задачи',
@@ -1446,7 +1552,7 @@ const TOPICS = [
 ];
 
 // Landing: average completion of exam tasks, VIAA analysis of the 2024/25 exam
-const EXAM_STATS = [
+let EXAM_STATS = [
   { lv: 'Nevienādību sistēmas atrisinājums ar intervālu', ru: 'Решение системы неравенств интервалом', p: 33 },
   { lv: 'Līdzīga trijstūra laukums', ru: 'Площадь подобного треугольника', p: 34 },
   { lv: 'Pilnā pārlase (kombinatorika)', ru: 'Полный перебор (комбинаторика)', p: 32 },
@@ -1454,7 +1560,7 @@ const EXAM_STATS = [
 ];
 
 // ---------- Diagnostic test: 16 tasks, 2 per topic. Wrong options carry the typical mistake. ----------
-const DIAG = [
+let DIAG = [
   { id: 'd1', topic: 'izt',
     q: { lv: 'Kāpini kvadrātā:', ru: 'Возведи в квадрат:' }, math: '(x + 3)²',
     opts: [
@@ -2068,13 +2174,222 @@ const LESSONS = {
   },
 };
 
+// math data kept aside so the page can switch subjects (see setSubject in app.js)
+const MAT = { TOPICS, DIAG, EXAM_STATS, VIDEOS };
+
+// ---------- Dabaszinātnes (natural sciences): topics and diagnostic test (LV + RU) ----------
+// Modelled on the VIAA sample of the 2027 centralised exam (Paraugs, 2026): 30 test tasks
+// (biology 1–10, physics 11–20, chemistry 21–30) + 4 skills tasks. These tasks are our own.
+
+const DAB_TOPICS = [
+  { id: 'cilv', ic: 'B', lv: 'Cilvēka organisms un veselība', ru: 'Организм человека и здоровье' },
+  { id: 'eko', ic: 'B', lv: 'Organismi, vairošanās un ekosistēmas', ru: 'Организмы, размножение и экосистемы' },
+  { id: 'spek', ic: 'F', lv: 'Spēki, svira un enerģija', ru: 'Силы, рычаг и энергия' },
+  { id: 'silt', ic: 'F', lv: 'Siltums un vielas agregātstāvokļi', ru: 'Тепло и агрегатные состояния' },
+  { id: 'elek', ic: 'F', lv: 'Elektrība', ru: 'Электричество' },
+  { id: 'viel', ic: 'Ķ', lv: 'Vielas, formulas un periodiskā tabula', ru: 'Вещества, формулы и таблица Менделеева' },
+  { id: 'reak', ic: 'Ķ', lv: 'Ķīmiskās reakcijas un aprēķini', ru: 'Химические реакции и расчёты' },
+  { id: 'pet', ic: 'P', lv: 'Pētījums un dati', ru: 'Исследование и данные' },
+];
+
+// 2026 diagnostic work, VIAA via LSM (16.09.2026): average by subject and the weakest skill
+const DAB_STATS = [
+  { lv: 'Analītiskā spriešana (vājākā prasme)', ru: 'Аналитическое рассуждение (самый слабый навык)', p: 29.2 },
+  { lv: 'Ķīmija', ru: 'Химия', p: 42.3 },
+  { lv: 'Fizika', ru: 'Физика', p: 43.6 },
+  { lv: 'Bioloģija', ru: 'Биология', p: 49.5 },
+];
+
+const DAB_DIAG = [
+  { id: 'b1', topic: 'cilv',
+    q: { lv: 'Pa kuriem asinsvadiem asinis plūst prom no sirds?', ru: 'По каким сосудам кровь течёт от сердца?' },
+    opts: [
+      { t: { lv: 'vēnām', ru: 'по венам' }, why: { lv: 'Pa vēnām asinis atplūst atpakaļ uz sirdi.', ru: 'По венам кровь возвращается к сердцу.' } },
+      { t: { lv: 'artērijām', ru: 'по артериям' }, ok: true },
+      { t: { lv: 'kapilāriem', ru: 'по капиллярам' }, why: { lv: 'Kapilāros notiek vielu maiņa ar šūnām; tie savieno artērijas ar vēnām.', ru: 'В капиллярах идёт обмен веществ с клетками; они соединяют артерии с венами.' } },
+      { t: { lv: 'limfvadiem', ru: 'по лимфатическим сосудам' }, why: { lv: 'Limfvados plūst limfa, nevis asinis.', ru: 'По лимфатическим сосудам течёт лимфа, а не кровь.' } },
+    ],
+    explain: { lv: 'Artērijas ved asinis prom no sirds, vēnas — uz sirdi.', ru: 'Артерии несут кровь от сердца, вены — к сердцу.' } },
+
+  { id: 'b2', topic: 'cilv',
+    q: { lv: 'Kāpēc vakcinēts cilvēks parasti nesaslimst ar šo slimību smagi?', ru: 'Почему привитый человек обычно не болеет этой болезнью тяжело?' },
+    opts: [
+      { t: { lv: 'vakcīna iznīcina visas baktērijas organismā', ru: 'вакцина уничтожает все бактерии в организме' }, why: { lv: 'Vakcīna neiznīcina baktērijas — tā iemāca imūnsistēmu atpazīt konkrētu patogēnu.', ru: 'Вакцина не уничтожает бактерии — она учит иммунитет узнавать конкретный возбудитель.' } },
+      { t: { lv: 'organismā jau ir atmiņas šūnas, kas ātri ražo antivielas pret šo patogēnu', ru: 'в организме уже есть клетки памяти, которые быстро вырабатывают антитела против этого возбудителя' }, ok: true },
+      { t: { lv: 'vakcīnā ir antibiotikas', ru: 'в вакцине есть антибиотики' }, why: { lv: 'Antibiotikas ārstē bakteriālas infekcijas, bet vakcīna veido imunitāti.', ru: 'Антибиотики лечат бактериальные инфекции, а вакцина формирует иммунитет.' } },
+      { t: { lv: 'vakcīna paātrina sirdsdarbību', ru: 'вакцина ускоряет работу сердца' }, why: { lv: 'Vakcīna iedarbojas uz imūnsistēmu, nevis uz sirdi.', ru: 'Вакцина действует на иммунную систему, а не на сердце.' } },
+    ],
+    explain: { lv: 'Vakcinācija veido mākslīgo aktīvo imunitāti: organisms pats izveido antivielas un atmiņas šūnas.', ru: 'Прививка создаёт искусственный активный иммунитет: организм сам вырабатывает антитела и клетки памяти.' } },
+
+  { id: 'b3', topic: 'eko',
+    q: { lv: 'Barošanās ķēde: zāle → sienāzis → varde → gārnis. Kurš organisms ir otrās pakāpes patērētājs?', ru: 'Пищевая цепь: трава → кузнечик → лягушка → цапля. Кто является консументом второго порядка?' },
+    opts: [
+      { t: { lv: 'sienāzis', ru: 'кузнечик' }, why: { lv: 'Sienāzis ēd augus — tas ir pirmās pakāpes patērētājs.', ru: 'Кузнечик ест растения — это консумент первого порядка.' } },
+      { t: { lv: 'varde', ru: 'лягушка' }, ok: true },
+      { t: { lv: 'gārnis', ru: 'цапля' }, why: { lv: 'Gārnis ēd vardi, tātad tas ir trešās pakāpes patērētājs.', ru: 'Цапля ест лягушку, значит, это консумент третьего порядка.' } },
+      { t: { lv: 'zāle', ru: 'трава' }, why: { lv: 'Zāle ir producents — tā pati veido organiskās vielas fotosintēzē.', ru: 'Трава — продуцент: она сама создаёт органические вещества при фотосинтезе.' } },
+    ],
+    explain: { lv: 'Producents (zāle) → 1. pakāpes patērētājs (sienāzis) → 2. pakāpes (varde) → 3. pakāpes (gārnis).', ru: 'Продуцент (трава) → консумент 1-го порядка (кузнечик) → 2-го порядка (лягушка) → 3-го порядка (цапля).' } },
+
+  { id: 'b4', topic: 'eko',
+    q: { lv: 'Kas ir raksturīgs bezdzimumvairošanās procesam?', ru: 'Что характерно для бесполого размножения?' },
+    opts: [
+      { t: { lv: 'pēcnācēja DNS ir tāda pati kā vecāka organismam', ru: 'ДНК потомка такая же, как у родительского организма' }, ok: true },
+      { t: { lv: 'nepieciešama apaugļota olšūna', ru: 'нужна оплодотворённая яйцеклетка' }, why: { lv: 'Apaugļošanās ir dzimumvairošanās pazīme.', ru: 'Оплодотворение — признак полового размножения.' } },
+      { t: { lv: 'pēcnācējs manto pazīmes no diviem vecākiem', ru: 'потомок наследует признаки двух родителей' }, why: { lv: 'Divi vecāki ir dzimumvairošanās gadījumā; bezdzimumvairošanās notiek no viena organisma.', ru: 'Два родителя бывают при половом размножении; бесполое идёт от одного организма.' } },
+      { t: { lv: 'tā notiek tikai dzīvniekiem', ru: 'оно бывает только у животных' }, why: { lv: 'Bezdzimumvairošanās ir arī augiem (piemēram, ar stīgām), sēnēm un baktērijām.', ru: 'Бесполое размножение есть и у растений (например, усами), грибов и бактерий.' } },
+    ],
+    explain: { lv: 'Bezdzimumvairošanās notiek no viena organisma, tāpēc pēcnācēji ir ģenētiski vienādi ar vecāku.', ru: 'Бесполое размножение идёт от одного организма, поэтому потомки генетически одинаковы с родителем.' } },
+
+  { id: 'f1', topic: 'spek',
+    q: { lv: 'Svira ir līdzsvarā. Kreisajā pusē 20 cm no atbalsta karājas 6 N smags atsvars. Cik smagam jābūt atsvaram labajā pusē 60 cm no atbalsta?', ru: 'Рычаг в равновесии. Слева, в 20 см от опоры, висит груз весом 6 Н. Каким должен быть груз справа, в 60 см от опоры?' },
+    opts: [
+      { t: '2 N', ok: true },
+      { t: '18 N', why: { lv: 'Garākajā plecā vajag mazāku spēku, nevis lielāku: F₁ · l₁ = F₂ · l₂.', ru: 'На длинном плече нужна меньшая сила, а не большая: F₁ · l₁ = F₂ · l₂.' } },
+      { t: '6 N', why: { lv: 'Vienādi atsvari būtu līdzsvarā tikai pie vienādiem pleciem.', ru: 'Одинаковые грузы уравновешиваются только при одинаковых плечах.' } },
+      { t: '3 N', why: { lv: 'Plecu attiecība ir 60 : 20 = 3, tātad spēks ir 3 reizes mazāks: 6 : 3 = 2 N.', ru: 'Плечи относятся как 60 : 20 = 3, значит, сила в 3 раза меньше: 6 : 3 = 2 Н.' } },
+    ],
+    explain: { lv: 'Sviras līdzsvars: F₁ · l₁ = F₂ · l₂ → 6 · 20 = F₂ · 60 → F₂ = 2 N.', ru: 'Равновесие рычага: F₁ · l₁ = F₂ · l₂ → 6 · 20 = F₂ · 60 → F₂ = 2 Н.' } },
+
+  { id: 'f2', topic: 'spek',
+    q: { lv: '0,5 kg smagu grāmatu uzliek plauktā 2 m augstumā. Cik liela ir tās potenciālā enerģija attiecībā pret grīdu? (g = 10 N/kg)', ru: 'Книгу массой 0,5 кг кладут на полку на высоте 2 м. Какова её потенциальная энергия относительно пола? (g = 10 Н/кг)' },
+    opts: [
+      { t: '1 J', why: { lv: 'Aizmirsi g: E = m · g · h = 0,5 · 10 · 2.', ru: 'Забыт g: E = m · g · h = 0,5 · 10 · 2.' } },
+      { t: '10 J', ok: true },
+      { t: '20 J', why: { lv: 'Aizmirsi masu: 10 · 2 = 20, bet vēl jāreizina ar 0,5 kg.', ru: 'Забыта масса: 10 · 2 = 20, но нужно ещё умножить на 0,5 кг.' } },
+      { t: '4 J', why: { lv: 'Potenciālā enerģija ir reizinājums m · g · h, nevis dalījums.', ru: 'Потенциальная энергия — это произведение m · g · h, а не частное.' } },
+    ],
+    explain: { lv: 'E = m · g · h = 0,5 kg · 10 N/kg · 2 m = 10 J.', ru: 'E = m · g · h = 0,5 кг · 10 Н/кг · 2 м = 10 Дж.' } },
+
+  { id: 'f3', topic: 'silt',
+    q: { lv: 'Ledu karsē. Kas notiek ar tā temperatūru, kamēr ledus kūst?', ru: 'Лёд нагревают. Что происходит с его температурой, пока лёд тает?' },
+    opts: [
+      { t: { lv: 'tā paaugstinās', ru: 'повышается' }, why: { lv: 'Kušanas laikā siltums tiek patērēts kristālrežģa sagraušanai, nevis sasilšanai.', ru: 'Во время плавления тепло уходит на разрушение кристаллической решётки, а не на нагрев.' } },
+      { t: { lv: 'tā nemainās (0 °C)', ru: 'не меняется (0 °C)' }, ok: true },
+      { t: { lv: 'tā pazeminās', ru: 'понижается' }, why: { lv: 'Ledus saņem siltumu, tāpēc tas neatdziest.', ru: 'Лёд получает тепло, поэтому он не остывает.' } },
+      { t: { lv: 'tā svārstās', ru: 'колеблется' }, why: { lv: 'Kušanas laikā temperatūras grafiks ir horizontāls posms.', ru: 'Во время плавления график температуры — горизонтальный участок.' } },
+    ],
+    explain: { lv: 'Kušanas laikā temperatūra nemainās: grafikā tas ir horizontāls posms. Tikai kad viss ledus izkusis, ūdens sāk sasilt.', ru: 'Во время плавления температура не меняется: на графике это горизонтальный участок. Только когда весь лёд растает, вода начнёт нагреваться.' } },
+
+  { id: 'f4', topic: 'silt',
+    q: { lv: 'Piepūstu balonu no siltas istabas iznes aukstumā, un tas kļūst mazāks. Kāpēc?', ru: 'Надутый шарик выносят из тёплой комнаты на мороз, и он становится меньше. Почему?' },
+    opts: [
+      { t: { lv: 'gāzes molekulas kļūst mazākas', ru: 'молекулы газа становятся меньше' }, why: { lv: 'Molekulu izmērs nemainās — mainās to kustības ātrums.', ru: 'Размер молекул не меняется — меняется скорость их движения.' } },
+      { t: { lv: 'molekulas kustas lēnāk un ar mazāku spēku atsitas pret balona sienām', ru: 'молекулы движутся медленнее и слабее ударяются о стенки шарика' }, ok: true },
+      { t: { lv: 'gāze izplūst cauri balona sienām', ru: 'газ выходит через стенки шарика' }, why: { lv: 'Ja balons cieši aizsiets, gāzes daudzums īsā laikā praktiski nemainās.', ru: 'Если шарик крепко завязан, количество газа за короткое время почти не меняется.' } },
+      { t: { lv: 'gāze kļūst smagāka', ru: 'газ становится тяжелее' }, why: { lv: 'Gāzes masa nemainās, mainās tikai tās tilpums.', ru: 'Масса газа не меняется, меняется только объём.' } },
+    ],
+    explain: { lv: 'Atdziestot molekulas kustas lēnāk, spiediens uz sienām samazinās, un balons saraujas.', ru: 'При охлаждении молекулы движутся медленнее, давление на стенки падает, и шарик сжимается.' } },
+
+  { id: 'f5', topic: 'elek',
+    q: { lv: 'Rezistoram pievadīts 12 V spriegums, un strāvas stiprums ir 0,5 A. Kāda ir rezistora pretestība?', ru: 'К резистору приложено напряжение 12 В, сила тока 0,5 А. Каково сопротивление резистора?' },
+    opts: [
+      { t: '6 Ω', why: { lv: 'Tu reizināji U · I — tā ir jauda (6 W), nevis pretestība.', ru: 'Ты умножил U · I — это мощность (6 Вт), а не сопротивление.' } },
+      { t: '24 Ω', ok: true },
+      { t: '0,04 Ω', why: { lv: 'Dalījums jāveic otrādi: R = U : I, nevis I : U.', ru: 'Делить нужно наоборот: R = U : I, а не I : U.' } },
+      { t: '11,5 Ω', why: { lv: 'Oma likumā lielumus dala, nevis atņem.', ru: 'В законе Ома величины делят, а не вычитают.' } },
+    ],
+    explain: { lv: 'Oma likums: R = U : I = 12 V : 0,5 A = 24 Ω.', ru: 'Закон Ома: R = U : I = 12 В : 0,5 А = 24 Ом.' } },
+
+  { id: 'f6', topic: 'elek',
+    q: { lv: 'Ierīces jauda ir 6 W. Cik daudz elektroenerģijas tā patērē 10 minūtēs?', ru: 'Мощность прибора 6 Вт. Сколько электроэнергии он потребляет за 10 минут?' },
+    opts: [
+      { t: '60 J', why: { lv: 'Laiks jāpārvērš sekundēs: 10 min = 600 s.', ru: 'Время нужно перевести в секунды: 10 мин = 600 с.' } },
+      { t: '3600 J', ok: true },
+      { t: '100 J', why: { lv: 'Enerģija ir jauda reiz laiks, nevis laiks dalīts ar jaudu.', ru: 'Энергия — это мощность, умноженная на время, а не время, делённое на мощность.' } },
+      { t: '16 J', why: { lv: 'Lielumus nesaskaita: E = P · t.', ru: 'Величины не складывают: E = P · t.' } },
+    ],
+    explain: { lv: 'E = P · t = 6 W · 600 s = 3600 J.', ru: 'E = P · t = 6 Вт · 600 с = 3600 Дж.' } },
+
+  { id: 'k1', topic: 'viel',
+    q: { lv: 'Kura ir alumīnija oksīda ķīmiskā formula?', ru: 'Какова химическая формула оксида алюминия?' },
+    opts: [
+      { t: 'AlO', why: { lv: 'Alumīnija vērtība ir III, skābekļa — II, tāpēc atomu skaits nav vienāds.', ru: 'Валентность алюминия III, кислорода II, поэтому число атомов не одинаковое.' } },
+      { t: 'Al₂O₃', ok: true },
+      { t: 'Al₃O₂', why: { lv: 'Indeksi sajaukti vietām: 2 · III = 3 · II = 6 → Al₂O₃.', ru: 'Индексы перепутаны: 2 · III = 3 · II = 6 → Al₂O₃.' } },
+      { t: 'AlO₃', why: { lv: 'Šajā formulā vērtības nesakrīt: III ≠ 3 · II.', ru: 'В этой формуле валентности не сходятся: III ≠ 3 · II.' } },
+    ],
+    explain: { lv: 'Al(III) un O(II): mazākais kopīgais dalāmais 6 → Al₂O₃.', ru: 'Al(III) и O(II): наименьшее общее кратное 6 → Al₂O₃.' } },
+
+  { id: 'k2', topic: 'viel',
+    q: { lv: 'Kurā rindā ir tikai bāzu formulas?', ru: 'В какой строке только формулы оснований?' },
+    opts: [
+      { t: 'NaOH, Ca(OH)₂', ok: true },
+      { t: 'HCl, NaOH', why: { lv: 'HCl ir skābe — tās formula sākas ar ūdeņradi.', ru: 'HCl — кислота: её формула начинается с водорода.' } },
+      { t: 'NaCl, KOH', why: { lv: 'NaCl ir sāls — tajā nav hidroksīdgrupas OH.', ru: 'NaCl — соль: в ней нет гидроксогруппы OH.' } },
+      { t: 'H₂SO₄, H₃PO₄', why: { lv: 'Abas ir skābes.', ru: 'Обе — кислоты.' } },
+    ],
+    explain: { lv: 'Bāzes sastāv no metāla un hidroksīdgrupām OH: NaOH, Ca(OH)₂.', ru: 'Основания состоят из металла и гидроксогрупп OH: NaOH, Ca(OH)₂.' } },
+
+  { id: 'k3', topic: 'reak',
+    q: { lv: 'Kura ir aizvietošanas reakcija?', ru: 'Какая реакция является реакцией замещения?' },
+    opts: [
+      { t: 'Fe + CuSO₄ → FeSO₄ + Cu', ok: true },
+      { t: 'CaCO₃ → CaO + CO₂', why: { lv: 'No vienas vielas rodas divas — tā ir sadalīšanās reakcija.', ru: 'Из одного вещества получается два — это реакция разложения.' } },
+      { t: '2H₂ + O₂ → 2H₂O', why: { lv: 'No divām vielām rodas viena — tā ir savienošanās reakcija.', ru: 'Из двух веществ получается одно — это реакция соединения.' } },
+      { t: 'HCl + NaOH → NaCl + H₂O', why: { lv: 'Divas saliktas vielas apmainās ar sastāvdaļām — tā ir apmaiņas reakcija.', ru: 'Два сложных вещества обмениваются частями — это реакция обмена.' } },
+    ],
+    explain: { lv: 'Aizvietošanā vienkārša viela aizvieto elementu saliktā vielā: dzelzs aizvieto varu. Tas notiek, jo dzelzs metālu aktivitātes rindā ir pirms vara.', ru: 'При замещении простое вещество вытесняет элемент из сложного: железо вытесняет медь. Это возможно, потому что железо стоит в ряду активности левее меди.' } },
+
+  { id: 'k4', topic: 'reak',
+    q: { lv: 'Cik gramu sāls ir 200 g šķīduma, kurā sāls masas daļa ir 15 %?', ru: 'Сколько граммов соли в 200 г раствора с массовой долей соли 15 %?' },
+    opts: [
+      { t: '15 g', why: { lv: '15 % nav 15 grami: jāaprēķina 15 % no 200 g.', ru: '15 % — это не 15 граммов: нужно найти 15 % от 200 г.' } },
+      { t: '30 g', ok: true },
+      { t: '170 g', why: { lv: '170 g ir ūdens masa (200 − 30), nevis sāls.', ru: '170 г — это масса воды (200 − 30), а не соли.' } },
+      { t: '13,3 g', why: { lv: 'Masas daļu reizina ar šķīduma masu: 200 · 0,15.', ru: 'Массовую долю умножают на массу раствора: 200 · 0,15.' } },
+    ],
+    explain: { lv: 'm(sāls) = m(šķīduma) · w = 200 g · 0,15 = 30 g.', ru: 'm(соли) = m(раствора) · w = 200 г · 0,15 = 30 г.' } },
+
+  { id: 'p1', topic: 'pet',
+    q: { lv: 'Skolēns pēta, kā ūdens temperatūra ietekmē to, cik ātri izšķīst cukurs. Kurš ir neatkarīgais mainīgais?', ru: 'Ученик исследует, как температура воды влияет на скорость растворения сахара. Какая переменная независимая?' },
+    opts: [
+      { t: { lv: 'ūdens temperatūra', ru: 'температура воды' }, ok: true },
+      { t: { lv: 'laiks, kurā cukurs izšķīst', ru: 'время растворения сахара' }, why: { lv: 'To mēra — tas ir atkarīgais mainīgais.', ru: 'Его измеряют — это зависимая переменная.' } },
+      { t: { lv: 'cukura masa', ru: 'масса сахара' }, why: { lv: 'Cukura masai jābūt vienādai visos mēģinājumos — tas ir nemainīgais lielums.', ru: 'Масса сахара должна быть одинаковой во всех опытах — это контролируемая величина.' } },
+      { t: { lv: 'ūdens tilpums', ru: 'объём воды' }, why: { lv: 'Ūdens tilpumu tur nemainīgu, lai salīdzinājums būtu godīgs.', ru: 'Объём воды держат постоянным, чтобы сравнение было честным.' } },
+    ],
+    explain: { lv: 'Neatkarīgo mainīgo pētnieks maina pats (temperatūra), atkarīgo mēra (šķīšanas laiks), pārējo tur nemainīgu.', ru: 'Независимую переменную исследователь меняет сам (температура), зависимую измеряет (время растворения), остальное держит постоянным.' } },
+
+  { id: 'p2', topic: 'pet',
+    q: { lv: 'Karstu ūdeni atstāj istabā. Temperatūra: 0 min — 80 °C, 10 min — 60 °C, 20 min — 45 °C, 30 min — 35 °C. Kāda temperatūra visticamāk būs pēc 40 minūtēm?', ru: 'Горячую воду оставили в комнате. Температура: 0 мин — 80 °C, 10 мин — 60 °C, 20 мин — 45 °C, 30 мин — 35 °C. Какой, скорее всего, будет температура через 40 минут?' },
+    opts: [
+      { t: '15 °C', why: { lv: 'Tu turpināji pirmo kritumu (−20 °C), bet atdzišana palēninās: −20, −15, −10…', ru: 'Ты продолжил первое падение (−20 °C), но остывание замедляется: −20, −15, −10…' } },
+      { t: '30 °C', ok: true },
+      { t: '20 °C', why: { lv: 'Kritums ar katru reizi kļūst mazāks, tāpēc nākamais būs ap −5 °C, nevis −15 °C.', ru: 'Падение каждый раз меньше, поэтому дальше будет около −5 °C, а не −15 °C.' } },
+      { t: '40 °C', why: { lv: 'Ūdens atdziest, tāpēc temperatūra nevar paaugstināties.', ru: 'Вода остывает, поэтому температура не может вырасти.' } },
+    ],
+    explain: { lv: 'Kritums: −20, −15, −10 °C — katru reizi par 5 mazāks. Nākamais būs ap −5 °C: 35 − 5 = 30 °C. Ūdens tuvojas istabas temperatūrai.', ru: 'Падение: −20, −15, −10 °C — каждый раз на 5 меньше. Следующее — около −5 °C: 35 − 5 = 30 °C. Вода приближается к комнатной температуре.' } },
+];
+
+const DAB = { TOPICS: DAB_TOPICS, DIAG: DAB_DIAG, EXAM_STATS: DAB_STATS, VIDEOS: {} };
+
 // ---------- App ----------
 const STORE = 'm9_state_v1';
-const state = { lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null };
+const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null };
 const mem = { resetAsk: false, sendTimer: null };
 
 function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage may be unavailable */ } }
 function load() { try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && typeof s === 'object') Object.assign(state, s); } catch (e) { } }
+
+// ---------- subjects: math (mat) and natural sciences (dab) ----------
+// Test progress, topic choice and reservation are kept per subject; contact details are shared.
+const SUBJ_KEYS = ['answers', 'idx', 'done', 'sel', 'plan', 'reserve', 'sentResults'];
+const SUBJ_FRESH = () => ({ answers: [], idx: 0, done: false, sel: null, plan: undefined, reserve: null, sentResults: false });
+function applySubject() { const D = state.subj === 'dab' ? DAB : MAT; TOPICS = D.TOPICS; DIAG = D.DIAG; EXAM_STATS = D.EXAM_STATS; VIDEOS = D.VIDEOS; }
+function setSubject(s) {
+  if (s !== 'mat' && s !== 'dab') return;
+  if (s !== state.subj) {
+    state.bySubj[state.subj] = Object.fromEntries(SUBJ_KEYS.map(k => [k, state[k]]));
+    Object.assign(state, SUBJ_FRESH(), state.bySubj[s] || {});
+    state.subj = s;
+  }
+  applySubject(); save();
+}
+const subjName = s => T(s === 'dab' ? 'subj_dab' : 'subj_mat');
+const examDateOf = s => (s === 'dab' ? CONFIG.sciDate : CONFIG.examDate);
+function daysTo(iso) { const d = new Date(iso + 'T09:00:00'); return Math.ceil((d - new Date()) / 864e5); }
+function subjDone(s) { return s === state.subj ? state.done : !!(state.bySubj[s] && state.bySubj[s].done); }
 
 const nb = s => (typeof s === 'string' ? s.replace(/(\d) (%|€|cm|см|min|мин)/g, '$1\u00A0$2') : s);
 const L = x => nb(x == null ? '' : typeof x === 'string' ? x : (x[state.lang] ?? x.lv ?? ''));
@@ -2157,6 +2472,7 @@ function renderHeader(view) {
     st.innerHTML = T('steps').map((s, i) => `<li class="${i < stepOf ? 'done' : i === stepOf ? 'now' : ''}"><span class="sn">${i < stepOf ? '✓' : i + 1}</span><span class="sl">${s}</span></li>`).join('');
   }
   $('#tagline').textContent = T('tagline');
+  const sp = $('#subj-pill'); if (sp) { const show = ['pieteikums', 'tests', 'rezultati', 'demo', 'abonements', 'paldies'].includes(view); sp.hidden = !show; sp.textContent = subjName(state.subj); sp.className = 'subj-pill subj-pill-' + state.subj; }
   document.querySelectorAll('[data-act="lang"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)));
   $('#lang-group').setAttribute('aria-label', T('lang_label'));
   const pv = $('#preview-bar');
@@ -2175,15 +2491,28 @@ function renderFooter() {
 
 // ---------- views ----------
 function viewLanding() {
-  const n = daysLeft();
+  const n = daysTo(CONFIG.examDate);
   const v = `video/nev-${state.lang}`;
+  const subjCard = (k, d) => {
+    const dl = daysTo(examDateOf(k)), done = subjDone(k), D = k === 'dab' ? DAB : MAT, vids = Object.keys(D.VIDEOS).length;
+    return `<article class="subj subj-${k}">
+      <div class="subj-top"><span class="subj-ic" aria-hidden="true">${k === 'dab' ? 'B·F·Ķ' : 'x²'}</span>${k === 'dab' ? `<span class="subj-new">${T('subj_new')}</span>` : ''}</div>
+      <h3>${subjName(k)}</h3>
+      <p class="subj-date"><b>${dateLong(examDateOf(k))}</b>${dl > 0 ? ` · ${T('subj_days', { n: dl, w: daysWord(dl) })}` : ''}</p>
+      <p>${T(d)}</p>
+      <ul class="subj-topics">${D.TOPICS.map(t => `<li>${L(t)}</li>`).join('')}</ul>
+      <p class="subj-meta">${vids ? `${vids} ${T('subj_lessons')}` : T('subj_soon')}</p>
+      <button type="button" class="btn ${k === 'dab' ? 'btn-mark' : 'btn-primary'} btn-lg wide" data-act="subj" data-v="${k}">${done ? T('ex_cta_done') : T(k === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </article>`;
+  };
+  const stats = (h, note, arr) => `<div class="stats-block"><div class="sec-head sm"><h3>${T(h)}</h3><p class="src">${T(note)}</p></div><div class="stats2">${arr.map(s => `<div class="stat2"><b>${String(s.p).replace('.', ',')}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div></div>`;
   return `<section class="hero2">
     <div class="wrap hero2-in">
     <div class="hero2-txt">
-      <p class="hero2-eyebrow">${n > 0 ? `<span class="days"><b>${n}</b> ${daysWord(n)} ${T('hero2_days')}</span>` : ''}<span>${T('eyebrow', { date: dateLong(CONFIG.examDate) })}</span></p>
+      <p class="hero2-eyebrow">${n > 0 ? `<span class="days"><b>${n}</b> ${daysWord(n)} ${T('hero2_days')}</span>` : ''}<span>${T('subj_mat')} ${dateShort(CONFIG.examDate)} · ${T('subj_dab')} ${dateShort(CONFIG.sciDate)}</span></p>
       <h1>${T('hero2_h')}</h1>
       <p class="hero2-lead">${T('hero2_p')}</p>
-      <div class="hero2-cta"><a class="btn btn-primary btn-xl" href="#pieteikums">${T('hero_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><button type="button" class="btn btn-secondary btn-xl" data-act="heroPlay"><svg class="play-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>${T('hero2_watch')}</button></div>
+      <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><button type="button" class="btn btn-secondary btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div>
       <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
     </div>
     <figure class="hero2-vid">
@@ -2191,9 +2520,13 @@ function viewLanding() {
         <video id="hero-video" preload="none" playsinline poster="${v}-hero.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video>
         <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
       </div>
-      <figcaption><span class="vid-tag">${L(topicById('nev'))} · 2:53</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
+      <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · 2:53</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
     </figure>
     </div>
+  </section>
+  <section class="wrap sec subj-sec" id="prieksmeti">
+    <div class="sec-head"><h2>${T('subj_pick_h')}</h2><p>${T('subj_pick_p')}</p></div>
+    <div class="subj-grid">${subjCard('mat', 'subj_mat_d')}${subjCard('dab', 'subj_dab_d')}</div>
   </section>
   <section class="band-dark" id="urok">
     <div class="wrap show">
@@ -2201,14 +2534,15 @@ function viewLanding() {
         <h2>${T('show_h')}</h2>
         <p>${T('show_p')}</p>
         <p class="show-more">${T('show_more')}</p>
-        <ul class="show-chips">${TOPICS.filter(t => !VIDEOS[t.id]).map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+        <ul class="show-chips">${MAT.TOPICS.filter(t => !MAT.VIDEOS[t.id]).map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
       </div>
-      <ul class="show-vids">${TOPICS.filter(t => VIDEOS[t.id]).map(t => `<li><button type="button" class="vcard" data-act="playVid" data-t="${t.id}"><span class="vthumb"><img src="video/${t.id}-${state.lang}-hero.jpg" alt="" loading="lazy" width="640" height="360"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span></span><span class="vmeta"><b>${L(t)}</b><span>${T('show_play')} · ~3 ${state.lang === 'ru' ? 'мин' : 'min'}</span></span></button></li>`).join('')}</ul>
+      <ul class="show-vids">${MAT.TOPICS.filter(t => MAT.VIDEOS[t.id]).map(t => `<li><button type="button" class="vcard" data-act="playVid" data-t="${t.id}"><span class="vthumb"><img src="video/${t.id}-${state.lang}-hero.jpg" alt="" loading="lazy" width="640" height="360"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span></span><span class="vmeta"><b>${L(t)}</b><span>${T('subj_mat')} · ~3 ${state.lang === 'ru' ? 'мин' : 'min'}</span></span></button></li>`).join('')}</ul>
     </div>
   </section>
   <section class="wrap sec">
-    <div class="sec-head"><h2>${T('stats_h')}</h2><p class="src">${T('stats_note')}</p></div>
-    <div class="stats2">${EXAM_STATS.map(s => `<div class="stat2"><b>${s.p}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div>
+    <div class="sec-head"><h2>${T('stats_h')}</h2></div>
+    ${stats('stats_dab_h', 'stats_dab_note', DAB.EXAM_STATS)}
+    ${stats('stats_mat_h', 'stats_mat_note', MAT.EXAM_STATS)}
   </section>
   <section class="wrap sec">
     <div class="sec-head"><h2>${T('how_h')}</h2></div>
@@ -2224,9 +2558,9 @@ function viewLanding() {
     <div class="faq-list">${T('faq').map(q => `<details><summary>${q[0]}</summary><p>${q[1].split('{launch}').join(dateLong(CONFIG.launchDate)).split('{d}').join(CONFIG.earlyDiscount)}</p></details>`).join('')}</div>
   </section>
   <section class="band-dark final">
-    <div class="wrap final-in"><div><h2>${T('final_h')}</h2><p>${T('final_p')}</p></div><a class="btn btn-mark btn-xl" href="#pieteikums">${T('hero_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="wrap final-in"><div><h2>${T('final_h')}</h2><p>${T('final_p')}</p></div><div class="final-btns"><button type="button" class="btn btn-mark btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}</button><button type="button" class="btn btn-ghost-d btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div></div>
   </section>
-  <div class="sticky-cta" id="sticky-cta" hidden><a class="btn btn-primary btn-xl" href="#pieteikums">${T('hero_cta')}</a></div>`;
+  <div class="sticky-cta" id="sticky-cta" hidden><a class="btn btn-primary btn-xl" href="#prieksmeti" data-act="toSubj">${T('subj_pick_h')}</a></div>`;
 }
 
 const INC_IC = ["<rect x=\"3\" y=\"5\" width=\"13\" height=\"14\" rx=\"3\"/><path d=\"M16 10l5-3v10l-5-3\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M8 12.5l2.8 2.8L16.5 9.5\"/>", "<path d=\"M7 3h7l5 5v13H7z\"/><path d=\"M14 3v5h5M10 13h6M10 17h4\"/>", "<path d=\"M12 3v3M12 18v3M3 12h3M18 12h3\"/><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"3\"/><path d=\"M10 12h4\"/>", "<path d=\"M4 20V10M10 20V4M16 20v-7M22 20H2\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>"];
@@ -2234,7 +2568,7 @@ function examMonths() { const a = new Date(CONFIG.launchDate), b = new Date(CONF
 function plansHTML() {
   const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
   const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(CONFIG.priceAll).split('{t}').join(m * CONFIG.priceAll)}</li>`).join('');
-  const card = (k, price, unit, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(CONFIG.examDate))}</p><p class="plan-price"><b>${price} €</b><span>${unit}</span></p><ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#pieteikums">${T('plan_cta')}</a></div>`;
+  const card = (k, price, unit, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(CONFIG.examDate))}</p><p class="plan-price"><b>${price} €</b><span>${unit}</span></p><ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#prieksmeti" data-act="toSubj">${T('plan_cta')}</a></div>`;
   return `<section class="wrap sec plans-sec" id="cenas">
     <div class="sec-head"><h2>${T('plans_h')}</h2><p>${T('plans_p')}</p></div>
     <div class="plans">
@@ -2242,6 +2576,7 @@ function plansHTML() {
       ${card('plan_all', CONFIG.priceAll, T('per_month'), 'plan_feat_all', T('plan_badge_all'), true)}
       ${card('plan_exam', CONFIG.priceExam, T('plan_once'), 'plan_feat_exam', save > 0 ? T('plan_badge_exam', { s: save }) : '', false)}
     </div>
+    <div class="plan-both"><div><h3>${T('plan_both')[0]}</h3><p>${T('plan_both')[1].split('{date}').join(dateLong(CONFIG.sciDate))}</p></div><p class="plan-price"><b>${CONFIG.priceBoth} €</b><span>${T('plan_once')}</span></p><span class="plan-badge">${T('plan_both_save', { s: 2 * CONFIG.priceExam - CONFIG.priceBoth })}</span></div>
     ${CONFIG.payLinks ? '' : `<p class="plans-early"><span class="dot" aria-hidden="true"></span>${T('plan_early', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p>`}
   </section>`;
 }
@@ -2284,7 +2619,7 @@ function viewTest() {
     </article>
     <div class="test-nav">
       <button type="button" class="btn btn-ghost" data-act="tprev" ${i === 0 ? 'disabled' : ''}>← ${T('prev')}</button>
-      <span class="nocalc">${T('test_nocalc')}</span>
+      <span class="nocalc">${T(state.subj === 'dab' ? 'test_calc' : 'test_nocalc')}</span>
       <button type="button" class="btn btn-primary" data-act="tnext" ${a == null ? 'disabled' : ''}>${i === DIAG.length - 1 ? T('finish') : T('next') + ' →'}</button>
     </div>
   </section>`;
@@ -2295,7 +2630,7 @@ function viewResults() {
   const n = DIAG.length, band = R.score <= 5 ? 0 : R.score <= 10 ? 1 : R.score <= 14 ? 2 : 3;
   const rows = R.order.map(id => {
     const t = topicById(id), p = R.per[id], st = R.status(id);
-    return `<li class="trow ${st}"><span class="ic">${t.ic}</span><div class="tname"><b>${L(t)}</b><small>${T('res_exam', { t: L(t.stat), p: t.stat.p })}</small></div>
+    return `<li class="trow ${st}"><span class="ic">${t.ic}</span><div class="tname"><b>${L(t)}</b>${t.stat ? `<small>${T('res_exam', { t: L(t.stat), p: t.stat.p })}</small>` : ''}</div>
       <span class="dots" aria-label="${p.c}/${p.n}">${Array.from({ length: p.n }, (_, k) => `<i class="${k < p.c ? 'on' : ''}"></i>`).join('')}</span>${pill(st)}</li>`;
   }).join('');
   const weak = R.weak;
@@ -2317,10 +2652,13 @@ function viewResults() {
     <div class="res-grid">
       <div class="sheet"><h2>${T('res_topics_h')}</h2><ul class="trows">${rows}</ul></div>
       <div class="sheet cta-card">
-        <h2>${T('res_demo_h')}</h2>
+        ${state.subj === 'dab' ? `<h2>${T('sub_h')}</h2><p>${T('res_dab_p')}</p>${weak.length ? `<ul class="chips">${weak.slice(0, 4).map(id => `<li><span class="chip">${L(topicById(id))}</span></li>`).join('')}</ul>` : ''}
+        <a class="btn btn-primary btn-lg wide" href="#abonements">${T('res_dab_btn')}</a>
+        <p class="muted small">${T('res_dab_sent')}</p>` : `<h2>${T('res_demo_h')}</h2>
         ${weak.length ? `<p>${T('res_demo_p')}</p><ul class="chips">${weak.slice(0, 4).map(id => `<li><a class="chip link" href="#demo-${id}">${L(topicById(id))}</a></li>`).join('')}</ul>` : `<p>${T('res_demo_all')}</p>`}
         <a class="btn btn-primary btn-lg wide" href="#demo">${T('res_demo_btn')}</a>
-        <p class="muted small">${CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>
+        <p class="muted small">${CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>`}
+        ${subjDone(state.subj === 'dab' ? 'mat' : 'dab') ? '' : `<p class="other-test">${T('res_other')} <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>`}
       </div>
     </div>
     ${surveyHTML()}
@@ -2474,14 +2812,15 @@ function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFI
 function viewSub() {
   const R = results();
   if (!Array.isArray(state.sel)) state.sel = R.weak.length ? R.weak.slice() : TOPICS.map(t => t.id);
-  const exam = state.plan === 'exam';
-  const n = exam ? TOPICS.length : state.sel.length, p = exam ? CONFIG.priceExam : price(n), capped = !exam && n * CONFIG.pricePerTopic > CONFIG.priceAll;
+  const both = state.plan === 'both', exam = state.plan === 'exam' || both;
+  const n = exam ? TOPICS.length : state.sel.length, p = both ? CONFIG.priceBoth : exam ? CONFIG.priceExam : price(n), capped = !exam && n * CONFIG.pricePerTopic > CONFIG.priceAll;
   const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
-  const link = CONFIG.payLinks ? (exam ? CONFIG.payLinks.exam : (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all)) : null;
+  const link = CONFIG.payLinks ? (both ? CONFIG.payLinks.both : exam ? CONFIG.payLinks.exam : (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all)) : null;
   const href = link && state.lead ? `${link}${link.includes('?') ? '&' : '?'}client_reference_id=${encodeURIComponent(state.lead.id)}${state.lead.email ? '&prefilled_email=' + encodeURIComponent(state.lead.email) : ''}` : link;
   return `<section class="wrap mid sub">
+    <p class="eyebrow">${T('sub_subj_h', { s: subjName(state.subj) })} · <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>
     <h1>${T('sub_h')}</h1><p class="lead">${T('sub_p')}</p>
-    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')}</button><button type="button" role="radio" aria-checked="${exam}" data-act="plan" data-v="exam">${T('sub_mode_exam')}${save > 0 ? ` <span class="seg-save">−${save} €</span>` : ''}</button></div>
+    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')}</button><button type="button" role="radio" aria-checked="${exam && !both}" data-act="plan" data-v="exam">${T('sub_mode_exam')}${save > 0 ? ` <span class="seg-save">−${save} €</span>` : ''}</button><button type="button" role="radio" aria-checked="${both}" data-act="plan" data-v="both">${T('sub_mode_both')} <span class="seg-save">${CONFIG.priceBoth} €</span></button></div>
     <div class="sub-grid">
       <div class="sheet">
         <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" data-sel="${id}" ${exam || state.sel.includes(id) ? 'checked' : ''} ${exam ? 'disabled' : ''}><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
@@ -2489,7 +2828,7 @@ function viewSub() {
       </div>
       <aside class="sheet price-card">
         <p class="price"><b>${p} €</b><span>${exam ? T('plan_once') : T('per_month')}</span></p>
-        ${exam ? `<p class="calc">${T('sub_exam_note', { date: dateLong(CONFIG.examDate) })}</p>${save > 0 ? `<p class="deal">${T('sub_exam_save', { n: m, pa: CONFIG.priceAll, s: save })}</p>` : ''}`
+        ${both ? `<p class="calc">${T('sub_both_note', { date: dateLong(CONFIG.sciDate) })}</p><p class="deal">${T('plan_both_save', { s: 2 * CONFIG.priceExam - CONFIG.priceBoth })}</p>` : exam ? `<p class="calc">${T('sub_exam_note', { date: dateLong(examDateOf(state.subj)) })}</p>${save > 0 ? `<p class="deal">${T('sub_exam_save', { n: m, pa: CONFIG.priceAll, s: save })}</p>` : ''}`
           : `<p class="calc">${n ? (capped ? T('sub_capped', { pa: CONFIG.priceAll }) : T('sub_calc', { n, pp: CONFIG.pricePerTopic })) : T('sub_pick_one')}</p>
         ${!capped && n < TOPICS.length ? `<p class="deal">${T('sub_all_deal', { pa: CONFIG.priceAll })}</p>` : ''}`}
         <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').filter((x, i) => !(exam && i === 5)).map(x => `<li>${x}</li>`).join('')}</ul>
@@ -2504,9 +2843,9 @@ function viewThanks() {
   const r = state.reserve || { topics: [] };
   return `<section class="wrap narrow">
     <div class="sheet thanks"><span class="big-check" aria-hidden="true">✓</span><h1>${T('thanks_h')}</h1>
-    <p class="lead">${T(r.plan === 'exam' ? 'thanks_p_exam' : 'thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
-    <p class="side-h">${T('thanks_topics')}</p><ul class="chips">${r.topics.map(id => `<li><span class="chip">${L(topicById(id))}</span></li>`).join('')}</ul>
-    <p class="price small-p"><b>${r.price} €</b> ${r.plan === 'exam' ? T('plan_once') : T('per_month')}</p>
+    <p class="lead">${T(r.plan === 'exam' || r.plan === 'both' ? 'thanks_p_exam' : 'thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
+    <p class="side-h">${T('thanks_topics')}</p><ul class="chips">${r.topics.map(id => [...MAT.TOPICS, ...DAB.TOPICS].find(t => t.id === id)).filter(Boolean).map(t => `<li><span class="chip">${L(t)}</span></li>`).join('')}</ul>
+    <p class="price small-p"><b>${r.price} €</b> ${r.plan === 'exam' || r.plan === 'both' ? T('plan_once') : T('per_month')}</p>
     <a class="btn btn-primary btn-lg" href="#demo">${T('thanks_back')}</a></div>
   </section>`;
 }
@@ -2530,6 +2869,7 @@ function route(keepScroll = false) {
   const preview = /[?&]preview\b/.test(location.search); // owner's look at the demo lessons without the test
   if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done && !(preview && want === 'demo')) want = state.lead ? 'tests' : 'pieteikums';
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
+  if (want === 'demo' && state.subj === 'dab') want = state.done ? 'abonements' : 'tests';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
   const y = window.scrollY;
   current = want;
@@ -2600,6 +2940,12 @@ const ACT = {
     try { navigator.clipboard.writeText(url).then(done, () => { copyText(url); done(); }); } catch (e) { copyText(url); done(); }
   },
   'share-native'() { try { navigator.share({ title: T('ex_h'), text: T('ex_share_text'), url: shareUrl('native') }).catch(() => { }); } catch (e) { } },
+  subj(b) {
+    setSubject(b.dataset.v);
+    location.hash = !state.lead ? 'pieteikums' : state.done ? 'rezultati' : 'tests';
+    if (location.hash === '#' + current) rerender();
+  },
+  toSubj(b, e) { e.preventDefault(); const el = $('#prieksmeti'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
   heroPlay() {
     const vid = $('#hero-video'); if (!vid) return;
     vid.controls = true; vid.closest('.hero2-vid').classList.add('playing'); vid.play().catch(() => {});
@@ -2621,7 +2967,7 @@ const ACT = {
     if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
     state.done = true; save();
     const R = results();
-    if (!state.sentResults) { send('results', { code: answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
+    if (!state.sentResults) { send('results', { subj: state.subj, code: (state.subj === 'dab' ? 'D' : '') + answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
     location.hash = 'rezultati';
   },
   slide(b) {
@@ -2643,17 +2989,20 @@ const ACT = {
   hint(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="hintbox"><b>${T('hint')}:</b> ${L(t.hint)}</div>`; },
   sol(b) { const { t } = lessonTask(b.dataset.task); const fb = $('#fb-' + t.id); fb.innerHTML = `<div class="solbox">${L(t.sol || t.explain)}</div>`; },
   'sel-all'() { state.sel = TOPICS.map(t => t.id); save(); rerender(); },
-  plan(b) { state.plan = b.dataset.v === 'exam' ? 'exam' : 'month'; save(); rerender(); },
+  plan(b) { state.plan = ['exam', 'both'].includes(b.dataset.v) ? b.dataset.v : 'month'; save(); rerender(); },
   reserve() {
-    const exam = state.plan === 'exam';
-    const topics = exam ? TOPICS.map(t => t.id) : state.sel || [];
+    const plan = state.plan === 'both' ? 'both' : state.plan === 'exam' ? 'exam' : 'month';
+    const topics = plan === 'both' ? [...MAT.TOPICS, ...DAB.TOPICS].map(t => t.id) : plan === 'exam' ? TOPICS.map(t => t.id) : state.sel || [];
     if (!topics.length) return;
-    const p = exam ? CONFIG.priceExam : price(topics.length);
-    state.reserve = { topics: topics.slice(), price: p, plan: exam ? 'exam' : 'month', at: new Date().toISOString() }; save();
-    send('reserve', { topics, price: p, plan: exam ? 'exam' : 'month' });
+    const p = plan === 'both' ? CONFIG.priceBoth : plan === 'exam' ? CONFIG.priceExam : price(topics.length);
+    state.reserve = { topics: topics.slice(), price: p, plan, subj: state.subj, at: new Date().toISOString() }; save();
+    send('reserve', { topics, price: p, plan, subj: state.subj });
     location.hash = 'paldies';
   },
-  checkout() { const exam = state.plan === 'exam'; send('checkout', { topics: exam ? TOPICS.map(t => t.id) : state.sel, price: exam ? CONFIG.priceExam : price((state.sel || []).length), plan: exam ? 'exam' : 'month' }); },
+  checkout() {
+    const plan = state.plan === 'both' ? 'both' : state.plan === 'exam' ? 'exam' : 'month';
+    send('checkout', { subj: state.subj, plan, topics: plan === 'month' ? state.sel : TOPICS.map(t => t.id), price: plan === 'both' ? CONFIG.priceBoth : plan === 'exam' ? CONFIG.priceExam : price((state.sel || []).length) });
+  },
   playVid(b) {
     const id = b.dataset.t, v = `video/${id}-${state.lang}`, m = $('#modal');
     m.innerHTML = `<div class="modal-card vmodal" role="dialog" aria-modal="true" aria-label="${esc(L(topicById(id)))}"><div class="modal-top"><h2>${L(topicById(id))}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><video controls autoplay playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video></div>`;
@@ -2743,13 +3092,17 @@ function submitLead(f) {
 // ---------- start ----------
 function boot() {
   load();
+  if (!state.bySubj) state.bySubj = {};
+  applySubject();
   try {
     const q = new URLSearchParams(location.search);
     const l = q.get('l'); if (l === 'lv' || l === 'ru') state.lang = l;
+    const sj = q.get('s'); if (sj === 'mat' || sj === 'dab') setSubject(sj);
     const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { const v = q.get(k); if (v) utm[k] = v.slice(0, 60); });
     if (Object.keys(utm).length && !state.utm) state.utm = utm;
     const r = q.get('r'), id = q.get('id');
-    if (r && new RegExp(`^[0-4]{${DIAG.length}}$`).test(r)) {
+    if (r && new RegExp(`^[0-4]{${MAT.DIAG.length}}$`).test(r)) {
+      setSubject('mat');
       state.answers = r.split('').map(Number); state.done = true; state.idx = DIAG.length - 1; state.sentResults = true;
       if (id && /^[0-9a-f-]{36}$/i.test(id)) state.lead = (state.lead && state.lead.id === id) ? state.lead : { id };
     }
