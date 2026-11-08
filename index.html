@@ -798,6 +798,32 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 .vid-note { white-space: normal; text-align: right; max-width: 62%; line-height: 1.05; }
 @media (max-width: 860px) { .vid-note { text-align: left; max-width: none; } }
 
+/* science lesson figures */
+.flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; }
+.flow-i { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--soft); border-radius: 12px; padding: 10px 14px; min-width: 96px; text-align: center; }
+.flow-i b { font-size: 17px; font-weight: 650; }
+.flow-i small { color: var(--muted); font-size: 13px; }
+.flow-i.hl { background: color-mix(in srgb, var(--accent) 14%, var(--paper, #fff)); box-shadow: inset 0 0 0 2px var(--accent); }
+.flow-ar { color: var(--accent); font-size: 22px; font-weight: 700; }
+.pyr { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; max-width: 520px; margin: 0 auto; }
+.pyr div { min-width: 170px; background: var(--soft); border-radius: 10px; padding: 8px 10px; text-align: center; font-size: 16px; }
+.pyr div:last-child { background: color-mix(in srgb, var(--accent) 14%, var(--paper, #fff)); }
+.pyr small { color: var(--muted); }
+.dtab { font-size: 16px; }
+.dtab th, .dtab td { padding: 7px 12px; }
+@media (max-width: 560px) {
+  .flow { flex-direction: column; }
+  .flow-ar { transform: rotate(90deg); line-height: 1; }
+  .flow-i { width: 100%; }
+  .dtab { font-size: 14px; }
+  .dtab th, .dtab td { padding: 6px 6px; }
+}
+@media (max-width: 560px) {
+  .flow { gap: 2px; }
+  .flow-i { padding: 6px 10px; flex-direction: row; justify-content: center; gap: 8px; }
+  .formulas b { font-size: 16px; overflow-wrap: anywhere; text-align: center; }
+}
+
 </style>
 </head>
 <body>
@@ -824,6 +850,7 @@ const CONFIG = {
   priceExam: 69,              // € once: all topics of one subject until the exam
   priceBoth: 99,              // € once: both subjects until the exams
   sciDate: '2027-06-02',      // centralised exam in natural sciences
+  sciScoring: false,          // true once the Apps Script with the science answer key is deployed
   examDate: '2027-05-25',
   launchDate: '2026-12-15',
   earlyDiscount: 50,          // % off the first month for reservations
@@ -894,6 +921,7 @@ const I18N = {
     subj_switch: 'Mainīt priekšmetu',
     subj_lessons: 'video nodarbības',
     subj_soon: 'nodarbības drīzumā',
+    subj_demos: 'demo nodarbības ar uzdevumiem',
     stats_mat_h: 'Matemātika: kur zaudē punktus',
     stats_mat_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.',
     stats_dab_h: 'Dabaszinātnes: vājākā vieta valstī',
@@ -1154,6 +1182,7 @@ const I18N = {
     subj_switch: 'Сменить предмет',
     subj_lessons: 'видеоуроки',
     subj_soon: 'уроки скоро',
+    subj_demos: 'демо-уроков с задачами',
     stats_mat_h: 'Математика: где теряют баллы',
     stats_mat_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: VIAA.',
     stats_dab_h: 'Естественные науки: самое слабое место в стране',
@@ -1725,7 +1754,7 @@ let DIAG = [
 ];
 
 // ---------- Demo lessons ----------
-const LESSONS = {
+let LESSONS = {
   nev: {
     title: { lv: 'Nevienādības: no skaitļu ass līdz sistēmai', ru: 'Неравенства: от числовой прямой до системы' }, min: 12,
     slides: [
@@ -2175,7 +2204,7 @@ const LESSONS = {
 };
 
 // math data kept aside so the page can switch subjects (see setSubject in app.js)
-const MAT = { TOPICS, DIAG, EXAM_STATS, VIDEOS };
+const MAT = { TOPICS, DIAG, EXAM_STATS, VIDEOS, LESSONS };
 
 // ---------- Dabaszinātnes (natural sciences): topics and diagnostic test (LV + RU) ----------
 // Modelled on the VIAA sample of the 2027 centralised exam (Paraugs, 2026): 30 test tasks
@@ -2362,7 +2391,483 @@ const DAB_DIAG = [
     explain: { lv: 'Kritums: −20, −15, −10 °C — katru reizi par 5 mazāks. Nākamais būs ap −5 °C: 35 − 5 = 30 °C. Ūdens tuvojas istabas temperatūrai.', ru: 'Падение: −20, −15, −10 °C — каждый раз на 5 меньше. Следующее — около −5 °C: 35 − 5 = 30 °C. Вода приближается к комнатной температуре.' } },
 ];
 
+// spread the right answers over A–D (the drafts mostly had them in B)
+[2, 1, 0, 3, 2, 0, 1, 3, 3, 1, 0, 2, 1, 3, 0, 2].forEach((pos, i) => {
+  const o = DAB_DIAG[i].opts, k = o.findIndex(x => x.ok);
+  if (k !== pos) { const [right] = o.splice(k, 1); o.splice(pos, 0, right); }
+});
 const DAB = { TOPICS: DAB_TOPICS, DIAG: DAB_DIAG, EXAM_STATS: DAB_STATS, VIDEOS: {} };
+
+// ---------- Dabaszinātnes: demo lessons ----------
+// small HTML figure helpers (same look as the math figures)
+const FLOW = items => `<div class="flow">${items.map((x, i) => `${i ? '<span class="flow-ar" aria-hidden="true">→</span>' : ''}<span class="flow-i${x.hl ? ' hl' : ''}"><b>${x.t}</b>${x.s ? `<small>${x.s}</small>` : ''}</span>`).join('')}</div>`;
+const TBL = (head, rows) => `<table class="vals dtab"><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(r => `<tr>${r.map((c, i) => (i ? `<td>${c}</td>` : `<th>${c}</th>`)).join('')}</tr>`).join('')}</tbody></table>`;
+const CARDS = items => `<div class="formulas">${items.map(x => `<div><b>${x.b}</b><span class="lv-term">${x.s}</span></div>`).join('')}</div>`;
+const LL = (lv, ru) => (typeof state !== 'undefined' && state.lang === 'ru' ? ru : lv);
+
+function leverFig(f1, l1, f2, l2) {
+  const cx = 230, k = 3, y = 70, xl = cx - l1 * k, xr = cx + l2 * k;
+  return SV.svg(460, 190,
+    SV.ln(xl - 10, y, xr + 10, y, 'st thick') +
+    SV.path(`M${cx - 18},${y + 34} L${cx},${y + 4} L${cx + 18},${y + 34} Z`, 'st solid') +
+    SV.ln(xl, y, xl, y + 52, 'st thin') + `<rect x="${xl - 22}" y="${y + 52}" width="44" height="34" rx="6" class="st solid"/>` + SV.tx(xl, y + 75, f1 + LL(' N', ' Н')) +
+    SV.ln(xr, y, xr, y + 52, 'st thin') + `<rect x="${xr - 18}" y="${y + 52}" width="36" height="28" rx="6" class="st solid"/>` + SV.tx(xr, y + 72, f2 + LL(' N', ' Н')) +
+    SV.ln(xl, y - 18, cx, y - 18, 'st thin') + SV.tx((xl + cx) / 2, y - 26, l1 + LL(' cm', ' см'), 'sm') +
+    SV.ln(cx, y - 18, xr, y - 18, 'st thin') + SV.tx((cx + xr) / 2, y - 26, l2 + LL(' cm', ' см'), 'sm'),
+    'svira');
+}
+function heatFig() {
+  // temperature–time curve of ice → water → steam
+  const X = t => 50 + t * 34, Y = T => 170 - (T + 20) * 1.15;
+  const pts = [[0, -20], [2, 0], [5, 0], [8, 100], [11, 100], [12, 115]];
+  return SV.svg(500, 210,
+    SV.ln(50, 185, 480, 185, 'axis') + SV.ln(50, 185, 50, 10, 'axis') + SV.tx(474, 202, LL('laiks', 'время'), 'xs', 'end') + SV.tx(56, 14, 't, °C', 'xs', 'start') +
+    SV.ln(50, Y(0), 480, Y(0), 'grid') + SV.tx(44, Y(0) + 5, '0', 'xs', 'end') + SV.ln(50, Y(100), 480, Y(100), 'grid') + SV.tx(44, Y(100) + 5, '100', 'xs', 'end') +
+    SV.poly(pts.map(([t, T]) => [X(t), Y(T)]), 'st acc') +
+    SV.tx(X(3.5), Y(0) - 10, LL('kūst', 'плавится'), 'sm') + SV.tx(X(9.5), Y(100) - 10, LL('vārās', 'кипит'), 'sm') +
+    SV.tx(X(1) - 4, Y(-10) - 10, LL('ledus', 'лёд'), 'xs', 'end') + SV.tx(X(6.6), Y(50) + 4, LL('ūdens', 'вода'), 'xs', 'start'),
+    'kušanas grafiks');
+}
+function coolFig(data) {
+  const X = t => 60 + t * 10, Y = T => 175 - T * 1.8;
+  return SV.svg(500, 210,
+    SV.ln(60, 175, 480, 175, 'axis') + SV.ln(60, 175, 60, 10, 'axis') + SV.tx(480, 206, LL('laiks, min', 'время, мин'), 'xs', 'end') + SV.tx(66, 14, 't, °C', 'xs', 'start') +
+    [0, 10, 20, 30, 40].map(t => SV.tx(X(t), 192, t, 'xs')).join('') + [20, 40, 60, 80].map(T => SV.ln(60, Y(T), 480, Y(T), 'grid') + SV.tx(54, Y(T) + 4, T, 'xs', 'end')).join('') +
+    SV.path('M' + data.map(([t, T]) => `${X(t)},${Y(T)}`).join(' L'), 'st acc') +
+    data.map(([t, T]) => SV.dot(X(t), Y(T), 5)).join(''),
+    'atdzišanas grafiks');
+}
+
+const DAB_LESSONS = {
+  cilv: {
+    title: { lv: 'Asinsrite, elpošana un imunitāte', ru: 'Кровообращение, дыхание и иммунитет' }, min: 12,
+    slides: [
+      { h: { lv: 'Sirds ir sūknis', ru: 'Сердце — это насос' },
+        body: { lv: 'Kreisais kambaris izspiež asinis aortā — sākas lielais asinsrites loks: artērijas → kapilāri (vielu maiņa šūnās) → vēnas → atpakaļ uz sirdi. Labais kambaris sūta asinis uz plaušām — tas ir mazais loks. Kreisā kambara siena ir visbiezākā, jo tas veic lielāko darbu.', ru: 'Левый желудочек выталкивает кровь в аорту — начинается большой круг кровообращения: артерии → капилляры (обмен веществ в клетках) → вены → обратно к сердцу. Правый желудочек отправляет кровь в лёгкие — это малый круг. Стенка левого желудочка самая толстая: он выполняет самую большую работу.' },
+        fig: () => FLOW([{ t: LL('Kreisais kambaris', 'Левый желудочек'), hl: true }, { t: LL('Artērijas', 'Артерии'), s: LL('prom no sirds', 'от сердца') }, { t: LL('Kapilāri', 'Капилляры'), s: LL('vielu maiņa', 'обмен веществ') }, { t: LL('Vēnas', 'Вены'), s: LL('uz sirdi', 'к сердцу') }]) },
+      { h: { lv: 'Artērijas, vēnas un kapilāri', ru: 'Артерии, вены и капилляры' },
+        body: { lv: 'Eksāmenā bieži jautā, ar ko asinsvadi atšķiras. Artērijās ir augsts spiediens, tāpēc to sienas ir biezas un elastīgas. Vēnās spiediens ir zems, un vārstuļi neļauj asinīm plūst atpakaļ. Kapilāru siena ir viena šūnu slāņa bieza — caur to notiek vielu maiņa.', ru: 'На экзамене часто спрашивают, чем отличаются сосуды. В артериях высокое давление, поэтому стенки толстые и упругие. В венах давление низкое, а клапаны не дают крови течь назад. Стенка капилляра толщиной в один слой клеток — через неё идёт обмен веществ.' },
+        fig: () => TBL(['', LL('Virziens', 'Куда'), LL('Siena', 'Стенка')], [[LL('Artērijas', 'Артерии'), LL('prom no sirds', 'от сердца'), LL('bieza, elastīga', 'толстая, упругая')], [LL('Vēnas', 'Вены'), LL('uz sirdi', 'к сердцу'), LL('plānāka, vārstuļi', 'тоньше, клапаны')], [LL('Kapilāri', 'Капилляры'), LL('starp tām', 'между ними'), LL('1 šūnu slānis', '1 слой клеток')]]) },
+      { h: { lv: 'Liela virsma = ātra vielu maiņa', ru: 'Большая поверхность = быстрый обмен' },
+        body: { lv: 'Plaušās ir miljoniem alveolu, tievajā zarnā — bārkstiņas. Abas uzbūves palielina virsmu: jo lielāka virsma, jo ātrāk skābeklis nonāk asinīs vai barības vielas uzsūcas. 2026. gada darbā uzdevumu par tievās zarnas uzbūvi atrisināja ļoti maz skolēnu.', ru: 'В лёгких миллионы альвеол, в тонкой кишке — ворсинки. Обе структуры увеличивают поверхность: чем она больше, тем быстрее кислород попадает в кровь, а питательные вещества всасываются. В работе 2026 года задачу о строении тонкой кишки решили очень немногие.' },
+        fig: () => CARDS([{ b: LL('Alveolas', 'Альвеолы'), s: LL('plaušas: O₂ asinīs, CO₂ ārā', 'лёгкие: O₂ в кровь, CO₂ наружу') }, { b: LL('Bārkstiņas', 'Ворсинки'), s: LL('tievā zarna: barības vielas asinīs', 'тонкая кишка: питательные вещества в кровь') }]) },
+      { h: { lv: 'Imunitāte', ru: 'Иммунитет' },
+        body: { lv: 'Aktīvā imunitāte: organisms pats ražo antivielas — pēc pārslimošanas (dabīgā) vai pēc vakcinācijas (mākslīgā). Pasīvā imunitāte: antivielas saņem gatavas — no mātes vai ar serumu. Antibiotikas iedarbojas uz baktērijām, nevis uz vīrusiem.', ru: 'Активный иммунитет: организм сам вырабатывает антитела — после болезни (естественный) или после прививки (искусственный). Пассивный: антитела получают готовыми — от матери или с сывороткой. Антибиотики действуют на бактерии, а не на вирусы.' },
+        fig: () => TBL(['', LL('Dabīgā', 'Естественный'), LL('Mākslīgā', 'Искусственный')], [[LL('Aktīvā', 'Активный'), LL('pārslimo', 'переболел'), LL('vakcīna', 'прививка')], [LL('Pasīvā', 'Пассивный'), LL('no mātes', 'от матери'), LL('serums', 'сыворотка')]]) },
+    ],
+    example: {
+      task: { lv: 'Pulss mierā ir 70 reizes minūtē, pēc 20 pietupieniem — 120, pēc 2 minūšu atpūtas — 85. Raksturo pulsa izmaiņas un paskaidro tās.', ru: 'Пульс в покое — 70 ударов в минуту, после 20 приседаний — 120, после 2 минут отдыха — 85. Опиши изменения пульса и объясни их.' },
+      steps: [
+        { lv: 'Nolasi datus un izmanto skaitļus: slodzes laikā pulss pieauga no 70 līdz 120, tas ir par 50 reizēm minūtē.', ru: 'Прочитай данные и используй числа: при нагрузке пульс вырос с 70 до 120, то есть на 50 ударов в минуту.' },
+        { lv: 'Paskaidro cēloni: strādājošiem muskuļiem vajag vairāk skābekļa un glikozes, tāpēc sirds sūknē asinis ātrāk.', ru: 'Объясни причину: работающим мышцам нужно больше кислорода и глюкозы, поэтому сердце качает кровь быстрее.' },
+        { lv: 'Raksturo atjaunošanos: pēc atpūtas pulss samazinājās līdz 85 un tuvojas miera stāvoklim (70).', ru: 'Опиши восстановление: после отдыха пульс снизился до 85 и приближается к состоянию покоя (70).' },
+        { lv: 'Eksāmenā pilnu punktu skaitu dod atbilde, kurā ir gan skaitļi no tabulas, gan skaidrojums.', ru: 'На экзамене полный балл дают за ответ, в котором есть и числа из таблицы, и объяснение.' },
+      ] },
+    tasks: [
+      { id: 'xc1', type: 'mc', q: { lv: 'Kura sirds daļa izdzen asinis lielajā asinsrites lokā?', ru: 'Какая часть сердца выталкивает кровь в большой круг кровообращения?' },
+        opts: [
+          { t: { lv: 'labais kambaris', ru: 'правый желудочек' }, fb: { lv: 'Labais kambaris sūta asinis uz plaušām — mazajā lokā.', ru: 'Правый желудочек отправляет кровь в лёгкие — в малый круг.' } },
+          { t: { lv: 'kreisais kambaris', ru: 'левый желудочек' }, ok: true },
+          { t: { lv: 'kreisais priekškambaris', ru: 'левое предсердие' }, fb: { lv: 'Priekškambari asinis saņem, nevis izdzen lielajā lokā.', ru: 'Предсердия кровь принимают, а не выталкивают в большой круг.' } },
+          { t: { lv: 'labais priekškambaris', ru: 'правое предсердие' }, fb: { lv: 'Labajā priekškambarī ieplūst asinis no ķermeņa.', ru: 'В правое предсердие поступает кровь от тела.' } },
+        ],
+        explain: { lv: 'Kreisais kambaris → aorta → lielais asinsrites loks. Tāpēc tā siena ir visbiezākā.', ru: 'Левый желудочек → аорта → большой круг. Поэтому его стенка самая толстая.' } },
+      { id: 'xc2', type: 'mc', q: { lv: 'Kāpēc tievās zarnas iekšējā virsma ir klāta ar bārkstiņām?', ru: 'Зачем внутренняя поверхность тонкой кишки покрыта ворсинками?' },
+        opts: [
+          { t: { lv: 'lai sasmalcinātu barību', ru: 'чтобы измельчать пищу' }, fb: { lv: 'Barību sasmalcina zobi un kuņģa kustības.', ru: 'Пищу измельчают зубы и движения желудка.' } },
+          { t: { lv: 'lai izdalītu žulti', ru: 'чтобы выделять желчь' }, fb: { lv: 'Žulti ražo aknas.', ru: 'Желчь вырабатывает печень.' } },
+          { t: { lv: 'lai palielinātu virsmu barības vielu uzsūkšanai', ru: 'чтобы увеличить поверхность для всасывания питательных веществ' }, ok: true },
+          { t: { lv: 'lai pārvietotu barību uz priekšu', ru: 'чтобы продвигать пищу дальше' }, fb: { lv: 'Barību pārvieto zarnu sienu muskuļi.', ru: 'Пищу продвигают мышцы стенок кишки.' } },
+        ],
+        explain: { lv: 'Bārkstiņas daudzkārt palielina virsmu, un barības vielas ātrāk uzsūcas asinīs.', ru: 'Ворсинки многократно увеличивают поверхность, и питательные вещества быстрее всасываются в кровь.' } },
+      { id: 'xc3', type: 'num', u: '%', q: { lv: 'Pulss mierā ir 72 reizes minūtē, pēc skriešanas — 126. Par cik procentiem pulss palielinājās?', ru: 'Пульс в покое — 72 удара в минуту, после бега — 126. На сколько процентов вырос пульс?' }, ans: 75,
+        wrong: [
+          { v: 54, fb: { lv: '54 ir starpība reizēs minūtē, nevis procenti: 54 : 72 = 0,75.', ru: '54 — разница в ударах, а не проценты: 54 : 72 = 0,75.' } },
+          { v: 42.9, fb: { lv: 'Procentus rēķina no sākuma vērtības (72), nevis no beigu vērtības.', ru: 'Проценты считают от начального значения (72), а не от конечного.' } },
+          { v: 175, fb: { lv: '126 ir 175 % no 72, bet pieaugums ir 175 − 100 = 75 %.', ru: '126 — это 175 % от 72, а рост — 175 − 100 = 75 %.' } },
+        ],
+        hint: { lv: 'Pieaugums : sākuma vērtība · 100 %', ru: 'Прирост : начальное значение · 100 %' },
+        sol: { lv: '(126 − 72) : 72 · 100 % = 54 : 72 · 100 % = 75 %', ru: '(126 − 72) : 72 · 100 % = 54 : 72 · 100 % = 75 %' } },
+    ],
+    course: { lv: ['Asinsrites loki un sirds darbs', 'Elpošana un gāzu maiņa', 'Gremošana un uzsūkšanās', 'Imunitāte un veselība', 'Datu analīze par organismu', 'Eksāmena tipa uzdevumi'],
+              ru: ['Круги кровообращения и работа сердца', 'Дыхание и газообмен', 'Пищеварение и всасывание', 'Иммунитет и здоровье', 'Анализ данных об организме', 'Задачи как на экзамене'] },
+    demo: [0, 1, 3],
+  },
+  eko: {
+    title: { lv: 'Barošanās ķēdes, ekosistēmas un vairošanās', ru: 'Пищевые цепи, экосистемы и размножение' }, min: 12,
+    slides: [
+      { h: { lv: 'Barošanās ķēde', ru: 'Пищевая цепь' },
+        body: { lv: 'Ķēde sākas ar producentu — augu, kas fotosintēzē pats veido organiskās vielas. Tālāk seko 1., 2. un 3. pakāpes patērētāji. Bultiņa rāda, kurp pāriet vielas un enerģija: no tā, ko apēd, uz to, kas ēd.', ru: 'Цепь начинается с продуцента — растения, которое само создаёт органические вещества при фотосинтезе. Дальше идут консументы 1, 2 и 3 порядка. Стрелка показывает, куда переходят вещества и энергия: от того, кого съели, к тому, кто ест.' },
+        fig: () => FLOW([{ t: LL('Zāle', 'Трава'), s: LL('producents', 'продуцент') }, { t: LL('Sienāzis', 'Кузнечик'), s: LL('1. pakāpe', '1-й порядок') }, { t: LL('Varde', 'Лягушка'), s: LL('2. pakāpe', '2-й порядок'), hl: true }, { t: LL('Gārnis', 'Цапля'), s: LL('3. pakāpe', '3-й порядок') }]) },
+      { h: { lv: 'Uz augšu enerģijas paliek mazāk', ru: 'Выше — меньше энергии' },
+        body: { lv: 'Uz nākamo pakāpi pāriet tikai apmēram 10 % enerģijas, pārējā tiek patērēta dzīvības procesiem un izdalās kā siltums. Tāpēc plēsēju ir daudz mazāk nekā augēdāju, un barošanās ķēdes ir īsas.', ru: 'На следующий уровень переходит только около 10 % энергии, остальное тратится на жизнь и уходит в виде тепла. Поэтому хищников намного меньше, чем растительноядных, а пищевые цепи короткие.' },
+        fig: () => `<div class="pyr">${[[`10 000 ${LL('kJ', 'кДж')}`, LL('producenti', 'продуценты')], [`1000 ${LL('kJ', 'кДж')}`, LL('1. pakāpe', '1-й порядок')], [`100 ${LL('kJ', 'кДж')}`, LL('2. pakāpe', '2-й порядок')], [`10 ${LL('kJ', 'кДж')}`, LL('3. pakāpe', '3-й порядок')]].reverse().map(([a, b], i) => `<div style="width:${40 + i * 20}%"><b>${a}</b> <small>${b}</small></div>`).join('')}</div>` },
+      { h: { lv: 'Barošanās tīkls un daudzveidība', ru: 'Пищевая сеть и разнообразие' },
+        body: { lv: 'Dabā ķēdes savijas tīklā. Ja izzūd viena suga, mainās arī tās barības un plēsēju skaits. Bioloģisko daudzveidību raksturo sugu skaits: jo vairāk sugu un saišu, jo stabilāka ekosistēma.', ru: 'В природе цепи сплетаются в сеть. Если исчезает один вид, меняется и численность его пищи и хищников. Биологическое разнообразие характеризует число видов: чем больше видов и связей, тем устойчивее экосистема.' },
+        fig: () => FLOW([{ t: LL('Aļģes', 'Водоросли') }, { t: LL('Dafnijas', 'Дафнии') }, { t: LL('Raudas', 'Плотва') }, { t: LL('Līdakas', 'Щуки'), hl: true }]) },
+      { h: { lv: 'Dzimumvairošanās un bezdzimumvairošanās', ru: 'Половое и бесполое размножение' },
+        body: { lv: 'Dzimumvairošanās: divi vecāki, apaugļošanās, pēcnācēji atšķiras — tas palīdz pielāgoties. Bezdzimumvairošanās: viens vecāks, pēcnācēju DNS ir tāda pati — tā ir ātra (dalīšanās, pumpurošanās, stīgas).', ru: 'Половое размножение: два родителя, оплодотворение, потомки различаются — это помогает приспосабливаться. Бесполое: один родитель, ДНК потомков такая же — это быстро (деление, почкование, усы).' },
+        fig: () => TBL(['', LL('Dzimum-', 'Половое'), LL('Bezdzimum-', 'Бесполое')], [[LL('Vecāki', 'Родители'), '2', '1'], [LL('Apaugļošanās', 'Оплодотворение'), LL('jā', 'да'), LL('nē', 'нет')], [LL('Pēcnācēja DNS', 'ДНК потомка'), LL('jauna kombinācija', 'новая комбинация'), LL('kā vecākam', 'как у родителя')]]) },
+    ],
+    example: {
+      task: { lv: 'Ezerā: aļģes → dafnijas → raudas → līdakas. Kas notiks ar aļģu daudzumu, ja izzvejos gandrīz visas līdakas?', ru: 'В озере: водоросли → дафнии → плотва → щуки. Что произойдёт с количеством водорослей, если выловить почти всех щук?' },
+      steps: [
+        { lv: 'Līdakas ēd raudas. Bez līdakām raudu kļūs vairāk.', ru: 'Щуки едят плотву. Без щук плотвы станет больше.' },
+        { lv: 'Raudas ēd dafnijas, tāpēc dafniju kļūs mazāk.', ru: 'Плотва ест дафний, поэтому дафний станет меньше.' },
+        { lv: 'Dafnijas ēd aļģes. Ja dafniju ir mazāk, aļģes apēd mazāk.', ru: 'Дафнии едят водоросли. Если дафний меньше, водорослей съедают меньше.' },
+        { lv: 'Atbilde: aļģu kļūs vairāk, ūdens var kļūt zaļāks. Ejot pa ķēdi soli pa solim, izmaiņa pārmaiņus mainās: vairāk → mazāk → vairāk.', ru: 'Ответ: водорослей станет больше, вода может позеленеть. Если идти по цепи шаг за шагом, изменение чередуется: больше → меньше → больше.' },
+      ] },
+    tasks: [
+      { id: 'xe1', type: 'mc', q: { lv: 'Kurš organisms ir producents?', ru: 'Какой организм является продуцентом?' },
+        opts: [
+          { t: { lv: 'baravika', ru: 'белый гриб' }, fb: { lv: 'Sēnes nefotosintezē — tās ir sadalītāji.', ru: 'Грибы не фотосинтезируют — это редуценты.' } },
+          { t: { lv: 'zaķis', ru: 'заяц' }, fb: { lv: 'Zaķis ēd augus — tas ir 1. pakāpes patērētājs.', ru: 'Заяц ест растения — это консумент 1-го порядка.' } },
+          { t: { lv: 'slieka', ru: 'дождевой червь' }, fb: { lv: 'Slieka pārstrādā atmirušās augu daļas — tā ir sadalītājs.', ru: 'Червь перерабатывает отмершие остатки растений — это редуцент.' } },
+          { t: { lv: 'kļava', ru: 'клён' }, ok: true },
+        ],
+        explain: { lv: 'Producenti ir augi: tie fotosintēzē veido organiskās vielas no CO₂ un ūdens.', ru: 'Продуценты — растения: при фотосинтезе они создают органические вещества из CO₂ и воды.' } },
+      { id: 'xe2', type: 'num', u: { lv: 'kJ', ru: 'кДж' }, q: { lv: 'Producentos uzkrāti 20 000 kJ enerģijas. Cik enerģijas aptuveni nonāks līdz 2. pakāpes patērētājiem? (Uz nākamo pakāpi pāriet 10 %.)', ru: 'В продуцентах накоплено 20 000 кДж энергии. Сколько примерно дойдёт до консументов 2-го порядка? (На следующий уровень переходит 10 %.)' }, ans: 200,
+        wrong: [
+          { v: 2000, fb: { lv: '2000 kJ saņem 1. pakāpes patērētāji. Līdz 2. pakāpei — vēl 10 % no tā.', ru: '2000 кДж получают консументы 1-го порядка. До 2-го — ещё 10 % от этого.' } },
+          { v: 18000, fb: { lv: 'Uz augšu pāriet 10 %, nevis 90 %.', ru: 'Вверх переходит 10 %, а не 90 %.' } },
+          { v: 20, fb: { lv: 'Tas būtu 3. pakāpes patērētājiem.', ru: 'Это было бы для консументов 3-го порядка.' } },
+        ],
+        hint: { lv: 'Producenti → 1. pakāpe → 2. pakāpe: divreiz pa 10 %.', ru: 'Продуценты → 1-й порядок → 2-й порядок: дважды по 10 %.' },
+        sol: { lv: '20 000 · 0,1 = 2000 kJ; 2000 · 0,1 = 200 kJ', ru: '20 000 · 0,1 = 2000 кДж; 2000 · 0,1 = 200 кДж' } },
+      { id: 'xe3', type: 'mc', q: { lv: 'Kurš rādītājs raksturo bioloģisko daudzveidību ekosistēmā?', ru: 'Какой показатель характеризует биологическое разнообразие экосистемы?' },
+        opts: [
+          { t: { lv: 'vienas sugas īpatņu skaits', ru: 'число особей одного вида' }, fb: { lv: 'Tā ir populācijas lielums, nevis daudzveidība.', ru: 'Это размер популяции, а не разнообразие.' } },
+          { t: { lv: 'sugu skaits', ru: 'число видов' }, ok: true },
+          { t: { lv: 'ūdens temperatūra', ru: 'температура воды' }, fb: { lv: 'Temperatūra ir nedzīvās dabas faktors.', ru: 'Температура — фактор неживой природы.' } },
+          { t: { lv: 'koku augstums', ru: 'высота деревьев' }, fb: { lv: 'Augstums neliecina par to, cik dažādu organismu ir ekosistēmā.', ru: 'Высота не говорит о том, сколько разных организмов в экосистеме.' } },
+        ],
+        explain: { lv: 'Daudzveidība = cik dažādu sugu ir ekosistēmā.', ru: 'Разнообразие — это сколько разных видов есть в экосистеме.' } },
+    ],
+    course: { lv: ['Barošanās ķēdes un tīkli', 'Enerģijas plūsma ekosistēmā', 'Bioloģiskā daudzveidība', 'Vairošanās un iedzimtība', 'Organismu klasifikācija', 'Eksāmena tipa uzdevumi'],
+              ru: ['Пищевые цепи и сети', 'Поток энергии в экосистеме', 'Биологическое разнообразие', 'Размножение и наследственность', 'Классификация организмов', 'Задачи как на экзамене'] },
+    demo: [0, 1, 3],
+  },
+  spek: {
+    title: { lv: 'Spēki, svira, darbs un enerģija', ru: 'Силы, рычаг, работа и энергия' }, min: 12,
+    slides: [
+      { h: { lv: 'Līdzsvaroti spēki', ru: 'Уравновешенные силы' },
+        body: { lv: 'Ja ķermenis atrodas miera stāvoklī vai kustas vienmērīgi pa taisni, uz to darbojošies spēki ir līdzsvaroti: pretēji vērsti spēki ir vienādi. Balons, kas lido nemainīgā augstumā ar nemainīgu ātrumu: celšanas spēks = smaguma spēks, vilces spēks = pretestības spēks.', ru: 'Если тело покоится или движется равномерно и прямолинейно, силы на него уравновешены: противоположные силы равны. Шар, который летит на постоянной высоте с постоянной скоростью: подъёмная сила = сила тяжести, сила тяги = сила сопротивления.' },
+        fig: () => CARDS([{ b: 'F↑ = F↓', s: LL('augstums nemainās', 'высота не меняется') }, { b: 'F→ = F←', s: LL('ātrums nemainās', 'скорость не меняется') }]) },
+      { h: { lv: 'Svira', ru: 'Рычаг' },
+        body: { lv: 'Svira ir līdzsvarā, ja F₁ · l₁ = F₂ · l₂. Jo garāks plecs, jo mazāks spēks vajadzīgs. Attēlā: 6 N · 20 cm = 2 N · 60 cm = 120.', ru: 'Рычаг в равновесии, если F₁ · l₁ = F₂ · l₂. Чем длиннее плечо, тем меньше нужна сила. На рисунке: 6 Н · 20 см = 2 Н · 60 см = 120.' },
+        fig: () => leverFig(6, 20, 2, 60) },
+      { h: { lv: 'Darbs un jauda', ru: 'Работа и мощность' },
+        body: { lv: 'Mehāniskais darbs A = F · s (J). Jauda P = A : t (W) — cik ātri darbs paveikts. Piemērs: 50 N smagu kasti paceļ 2 m augstu: A = 100 J; ja to izdara 4 sekundēs, P = 25 W.', ru: 'Механическая работа A = F · s (Дж). Мощность P = A : t (Вт) — как быстро выполнена работа. Пример: ящик весом 50 Н поднимают на 2 м: A = 100 Дж; если за 4 секунды, то P = 25 Вт.' },
+        fig: () => CARDS([{ b: 'A = F · s', s: LL('darbs, J', 'работа, Дж') }, { b: 'P = A : t', s: LL('jauda, W', 'мощность, Вт') }]) },
+      { h: { lv: 'Potenciālā un kinētiskā enerģija', ru: 'Потенциальная и кинетическая энергия' },
+        body: { lv: 'Eₚ = m · g · h — atkarīga no augstuma. Eₖ = m · v² : 2 — atkarīga no ātruma. Krītot potenciālā enerģija pārvēršas kinētiskajā; ja nav pretestības, kopējā enerģija nemainās. Eksāmenā g = 10 N/kg.', ru: 'Eₚ = m · g · h — зависит от высоты. Eₖ = m · v² : 2 — зависит от скорости. При падении потенциальная энергия переходит в кинетическую; без сопротивления полная энергия не меняется. На экзамене g = 10 Н/кг.' },
+        fig: () => CARDS([{ b: 'Eₚ = m · g · h', s: LL('augstums', 'высота') }, { b: 'Eₖ = m · v² : 2', s: LL('ātrums', 'скорость') }]) },
+    ],
+    example: {
+      task: { lv: 'Skolēns (50 kg) uzkāpj pa kāpnēm 6 m augstumā 12 sekundēs. Aprēķini paveikto darbu un jaudu. (g = 10 N/kg)', ru: 'Ученик (50 кг) поднимается по лестнице на высоту 6 м за 12 секунд. Найди выполненную работу и мощность. (g = 10 Н/кг)' },
+      steps: [
+        { lv: 'Spēks ir skolēna svars: F = m · g = 50 · 10 = 500 N.', ru: 'Сила — это вес ученика: F = m · g = 50 · 10 = 500 Н.' },
+        { lv: 'Darbs: A = F · h = 500 · 6 = 3000 J.', ru: 'Работа: A = F · h = 500 · 6 = 3000 Дж.' },
+        { lv: 'Jauda: P = A : t = 3000 : 12 = 250 W.', ru: 'Мощность: P = A : t = 3000 : 12 = 250 Вт.' },
+        { lv: 'Pārbaude ar mērvienībām: J : s = W. Atbilde: 3000 J un 250 W.', ru: 'Проверка единицами: Дж : с = Вт. Ответ: 3000 Дж и 250 Вт.' },
+      ] },
+    tasks: [
+      { id: 'xs1', type: 'num', u: { lv: 'N', ru: 'Н' }, q: { lv: 'Svira ir līdzsvarā. Vienā pusē 30 cm no atbalsta karājas 4 N smags atsvars. Cik smags atsvars jāpiekar otrā pusē 10 cm no atbalsta?', ru: 'Рычаг в равновесии. С одной стороны, в 30 см от опоры, висит груз 4 Н. Какой груз нужно подвесить с другой стороны, в 10 см от опоры?' }, ans: 12,
+        wrong: [
+          { v: 4 / 3, fb: { lv: 'Īsākajā plecā vajag lielāku spēku, nevis mazāku.', ru: 'На коротком плече нужна большая сила, а не меньшая.' } },
+          { v: 4, fb: { lv: 'Vienādi atsvari līdzsvarojas tikai pie vienādiem pleciem.', ru: 'Одинаковые грузы уравновешиваются только при равных плечах.' } },
+        ],
+        hint: { lv: 'F₁ · l₁ = F₂ · l₂', ru: 'F₁ · l₁ = F₂ · l₂' },
+        sol: { lv: '4 · 30 = F · 10 → F = 120 : 10 = 12 N', ru: '4 · 30 = F · 10 → F = 120 : 10 = 12 Н' } },
+      { id: 'xs2', type: 'num', u: { lv: 'J', ru: 'Дж' }, q: { lv: '2 kg smagu akmeni paceļ 5 m augstumā. Cik liela ir tā potenciālā enerģija? (g = 10 N/kg)', ru: 'Камень массой 2 кг поднимают на высоту 5 м. Какова его потенциальная энергия? (g = 10 Н/кг)' }, ans: 100,
+        wrong: [
+          { v: 10, fb: { lv: 'Aizmirsi g: E = 2 · 10 · 5.', ru: 'Забыт g: E = 2 · 10 · 5.' } },
+          { v: 50, fb: { lv: 'Aizmirsi masu: 10 · 5 = 50, vēl jāreizina ar 2.', ru: 'Забыта масса: 10 · 5 = 50, нужно ещё умножить на 2.' } },
+        ],
+        hint: { lv: 'Eₚ = m · g · h', ru: 'Eₚ = m · g · h' },
+        sol: { lv: 'Eₚ = 2 · 10 · 5 = 100 J', ru: 'Eₚ = 2 · 10 · 5 = 100 Дж' } },
+      { id: 'xs3', type: 'mc', q: { lv: 'Bumba krīt no galda (gaisa pretestību neievēro). Kas notiek ar tās enerģiju?', ru: 'Мяч падает со стола (сопротивление воздуха не учитываем). Что происходит с его энергией?' },
+        opts: [
+          { t: { lv: 'Eₚ un Eₖ samazinās', ru: 'Eₚ и Eₖ уменьшаются' }, fb: { lv: 'Ātrums krītot palielinās, tātad Eₖ aug.', ru: 'Скорость при падении растёт, значит, Eₖ увеличивается.' } },
+          { t: { lv: 'Eₚ palielinās, Eₖ samazinās', ru: 'Eₚ растёт, Eₖ уменьшается' }, fb: { lv: 'Augstums samazinās, tātad Eₚ samazinās.', ru: 'Высота уменьшается, значит, Eₚ уменьшается.' } },
+          { t: { lv: 'Eₚ samazinās, Eₖ palielinās', ru: 'Eₚ уменьшается, Eₖ растёт' }, ok: true },
+          { t: { lv: 'abas nemainās', ru: 'обе не меняются' }, fb: { lv: 'Nemainās to summa, bet katra atsevišķi mainās.', ru: 'Не меняется их сумма, а каждая по отдельности меняется.' } },
+        ],
+        explain: { lv: 'Augstums samazinās → Eₚ samazinās; ātrums aug → Eₖ aug. Kopējā enerģija saglabājas.', ru: 'Высота уменьшается → Eₚ уменьшается; скорость растёт → Eₖ растёт. Полная энергия сохраняется.' } },
+    ],
+    course: { lv: ['Spēki un līdzsvars', 'Svira un vienkāršie mehānismi', 'Spiediens un Arhimēda spēks', 'Darbs un jauda', 'Enerģijas pārvērtības', 'Eksāmena tipa uzdevumi'],
+              ru: ['Силы и равновесие', 'Рычаг и простые механизмы', 'Давление и сила Архимеда', 'Работа и мощность', 'Превращения энергии', 'Задачи как на экзамене'] },
+    demo: [0, 1, 3],
+  },
+  silt: {
+    title: { lv: 'Siltums, molekulas un agregātstāvokļi', ru: 'Тепло, молекулы и агрегатные состояния' }, min: 12,
+    slides: [
+      { h: { lv: 'Molekulas kustas', ru: 'Молекулы движутся' },
+        body: { lv: 'Jo augstāka temperatūra, jo ātrāk kustas molekulas. Sildot vielas izplešas: palielinās attālumi starp molekulām, bet pašas molekulas nekļūst lielākas. Atdziestot gāze saraujas — tāpēc balons aukstumā kļūst mazāks.', ru: 'Чем выше температура, тем быстрее движутся молекулы. При нагревании вещества расширяются: растут расстояния между молекулами, а сами молекулы не увеличиваются. При охлаждении газ сжимается — поэтому шарик на морозе становится меньше.' },
+        fig: () => CARDS([{ b: LL('Silts', 'Тепло'), s: LL('ātrāk, tālāk viena no otras', 'быстрее, дальше друг от друга') }, { b: LL('Auksts', 'Холодно'), s: LL('lēnāk, tuvāk', 'медленнее, ближе') }]) },
+      { h: { lv: 'Agregātstāvokļu maiņa', ru: 'Смена агрегатных состояний' },
+        body: { lv: 'Kušana: ciets → šķidrs. Sacietēšana: šķidrs → ciets. Iztvaikošana: šķidrs → gāze. Kondensācija: gāze → šķidrs. Tās ir fizikālas pārvērtības: jauna viela nerodas, un masa nemainās.', ru: 'Плавление: твёрдое → жидкое. Кристаллизация: жидкое → твёрдое. Испарение: жидкое → газ. Конденсация: газ → жидкое. Это физические явления: новое вещество не появляется, масса не меняется.' },
+        fig: () => FLOW([{ t: LL('Ciets', 'Твёрдое') }, { t: LL('Šķidrs', 'Жидкое'), s: LL('kušana', 'плавление') }, { t: LL('Gāze', 'Газ'), s: LL('iztvaikošana', 'испарение') }]) },
+      { h: { lv: 'Kušanas grafiks', ru: 'График плавления' },
+        body: { lv: 'Kamēr ledus kūst, temperatūra nemainās (0 °C) — grafikā tas ir horizontāls posms. Siltums tiek patērēts, lai sagrautu kristālrežģi. Tāpat ūdens vārīšanās laikā temperatūra paliek 100 °C.', ru: 'Пока лёд тает, температура не меняется (0 °C) — на графике это горизонтальный участок. Тепло уходит на разрушение кристаллической решётки. Так же при кипении вода остаётся при 100 °C.' },
+        fig: () => heatFig() },
+      { h: { lv: 'Siltuma pārnese', ru: 'Теплопередача' },
+        body: { lv: 'Siltumvadīšana: caur vielu (metāla karote karstā tējā). Konvekcija: siltais gaiss vai ūdens ceļas augšup. Starojums: siltums no Saules vai krāsns. Gaiss slikti vada siltumu — tāpēc dūnas un vilna labi silda: starp šķiedrām ir daudz gaisa.', ru: 'Теплопроводность: через вещество (металлическая ложка в горячем чае). Конвекция: тёплый воздух или вода поднимаются вверх. Излучение: тепло от Солнца или печки. Воздух плохо проводит тепло — поэтому пух и шерсть хорошо греют: между волокнами много воздуха.' },
+        fig: () => CARDS([{ b: LL('Vadīšana', 'Тепло\u00ADпроводность'), s: LL('metāla karote', 'металлическая ложка') }, { b: LL('Konvekcija', 'Конвекция'), s: LL('silts ceļas augšup', 'тёплое поднимается') }, { b: LL('Starojums', 'Излучение'), s: LL('Saule, krāsns', 'Солнце, печь') }, { b: LL('Izolācija', 'Изоляция'), s: LL('gaiss dūnās', 'воздух в пуху') }]) },
+    ],
+    example: {
+      task: { lv: 'Karstu ūdeni atstāj istabā. Mērījumi: 0 min — 90 °C, 10 min — 70 °C, 20 min — 55 °C, 30 min — 45 °C. Prognozē temperatūru pēc 40 minūtēm un pamato.', ru: 'Горячую воду оставили в комнате. Измерения: 0 мин — 90 °C, 10 мин — 70 °C, 20 мин — 55 °C, 30 мин — 45 °C. Спрогнозируй температуру через 40 минут и обоснуй.' },
+      fig: () => coolFig([[0, 90], [10, 70], [20, 55], [30, 45]]),
+      steps: [
+        { lv: 'Aprēķini kritumu katrās 10 minūtēs: −20, −15, −10 °C.', ru: 'Посчитай падение за каждые 10 минут: −20, −15, −10 °C.' },
+        { lv: 'Kritums katru reizi samazinās par 5, tātad nākamais būs ap −5 °C.', ru: 'Падение каждый раз уменьшается на 5, значит, следующее будет около −5 °C.' },
+        { lv: 'Prognoze: 45 − 5 = apmēram 40 °C.', ru: 'Прогноз: 45 − 5 = примерно 40 °C.' },
+        { lv: 'Pamatojums: jo mazāka temperatūru starpība ar istabu, jo lēnāk ūdens atdziest. Grafiks kļūst lēzenāks.', ru: 'Обоснование: чем меньше разница с температурой комнаты, тем медленнее вода остывает. График становится более пологим.' },
+      ] },
+    tasks: [
+      { id: 'xh1', type: 'mc', q: { lv: 'Grafikā: posmā 1–2 temperatūra aug, posmā 2–3 tā nemainās pie 0 °C, posmā 3–4 aug, posmā 4–5 nemainās pie 100 °C. Kurā posmā viela kūst?', ru: 'На графике: на участке 1–2 температура растёт, на 2–3 не меняется при 0 °C, на 3–4 растёт, на 4–5 не меняется при 100 °C. На каком участке вещество плавится?' },
+        opts: [
+          { t: '1–2', fb: { lv: 'Šeit sasilst ledus, tas vēl nekūst.', ru: 'Здесь нагревается лёд, он ещё не тает.' } },
+          { t: '2–3', ok: true },
+          { t: '3–4', fb: { lv: 'Šeit sasilst jau izkususī viela — ūdens.', ru: 'Здесь нагревается уже расплавленное вещество — вода.' } },
+          { t: '4–5', fb: { lv: 'Pie 100 °C ūdens vārās, nevis kūst.', ru: 'При 100 °C вода кипит, а не плавится.' } },
+        ],
+        explain: { lv: 'Kušana notiek nemainīgā temperatūrā: horizontālais posms pie 0 °C.', ru: 'Плавление идёт при постоянной температуре: горизонтальный участок при 0 °C.' } },
+      { id: 'xh2', type: 'mc', q: { lv: 'Noslēgtā traukā uz svariem izkūst ledus gabaliņš. Kas notiek ar svaru rādījumu?', ru: 'В закрытом сосуде на весах тает кусочек льда. Что происходит с показанием весов?' },
+        opts: [
+          { t: { lv: 'samazinās', ru: 'уменьшается' }, fb: { lv: 'Trauks ir noslēgts — nekas neizplūst, un masa saglabājas.', ru: 'Сосуд закрыт — ничего не уходит, масса сохраняется.' } },
+          { t: { lv: 'palielinās', ru: 'увеличивается' }, fb: { lv: 'Vielas nerodas no nekā — masa saglabājas.', ru: 'Вещество не возникает из ничего — масса сохраняется.' } },
+          { t: { lv: 'sākumā palielinās, tad samazinās', ru: 'сначала растёт, потом уменьшается' }, fb: { lv: 'Kušana ir fizikāla pārvērtība, masa visu laiku ir vienāda.', ru: 'Плавление — физическое явление, масса всё время одинакова.' } },
+          { t: { lv: 'nemainās', ru: 'не меняется' }, ok: true },
+        ],
+        explain: { lv: 'Kušana ir fizikāla pārvērtība. Noslēgtā traukā masa nemainās.', ru: 'Плавление — физическое явление. В закрытом сосуде масса не меняется.' } },
+      { id: 'xh3', type: 'mc', q: { lv: 'Kāpēc dūnu jaka labi uztur siltumu?', ru: 'Почему пуховая куртка хорошо сохраняет тепло?' },
+        opts: [
+          { t: { lv: 'starp dūnām ir daudz gaisa, kas slikti vada siltumu', ru: 'между пухом много воздуха, который плохо проводит тепло' }, ok: true },
+          { t: { lv: 'dūnas pašas izstrādā siltumu', ru: 'пух сам вырабатывает тепло' }, fb: { lv: 'Siltumu izstrādā cilvēka ķermenis, jaka to tikai aiztur.', ru: 'Тепло вырабатывает тело человека, куртка его только удерживает.' } },
+          { t: { lv: 'dūnas atstaro aukstumu', ru: 'пух отражает холод' }, fb: { lv: '«Aukstums» nav enerģija, ko var atstarot — siltums pāriet no silta uz aukstu.', ru: '«Холод» — не энергия, которую можно отразить: тепло переходит от тёплого к холодному.' } },
+          { t: { lv: 'dūnas ir ļoti smagas', ru: 'пух очень тяжёлый' }, fb: { lv: 'Dūnas ir vieglas; svarīgs ir gaiss starp tām.', ru: 'Пух лёгкий; важен воздух между пушинками.' } },
+        ],
+        explain: { lv: 'Gaiss ir slikts siltumvadītājs, tāpēc dūnu slānis samazina siltuma zudumus.', ru: 'Воздух плохо проводит тепло, поэтому слой пуха уменьшает потери тепла.' } },
+    ],
+    course: { lv: ['Molekulu kustība un temperatūra', 'Agregātstāvokļu maiņa', 'Kušanas un vārīšanās grafiki', 'Siltuma pārnese', 'Gaisma un spoguļi', 'Eksāmena tipa uzdevumi'],
+              ru: ['Движение молекул и температура', 'Смена агрегатных состояний', 'Графики плавления и кипения', 'Теплопередача', 'Свет и зеркала', 'Задачи как на экзамене'] },
+    demo: [0, 1, 2],
+  },
+  elek: {
+    title: { lv: 'Elektrība: Oma likums, jauda un enerģija', ru: 'Электричество: закон Ома, мощность и энергия' }, min: 12,
+    slides: [
+      { h: { lv: 'Trīs lielumi', ru: 'Три величины' },
+        body: { lv: 'Strāvas stiprums I mēra ampēros (A), ampērmetru slēdz virknē. Spriegums U mēra voltos (V), voltmetru slēdz paralēli. Pretestība R mēra omos (Ω).', ru: 'Сила тока I измеряется в амперах (А), амперметр включают последовательно. Напряжение U — в вольтах (В), вольтметр включают параллельно. Сопротивление R — в омах (Ом).' },
+        fig: () => TBL(['', LL('Mērvienība', 'Единица'), LL('Mēraparāts', 'Прибор')], [['I', 'A', LL('ampērmetrs, virknē', 'амперметр, последовательно')], ['U', 'V', LL('voltmetrs, paralēli', 'вольтметр, параллельно')], ['R', 'Ω', '—']]) },
+      { h: { lv: 'Oma likums', ru: 'Закон Ома' },
+        body: { lv: 'I = U : R. No tā: R = U : I un U = I · R. Piemērs: ja U = 12 V un I = 0,5 A, tad R = 12 : 0,5 = 24 Ω. Biežākā kļūda — sareizināt U · I: tā ir jauda, nevis pretestība.', ru: 'I = U : R. Отсюда: R = U : I и U = I · R. Пример: если U = 12 В и I = 0,5 А, то R = 12 : 0,5 = 24 Ом. Частая ошибка — перемножить U · I: это мощность, а не сопротивление.' },
+        fig: () => CARDS([{ b: 'I = U : R', s: LL('strāva', 'ток') }, { b: 'R = U : I', s: LL('pretestība', 'сопротивление') }, { b: 'U = I · R', s: LL('spriegums', 'напряжение') }, { b: 'P = U · I', s: LL('jauda', 'мощность') }]) },
+      { h: { lv: 'Jauda un enerģija', ru: 'Мощность и энергия' },
+        body: { lv: 'P = U · I (W). Patērētā enerģija E = P · t. Ja t ir sekundēs — enerģija džoulos; ja P ir kW un t stundās — kilovatstundās (kWh), kā rēķinā par elektrību. 60 W lampa 5 stundās: 0,06 kW · 5 h = 0,3 kWh.', ru: 'P = U · I (Вт). Потреблённая энергия E = P · t. Если t в секундах — энергия в джоулях; если P в кВт, а t в часах — в киловатт-часах (кВт·ч), как в счёте за электричество. Лампа 60 Вт за 5 часов: 0,06 кВт · 5 ч = 0,3 кВт·ч.' },
+        fig: () => CARDS([{ b: 'E = P · t', s: LL('W · s = J', 'Вт · с = Дж') }, { b: 'E = P · t', s: LL('kW · h = kWh', 'кВт · ч = кВт·ч') }]) },
+      { h: { lv: 'Virknes un paralēlais slēgums', ru: 'Последовательное и параллельное соединение' },
+        body: { lv: 'Virknē pretestības saskaita: R = R₁ + R₂, kopējā ir lielāka par katru. Paralēli kopējā pretestība ir mazāka par mazāko: divi 20 Ω rezistori paralēli dod 10 Ω. Šis jautājums bija VIAA eksāmena paraugā.', ru: 'Последовательно сопротивления складывают: R = R₁ + R₂, общее больше каждого. Параллельно общее сопротивление меньше меньшего: два резистора по 20 Ом параллельно дают 10 Ом. Этот вопрос был в образце экзамена VIAA.' },
+        fig: () => CARDS([{ b: '20 Ω + 20 Ω = 40 Ω', s: LL('virknē', 'последовательно') }, { b: '20 Ω ∥ 20 Ω = 10 Ω', s: LL('paralēli', 'параллельно') }]) },
+    ],
+    example: {
+      task: { lv: 'Krūzītes sildītājs: U = 5 V, P = 4 W. Aprēķini strāvas stiprumu, pretestību un 5 minūtēs patērēto enerģiju.', ru: 'Подогреватель для кружки: U = 5 В, P = 4 Вт. Найди силу тока, сопротивление и энергию за 5 минут.' },
+      steps: [
+        { lv: 'Strāva: I = P : U = 4 : 5 = 0,8 A.', ru: 'Ток: I = P : U = 4 : 5 = 0,8 А.' },
+        { lv: 'Pretestība: R = U : I = 5 : 0,8 = 6,25 Ω.', ru: 'Сопротивление: R = U : I = 5 : 0,8 = 6,25 Ом.' },
+        { lv: 'Laiku pārvērš sekundēs: 5 min = 300 s.', ru: 'Время переводим в секунды: 5 мин = 300 с.' },
+        { lv: 'Enerģija: E = P · t = 4 · 300 = 1200 J.', ru: 'Энергия: E = P · t = 4 · 300 = 1200 Дж.' },
+      ] },
+    tasks: [
+      { id: 'xl1', type: 'num', u: { lv: 'A', ru: 'А' }, q: { lv: 'Rezistoram ar pretestību 12 Ω pievadīts 6 V spriegums. Cik liels ir strāvas stiprums?', ru: 'К резистору сопротивлением 12 Ом приложено напряжение 6 В. Какова сила тока?' }, ans: 0.5,
+        wrong: [
+          { v: 72, fb: { lv: 'U un R nereizina: I = U : R.', ru: 'U и R не перемножают: I = U : R.' } },
+          { v: 2, fb: { lv: 'Dalījums otrādi: I = U : R = 6 : 12.', ru: 'Деление наоборот: I = U : R = 6 : 12.' } },
+        ],
+        hint: { lv: 'I = U : R', ru: 'I = U : R' },
+        sol: { lv: 'I = 6 : 12 = 0,5 A', ru: 'I = 6 : 12 = 0,5 А' } },
+      { id: 'xl2', type: 'num', u: { lv: 'kWh', ru: 'кВт·ч' }, q: { lv: '60 W lampa deg 5 stundas. Cik kilovatstundu elektroenerģijas tā patērē?', ru: 'Лампа 60 Вт горит 5 часов. Сколько киловатт-часов она потребляет?' }, ans: 0.3,
+        wrong: [
+          { v: 300, fb: { lv: '300 ir vatstundās (Wh). 1 kWh = 1000 Wh.', ru: '300 — это ватт-часы (Вт·ч). 1 кВт·ч = 1000 Вт·ч.' } },
+          { v: 12, fb: { lv: 'Jaudu reizina ar laiku, nevis dala: E = P · t.', ru: 'Мощность умножают на время, а не делят: E = P · t.' } },
+        ],
+        hint: { lv: '60 W = 0,06 kW', ru: '60 Вт = 0,06 кВт' },
+        sol: { lv: 'E = 0,06 kW · 5 h = 0,3 kWh', ru: 'E = 0,06 кВт · 5 ч = 0,3 кВт·ч' } },
+      { id: 'xl3', type: 'mc', q: { lv: 'Divi 20 Ω rezistori ir slēgti paralēli. Kāda ir to kopējā pretestība?', ru: 'Два резистора по 20 Ом соединены параллельно. Каково их общее сопротивление?' },
+        opts: [
+          { t: '40 Ω', fb: { lv: 'Tā būtu virknē. Paralēli kopējā pretestība ir mazāka.', ru: 'Так было бы при последовательном соединении. Параллельно общее меньше.' } },
+          { t: '20 Ω', fb: { lv: 'Paralēli kopējā pretestība ir mazāka par katru rezistoru.', ru: 'Параллельно общее сопротивление меньше каждого резистора.' } },
+          { t: '400 Ω', fb: { lv: 'Pretestības nereizina.', ru: 'Сопротивления не перемножают.' } },
+          { t: '10 Ω', ok: true },
+        ],
+        explain: { lv: 'Diviem vienādiem rezistoriem paralēli: R = R₁ : 2 = 20 : 2 = 10 Ω.', ru: 'Для двух одинаковых резисторов параллельно: R = R₁ : 2 = 20 : 2 = 10 Ом.' } },
+    ],
+    course: { lv: ['Strāva, spriegums un pretestība', 'Oma likums', 'Virknes un paralēlais slēgums', 'Elektriskā jauda un enerģija', 'Elektriskie lādiņi', 'Eksāmena tipa uzdevumi'],
+              ru: ['Ток, напряжение и сопротивление', 'Закон Ома', 'Последовательное и параллельное соединение', 'Электрическая мощность и энергия', 'Электрические заряды', 'Задачи как на экзамене'] },
+    demo: [0, 1, 3],
+  },
+  viel: {
+    title: { lv: 'Periodiskā tabula, formulas un vielu klases', ru: 'Таблица Менделеева, формулы и классы веществ' }, min: 12,
+    slides: [
+      { h: { lv: 'Periodiskā tabula', ru: 'Таблица Менделеева' },
+        body: { lv: 'Perioda numurs = elektronu slāņu skaits. A grupas numurs = ārējo elektronu skaits. Nātrijs: 3. periods, 1. grupa — viens ārējais elektrons, tāpēc tas ir ļoti aktīvs metāls. Grupā uz leju metālu aktivitāte pieaug: kālijs ir aktīvāks par nātriju, litijs — mazāk aktīvs.', ru: 'Номер периода = число электронных слоёв. Номер A-группы = число внешних электронов. Натрий: 3-й период, 1-я группа — один внешний электрон, поэтому это очень активный металл. Вниз по группе активность металлов растёт: калий активнее натрия, литий — менее активен.' },
+        fig: () => CARDS([{ b: LL('Periods', 'Период'), s: LL('elektronu slāņi', 'электронные слои') }, { b: LL('Grupa', 'Группа'), s: LL('ārējie elektroni', 'внешние электроны') }]) },
+      { h: { lv: 'Formula pēc vērtības', ru: 'Формула по валентности' },
+        body: { lv: 'Atrod abu vērtību mazāko kopīgo dalāmo un dala ar katru vērtību. Al(III) un O(II): MKD 6 → Al₂O₃. Ca(II) un Cl(I): MKD 2 → CaCl₂. Vērtību rāda arī nosaukums: slāpekļa(II) oksīds — NO.', ru: 'Находят наименьшее общее кратное валентностей и делят на каждую. Al(III) и O(II): НОК 6 → Al₂O₃. Ca(II) и Cl(I): НОК 2 → CaCl₂. Валентность видна и из названия: оксид азота(II) — NO.' },
+        fig: () => `<div class="m big center">Al<sup>III</sup> O<sup>II</sup> → 6 → Al₂O₃</div>` },
+      { h: { lv: 'Vielu klases', ru: 'Классы веществ' },
+        body: { lv: 'Oksīdi: elements + skābeklis (CO₂, Al₂O₃). Skābes: H + skābes atlikums (HCl, H₂SO₄, H₃PO₄). Bāzes: metāls + OH (NaOH, Ca(OH)₂). Sāļi: metāls + skābes atlikums (NaCl, K₂CO₃).', ru: 'Оксиды: элемент + кислород (CO₂, Al₂O₃). Кислоты: H + кислотный остаток (HCl, H₂SO₄, H₃PO₄). Основания: металл + OH (NaOH, Ca(OH)₂). Соли: металл + кислотный остаток (NaCl, K₂CO₃).' },
+        fig: () => CARDS([{ b: 'CO₂, Al₂O₃', s: LL('oksīdi', 'оксиды') }, { b: 'HCl, H₂SO₄', s: LL('skābes', 'кислоты') }, { b: 'NaOH, Ca(OH)₂', s: LL('bāzes', 'основания') }, { b: 'NaCl, K₂CO₃', s: LL('sāļi', 'соли') }]) },
+      { h: { lv: 'Organiskās vielas', ru: 'Органические вещества' },
+        body: { lv: 'Alkāni: CₙH₂ₙ₊₂. Metāns CH₄, etāns C₂H₆, propāns C₃H₈, butāns C₄H₁₀, pentāns C₅H₁₂. Jo garāka molekula, jo augstāka viršanas temperatūra: pentāns istabā ir šķidrs. Etanols (spirts) — C₂H₅OH.', ru: 'Алканы: CₙH₂ₙ₊₂. Метан CH₄, этан C₂H₆, пропан C₃H₈, бутан C₄H₁₀, пентан C₅H₁₂. Чем длиннее молекула, тем выше температура кипения: пентан при комнатной температуре жидкий. Этанол (спирт) — C₂H₅OH.' },
+        fig: () => TBL(['n', LL('Alkāns', 'Алкан'), LL('Formula', 'Формула')], [['1', LL('metāns', 'метан'), 'CH₄'], ['2', LL('etāns', 'этан'), 'C₂H₆'], ['3', LL('propāns', 'пропан'), 'C₃H₈'], ['4', LL('butāns', 'бутан'), 'C₄H₁₀']]) },
+    ],
+    example: {
+      task: { lv: 'Uzraksti fosfora(V) oksīda ķīmisko formulu.', ru: 'Напиши химическую формулу оксида фосфора(V).' },
+      steps: [
+        { lv: 'Vērtības: fosfors V (to rāda romiešu cipars nosaukumā), skābeklis vienmēr II.', ru: 'Валентности: фосфор V (это римская цифра в названии), кислород всегда II.' },
+        { lv: 'Mazākais kopīgais dalāmais: MKD(5, 2) = 10.', ru: 'Наименьшее общее кратное: НОК(5, 2) = 10.' },
+        { lv: 'Atomu skaits: P — 10 : 5 = 2, O — 10 : 2 = 5.', ru: 'Число атомов: P — 10 : 5 = 2, O — 10 : 2 = 5.' },
+        { lv: 'Formula: P₂O₅. Pārbaude: 2 · V = 10 un 5 · II = 10.', ru: 'Формула: P₂O₅. Проверка: 2 · V = 10 и 5 · II = 10.' },
+      ] },
+    tasks: [
+      { id: 'xv1', type: 'mc', q: { lv: 'Kura ir kalcija hlorīda formula?', ru: 'Какова формула хлорида кальция?' },
+        opts: [
+          { t: 'CaCl', fb: { lv: 'Kalcija vērtība ir II, hlora — I, tāpēc vajag divus hlora atomus.', ru: 'Валентность кальция II, хлора I, поэтому нужно два атома хлора.' } },
+          { t: 'CaCl₂', ok: true },
+          { t: 'Ca₂Cl', fb: { lv: 'Indeksi sajaukti vietām.', ru: 'Индексы перепутаны.' } },
+          { t: 'CaCl₃', fb: { lv: 'Kalcija vērtība ir II, nevis III.', ru: 'Валентность кальция II, а не III.' } },
+        ],
+        explain: { lv: 'Ca(II) un Cl(I): MKD 2 → CaCl₂.', ru: 'Ca(II) и Cl(I): НОК 2 → CaCl₂.' } },
+      { id: 'xv2', type: 'mc', q: { lv: 'Kurā grupā atrodas nātrijs, un cik ārējo elektronu tam ir?', ru: 'В какой группе находится натрий и сколько у него внешних электронов?' },
+        opts: [
+          { t: { lv: '3. grupa, 3 elektroni', ru: '3-я группа, 3 электрона' }, fb: { lv: '3 ir perioda numurs (elektronu slāņi), nevis grupa.', ru: '3 — это номер периода (слои), а не группа.' } },
+          { t: { lv: '1. grupa, 11 elektroni', ru: '1-я группа, 11 электронов' }, fb: { lv: '11 ir visu elektronu skaits; ārējais ir tikai viens.', ru: '11 — это все электроны; внешний только один.' } },
+          { t: { lv: '1. grupa, 1 elektrons', ru: '1-я группа, 1 электрон' }, ok: true },
+          { t: { lv: '11. grupa, 1 elektrons', ru: '11-я группа, 1 электрон' }, fb: { lv: '11 ir kārtas numurs, nevis grupa.', ru: '11 — порядковый номер, а не группа.' } },
+        ],
+        explain: { lv: 'Na: kārtas numurs 11, 3. periods, 1. grupa — 1 ārējais elektrons.', ru: 'Na: порядковый номер 11, 3-й период, 1-я группа — 1 внешний электрон.' } },
+      { id: 'xv3', type: 'mc', q: { lv: 'Kura ir butāna molekulformula?', ru: 'Какова молекулярная формула бутана?' },
+        opts: [
+          { t: 'C₄H₈', fb: { lv: 'Alkāniem H = 2n + 2 = 2 · 4 + 2 = 10.', ru: 'У алканов H = 2n + 2 = 2 · 4 + 2 = 10.' } },
+          { t: 'CH₄', fb: { lv: 'Tas ir metāns (n = 1).', ru: 'Это метан (n = 1).' } },
+          { t: 'C₃H₈', fb: { lv: 'Tas ir propāns (n = 3).', ru: 'Это пропан (n = 3).' } },
+          { t: 'C₄H₁₀', ok: true },
+        ],
+        explain: { lv: 'Butāns: n = 4, CₙH₂ₙ₊₂ → C₄H₁₀.', ru: 'Бутан: n = 4, CₙH₂ₙ₊₂ → C₄H₁₀.' } },
+    ],
+    course: { lv: ['Atoma uzbūve un periodiskā tabula', 'Vērtība un formulas', 'Oksīdi, skābes, bāzes, sāļi', 'Nosaukumi un formulas', 'Organiskās vielas', 'Eksāmena tipa uzdevumi'],
+              ru: ['Строение атома и таблица Менделеева', 'Валентность и формулы', 'Оксиды, кислоты, основания, соли', 'Названия и формулы', 'Органические вещества', 'Задачи как на экзамене'] },
+    demo: [0, 1, 2],
+  },
+  reak: {
+    title: { lv: 'Ķīmiskās reakcijas, šķīdumi un aprēķini', ru: 'Химические реакции, растворы и расчёты' }, min: 12,
+    slides: [
+      { h: { lv: 'Ķīmiska vai fizikāla pārvērtība', ru: 'Химическое или физическое явление' },
+        body: { lv: 'Ķīmiskā pārvērtībā rodas jauna viela. Pazīmes: izdalās gāze, veidojas nogulsnes, mainās krāsa, izdalās siltums vai gaisma. Degšana ir ķīmiska; kušana, iztvaikošana un šķīšana ir fizikālas.', ru: 'При химическом явлении образуется новое вещество. Признаки: выделяется газ, выпадает осадок, меняется цвет, выделяется тепло или свет. Горение — химическое; плавление, испарение и растворение — физические.' },
+        fig: () => CARDS([{ b: LL('Ķīmiska', 'Химическое'), s: LL('degšana, rūsēšana', 'горение, ржавление') }, { b: LL('Fizikāla', 'Физическое'), s: LL('kušana, iztvaikošana', 'плавление, испарение') }]) },
+      { h: { lv: 'Četri reakciju veidi', ru: 'Четыре типа реакций' },
+        body: { lv: 'Savienošanās: no divām vielām viena. Sadalīšanās: no vienas vairākas. Aizvietošana: vienkārša viela izspiež elementu no saliktas (Fe + CuSO₄). Apmaiņa: divas saliktas vielas apmainās ar daļām (NaOH + HCl).', ru: 'Соединение: из двух веществ одно. Разложение: из одного несколько. Замещение: простое вещество вытесняет элемент из сложного (Fe + CuSO₄). Обмен: два сложных вещества обмениваются частями (NaOH + HCl).' },
+        fig: () => CARDS([{ b: 'A + B → AB', s: LL('savienošanās', 'соединение') }, { b: 'AB → A + B', s: LL('sadalīšanās', 'разложение') }, { b: 'A + BC → AC + B', s: LL('aizvietošana', 'замещение') }, { b: 'AB + CD → AD + CB', s: LL('apmaiņa', 'обмен') }]) },
+      { h: { lv: 'Šķīdumi', ru: 'Растворы' },
+        body: { lv: 'Masas daļa w = m(vielas) : m(šķīduma). Šķīduma masa = vielas masa + ūdens masa. 30 g sāls 150 g šķīduma: w = 30 : 150 = 0,2 = 20 %, ūdens 150 − 30 = 120 g.', ru: 'Массовая доля w = m(вещества) : m(раствора). Масса раствора = масса вещества + масса воды. 30 г соли в 150 г раствора: w = 30 : 150 = 0,2 = 20 %, воды 150 − 30 = 120 г.' },
+        fig: () => `<div class="m big center">w = m(${LL('vielas', 'в-ва')}) : m(${LL('šķīduma', 'р-ра')})</div>` },
+      { h: { lv: 'Moli un gāzes tilpums', ru: 'Моли и объём газа' },
+        body: { lv: 'Vielas daudzums n = m : M (mol). Gāzes tilpums normālos apstākļos V = n · 22,4 l/mol. Koeficienti vienādojumā rāda molu attiecību: 2Na + 2H₂O → 2NaOH + H₂ — no 2 mol nātrija rodas 1 mol ūdeņraža.', ru: 'Количество вещества n = m : M (моль). Объём газа при н. у. V = n · 22,4 л/моль. Коэффициенты в уравнении показывают соотношение молей: 2Na + 2H₂O → 2NaOH + H₂ — из 2 моль натрия получается 1 моль водорода.' },
+        fig: () => CARDS([{ b: 'n = m : M', s: LL('mol', 'моль') }, { b: 'V = n · 22,4', s: LL('l, n. a.', 'л, н. у.') }]) },
+    ],
+    example: {
+      task: { lv: '2Na + 2H₂O → 2NaOH + H₂. Cik litru ūdeņraža (n. a.) izdalās no 4,6 g nātrija? M(Na) = 23 g/mol.', ru: '2Na + 2H₂O → 2NaOH + H₂. Сколько литров водорода (н. у.) выделится из 4,6 г натрия? M(Na) = 23 г/моль.' },
+      steps: [
+        { lv: 'Nātrija daudzums: n(Na) = 4,6 : 23 = 0,2 mol.', ru: 'Количество натрия: n(Na) = 4,6 : 23 = 0,2 моль.' },
+        { lv: 'Pēc vienādojuma no 2 mol Na rodas 1 mol H₂, tātad n(H₂) = 0,2 : 2 = 0,1 mol.', ru: 'По уравнению из 2 моль Na получается 1 моль H₂, значит, n(H₂) = 0,2 : 2 = 0,1 моль.' },
+        { lv: 'Tilpums: V = 0,1 · 22,4 = 2,24 l.', ru: 'Объём: V = 0,1 · 22,4 = 2,24 л.' },
+        { lv: 'Biežākā kļūda: aizmirst koeficientu 2 un iegūt 4,48 l.', ru: 'Частая ошибка: забыть коэффициент 2 и получить 4,48 л.' },
+      ] },
+    tasks: [
+      { id: 'xr1', type: 'mc', q: { lv: 'Kura ir ķīmiska pārvērtība?', ru: 'Какое явление химическое?' },
+        opts: [
+          { t: { lv: 'ledus kušana', ru: 'таяние льда' }, fb: { lv: 'Ūdens paliek ūdens — mainās tikai agregātstāvoklis.', ru: 'Вода остаётся водой — меняется только агрегатное состояние.' } },
+          { t: { lv: 'cukura šķīšana ūdenī', ru: 'растворение сахара в воде' }, fb: { lv: 'Cukurs nepārvēršas citā vielā, to var iegūt atpakaļ, iztvaicējot ūdeni.', ru: 'Сахар не превращается в другое вещество: его можно получить обратно, выпарив воду.' } },
+          { t: { lv: 'malkas degšana', ru: 'горение дров' }, ok: true },
+          { t: { lv: 'ūdens iztvaikošana', ru: 'испарение воды' }, fb: { lv: 'Iztvaikošana ir fizikāla pārvērtība.', ru: 'Испарение — физическое явление.' } },
+        ],
+        explain: { lv: 'Degot rodas jaunas vielas (CO₂, ūdens tvaiki, pelni), izdalās siltums un gaisma.', ru: 'При горении образуются новые вещества (CO₂, водяной пар, зола), выделяются тепло и свет.' } },
+      { id: 'xr2', type: 'num', u: { lv: 'g', ru: 'г' }, q: { lv: 'Cik gramu ūdens vajag, lai pagatavotu 250 g sāls šķīduma, kurā sāls masas daļa ir 8 %?', ru: 'Сколько граммов воды нужно, чтобы приготовить 250 г раствора соли с массовой долей 8 %?' }, ans: 230,
+        wrong: [
+          { v: 20, fb: { lv: '20 g ir sāls masa. Ūdens: 250 − 20.', ru: '20 г — масса соли. Воды: 250 − 20.' } },
+          { v: 242, fb: { lv: '8 % nav 8 grami: 250 · 0,08 = 20 g sāls.', ru: '8 % — это не 8 граммов: 250 · 0,08 = 20 г соли.' } },
+        ],
+        hint: { lv: 'Vispirms sāls masa: 250 · 0,08.', ru: 'Сначала масса соли: 250 · 0,08.' },
+        sol: { lv: 'm(sāls) = 250 · 0,08 = 20 g; m(ūdens) = 250 − 20 = 230 g', ru: 'm(соли) = 250 · 0,08 = 20 г; m(воды) = 250 − 20 = 230 г' } },
+      { id: 'xr3', type: 'num', u: { lv: 'mol', ru: 'моль' }, q: { lv: 'Cik molu ir 8 g skābekļa O₂? M(O) = 16 g/mol.', ru: 'Сколько моль в 8 г кислорода O₂? M(O) = 16 г/моль.' }, ans: 0.25,
+        wrong: [
+          { v: 0.5, fb: { lv: 'Molekulā O₂ ir divi atomi: M(O₂) = 32 g/mol.', ru: 'В молекуле O₂ два атома: M(O₂) = 32 г/моль.' } },
+          { v: 4, fb: { lv: 'Dala masu ar molmasu, nevis otrādi: n = 8 : 32.', ru: 'Массу делят на молярную массу, а не наоборот: n = 8 : 32.' } },
+        ],
+        hint: { lv: 'M(O₂) = 2 · 16 = 32 g/mol', ru: 'M(O₂) = 2 · 16 = 32 г/моль' },
+        sol: { lv: 'n = 8 : 32 = 0,25 mol', ru: 'n = 8 : 32 = 0,25 моль' } },
+    ],
+    course: { lv: ['Ķīmiskas un fizikālas pārvērtības', 'Reakciju veidi un vienādojumi', 'Metālu aktivitātes rinda', 'Šķīdumi un masas daļa', 'Moli un gāzu tilpums', 'Eksāmena tipa uzdevumi'],
+              ru: ['Химические и физические явления', 'Типы реакций и уравнения', 'Ряд активности металлов', 'Растворы и массовая доля', 'Моли и объём газов', 'Задачи как на экзамене'] },
+    demo: [0, 1, 3],
+  },
+  pet: {
+    title: { lv: 'Pētījums: mainīgie, grafiki un secinājumi', ru: 'Исследование: переменные, графики и выводы' }, min: 12,
+    slides: [
+      { h: { lv: 'Trīs veidu mainīgie', ru: 'Три вида переменных' },
+        body: { lv: 'Neatkarīgo mainīgo tu maini pats. Atkarīgo mainīgo tu mēri. Pārējos lielumus tur nemainīgus, lai salīdzinājums būtu godīgs. Ja pēta, kuras dūnas labāk silda: neatkarīgais — dūnu veids, atkarīgais — ūdens temperatūra, nemainīgie — ūdens tilpums, sākuma temperatūra, dūnu daudzums.', ru: 'Независимую переменную меняешь ты. Зависимую — измеряешь. Остальные величины держат постоянными, чтобы сравнение было честным. Если исследуют, какой пух лучше греет: независимая — вид пуха, зависимая — температура воды, постоянные — объём воды, начальная температура, количество пуха.' },
+        fig: () => CARDS([{ b: LL('Neatkarīgais', 'Независимая'), s: LL('maini', 'меняешь') }, { b: LL('Atkarīgais', 'Зависимая'), s: LL('mēri', 'измеряешь') }, { b: LL('Nemainīgie', 'Постоянные'), s: LL('kontrolē', 'контролируешь') }]) },
+      { h: { lv: 'Grafiks pēc tabulas', ru: 'График по таблице' },
+        body: { lv: 'Uz x ass — neatkarīgais mainīgais (bieži laiks), uz y ass — atkarīgais. Izvēlies ērtu mērogu, uzraksti lielumus un mērvienības, atzīmē punktus un savieno tos ar līkni. Pēc līknes formas var prognozēt nākamo vērtību.', ru: 'По оси x — независимая переменная (часто время), по оси y — зависимая. Выбери удобный масштаб, подпиши величины и единицы, отметь точки и соедини их линией. По форме линии можно спрогнозировать следующее значение.' },
+        fig: () => coolFig([[0, 80], [10, 60], [20, 45], [30, 35], [40, 30]]) },
+      { h: { lv: 'Secinājums ar skaitļiem', ru: 'Вывод с числами' },
+        body: { lv: 'Eksāmenā pilnus punktus dod secinājums, kurā ir sakarība un skaitļi no datiem: «Palielinoties temperatūrai no 10 līdz 40 °C, cukurs izšķīda ātrāk — no 120 līdz 35 sekundēm.» Tikai pārrakstīta tabula vai «temperatūra ietekmē» bez skaitļiem dod mazāk punktu.', ru: 'На экзамене полный балл дают за вывод, где есть зависимость и числа из данных: «При повышении температуры с 10 до 40 °C сахар растворялся быстрее — со 120 до 35 секунд». Просто переписанная таблица или «температура влияет» без чисел дают меньше баллов.' },
+        fig: () => `<div class="m big center">${LL('Jo …, jo …', 'Чем …, тем …')} + ${LL('skaitļi', 'числа')}</div>` },
+      { h: { lv: 'Ticamība', ru: 'Достоверность' },
+        body: { lv: 'Lai rezultāti būtu ticami: atkārto mērījumus vairākas reizes un aprēķini vidējo, maini tikai vienu lielumu, izmanto precīzākus instrumentus, veic vairāk mērījumu. Tas ir tipisks 2. daļas jautājums.', ru: 'Чтобы результаты были достоверными: повтори измерения несколько раз и найди среднее, меняй только одну величину, используй более точные приборы, сделай больше измерений. Это типичный вопрос 2-й части.' },
+        fig: () => CARDS([{ b: LL('Atkārto', 'Повтори'), s: LL('3 reizes + vidējais', '3 раза + среднее') }, { b: LL('Viens mainīgais', 'Одна переменная'), s: LL('pārējie nemainīgi', 'остальное постоянно') }]) },
+    ],
+    example: {
+      task: { lv: 'Skolēns grib noskaidrot, vai sāls daudzums ietekmē ūdens viršanas temperatūru. Izplāno eksperimentu.', ru: 'Ученик хочет выяснить, влияет ли количество соли на температуру кипения воды. Спланируй эксперимент.' },
+      steps: [
+        { lv: 'Neatkarīgais mainīgais: sāls masa — piemēram, 0, 5, 10 un 15 g.', ru: 'Независимая переменная: масса соли — например, 0, 5, 10 и 15 г.' },
+        { lv: 'Atkarīgais mainīgais: viršanas temperatūra, ko mēra ar termometru.', ru: 'Зависимая переменная: температура кипения, её измеряют термометром.' },
+        { lv: 'Nemainīgie: ūdens tilpums (200 ml), tas pats trauks, tā pati plīts.', ru: 'Постоянные: объём воды (200 мл), та же кастрюля, та же плита.' },
+        { lv: 'Ticamība: katru mērījumu atkārto 3 reizes un aprēķina vidējo; rezultātus attēlo grafikā.', ru: 'Достоверность: каждое измерение повторяют 3 раза и находят среднее; результаты изображают на графике.' },
+      ] },
+    tasks: [
+      { id: 'xp1', type: 'mc', q: { lv: 'Pēta, kā gaismas daudzums ietekmē auga augšanu. Kurš ir atkarīgais mainīgais?', ru: 'Исследуют, как количество света влияет на рост растения. Какая переменная зависимая?' },
+        opts: [
+          { t: { lv: 'gaismas daudzums', ru: 'количество света' }, fb: { lv: 'To pētnieks maina pats — tas ir neatkarīgais mainīgais.', ru: 'Его исследователь меняет сам — это независимая переменная.' } },
+          { t: { lv: 'ūdens daudzums', ru: 'количество воды' }, fb: { lv: 'Ūdeni tur nemainīgu.', ru: 'Воду держат постоянной.' } },
+          { t: { lv: 'auga augstums', ru: 'высота растения' }, ok: true },
+          { t: { lv: 'poda izmērs', ru: 'размер горшка' }, fb: { lv: 'Tas ir nemainīgais lielums.', ru: 'Это постоянная величина.' } },
+        ],
+        explain: { lv: 'Atkarīgo mainīgo mēra: cik izaudzis augs.', ru: 'Зависимую переменную измеряют: насколько выросло растение.' } },
+      { id: 'xp2', type: 'mc', q: { lv: 'Kā palielināt eksperimenta rezultātu ticamību?', ru: 'Как повысить достоверность результатов эксперимента?' },
+        opts: [
+          { t: { lv: 'mainīt vairākus lielumus vienlaikus', ru: 'менять несколько величин одновременно' }, fb: { lv: 'Tad nevar saprast, kurš lielums ietekmēja rezultātu.', ru: 'Тогда нельзя понять, какая величина повлияла на результат.' } },
+          { t: { lv: 'veikt tikai vienu mērījumu', ru: 'сделать только одно измерение' }, fb: { lv: 'Viens mērījums var būt nejaušs.', ru: 'Одно измерение может оказаться случайным.' } },
+          { t: { lv: 'noapaļot rezultātus līdz veseliem skaitļiem', ru: 'округлить результаты до целых' }, fb: { lv: 'Noapaļošana samazina precizitāti.', ru: 'Округление уменьшает точность.' } },
+          { t: { lv: 'atkārtot mērījumus vairākas reizes un aprēķināt vidējo', ru: 'повторить измерения несколько раз и найти среднее' }, ok: true },
+        ],
+        explain: { lv: 'Atkārtojumi un vidējā vērtība mazina nejaušu kļūdu ietekmi.', ru: 'Повторы и среднее значение уменьшают влияние случайных ошибок.' } },
+      { id: 'xp3', type: 'num', u: { lv: 's', ru: 'с' }, q: { lv: 'Trīs mērījumos laiks bija 12,1 s, 11,8 s un 12,4 s. Kāds ir vidējais laiks?', ru: 'В трёх измерениях время было 12,1 с, 11,8 с и 12,4 с. Каково среднее время?' }, ans: 12.1,
+        wrong: [
+          { v: 36.3, fb: { lv: 'Tā ir summa. Vēl jādala ar 3.', ru: 'Это сумма. Её ещё нужно разделить на 3.' } },
+          { v: 12.4, fb: { lv: 'Tas ir lielākais mērījums, nevis vidējais.', ru: 'Это наибольшее измерение, а не среднее.' } },
+        ],
+        hint: { lv: 'Vidējais = summa : skaits', ru: 'Среднее = сумма : количество' },
+        sol: { lv: '(12,1 + 11,8 + 12,4) : 3 = 36,3 : 3 = 12,1 s', ru: '(12,1 + 11,8 + 12,4) : 3 = 36,3 : 3 = 12,1 с' } },
+    ],
+    course: { lv: ['Pētnieciskais jautājums un hipotēze', 'Mainīgie un eksperimenta plāns', 'Tabulas un grafiki', 'Secinājumi un pamatojums', 'Ticamība un kļūdas', 'Eksāmena 2. daļas uzdevumi'],
+              ru: ['Исследовательский вопрос и гипотеза', 'Переменные и план эксперимента', 'Таблицы и графики', 'Выводы и обоснование', 'Достоверность и ошибки', 'Задания 2-й части экзамена'] },
+    demo: [1, 2, 4],
+  },
+};
+
+DAB.LESSONS = DAB_LESSONS;
 
 // ---------- App ----------
 const STORE = 'm9_state_v1';
@@ -2376,7 +2881,7 @@ function load() { try { const s = JSON.parse(localStorage.getItem(STORE) || 'nul
 // Test progress, topic choice and reservation are kept per subject; contact details are shared.
 const SUBJ_KEYS = ['answers', 'idx', 'done', 'sel', 'plan', 'reserve', 'sentResults'];
 const SUBJ_FRESH = () => ({ answers: [], idx: 0, done: false, sel: null, plan: undefined, reserve: null, sentResults: false });
-function applySubject() { const D = state.subj === 'dab' ? DAB : MAT; TOPICS = D.TOPICS; DIAG = D.DIAG; EXAM_STATS = D.EXAM_STATS; VIDEOS = D.VIDEOS; }
+function applySubject() { const D = state.subj === 'dab' ? DAB : MAT; TOPICS = D.TOPICS; DIAG = D.DIAG; EXAM_STATS = D.EXAM_STATS; VIDEOS = D.VIDEOS; LESSONS = D.LESSONS; }
 function setSubject(s) {
   if (s !== 'mat' && s !== 'dab') return;
   if (s !== state.subj) {
@@ -2501,7 +3006,7 @@ function viewLanding() {
       <p class="subj-date"><b>${dateLong(examDateOf(k))}</b>${dl > 0 ? ` · ${T('subj_days', { n: dl, w: daysWord(dl) })}` : ''}</p>
       <p>${T(d)}</p>
       <ul class="subj-topics">${D.TOPICS.map(t => `<li>${L(t)}</li>`).join('')}</ul>
-      <p class="subj-meta">${vids ? `${vids} ${T('subj_lessons')}` : T('subj_soon')}</p>
+      <p class="subj-meta">${vids ? `${vids} ${T('subj_lessons')}` : D.LESSONS ? `${Object.keys(D.LESSONS).length} ${T('subj_demos')}` : T('subj_soon')}</p>
       <button type="button" class="btn ${k === 'dab' ? 'btn-mark' : 'btn-primary'} btn-lg wide" data-act="subj" data-v="${k}">${done ? T('ex_cta_done') : T(k === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </article>`;
   };
@@ -2652,12 +3157,10 @@ function viewResults() {
     <div class="res-grid">
       <div class="sheet"><h2>${T('res_topics_h')}</h2><ul class="trows">${rows}</ul></div>
       <div class="sheet cta-card">
-        ${state.subj === 'dab' ? `<h2>${T('sub_h')}</h2><p>${T('res_dab_p')}</p>${weak.length ? `<ul class="chips">${weak.slice(0, 4).map(id => `<li><span class="chip">${L(topicById(id))}</span></li>`).join('')}</ul>` : ''}
-        <a class="btn btn-primary btn-lg wide" href="#abonements">${T('res_dab_btn')}</a>
-        <p class="muted small">${T('res_dab_sent')}</p>` : `<h2>${T('res_demo_h')}</h2>
+        <h2>${T('res_demo_h')}</h2>
         ${weak.length ? `<p>${T('res_demo_p')}</p><ul class="chips">${weak.slice(0, 4).map(id => `<li><a class="chip link" href="#demo-${id}">${L(topicById(id))}</a></li>`).join('')}</ul>` : `<p>${T('res_demo_all')}</p>`}
         <a class="btn btn-primary btn-lg wide" href="#demo">${T('res_demo_btn')}</a>
-        <p class="muted small">${CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>`}
+        <p class="muted small">${state.subj === 'dab' && !CONFIG.sciScoring ? T('res_dab_sent') : CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>
         ${subjDone(state.subj === 'dab' ? 'mat' : 'dab') ? '' : `<p class="other-test">${T('res_other')} <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>`}
       </div>
     </div>
@@ -2869,7 +3372,6 @@ function route(keepScroll = false) {
   const preview = /[?&]preview\b/.test(location.search); // owner's look at the demo lessons without the test
   if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done && !(preview && want === 'demo')) want = state.lead ? 'tests' : 'pieteikums';
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
-  if (want === 'demo' && state.subj === 'dab') want = state.done ? 'abonements' : 'tests';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
   const y = window.scrollY;
   current = want;
@@ -2967,7 +3469,7 @@ const ACT = {
     if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
     state.done = true; save();
     const R = results();
-    if (!state.sentResults) { send('results', { subj: state.subj, code: (state.subj === 'dab' ? 'D' : '') + answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
+    if (!state.sentResults) { send('results', { subj: state.subj, code: (state.subj === 'dab' && !CONFIG.sciScoring ? 'D' : '') + answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
     location.hash = 'rezultati';
   },
   slide(b) {
@@ -3101,8 +3603,8 @@ function boot() {
     const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { const v = q.get(k); if (v) utm[k] = v.slice(0, 60); });
     if (Object.keys(utm).length && !state.utm) state.utm = utm;
     const r = q.get('r'), id = q.get('id');
-    if (r && new RegExp(`^[0-4]{${MAT.DIAG.length}}$`).test(r)) {
-      setSubject('mat');
+    if (r && /^[0-4]+$/.test(r)) setSubject(sj === 'dab' ? 'dab' : 'mat');
+    if (r && new RegExp(`^[0-4]{${DIAG.length}}$`).test(r)) {
       state.answers = r.split('').map(Number); state.done = true; state.idx = DIAG.length - 1; state.sentResults = true;
       if (id && /^[0-9a-f-]{36}$/i.test(id)) state.lead = (state.lead && state.lead.id === id) ? state.lead : { id };
     }
