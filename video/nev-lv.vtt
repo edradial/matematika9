@@ -1,101 +1,101 @@
 WEBVTT
 
 1
-00:00:00.300 --> 00:00:04.352
+00:00:00.250 --> 00:00:03.728
 Sveiki! Šī ir demo nodarbība par nevienādībām.
 
 2
-00:00:04.902 --> 00:00:11.053
+00:00:04.228 --> 00:00:11.395
 Dažās minūtēs apskatīsim skaitļu asi, intervālus, galveno slazdu ar zīmi un nevienādību sistēmas.
 
 3
-00:00:12.253 --> 00:00:15.535
+00:00:12.632 --> 00:00:16.982
 Vienādojumam «iks ir vienāds ar divi» der viens skaitlis.
 
 4
-00:00:16.085 --> 00:00:23.629
+00:00:17.482 --> 00:00:26.673
 Bet nevienādībai «iks ir lielāks par diviem» der visi skaitļi, kas lielāki par diviem: divi komats viens, trīs, simts un tā tālāk.
 
 5
-00:00:24.179 --> 00:00:30.227
+00:00:27.173 --> 00:00:34.134
 Tos attēlo uz skaitļu ass un pieraksta ar intervālu: no diviem līdz plus bezgalībai, apaļās iekavās.
 
 6
-00:00:31.427 --> 00:00:33.295
+00:00:35.385 --> 00:00:37.349
 Tagad paskaties uz robežpunktu.
 
 7
-00:00:33.845 --> 00:00:41.552
+00:00:37.849 --> 00:00:46.345
 Stingrā nevienādībā, ar zīmēm «lielāks» vai «mazāks», robežpunkts atbildei nepieder. Punkts ir tukšs, iekava ir apaļā.
 
 8
-00:00:42.102 --> 00:00:50.740
+00:00:46.845 --> 00:00:56.589
 Nestingrā nevienādībā, ar zīmēm «lielāks vai vienāds» un «mazāks vai vienāds», punkts pieder. Tas ir iekrāsots, un iekava ir kvadrātiekava.
 
 9
-00:00:51.290 --> 00:00:53.465
+00:00:57.089 --> 00:01:00.002
 Pie bezgalības iekava vienmēr ir apaļā.
 
 10
-00:00:54.665 --> 00:00:56.205
+00:01:01.246 --> 00:01:03.318
 Un tagad galvenais slazds.
 
 11
-00:00:56.755 --> 00:01:06.035
+00:01:03.818 --> 00:01:13.418
 Nevienādību risina gandrīz kā vienādojumu. Bet, ja abas puses reizina vai dala ar negatīvu skaitli, nevienādības zīme mainās uz pretējo.
 
 12
-00:01:06.585 --> 00:01:15.052
+00:01:13.918 --> 00:01:23.413
 Piemēram: mīnus divi iks ir mazāks par sešiem. Dalām ar mīnus divi, un «mazāks» kļūst par «lielāks»: iks ir lielāks par mīnus trīs.
 
 13
-00:01:15.602 --> 00:01:18.770
+00:01:23.913 --> 00:01:27.988
 Pārbaudi sevi: nulle der gan pirmajā rindā, gan otrajā.
 
 14
-00:01:19.970 --> 00:01:23.590
+00:01:29.223 --> 00:01:33.469
 Nevienādību sistēmā iksam jāder abām nevienādībām reizē.
 
 15
-00:01:24.140 --> 00:01:28.024
+00:01:33.969 --> 00:01:38.497
 Uzzīmē abas nevienādības uz vienas ass un atrodi kopīgo daļu.
 
 16
-00:01:28.574 --> 00:01:33.300
+00:01:38.997 --> 00:01:44.630
 Šeit tie ir skaitļi no mīnus divi, ieskaitot, līdz četri, bet bez paša četrinieka.
 
 17
-00:01:33.850 --> 00:01:37.781
+00:01:45.130 --> 00:01:50.263
 Pierakstām tā: kvadrātiekava, mīnus divi, četri, apaļā iekava.
 
 18
-00:01:38.981 --> 00:01:43.659
+00:01:51.506 --> 00:01:56.810
 Atrisināsim piemēru: pieci mīnus divi iks ir lielāks vai vienāds ar vienpadsmit.
 
 19
-00:01:44.209 --> 00:01:51.618
+00:01:57.310 --> 00:02:04.786
 Pārnesam piecinieku uz labo pusi ar pretējo zīmi. Iegūstam: mīnus divi iks ir lielāks vai vienāds ar sešiem.
 
 20
-00:01:52.818 --> 00:02:00.929
+00:02:06.030 --> 00:02:14.291
 Dalām abas puses ar mīnus divi. Skaitlis ir negatīvs, tāpēc zīme mainās: iks ir mazāks vai vienāds ar mīnus trīs.
 
 21
-00:02:02.129 --> 00:02:08.418
+00:02:15.538 --> 00:02:22.631
 Uz skaitļu ass liekam iekrāsotu punktu pie mīnus trīs, jo zīme ir nestingra, un iesvītrojam pa kreisi.
 
 22
-00:02:09.618 --> 00:02:17.372
+00:02:23.871 --> 00:02:31.798
 Atbilde: no mīnus bezgalības līdz mīnus trīs. Mīnus trīs atbildei pieder, tāpēc pie trijnieka ir kvadrātiekava.
 
 23
-00:02:18.572 --> 00:02:28.731
+00:02:33.040 --> 00:02:41.271
 Pārbaudām ar mīnus četri. Pieci mīnus divi reiz mīnus četri ir trīspadsmit. Trīspadsmit ir lielāks par vienpadsmit. Der!
 
 24
-00:02:29.931 --> 00:02:34.698
+00:02:42.523 --> 00:02:47.481
 Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
 
 25
-00:02:35.248 --> 00:02:38.122
+00:02:47.981 --> 00:02:51.465
 Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.
