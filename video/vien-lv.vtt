@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00.250 --> 00:05.672
+Sveiki! Šī ir demo nodarbība par lineāriem vienādojumiem un kvadrātvienādojumiem.
+
+00:06.172 --> 00:13.651
+Apskatīsim, kā risināt vienādojumus bez kļūdām zīmēs un kā atrast kvadrātvienādojuma saknes ar diskriminantu.
+
+00:14.879 --> 00:19.194
+Vienādojums ir kā svari. Kreisā un labā puse ir līdzsvarā.
+
+00:19.694 --> 00:27.663
+Ja vienā pusē kaut ko pieskaita, atņem, reizina vai dala, tas pats jādara arī otrā pusē. Tad svari paliek līdzsvarā.
+
+00:28.163 --> 00:32.071
+Mūsu mērķis ir atstāt iksu vienu pašu vienā svaru pusē.
+
+00:33.321 --> 00:38.459
+Paņemsim vienādojumu: trīs reiz iks mīnus divi ir vienāds ar iks plus četri.
+
+00:38.959 --> 00:50.865
+Vispirms atveram iekavas. Trīs reiz iks ir trīs iks, bet trīs reiz mīnus divi ir mīnus seši. Iegūstam: trīs iks mīnus seši ir vienāds ar iks plus četri.
+
+00:51.365 --> 01:02.386
+Tagad iksu pārnesam pa kreisi, bet mīnus sešus pa labi. Pārnesot pāri vienādības zīmei, zīme mainās: trīs iks mīnus iks ir vienāds ar četri plus seši.
+
+01:02.886 --> 01:06.128
+Tātad divi iks ir desmit, un iks ir pieci.
+
+01:07.359 --> 01:14.933
+Tagad kvadrātvienādojumi. Tos pieraksta šādi: a iks kvadrātā plus bē iks plus cē ir vienāds ar nulli.
+
+01:15.433 --> 01:21.657
+Vispirms aprēķina diskriminantu: dē ir vienāds ar bē kvadrātā mīnus četri a cē.
+
+01:22.157 --> 01:32.207
+Ja diskriminants ir lielāks par nulli, vienādojumam ir divas saknes. Ja tas ir vienāds ar nulli, sakne ir viena. Bet ja tas ir mazāks par nulli, sakņu nav.
+
+01:32.707 --> 01:40.127
+Saknes atrod pēc formulas: iks ir vienāds ar mīnus bē plus mīnus sakne no dē, dalīts ar divi a.
+
+01:41.370 --> 01:49.540
+Galvenais slazds šeit ir zīmes. Paņemsim vienādojumu iks kvadrātā plus divi iks mīnus piecpadsmit ir vienāds ar nulli.
+
+01:50.040 --> 01:58.053
+Šeit a ir viens, bē ir divi, bet cē ir mīnus piecpadsmit. Ievēro: mīnuss ir daļa no koeficienta.
+
+01:58.553 --> 02:10.424
+Diskriminants: divi kvadrātā mīnus četri reiz viens reiz mīnus piecpadsmit. Mīnuss reiz mīnuss dod plusu, tāpēc iegūstam četri plus sešdesmit, tas ir sešdesmit četri.
+
+02:10.924 --> 02:17.019
+Sakne no sešdesmit četriem ir astoņi. Iks viens ir trīs, bet iks divi ir mīnus pieci.
+
+02:18.255 --> 02:24.758
+Atrisināsim vienādojumu: divi iks kvadrātā mīnus trīs iks mīnus divi ir vienāds ar nulli.
+
+02:25.258 --> 02:32.602
+Vispirms izrakstām koeficientus kopā ar zīmēm: a ir divi, bē ir mīnus trīs, cē ir mīnus divi.
+
+02:33.850 --> 02:42.338
+Aprēķinām diskriminantu. Mīnus trīs kvadrātā ir deviņi. Mīnus četri reiz divi reiz mīnus divi ir plus sešpadsmit.
+
+02:42.838 --> 02:46.646
+Diskriminants ir divdesmit pieci, un sakne no tā ir pieci.
+
+02:47.878 --> 02:52.994
+Atrodam saknes. Mīnus bē ir plus trīs, bet divi a ir četri.
+
+02:53.494 --> 03:03.539
+Iks viens: trīs plus pieci, dalīts ar četri, ir divi. Iks divi: trīs mīnus pieci, dalīts ar četri, ir mīnus nulle komats pieci.
+
+03:04.779 --> 03:13.719
+Pārbaudīsim sakni divi. Divi reiz divi kvadrātā ir astoņi. Mīnus trīs reiz divi ir mīnus seši. Un vēl mīnus divi.
+
+03:14.219 --> 03:18.688
+Astoņi mīnus seši mīnus divi ir nulle. Der!
+
+03:19.930 --> 03:24.606
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+03:25.106 --> 03:28.898
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.
