@@ -1,0 +1,82 @@
+WEBVTT
+
+00:00.250 --> 00:07.698
+Sveiki! Šī ir demo nodarbība par taisnleņķa trijstūri: Pitagora teorēmu, sinusu, kosinusu un tangensu.
+
+00:08.198 --> 00:13.723
+Apskatīsim, kā atrast trijstūra malas un kuras vērtības jāzina bez kalkulatora.
+
+00:14.957 --> 00:20.862
+Sāksim ar Pitagora teorēmu. Taisnleņķa trijstūrim ir divas katetes un hipotenūza.
+
+00:21.362 --> 00:30.299
+Hipotenūza atrodas pretī taisnajam leņķim, un tā vienmēr ir garākā mala. Apzīmēsim to ar cē, bet katetes ar a un bē.
+
+00:30.799 --> 00:36.276
+Teorēma saka: cē kvadrātā ir vienāds ar a kvadrātā plus bē kvadrātā.
+
+00:36.776 --> 00:47.219
+Piemēram, ja katetes ir seši un astoņi, tad cē kvadrātā ir trīsdesmit seši plus sešdesmit četri, tas ir simts. Tātad hipotenūza ir desmit.
+
+00:48.446 --> 00:57.011
+Ja jāatrod katete, kvadrātus nesaskaita, bet atņem: a kvadrātā ir vienāds ar cē kvadrātā mīnus bē kvadrātā.
+
+00:57.511 --> 01:09.156
+Lai hipotenūza ir trīspadsmit, bet katete pieci. Tad a kvadrātā ir simt sešdesmit deviņi mīnus divdesmit pieci, tas ir simt četrdesmit četri. Tātad katete ir divpadsmit.
+
+01:09.656 --> 01:17.367
+Laba pārbaude: katete vienmēr ir īsāka par hipotenūzu. Ja katete sanāca garāka, kaut kur ir kļūda.
+
+01:18.617 --> 01:23.871
+Tagad sinuss, kosinuss un tangenss. Paņemsim šauro leņķi alfa.
+
+01:24.371 --> 01:28.129
+Alfa sinuss ir pretkatete, dalīta ar hipotenūzu.
+
+01:28.629 --> 01:32.037
+Alfa kosinuss ir piekatete, dalīta ar hipotenūzu.
+
+01:32.537 --> 01:36.413
+Bet alfa tangenss ir pretkatete, dalīta ar piekateti.
+
+01:37.661 --> 01:43.470
+Eksāmena pirmajā daļā kalkulatoru izmantot nedrīkst. Tāpēc šīs vērtības jāatceras.
+
+01:43.970 --> 01:49.161
+Trīsdesmit grādu sinuss ir viena otrā, tāpat kā sešdesmit grādu kosinuss.
+
+01:49.661 --> 01:55.513
+Sešdesmit grādu sinuss un trīsdesmit grādu kosinuss ir sakne no trīs, dalīta ar divi.
+
+01:56.013 --> 02:04.482
+Četrdesmit piecu grādu sinuss un kosinuss ir sakne no divi, dalīta ar divi. Bet četrdesmit piecu grādu tangenss ir viens.
+
+02:05.716 --> 02:19.283
+Atrisināsim uzdevumu. Trijstūrī A bē cē leņķis cē ir taisns, leņķis A ir trīsdesmit grādi, bet mala A bē ir četrpadsmit centimetri. Atradīsim malas bē cē un A cē.
+
+02:19.783 --> 02:26.852
+Vispirms nosakām hipotenūzu. A bē atrodas pretī taisnajam leņķim cē, tātad tā ir hipotenūza.
+
+02:28.103 --> 02:34.111
+Mala bē cē atrodas pretī leņķim A. Tā ir pretkatete, tāpēc izmantojam sinusu.
+
+02:34.611 --> 02:41.836
+Bē cē ir četrpadsmit reiz trīsdesmit grādu sinuss, tas ir reiz viena otrā. Iegūstam septiņus centimetrus.
+
+02:43.071 --> 02:48.438
+Mala A cē pieguļ leņķim A. Tā ir piekatete, tāpēc izmantojam kosinusu.
+
+02:48.938 --> 02:56.446
+A cē ir četrpadsmit reiz sakne no trīs, dalīta ar divi. Iegūstam septiņas saknes no trīs centimetrus.
+
+02:57.674 --> 03:06.561
+Pārbaudīsim ar Pitagoru. Septiņi kvadrātā ir četrdesmit deviņi. Septiņas saknes no trīs kvadrātā ir simt četrdesmit septiņi.
+
+03:07.061 --> 03:15.980
+Četrdesmit deviņi plus simt četrdesmit septiņi ir simt deviņdesmit seši, un tas ir četrpadsmit kvadrātā. Sakrīt!
+
+03:17.213 --> 03:22.239
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+03:22.739 --> 03:26.561
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.

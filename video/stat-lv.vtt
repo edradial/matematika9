@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00.250 --> 00:05.708
+Sveiki! Šī ir demo nodarbība par varbūtību, vidējo aritmētisko un pilno pārlasi.
+
+00:06.208 --> 00:14.610
+Apskatīsim, kā aprēķināt varbūtību, kā atrast trūkstošo skaitli pēc vidējā un kā nepalaist garām nevienu variantu.
+
+00:15.845 --> 00:19.446
+Notikuma varbūtība ir em, dalīts ar en.
+
+00:19.946 --> 00:25.461
+Em ir labvēlīgo iznākumu skaits, bet en ir visu vienādi iespējamo iznākumu skaits.
+
+00:25.961 --> 00:34.367
+Galvenais likums: skaitām bumbiņas, nevis krāsas. Kastē ir četras sarkanas, piecas zilas un trīs zaļas bumbiņas, kopā divpadsmit.
+
+00:34.867 --> 00:40.988
+Varbūtība izvilkt zilu bumbiņu ir piecas divpadsmitās. Nevis viena trešā, kā būtu, ja skaitītu krāsas.
+
+00:42.229 --> 00:51.018
+Dažreiz vieglāk ir aprēķināt pretējo notikumu. Varbūtība, ka notikums nenotiks, ir viens mīnus notikuma varbūtība.
+
+00:51.518 --> 00:59.427
+Varbūtība, ka bumbiņa nav zila: viens mīnus piecas divpadsmitās ir septiņas divpadsmitās.
+
+00:59.927 --> 01:06.606
+Un atceries: varbūtība vienmēr ir no nulles līdz vienam. Ja sanāca vairāk par vienu, kaut kur ir kļūda.
+
+01:07.855 --> 01:12.352
+Vidējais aritmētiskais ir skaitļu summa, dalīta ar to skaitu.
+
+01:12.852 --> 01:19.097
+Ja jāatrod trūkstošais skaitlis, vispirms aprēķini vajadzīgo summu: vidējais reiz skaits.
+
+01:19.597 --> 01:25.162
+Piemērs: trīs darbos vidējā atzīme ir seši, tātad atzīmju summa ir astoņpadsmit.
+
+01:25.662 --> 01:35.839
+Lai četros darbos vidējā būtu septiņi, vajag summu divdesmit astoņi. Tātad ceturtajā darbā jāsaņem divdesmit astoņi mīnus astoņpadsmit, tas ir desmit.
+
+01:37.086 --> 01:42.465
+Pilnā pārlase ir tad, kad visus variantus izraksta sistemātiski, lai neviens netiktu palaists garām.
+
+01:42.965 --> 01:48.359
+Piemēram, sastādīsim trīsciparu skaitļus no cipariem viens, divi un trīs bez atkārtošanās.
+
+01:48.859 --> 02:02.190
+Vispirms visi skaitļi, kas sākas ar vieninieku: simts divdesmit trīs un simts trīsdesmit divi. Tad ar divnieku: divi simti trīspadsmit un divi simti trīsdesmit viens. Tad ar trijnieku: trīs simti divpadsmit un trīs simti divdesmit viens.
+
+02:02.690 --> 02:07.253
+Kopā seši varianti. Tas ir trīs faktoriāls: trīs reiz divi reiz viens.
+
+02:08.485 --> 02:17.668
+Atrisināsim uzdevumu. Doti skaitļi: trīs, astoņi, pieci, desmit, astoņi, divi. Atradīsim vidējo aritmētisko, mediānu un modu.
+
+02:18.168 --> 02:24.432
+Vispirms sakārtosim tos augošā secībā: divi, trīs, pieci, astoņi, astoņi, desmit.
+
+02:25.674 --> 02:33.315
+Vidējais: saskaitām visus skaitļus un iegūstam trīsdesmit seši. Dalām ar to skaitu, ar seši. Vidējais ir seši.
+
+02:34.555 --> 02:43.728
+Mediāna ir skaitlis sakārtotās rindas vidū. Bet šeit skaitļu ir pāra skaits, tāpēc vidū ir divi skaitļi: pieci un astoņi.
+
+02:44.228 --> 02:50.281
+Mediāna ir to vidējais: pieci plus astoņi, dalīts ar divi, ir seši komats pieci.
+
+02:51.509 --> 02:59.247
+Moda ir skaitlis, kas sastopams visbiežāk. Mūsu rindā astoņi ir divas reizes, pārējie pa vienai reizei. Moda ir astoņi.
+
+03:00.495 --> 03:07.063
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+03:07.563 --> 03:11.070
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.

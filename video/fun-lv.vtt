@@ -1,0 +1,73 @@
+WEBVTT
+
+00:00.250 --> 00:05.003
+Sveiki! Šī ir demo nodarbība par funkcijām: taisni un parabolu.
+
+00:05.503 --> 00:11.492
+Apskatīsim, kā lasīt taisnes formulu, kā pārbaudīt punktu un kā atrast parabolas virsotni.
+
+00:12.737 --> 00:17.649
+Formula igrek ir vienāds ar kā iks plus bē vienmēr dod taisni.
+
+00:18.149 --> 00:28.390
+Skaitlis bē rāda, kur taisne krusto igrek asi. Funkcijai igrek ir vienāds ar divi iks plus viens tas ir punkts ar koordinātām nulle un viens.
+
+00:28.890 --> 00:38.872
+Skaitlis kā rāda, par cik mainās igrek, kad iks palielinās par vienu. Šeit kā ir divi: katrs solis pa labi paceļ taisni par divi uz augšu.
+
+00:40.113 --> 00:47.689
+Kā pārbaudīt, vai punkts atrodas uz grafika? Ievieto punkta iksu formulā un salīdzini rezultātu ar punkta igreku.
+
+00:48.189 --> 01:01.450
+Paņemsim taisni igrek ir vienāds ar trīs iks mīnus viens un punktu A ar koordinātām divi un pieci. Trīs reiz divi mīnus viens ir pieci. Sakrīt, tātad punkts A pieder grafikam.
+
+01:01.950 --> 01:10.378
+Un tagad punkts bē ar koordinātām divi un trīs. Atkal iegūstam piecus, nevis trīs. Tātad punkts bē grafikam nepieder.
+
+01:11.617 --> 01:17.338
+Tagad parabola: igrek ir vienāds ar a iks kvadrātā plus bē iks plus cē.
+
+01:17.838 --> 01:24.514
+Ja a ir lielāks par nulli, parabolas zari vērsti uz augšu. Ja a ir mazāks par nulli, uz leju.
+
+01:25.014 --> 01:36.423
+Skaitlis cē ir krustpunkts ar igrek asi. Parabolai igrek ir vienāds ar iks kvadrātā mīnus seši iks plus pieci tas ir punkts ar koordinātām nulle un pieci.
+
+01:36.923 --> 01:46.747
+Virsotnes abscisu atrod pēc formulas: iks ir vienāds ar mīnus bē, dalīts ar divi a. Bet ordinātu iegūst, ievietojot šo iksu formulā.
+
+01:47.979 --> 01:51.440
+Kur grafiks krusto iks asi, tur igrek ir nulle.
+
+01:51.940 --> 01:59.742
+Tāpēc, lai atrastu šos punktus, risinām vienādojumu iks kvadrātā mīnus seši iks plus pieci ir vienāds ar nulli.
+
+02:00.242 --> 02:06.738
+Tā saknes ir viens un pieci. Tātad parabola krusto iks asi punktos viens un pieci.
+
+02:07.989 --> 02:14.237
+Atradīsim parabolas igrek ir vienāds ar iks kvadrātā mīnus seši iks plus pieci virsotni.
+
+02:14.737 --> 02:20.224
+Vispirms koeficienti: a ir viens, bē ir mīnus seši, cē ir pieci.
+
+02:21.468 --> 02:30.185
+Virsotnes abscisa: mīnus bē, dalīts ar divi a. Mīnus mīnus seši ir seši. Dalām ar divi un iegūstam trīs.
+
+02:31.421 --> 02:40.460
+Ordināta: ievietojam trīs formulā. Trīs kvadrātā ir deviņi, mīnus seši reiz trīs ir mīnus astoņpadsmit, un plus pieci.
+
+02:40.960 --> 02:44.533
+Deviņi mīnus astoņpadsmit plus pieci ir mīnus četri.
+
+02:45.762 --> 02:49.325
+Virsotne ir punkts ar koordinātām trīs un mīnus četri.
+
+02:49.825 --> 02:56.988
+Tā kā a ir viens un lielāks par nulli, zari vērsti uz augšu, un virsotne ir parabolas zemākais punkts.
+
+02:58.222 --> 03:03.364
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+03:03.864 --> 03:07.478
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.

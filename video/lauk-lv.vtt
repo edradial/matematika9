@@ -1,0 +1,76 @@
+WEBVTT
+
+00:00.250 --> 00:07.071
+Sveiki! Šī ir demo nodarbība par laukumiem, tilpumiem un līdzīgiem trijstūriem.
+
+00:07.571 --> 00:14.449
+Apskatīsim, kuru formulu kad lietot, kā nekļūdīties ar rādiusu un cik reizes mainās līdzīgu figūru laukums.
+
+00:15.688 --> 00:21.591
+Eksāmenā drīkst izmantot formulu lapu. Bet jāsaprot, kuru formulu kad lietot.
+
+00:22.091 --> 00:25.575
+Taisnstūra laukums ir garums, reizināts ar platumu.
+
+00:26.075 --> 00:31.133
+Trijstūra laukums ir mala, reizināta ar augstumu un dalīta ar divi.
+
+00:31.633 --> 00:35.909
+Trapeces laukums ir pamatu pussumma, reizināta ar augstumu.
+
+00:36.409 --> 00:39.032
+Bet riņķa laukums ir pī er kvadrātā.
+
+00:40.270 --> 00:46.698
+Cilindra tilpums ir pī er kvadrātā ha, kur er ir pamata rādiuss, bet ha ir augstums.
+
+00:47.198 --> 00:53.553
+Galvenais slazds: uzdevumā bieži dod diametru, nevis rādiusu. Tad diametru vispirms dala ar divi.
+
+00:54.053 --> 01:06.787
+Piemēram, diametrs ir seši centimetri, bet augstums desmit. Rādiuss ir trīs. Tilpums ir pī reiz deviņi reiz desmit, tas ir deviņdesmit pī kubikcentimetri.
+
+01:08.038 --> 01:12.520
+Līdzīgi trijstūri ir vienādas formas, bet dažāda izmēra trijstūri.
+
+01:13.020 --> 01:17.867
+Ja visas malas ir kā reizes garākas, tad laukums ir kā kvadrātā reizes lielāks.
+
+01:18.367 --> 01:26.702
+Paskaties: ja kā ir divi, lielajā trijstūrī ietilpst četri mazie. Malas ir divas reizes garākas, bet laukums četras reizes lielāks.
+
+01:27.202 --> 01:31.518
+Tilpumiem attiecība ir vēl lielāka: kā kubā.
+
+01:32.750 --> 01:37.638
+Kā atrast koeficientu kā? Tā ir atbilstošo malu attiecība.
+
+01:38.138 --> 01:48.181
+Ja mala A bē ir četri, bet tai atbilstošā mala dē e ir desmit, tad kā ir desmit, dalīts ar četri, tas ir divi komats pieci.
+
+01:48.681 --> 01:54.252
+Tad laukumu attiecība ir divi komats pieci kvadrātā, tas ir seši komats divdesmit pieci.
+
+01:55.502 --> 02:11.707
+Atrisināsim uzdevumu. Trijstūri A bē cē un dē e ef ir līdzīgi. Mala A bē ir četri centimetri, mala dē e ir desmit centimetri, bet trijstūra A bē cē laukums ir divpadsmit kvadrātcentimetri. Atradīsim trijstūra dē e ef laukumu.
+
+02:12.207 --> 02:18.591
+Vispirms līdzības koeficients: kā ir desmit, dalīts ar četri, tas ir divi komats pieci.
+
+02:19.822 --> 02:26.171
+Laukumu attiecība ir kā kvadrātā. Divi komats pieci kvadrātā ir seši komats divdesmit pieci.
+
+02:27.398 --> 02:35.900
+Trijstūra dē e ef laukums: divpadsmit reizinām ar seši komats divdesmit pieci. Iegūstam septiņdesmit piecus kvadrātcentimetrus.
+
+02:37.141 --> 02:40.045
+Atbilde: septiņdesmit pieci kvadrātcentimetri.
+
+02:40.545 --> 02:50.383
+Un tagad slazds. Ja divpadsmit reizina tikai ar divi komats pieci, iegūst trīsdesmit. Tas ir nepareizi: laukumu reizina ar kā kvadrātā, nevis ar kā.
+
+02:51.613 --> 02:55.777
+Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
+
+02:56.277 --> 02:59.965
+Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.
