@@ -3402,6 +3402,7 @@ let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
   if (h.startsWith('demo-')) { topic = h.slice(5); h = 'demo'; }
+  if (topic) { const s = DAB.LESSONS && DAB.LESSONS[topic] ? 'dab' : MAT.LESSONS && MAT.LESSONS[topic] ? 'mat' : null; if (s && s !== state.subj) setSubject(s); }
   let want = h;
   if (!VIEWS[want]) want = 'sakums';
   if (want === 'tests' && !state.lead) want = 'pieteikums';
