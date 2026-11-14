@@ -837,6 +837,7 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 @media (max-width: 860px) { .sci-clip { grid-template-columns: 1fr; gap: 28px; } .sci-vid .vid-frame { transform: none; } }
 .sci-clip > * { min-width: 0; }
 .sci-vid .vid-tag { white-space: normal; }
+.show { padding-top: 72px; padding-bottom: 72px; } .show-txt > p { margin-bottom: 0; } .show-side .show-chips li { font-size: 15.5px; padding: 9px 14px 9px 9px; }
 
 </style>
 </head>
@@ -890,7 +891,7 @@ const I18N = {
     sci_p: 'Minūte no nodarbības «Ekosistēmas»: barošanās ķēde, 10 % enerģijas un barošanās tīkls. Katrai tēmai ir šāds video un uzdevumi ar tūlītēju pārbaudi.',
     show_h: 'Tā izskatās nodarbība',
     show_p: 'Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.',
-    show_more: 'Pārējās tēmas — kursā:',
+    show_more: 'Kursa tēmas, katrai ir video:',
     show_play: 'Skatīties',
     inc_h: 'Kas ir abonementā',
     inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
@@ -1153,7 +1154,7 @@ const I18N = {
     sci_p: 'Минута из урока «Экосистемы»: пищевая цепь, 10 % энергии и пищевая сеть. У каждой темы есть такое видео и задачи с мгновенной проверкой.',
     show_h: 'Так выглядит урок',
     show_p: 'Короткое видео с голосом и анимацией: формула появляется ровно тогда, когда о ней говорят. После видео — задачи с мгновенной проверкой.',
-    show_more: 'Остальные темы — в курсе:',
+    show_more: 'Темы курса, у каждой есть видео:',
     show_play: 'Смотреть',
     inc_h: 'Что входит в подписку',
     inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
@@ -3040,10 +3041,10 @@ function viewLanding() {
     </div>
     <figure class="hero2-vid">
       <div class="vid-frame">
-        <video id="hero-video" preload="none" playsinline poster="${v}-hero.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video>
+        <video id="hero-video" preload="none" playsinline poster="${v}-clip.jpg"><source src="${v}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}-clip.vtt"></video>
         <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
       </div>
-      <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · 2:53</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
+      <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · ${state.lang === 'ru' ? '0:48' : '0:51'}</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
     </figure>
     </div>
   </section>
@@ -3072,10 +3073,11 @@ function viewLanding() {
       <div class="show-txt">
         <h2>${T('show_h')}</h2>
         <p>${T('show_p')}</p>
-        <p class="show-more">${T('show_more')}</p>
-        <ul class="show-chips">${MAT.TOPICS.filter(t => !MAT.VIDEOS[t.id]).map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
       </div>
-      <ul class="show-vids">${MAT.TOPICS.filter(t => MAT.VIDEOS[t.id]).map(t => `<li><button type="button" class="vcard" data-act="playVid" data-t="${t.id}"><span class="vthumb"><img src="video/${t.id}-${state.lang}-hero.jpg" alt="" loading="lazy" width="640" height="360"><span class="vplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span></span><span class="vmeta"><b>${L(t)}</b><span>${T('subj_mat')} · ~3 ${state.lang === 'ru' ? 'мин' : 'min'}</span></span></button></li>`).join('')}</ul>
+      <div class="show-side">
+        <p class="show-more">${T('show_more')}</p>
+        <ul class="show-chips">${MAT.TOPICS.map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+      </div>
     </div>
   </section>
   <section class="wrap sec">
