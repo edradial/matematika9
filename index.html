@@ -824,6 +824,20 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
   .formulas b { font-size: 16px; overflow-wrap: anywhere; text-align: center; }
 }
 
+/* science clip on home */
+.sci-clip { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+.sci-vid .vid-frame { transform: rotate(1.2deg); }
+.sci-vid:hover .vid-frame, .sci-vid.playing .vid-frame { transform: none; }
+.sci-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--good, #1E9E63); margin: 0 0 10px; }
+.sci-txt h2 { margin: 0 0 14px; }
+.sci-txt > p { color: var(--muted); margin: 0 0 20px; }
+.sci-chips { margin: 0 0 26px; }
+.sci-chips li { background: #fff; border-color: var(--line); color: var(--ink); }
+.sci-chips .ic { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); }
+@media (max-width: 860px) { .sci-clip { grid-template-columns: 1fr; gap: 28px; } .sci-vid .vid-frame { transform: none; } }
+.sci-clip > * { min-width: 0; }
+.sci-vid .vid-tag { white-space: normal; }
+
 </style>
 </head>
 <body>
@@ -872,6 +886,8 @@ const I18N = {
     hero2_vid: 'Video nodarbība',
     hero2_vid_note: 'redzi, kā mainās zīme!',
     hero2_days: 'līdz eksāmenam',
+    sci_h: 'Dabaszinātņu nodarbības piemērs',
+    sci_p: 'Minūte no nodarbības «Ekosistēmas»: barošanās ķēde, 10 % enerģijas un barošanās tīkls. Katrai tēmai ir šāds video un uzdevumi ar tūlītēju pārbaudi.',
     show_h: 'Tā izskatās nodarbība',
     show_p: 'Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.',
     show_more: 'Pārējās tēmas — kursā:',
@@ -1133,6 +1149,8 @@ const I18N = {
     hero2_vid: 'Видеоурок',
     hero2_vid_note: 'смотри, как меняется знак!',
     hero2_days: 'до экзамена',
+    sci_h: 'Пример урока по естествознанию',
+    sci_p: 'Минута из урока «Экосистемы»: пищевая цепь, 10 % энергии и пищевая сеть. У каждой темы есть такое видео и задачи с мгновенной проверкой.',
     show_h: 'Так выглядит урок',
     show_p: 'Короткое видео с голосом и анимацией: формула появляется ровно тогда, когда о ней говорят. После видео — задачи с мгновенной проверкой.',
     show_more: 'Остальные темы — в курсе:',
@@ -3033,6 +3051,22 @@ function viewLanding() {
     <div class="sec-head"><h2>${T('subj_pick_h')}</h2><p>${T('subj_pick_p')}</p></div>
     <div class="subj-grid">${subjCard('mat', 'subj_mat_d')}${subjCard('dab', 'subj_dab_d')}</div>
   </section>
+  <section class="wrap sec sci-clip" id="dab-video">
+    <figure class="hero2-vid sci-vid">
+      <div class="vid-frame">
+        <video id="sci-video" preload="none" playsinline poster="video/eko-${state.lang}-clip.jpg"><source src="video/eko-${state.lang}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="video/eko-${state.lang}-clip.vtt"></video>
+        <button type="button" class="vid-play" data-act="heroPlay" data-vid="sci-video" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+      </div>
+      <figcaption><span class="vid-tag">${T('subj_dab')} · ${L(DAB.TOPICS.find(t => t.id === 'eko'))} · ${state.lang === 'ru' ? '0:53' : '0:55'}</span></figcaption>
+    </figure>
+    <div class="sci-txt">
+      <p class="sci-eyebrow">${T('subj_dab')} · ${dateShort(CONFIG.sciDate)}</p>
+      <h2>${T('sci_h')}</h2>
+      <p>${T('sci_p')}</p>
+      <ul class="show-chips sci-chips">${DAB.TOPICS.filter(t => DAB.VIDEOS[t.id]).map(t => `<li><span class="ic">${t.ic}</span>${L(t)}</li>`).join('')}</ul>
+      <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="dab">${T('subj_dab_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
   <section class="band-dark" id="urok">
     <div class="wrap show">
       <div class="show-txt">
@@ -3448,8 +3482,8 @@ const ACT = {
     if (location.hash === '#' + current) rerender();
   },
   toSubj(b, e) { e.preventDefault(); const el = $('#prieksmeti'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
-  heroPlay() {
-    const vid = $('#hero-video'); if (!vid) return;
+  heroPlay(b) {
+    const vid = $('#' + ((b && b.dataset.vid) || 'hero-video')); if (!vid) return;
     vid.controls = true; vid.closest('.hero2-vid').classList.add('playing'); vid.play().catch(() => {});
     if (window.matchMedia('(max-width: 860px)').matches) vid.scrollIntoView({ behavior: 'smooth', block: 'center' });
   },
