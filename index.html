@@ -1109,6 +1109,21 @@ a.lrow:hover { background: var(--soft); }
   .tc.soon { flex-direction: column; align-items: flex-start; }
 }
 
+/* ===== cookie consent ===== */
+.ck { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); width: min(760px, calc(100vw - 24px)); z-index: 60; background: var(--paper); border-radius: 22px; box-shadow: 0 20px 60px -20px rgba(20, 33, 58, .45), 0 0 0 1px var(--line); padding: 18px 20px; }
+.ck-in { display: grid; gap: 14px; }
+.ck-txt b { font: 800 17px var(--f-display); } .ck-txt p { margin: 4px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.5; }
+.ck-txt .btn-link { font-size: 14.5px; }
+.ck-cats { display: none; gap: 8px; } .ck.open .ck-cats { display: grid; }
+.ck-cat { display: flex; gap: 12px; align-items: flex-start; padding: 10px 12px; border-radius: 14px; background: var(--soft); cursor: pointer; }
+.ck-cat input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: 0 0 auto; }
+.ck-cat b { display: block; font-size: 14.5px; } .ck-cat em { font-style: normal; font-weight: 600; font-size: 12px; color: var(--muted); } .ck-cat small { color: var(--muted); font-size: 13px; }
+.ck-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.ck-btns .btn { padding: 10px 16px; font-size: 14.5px; }
+.ck .ck-saveb { display: none; } .ck.open .ck-saveb { display: inline-flex; } .ck.open .ck-setb { display: none; }
+body.ck-on .sticky-cta { display: none !important; }
+@media (max-width: 640px) { .ck { bottom: 10px; padding: 16px; } .ck-btns .btn { flex: 1 1 45%; } }
+
 </style>
 </head>
 <body>
@@ -1359,7 +1374,7 @@ const I18N = {
       ['Tiesiskais pamats', 'Tava piekrišana (VDAR 6. panta 1. punkta a) apakšpunkts). To var atsaukt jebkurā brīdī.'],
       ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
       ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs. Vietni mitina GitHub Pages (GitHub, Inc.), kas tehniskiem nolūkiem apstrādā apmeklētāja IP adresi.'],
-      ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, analītiku vai reklāmas rīkus, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos.'],
+      ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, analītiku vai reklāmas rīkus, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos. Ja nākotnē pievienosim analītiku vai reklāmas mērīšanu, tās ieslēgsies tikai pēc tavas piekrišanas sīkdatņu logā; izvēli var mainīt ar saiti „Sīkdatņu iestatījumi” vietnes apakšā.'],
       ['Tavas tiesības', 'Vari lūgt datus parādīt, labot vai dzēst, rakstot uz {email}. Sūdzību vari iesniegt Datu valsts inspekcijā (dvi.gov.lv).'],
       ['Ja tev nav 13 gadu', 'Lūdz vecākam aizpildīt pieteikumu.'],
     ],
@@ -1643,7 +1658,7 @@ const I18N = {
       ['Правовое основание', 'Твоё согласие (статья 6, пункт 1, подпункт a) GDPR). Его можно отозвать в любой момент.'],
       ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
       ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком. Сайт размещён на GitHub Pages (GitHub, Inc.), который в технических целях обрабатывает IP-адрес посетителя.'],
-      ['Куки и данные в браузере', 'Сайт не использует куки, аналитику или рекламные инструменты, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера.'],
+      ['Куки и данные в браузере', 'Сайт не использует куки, аналитику или рекламные инструменты, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера. Если в будущем мы добавим аналитику или измерение рекламы, они включатся только после твоего согласия в окне куки; выбор можно изменить по ссылке «Настройки куки» внизу сайта.'],
       ['Твои права', 'Можно попросить показать, исправить или удалить данные, написав на {email}. Жалобу можно подать в Государственную инспекцию данных (dvi.gov.lv).'],
       ['Если тебе нет 13 лет', 'Попроси родителя заполнить заявку.'],
     ],
@@ -3505,6 +3520,44 @@ const PLATFORM_ACT = {
   },
 };
 
+// ---------- cookie / tracking consent ----------
+// Necessary storage (progress in localStorage) never needs consent. Analytics and marketing tools
+// may only be loaded through onConsent('analytics' | 'marketing', fn), after the visitor agrees.
+Object.assign(I18N.lv, {
+  ck_h: 'Sīkdatnes un privātums',
+  ck_p: 'Vietnes darbībai tavs progress tiek saglabāts tikai tavā pārlūkā. Ar tavu atļauju varam izmantot arī analītiku un reklāmas mērīšanu, lai uzlabotu vietni. Izvēli var mainīt jebkurā brīdī vietnes apakšā.',
+  ck_all: 'Piekrītu visam', ck_min: 'Tikai nepieciešamās', ck_set: 'Iestatījumi', ck_save: 'Saglabāt izvēli', ck_more: 'Privātuma politika',
+  ck_cats: [['nec', 'Nepieciešamās', 'Progresa un valodas saglabāšana pārlūkā. Bez tām vietne nedarbojas.'], ['analytics', 'Analītika', 'Anonīma statistika par to, kuras lapas un nodarbības izmanto. Pašlaik netiek izmantota.'], ['marketing', 'Reklāmas mērīšana', 'Lai saprastu, kura reklāma atveda uz vietni (piemēram, Meta pikselis). Pašlaik netiek izmantota.']],
+  ck_always: 'vienmēr ieslēgtas', f_cookies: 'Sīkdatņu iestatījumi',
+});
+Object.assign(I18N.ru, {
+  ck_h: 'Куки и приватность',
+  ck_p: 'Для работы сайта твой прогресс хранится только в твоём браузере. С твоего разрешения мы можем также использовать аналитику и измерение рекламы, чтобы улучшать сайт. Выбор можно изменить в любой момент внизу сайта.',
+  ck_all: 'Согласен со всем', ck_min: 'Только необходимые', ck_set: 'Настройки', ck_save: 'Сохранить выбор', ck_more: 'Политика приватности',
+  ck_cats: [['nec', 'Необходимые', 'Сохранение прогресса и языка в браузере. Без них сайт не работает.'], ['analytics', 'Аналитика', 'Анонимная статистика о том, какие страницы и уроки используют. Сейчас не используется.'], ['marketing', 'Измерение рекламы', 'Чтобы понимать, какая реклама привела на сайт (например, пиксель Meta). Сейчас не используется.']],
+  ck_always: 'всегда включены', f_cookies: 'Настройки куки',
+});
+const CK_KEY = 'm9_consent_v1', ckWaiters = [];
+function ckGet() { try { return JSON.parse(localStorage.getItem(CK_KEY) || 'null'); } catch (e) { return null; } }
+function ckSet(c) { const v = { analytics: !!c.analytics, marketing: !!c.marketing, at: new Date().toISOString() }; try { localStorage.setItem(CK_KEY, JSON.stringify(v)); } catch (e) { } ckWaiters.forEach(([k, fn]) => { if (v[k] && !fn.done) { fn.done = true; fn(); } }); ckHide(); }
+function onConsent(kind, fn) { const c = ckGet(); if (c && c[kind]) { fn.done = true; fn(); } else ckWaiters.push([kind, fn]); }
+function ckHide() { const b = document.getElementById('ck'); if (b) b.remove(); document.body.classList.remove('ck-on'); }
+function ckShow(open = false) {
+  ckHide(); const c = ckGet() || {};
+  const b = document.createElement('section'); b.id = 'ck'; b.className = 'ck' + (open ? ' open' : ''); b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', T('ck_h'));
+  b.innerHTML = `<div class="ck-in"><div class="ck-txt"><b>${T('ck_h')}</b><p>${T('ck_p')} <button type="button" class="btn-link" data-act="privacy">${T('ck_more')}</button></p></div>
+    <div class="ck-cats">${T('ck_cats').map(([k, n, d]) => `<label class="ck-cat"><input type="checkbox" data-ck="${k}" ${k === 'nec' ? 'checked disabled' : c[k] ? 'checked' : ''}><span><b>${n}${k === 'nec' ? ` <em>${T('ck_always')}</em>` : ''}</b><small>${d}</small></span></label>`).join('')}</div>
+    <div class="ck-btns"><button type="button" class="btn btn-secondary" data-act="ckMin">${T('ck_min')}</button><button type="button" class="btn btn-secondary ck-setb" data-act="ckOpen">${T('ck_set')}</button><button type="button" class="btn btn-secondary ck-saveb" data-act="ckSave">${T('ck_save')}</button><button type="button" class="btn btn-primary" data-act="ckAll">${T('ck_all')}</button></div></div>`;
+  document.body.appendChild(b); document.body.classList.add('ck-on');
+}
+const CONSENT_ACT = {
+  ckAll() { ckSet({ analytics: true, marketing: true }); },
+  ckMin() { ckSet({ analytics: false, marketing: false }); },
+  ckOpen() { const b = document.getElementById('ck'); if (b) b.classList.add('open'); },
+  ckSave() { const v = {}; document.querySelectorAll('#ck [data-ck]').forEach(i => { v[i.dataset.ck] = i.checked; }); ckSet(v); },
+  ckSettings() { ckShow(true); },
+};
+
 // ---------- App ----------
 const STORE = 'm9_state_v1';
 const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null, les: {}, days: [], hist: {}, last: null };
@@ -3660,7 +3713,7 @@ function renderSide(view) {
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
     <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
-    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button>
     ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
       : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
 }
@@ -4150,7 +4203,7 @@ function wrongTry(t, msg) {
 
 // ---------- events ----------
 const ACT = {
-  lang(b) { state.lang = b.dataset.v; save(); rerender(); },
+  lang(b) { state.lang = b.dataset.v; save(); rerender(); if (document.getElementById('ck')) ckShow(document.getElementById('ck').classList.contains('open')); },
   privacy() { const m = $('#modal'); m.innerHTML = privacyHTML(); m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus(); },
   'close-modal'() { closeModal(); },
   'pv-close'() { state.pvHidden = true; save(); $('#preview-bar').hidden = true; },
@@ -4249,7 +4302,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -4350,6 +4403,7 @@ function boot() {
   save();
   window.addEventListener('hashchange', () => route());
   route();
+  if (!ckGet()) ckShow();
 }
 boot();
 
