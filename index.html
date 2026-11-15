@@ -979,6 +979,117 @@ body { background-image: none; display: block; }
 
 @media (max-width: 640px) { .sec-row { grid-template-columns: minmax(0, 1fr); } .sec-row .seg { justify-self: start; } }
 
+/* ===== v3: platform pages ===== */
+.appnav .side-h { margin: 14px 14px 4px; }
+.appnav .side-h:first-of-type { margin-top: 2px; }
+.sf-note { margin-top: 8px !important; font-size: 12px; line-height: 1.45; color: #7D89A8; }
+.pg { padding-top: 8px; padding-bottom: 40px; }
+.pg-h { margin: 6px 0 22px; } .pg-h h1 { font-size: clamp(28px, 3vw, 38px); } .pg-h p { margin: 6px 0 0; color: var(--muted); }
+.row-sb { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 14px; color: var(--muted); margin: 4px 0 14px; }
+.crumbs a { color: var(--muted); text-decoration: none; font-weight: 600; } .crumbs a:hover { color: var(--accent); }
+.crumbs i { font-style: normal; opacity: .6; } .crumbs span { color: var(--ink); font-weight: 600; }
+.pbar { display: block; flex: 1; height: 8px; border-radius: 99px; background: var(--soft); overflow: hidden; min-width: 60px; }
+.pbar i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.pbar.lg { height: 10px; } .pbar.gap i { background: var(--bad); } .pbar.mid i { background: var(--warn); } .pbar.ok i { background: var(--good); }
+.ring.sm { width: 128px; height: 128px; margin: 0; flex: 0 0 auto; }
+.ring.sm .ring-v { stroke: var(--rc, var(--accent)); }
+.ring.sm b { font-size: 28px; } .ring.sm span { inset: 12px; font-size: 12px; }
+.tg { font-style: normal; font: 700 11.5px var(--f-body); padding: 4px 9px; border-radius: 99px; white-space: nowrap; }
+.tg.ok { background: var(--good-bg); color: var(--good); } .tg.dm { background: var(--accent-soft); color: var(--accent); } .tg.lk { background: var(--soft); color: var(--muted); }
+.li { width: 20px; height: 20px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.dev-note { margin-top: 22px; font-size: 13.5px; color: var(--muted); }
+
+.course-hero { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 32px; border-radius: 28px; margin-bottom: 22px; }
+.ch-mat { background: linear-gradient(125deg, var(--tint-b), var(--tint-v)); } .ch-dab { background: linear-gradient(125deg, var(--tint-g), color-mix(in srgb, var(--tint-g) 45%, var(--paper))); }
+.course-hero h1 { font-size: clamp(26px, 3vw, 38px); } .course-hero > div > p { color: var(--muted); max-width: 60ch; margin: 8px 0 16px; }
+.ch-stats { display: grid; gap: 6px; max-width: 520px; margin-bottom: 18px; font-weight: 700; } .ch-stats small { color: var(--muted); font-weight: 500; }
+.ch-dab .pbar i { background: var(--green); }
+.ch-note { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: 14px; color: var(--muted); }
+.mods { display: grid; gap: 12px; }
+.mod { background: var(--paper); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+.mod summary { list-style: none; display: flex; align-items: center; gap: 16px; padding: 16px 20px; cursor: pointer; }
+.mod summary::-webkit-details-marker { display: none; }
+.mod summary::after { content: ""; width: 10px; height: 10px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); margin-left: 6px; transition: transform .2s; }
+.mod[open] summary::after { transform: rotate(-135deg); }
+.mod-n { width: 40px; height: 40px; border-radius: 13px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font: 800 17px var(--f-display); flex: 0 0 auto; }
+.mod-t { flex: 1; min-width: 0; } .mod-t small { display: block; color: var(--muted); font-size: 12.5px; font-weight: 600; } .mod-t b { font: 800 17px/1.25 var(--f-display); }
+.mod-p { display: grid; gap: 4px; width: 170px; } .mod-p small { color: var(--muted); font-size: 12.5px; }
+.lrows { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 2px; }
+.lrow { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 12px; color: var(--ink); text-decoration: none; font-size: 15.5px; }
+.lrow > span { flex: 1; min-width: 0; }
+a.lrow:hover { background: var(--soft); }
+.lrow.demo .li { color: var(--accent); } .lrow.done .li { color: var(--good); } .lrow.lock { color: var(--muted); }
+.lrows.sm { padding: 0; margin: 6px 0 14px; } .lrows.sm .lrow { padding: 8px 6px; font-size: 14.5px; }
+
+.player2 { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 26px; align-items: start; }
+.pl-h h1 { font-size: clamp(24px, 2.6vw, 34px); }
+.pl-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--muted); font-size: 14.5px; margin: 8px 0 16px; }
+.chip-ic { min-width: 30px; height: 30px; padding: 0 7px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: inline-grid; place-items: center; font: 800 14px var(--f-display); }
+.player2 .vid { margin: 0 0 18px; }
+.player2 .vid video { border-radius: 20px; }
+.ltabs { display: flex; gap: 4px; padding: 5px; border-radius: 16px; background: var(--paper); box-shadow: var(--shadow); margin-bottom: 16px; }
+.ltab { flex: 1; border: 0; background: none; padding: 11px 12px; border-radius: 12px; font: 700 15px var(--f-body); color: var(--muted); cursor: pointer; }
+.ltab[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+.ltab .cnt { font-weight: 600; opacity: .8; }
+.solved-line { margin: 0 0 12px; color: var(--muted); font-weight: 600; }
+.lpanel .task + .task { margin-top: 14px; }
+.pl-foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+.pl-foot .btn .li { margin-right: 2px; }
+.done-badge { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 12px; background: var(--good-bg); color: var(--good); font-weight: 700; }
+.pl-side { display: grid; gap: 18px; position: sticky; top: 84px; }
+.mp { display: flex; align-items: center; gap: 10px; } .mp small { color: var(--muted); white-space: nowrap; }
+.orows { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.orow { display: flex; align-items: center; gap: 10px; padding: 9px 6px; border-radius: 12px; color: var(--ink); text-decoration: none; font-size: 14.5px; font-weight: 600; }
+.orow:hover { background: var(--soft); } .orow > span { flex: 1; } .orow small { display: block; font-weight: 500; color: var(--muted); font-size: 12.5px; }
+.orow .li { color: var(--accent); } .orow .pill { font-size: 11px; }
+
+.mc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.mc, .tc { background: var(--paper); border-radius: 24px; box-shadow: var(--shadow); padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.mc-top { display: flex; gap: 20px; align-items: center; } .mc h2, .tc h2 { font-size: 24px; }
+.mc-sub { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; }
+.cont { display: flex; align-items: center; gap: 12px; width: 100%; border: 0; cursor: pointer; text-align: left; font: inherit; color: var(--ink); padding: 14px 16px; border-radius: 16px; background: var(--tint-b); }
+.mc-dab .cont { background: var(--tint-g); } .cont .li { color: var(--accent); } .cont > span { flex: 1; }
+.cont small { display: block; color: var(--muted); font-size: 13px; } .cont b { font-size: 16px; }
+.cont .arr, .tc .arr { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.mc-none { margin: 0; padding: 14px 16px; border-radius: 16px; background: var(--soft); color: var(--muted); }
+.tc-h { display: flex; gap: 14px; align-items: center; }
+.tc-h > div { flex: 1; } .tc-h p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.tc-ic { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font: 800 16px var(--f-display); flex: 0 0 auto; }
+.tc-mat { background: var(--tint-b); color: var(--accent); } .tc-dab { background: var(--tint-g); color: var(--green); }
+.tc-st { font-size: 13px; font-weight: 700; padding: 6px 11px; border-radius: 99px; background: var(--soft); color: var(--muted); white-space: nowrap; } .tc-st.ok { background: var(--good-bg); color: var(--good); }
+.tc-hist { display: flex; align-items: flex-end; gap: 8px; height: 74px; } .tc-hist small { align-self: center; color: var(--muted); margin-right: 6px; font-size: 13px; }
+.tc-hist span { width: 30px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 3px; }
+.tc-hist i { width: 100%; border-radius: 7px 7px 3px 3px; background: var(--accent); min-height: 4px; } .tc-hist b { font-size: 12px; }
+.tc.soon { margin-top: 20px; flex-direction: row; align-items: center; color: var(--muted); } .tc.soon > div { flex: 1; } .tc.soon h2 { font-size: 19px; color: var(--ink); } .tc.soon p { margin: 4px 0 0; }
+.retake-q { margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--warn-bg); font-size: 14.5px; }
+
+.kpis { display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+.kpi { background: var(--paper); border-radius: 22px; box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.kpi-ring { align-items: center; padding: 16px 22px; }
+.kpi-ic { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); display: grid; place-items: center; margin-bottom: 8px; } .kpi-ic .nic { stroke: var(--accent); }
+.kpi > b { font: 800 34px/1 var(--f-display); } .kpi > b small { font-size: 18px; color: var(--muted); } .kpi > small { color: var(--muted); font-weight: 600; }
+.pg-cols { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.prows { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.prow { display: grid; grid-template-columns: auto minmax(0, 1fr) 110px auto auto; align-items: center; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14.5px; font-weight: 600; }
+.prow:first-child { border-top: 0; } .pr-n { color: var(--muted); font-size: 13px; }
+.p-none { color: var(--muted); display: grid; gap: 12px; justify-items: start; }
+.bdg { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.bdg li { display: flex; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--soft); opacity: .55; }
+.bdg li.on { opacity: 1; background: var(--warn-bg); }
+.bdg-ic { width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; background: var(--paper); font-size: 20px; color: #E0A400; flex: 0 0 auto; }
+.bdg b { display: block; font-size: 14.5px; } .bdg small { color: var(--muted); font-size: 12.5px; }
+
+@media (max-width: 1100px) { .player2 { grid-template-columns: minmax(0, 1fr); } .pl-side { position: static; } }
+@media (max-width: 900px) { .mc-grid, .pg-cols { grid-template-columns: minmax(0, 1fr); } .kpis { grid-template-columns: 1fr 1fr; } .kpi-ring { grid-column: 1 / -1; } .course-hero { flex-direction: column-reverse; align-items: flex-start; padding: 24px; } }
+@media (max-width: 640px) {
+  .mod-p { display: none; } .mod summary { padding: 14px 14px; gap: 12px; }
+  .prow { grid-template-columns: auto minmax(0, 1fr) auto; } .prow .pbar, .prow .pr-n { display: none; }
+  .pl-foot .btn { width: 100%; } .ltab { padding: 10px 6px; font-size: 14px; }
+  .tc.soon { flex-direction: column; align-items: flex-start; }
+}
+
 </style>
 </head>
 <body>
@@ -3076,9 +3187,306 @@ const DAB_LESSONS = {
 
 DAB.LESSONS = DAB_LESSONS;
 
+// ---------- learning platform layer: course pages, lesson player, my courses, progress, tests ----------
+// Progress lives in localStorage (state.les, state.days, state.hist); accounts can take it over after launch.
+Object.assign(I18N.lv, {
+  nav2: { home: 'Sākums', courses: 'Mani kursi', lessons: 'Video nodarbības', tests: 'Testi', prog: 'Mans progress', exams: 'Eksāmeni 2027', prices: 'Cenas', learn: 'Mācības', info: 'Informācija' },
+  dev_note: 'Progress tiek saglabāts šajā ierīcē. Pēc starta to varēs pārnest uz kontu.',
+  crumbs_courses: 'Mani kursi',
+  course_h: '{s}: pilnais kurss',
+  course_p: '8 moduļi pēc eksāmena programmas. Demo nodarbības ir pieejamas jau tagad, pārējās atvērsies {date}.',
+  course_done: 'Pabeigts {k} no {n} nodarbībām',
+  course_avail: 'Pieejams tagad: {a} · pēc starta: visas {n}',
+  course_cont: 'Turpināt',
+  course_start: 'Sākt kursu',
+  mod: 'Modulis {n}',
+  les_demo: 'Demo',
+  les_done: 'Pabeigts',
+  les_lock: 'No {date}',
+  les_after_test: 'Atveras pēc bezmaksas testa',
+  mod_progress: '{k}/{n} uzdevumi',
+  tab_notes: 'Konspekts',
+  tab_example: 'Piemērs',
+  tab_tasks: 'Uzdevumi',
+  mark_done: 'Atzīmēt kā pabeigtu',
+  marked_done: 'Nodarbība pabeigta',
+  next_les: 'Nākamā nodarbība',
+  module_list: 'Moduļa nodarbības',
+  other_topics: 'Citas tēmas',
+  my_h: 'Mani kursi',
+  my_p: 'Tavi priekšmeti, progress un vieta, kur apstājies.',
+  my_last: 'Pēdējā nodarbība: {t}',
+  my_none: 'Vēl nav sākts',
+  open_course: 'Atvērt kursu',
+  tests_h: 'Testi',
+  tests_p: 'Bezmaksas eksāmena tipa testi. Atkārto pēc dažām nedēļām un redzi, kā aug rezultāts.',
+  t_status_new: 'Nav sākts',
+  t_status_prog: 'Procesā · {k}/{n}',
+  t_status_done: 'Rezultāts: {s}/{n}',
+  t_start: 'Sākt testu',
+  t_cont: 'Turpināt testu',
+  t_res: 'Skatīt rezultātu',
+  t_retake: 'Pildīt vēlreiz',
+  t_hist: 'Mēģinājumi',
+  t_soon_h: 'Tēmu testi',
+  t_soon_p: 'Īsi testi katrai tēmai un pilni eksāmena varianti būs pieejami pēc starta.',
+  prog_h: 'Mans progress',
+  prog_p: 'Viss, ko esi izdarījis, vienuviet.',
+  p_course: 'Kurss',
+  p_tasks: 'Atrisināti uzdevumi',
+  p_streak: 'Dienas pēc kārtas',
+  p_lessons: 'Pabeigtas nodarbības',
+  p_topics: 'Tēmas pēc testa',
+  p_topics_none: 'Izpildi bezmaksas testu, un šeit redzēsi, kuras tēmas jāatkārto.',
+  p_badges: 'Sasniegumi',
+  badges: { b_test: ['Pirmais tests', 'Izpildīts bezmaksas tests'], b_task: ['Pirmais uzdevums', 'Atrisināts pirmais uzdevums'], b_les: ['Pirmā nodarbība', 'Pabeigta pirmā nodarbība'], b_ten: ['Desmit uzdevumi', 'Atrisināti 10 uzdevumi'], b_streak: ['3 dienas pēc kārtas', 'Mācījies trīs dienas pēc kārtas'], b_both: ['Divi priekšmeti', 'Izpildīti abi testi'] },
+  cont_h: 'Turpini, kur apstājies',
+  cont_p: '{s} · {k}/{n} uzdevumi',
+  retake_q: 'Sākt testu no jauna? Iepriekšējais rezultāts paliks vēsturē.',
+});
+Object.assign(I18N.ru, {
+  nav2: { home: 'Главная', courses: 'Мои курсы', lessons: 'Видеоуроки', tests: 'Тесты', prog: 'Мой прогресс', exams: 'Экзамены 2027', prices: 'Цены', learn: 'Учёба', info: 'Информация' },
+  dev_note: 'Прогресс сохраняется на этом устройстве. После старта его можно будет перенести в аккаунт.',
+  crumbs_courses: 'Мои курсы',
+  course_h: '{s}: полный курс',
+  course_p: '8 модулей по программе экзамена. Демо-уроки доступны уже сейчас, остальные откроются {date}.',
+  course_done: 'Пройдено {k} из {n} уроков',
+  course_avail: 'Доступно сейчас: {a} · после старта: все {n}',
+  course_cont: 'Продолжить',
+  course_start: 'Начать курс',
+  mod: 'Модуль {n}',
+  les_demo: 'Демо',
+  les_done: 'Пройден',
+  les_lock: 'С {date}',
+  les_after_test: 'Откроется после бесплатного теста',
+  mod_progress: '{k}/{n} задач',
+  tab_notes: 'Конспект',
+  tab_example: 'Пример',
+  tab_tasks: 'Задания',
+  mark_done: 'Отметить пройденным',
+  marked_done: 'Урок пройден',
+  next_les: 'Следующий урок',
+  module_list: 'Уроки модуля',
+  other_topics: 'Другие темы',
+  my_h: 'Мои курсы',
+  my_p: 'Твои предметы, прогресс и место, где ты остановился.',
+  my_last: 'Последний урок: {t}',
+  my_none: 'Ещё не начат',
+  open_course: 'Открыть курс',
+  tests_h: 'Тесты',
+  tests_p: 'Бесплатные тесты в формате экзамена. Пройди снова через пару недель и посмотри, как растёт результат.',
+  t_status_new: 'Не начат',
+  t_status_prog: 'В процессе · {k}/{n}',
+  t_status_done: 'Результат: {s}/{n}',
+  t_start: 'Начать тест',
+  t_cont: 'Продолжить тест',
+  t_res: 'Смотреть результат',
+  t_retake: 'Пройти снова',
+  t_hist: 'Попытки',
+  t_soon_h: 'Тесты по темам',
+  t_soon_p: 'Короткие тесты по каждой теме и полные варианты экзамена появятся после старта.',
+  prog_h: 'Мой прогресс',
+  prog_p: 'Всё, что ты сделал, в одном месте.',
+  p_course: 'Курс',
+  p_tasks: 'Решено задач',
+  p_streak: 'Дней подряд',
+  p_lessons: 'Пройдено уроков',
+  p_topics: 'Темы по тесту',
+  p_topics_none: 'Пройди бесплатный тест, и здесь появится, какие темы повторить.',
+  p_badges: 'Достижения',
+  badges: { b_test: ['Первый тест', 'Пройден бесплатный тест'], b_task: ['Первая задача', 'Решена первая задача'], b_les: ['Первый урок', 'Пройден первый урок'], b_ten: ['Десять задач', 'Решено 10 задач'], b_streak: ['3 дня подряд', 'Занимался три дня подряд'], b_both: ['Два предмета', 'Пройдены оба теста'] },
+  cont_h: 'Продолжи с того же места',
+  cont_p: '{s} · {k}/{n} задач',
+  retake_q: 'Начать тест заново? Прежний результат останется в истории.',
+});
+
+const SUBJ_D = s => (s === 'dab' ? DAB : MAT);
+const today = () => new Date().toISOString().slice(0, 10);
+function touchDay() { const d = today(); if (!state.days.includes(d)) { state.days.push(d); if (state.days.length > 400) state.days.shift(); save(); } }
+function streak() {
+  const set = new Set(state.days); let n = 0; const d = new Date();
+  if (!set.has(today())) d.setDate(d.getDate() - 1);
+  while (set.has(d.toISOString().slice(0, 10))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+function subjState(s) { return s === state.subj ? state : (state.bySubj[s] || {}); }
+function resultsFor(s) {
+  const D = SUBJ_D(s), ans = subjState(s).answers || [];
+  const per = {}; D.TOPICS.forEach(t => (per[t.id] = { c: 0, n: 0 }));
+  D.DIAG.forEach((d, i) => { const a = ans[i]; per[d.topic].n++; if (a != null && a < 4 && d.opts[a].ok) per[d.topic].c++; });
+  const status = id => (per[id].c === per[id].n ? 'ok' : per[id].c === 0 ? 'gap' : 'mid');
+  return { per, status, score: Object.values(per).reduce((x, p) => x + p.c, 0), answered: ans.filter(a => a != null).length, n: D.DIAG.length };
+}
+function tasksSolved(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ? [tid] : Object.keys(L2)).reduce((k, id) => k + L2[id].tasks.filter(t => state.demo[t.id] && state.demo[t.id].solved).length, 0); }
+function tasksTotal(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ? [tid] : Object.keys(L2)).reduce((k, id) => k + L2[id].tasks.length, 0); }
+function courseStats(s) {
+  const L2 = SUBJ_D(s).LESSONS || {}; let n = 0, a = 0, k = 0;
+  SUBJ_D(s).TOPICS.forEach(t => { const l = L2[t.id]; if (!l) { n += 8; return; } const c = (l.course.lv || []).length; n += c; a += l.demo.length; if (state.les[t.id] && state.les[t.id].done) k += l.demo.length; });
+  return { n, a, k, pct: n ? Math.round(k / n * 100) : 0 };
+}
+function lessonDone(tid) { return !!(state.les[tid] && state.les[tid].done); }
+function setLessonDone(tid) { state.les[tid] = Object.assign(state.les[tid] || {}, { done: true, at: today() }); touchDay(); save(); }
+function lastLesson() {
+  const t = state.last && (MAT.LESSONS[state.last] ? 'mat' : DAB.LESSONS && DAB.LESSONS[state.last] ? 'dab' : null);
+  return t ? { s: t, tid: state.last, topic: SUBJ_D(t).TOPICS.find(x => x.id === state.last) } : null;
+}
+function pushHist() { const R = results(); (state.hist[state.subj] = state.hist[state.subj] || []).push({ d: today(), s: R.score, n: DIAG.length }); touchDay(); save(); }
+const ring2 = (p, big, small, col = 'var(--accent)') => `<div class="ring sm" style="--p:${Math.max(0.001, Math.min(1, p)).toFixed(3)};--rc:${col}"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"/><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"/></svg><span><b>${big}</b>${small}</span></div>`;
+const bar = (p, cls = '') => `<span class="pbar ${cls}" aria-hidden="true"><i style="width:${Math.round(Math.max(0, Math.min(1, p)) * 100)}%"></i></span>`;
+const ARR = '<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const LOCK = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+const PLAY = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg>';
+const CHECK = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>';
+const crumbs = arr => `<nav class="crumbs" aria-label="breadcrumb">${arr.map(([t, h]) => h ? `<a href="${h}">${t}</a>` : `<span>${t}</span>`).join('<i>›</i>')}</nav>`;
+
+// ---------- course page ----------
+function viewCourse(s) {
+  s = s === 'dab' ? 'dab' : 'mat';
+  const D = SUBJ_D(s), C = courseStats(s), done = !!subjState(s).done, L2 = D.LESSONS || {};
+  const ll = lastLesson(), cont = ll && ll.s === s ? ll.tid : (D.TOPICS.find(t => L2[t.id] && !lessonDone(t.id)) || D.TOPICS[0]).id;
+  const mods = D.TOPICS.map((t, mi) => {
+    const l = L2[t.id], items = l ? (l.course[state.lang] || l.course.lv) : [], ld = lessonDone(t.id), k = l ? tasksSolved(s, t.id) : 0, n = l ? tasksTotal(s, t.id) : 0;
+    const rows = items.map((c, i) => {
+      const demo = l.demo.includes(i);
+      const st = demo ? (ld ? 'done' : 'demo') : 'lock';
+      const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? `<em class="tg dm">${T('les_demo')}</em>` : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`;
+      const icon = st === 'done' ? CHECK : st === 'demo' ? PLAY : LOCK;
+      return demo ? `<li><a class="lrow ${st}" href="#demo-${t.id}" data-act="openLes" data-s="${s}" data-v="${t.id}">${icon}<span>${c}</span>${tag}</a></li>` : `<li><span class="lrow lock">${icon}<span>${c}</span>${tag}</span></li>`;
+    }).join('');
+    return `<details class="mod"${t.id === cont ? ' open' : ''}><summary><span class="mod-n">${mi + 1}</span><span class="mod-t"><small>${T('mod', { n: mi + 1 })}</small><b>${L(t)}</b></span>${l ? `<span class="mod-p">${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small></span>` : ''}</summary><ol class="lrows">${rows}</ol></details>`;
+  }).join('');
+  return `<section class="wrap pg">
+    ${crumbs([[T('crumbs_courses'), '#kursi'], [subjName(s)]])}
+    <div class="course-hero ch-${s}">
+      <div><h1>${T('course_h', { s: subjName(s) })}</h1><p>${T('course_p', { date: dateLong(CONFIG.launchDate) })}</p>
+        <div class="ch-stats"><span>${T('course_done', { k: C.k, n: C.n })}</span>${bar(C.n ? C.k / C.n : 0, 'lg')}<small>${T('course_avail', { a: C.a, n: C.n })}</small></div>
+        <div class="row"><button type="button" class="btn ${s === 'dab' ? 'btn-green' : 'btn-primary'} btn-lg" data-act="openLes" data-s="${s}" data-v="${cont}">${C.k || ll ? T('course_cont') : T('course_start')}${ARR}</button>${done ? '' : `<button type="button" class="btn btn-white btn-lg" data-act="subj" data-v="${s}">${T(s === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}</button>`}</div>
+        ${done ? '' : `<p class="ch-note">${LOCK}${T('les_after_test')}</p>`}
+      </div>
+      ${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}
+    </div>
+    <div class="mods">${mods}</div>
+  </section>`;
+}
+
+// ---------- lesson player (replaces the old demo page) ----------
+function viewLesson(topic) {
+  const R = results();
+  const tid = topic && LESSONS[topic] ? topic : (R.weak[0] || TOPICS[0].id);
+  const les = LESSONS[tid], t = topicById(tid), st = R.status(tid), s = state.subj;
+  if (state.last !== tid) { state.last = tid; save(); }
+  touchDay();
+  const tab = mem.ltab || (VIDEOS[tid] ? 'notes' : 'notes');
+  const course = les.course[state.lang] || les.course.lv, ld = lessonDone(tid);
+  const ids = TOPICS.map(x => x.id).filter(id => LESSONS[id]), nextId = ids[(ids.indexOf(tid) + 1) % ids.length];
+  const k = solvedCount(tid), n = les.tasks.length;
+  const tabBtn = (id, label, extra = '') => `<button type="button" role="tab" class="ltab" data-act="ltab" data-v="${id}" aria-selected="${tab === id}">${label}${extra}</button>`;
+  const other = ids.filter(id => id !== tid).map(id => { const x = topicById(id); return `<li><a class="orow" href="#demo-${id}">${lessonDone(id) ? CHECK : PLAY}<span>${L(x)}<small>${TN('solved', solvedCount(id), { k: solvedCount(id), n: LESSONS[id].tasks.length })}</small></span></a></li>`; }).join('');
+  return `<section class="wrap pg player2">
+    <div class="pl-main">
+      ${crumbs([[T('crumbs_courses'), '#kursi'], [subjName(s), '#kurss-' + s], [L(t)]])}
+      <header class="pl-h"><h1>${L(les.title)}</h1><p class="pl-meta"><span class="chip-ic">${t.ic}</span>${L(t)} · ${T('demo_lesson', { m: les.min })} ${pill(st)}${ld ? ` <em class="tg ok">${T('les_done')}</em>` : ''}</p></header>
+      ${videoHTML(tid)}
+      <div class="ltabs" role="tablist">${tabBtn('notes', T('tab_notes'))}${tabBtn('example', T('tab_example'))}${tabBtn('tasks', T('tab_tasks'), ` <span class="cnt" id="solved-c2">${k}/${n}</span>`)}</div>
+      <div class="lpanel" data-panel="notes"${tab === 'notes' ? '' : ' hidden'}>${slidesHTML(tid)}</div>
+      <div class="lpanel" data-panel="example"${tab === 'example' ? '' : ' hidden'}>${exampleHTML(tid)}</div>
+      <div class="lpanel" data-panel="tasks"${tab === 'tasks' ? '' : ' hidden'}><p class="solved-line" id="solved-c">${TN('solved', k, { k, n })}</p>${les.tasks.map(taskHTML).join('')}</div>
+      <div class="pl-foot">
+        ${ld ? `<span class="done-badge">${CHECK}${T('marked_done')}</span>` : `<button type="button" class="btn btn-secondary btn-lg" data-act="lesDone" data-v="${tid}">${CHECK}${T('mark_done')}</button>`}
+        <a class="btn btn-primary btn-lg" href="#demo-${nextId}" data-act="nextLes">${T('next_les')}: ${L(topicById(nextId))}${ARR}</a>
+      </div>
+    </div>
+    <aside class="pl-side">
+      <div class="dcard"><h2>${T('module_list')}</h2>
+        <div class="mp">${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small></div>
+        <ol class="lrows sm">${course.map((c, i) => { const demo = les.demo.includes(i); return `<li><span class="lrow ${demo ? (ld ? 'done' : 'demo') : 'lock'}">${demo ? (ld ? CHECK : PLAY) : LOCK}<span>${c}</span></span></li>`; }).join('')}</ol>
+        <a class="btn btn-mark wide" href="#abonements">${T('cta_full_btn')}</a>
+      </div>
+      <div class="dcard"><h2>${T('other_topics')}</h2><ul class="orows">${other}</ul></div>
+    </aside>
+  </section>`;
+}
+
+// ---------- my courses ----------
+function viewMy() {
+  const ll = lastLesson();
+  const card = s => {
+    const C = courseStats(s), st = subjState(s), R = resultsFor(s), last = ll && ll.s === s ? ll : null;
+    return `<article class="mc mc-${s}">
+      <div class="mc-top">${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}
+        <div><h2>${subjName(s)}</h2><p class="mc-sub">${T('course_done', { k: C.k, n: C.n })}</p>
+        <p class="mc-sub">${st.done ? T('t_status_done', { s: R.score, n: R.n }) : T('t_status_new')} · ${T('p_tasks')}: <b>${tasksSolved(s)}/${tasksTotal(s)}</b></p></div></div>
+      ${last ? `<button type="button" class="cont" data-act="openLes" data-s="${s}" data-v="${last.tid}">${PLAY}<span><small>${T('cont_h')}</small><b>${L(last.topic)}</b></span>${ARR}</button>` : `<p class="mc-none">${T('my_none')}</p>`}
+      <div class="row"><a class="btn ${s === 'dab' ? 'btn-green' : 'btn-primary'}" href="#kurss-${s}">${T('open_course')}${ARR}</a>${st.done ? '' : `<button type="button" class="btn btn-white" data-act="subj" data-v="${s}">${T('t_start')}</button>`}</div>
+    </article>`;
+  };
+  return `<section class="wrap pg"><div class="pg-h"><h1>${T('my_h')}</h1><p>${T('my_p')}</p></div><div class="mc-grid">${card('mat')}${card('dab')}</div><p class="dev-note">${T('dev_note')}</p></section>`;
+}
+
+// ---------- tests hub ----------
+function viewTests() {
+  const card = s => {
+    const st = subjState(s), R = resultsFor(s), h = state.hist[s] || [];
+    const status = st.done ? T('t_status_done', { s: R.score, n: R.n }) : R.answered ? T('t_status_prog', { k: R.answered, n: R.n }) : T('t_status_new');
+    const btns = st.done ? `<button type="button" class="btn btn-primary" data-act="subj" data-v="${s}">${T('t_res')}${ARR}</button><button type="button" class="btn btn-white" data-act="retake" data-v="${s}">${T('t_retake')}</button>`
+      : `<button type="button" class="btn btn-primary" data-act="subj" data-v="${s}">${R.answered ? T('t_cont') : T('t_start')}${ARR}</button>`;
+    return `<article class="tc"><div class="tc-h"><span class="tc-ic tc-${s}">${s === 'dab' ? 'B·F·Ķ' : 'x²'}</span><div><h2>${subjName(s)}</h2><p>${T('next_test_p')} · ${dateLong(examDateOf(s))}</p></div><span class="tc-st${st.done ? ' ok' : ''}">${status}</span></div>
+      ${st.done ? `<div class="tc-bar">${bar(R.score / R.n, 'lg')}</div>` : ''}
+      ${h.length ? `<div class="tc-hist"><small>${T('t_hist')}</small>${h.slice(-6).map(x => `<span title="${x.d}"><i style="height:${Math.round(x.s / x.n * 100)}%"></i><b>${x.s}</b></span>`).join('')}</div>` : ''}
+      ${mem.retake === s ? `<p class="retake-q">${T('retake_q')} <button type="button" class="btn-link danger" data-act="retakeYes" data-v="${s}">${T('yes')}</button> <button type="button" class="btn-link" data-act="retakeNo">${T('no')}</button></p>` : ''}
+      <div class="row">${btns}</div></article>`;
+  };
+  return `<section class="wrap pg"><div class="pg-h"><h1>${T('tests_h')}</h1><p>${T('tests_p')}</p></div>
+    <div class="mc-grid">${card('mat')}${card('dab')}</div>
+    <article class="tc soon">${LOCK}<div><h2>${T('t_soon_h')}</h2><p>${T('t_soon_p')}</p></div><em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em></article>
+  </section>`;
+}
+
+// ---------- progress ----------
+function badges() {
+  const solved = Object.values(state.demo).filter(x => x && x.solved).length, dm = !!subjState('mat').done, dd = !!subjState('dab').done;
+  return [['b_test', dm || dd], ['b_task', solved >= 1], ['b_les', Object.values(state.les).some(x => x && x.done)], ['b_ten', solved >= 10], ['b_streak', streak() >= 3], ['b_both', dm && dd]];
+}
+function viewProgress() {
+  const s = mem.psubj || state.subj, R = resultsFor(s), st = subjState(s), D = SUBJ_D(s), C = courseStats(s);
+  const B = T('badges'), lessonsDone = Object.keys(D.LESSONS || {}).filter(lessonDone).length;
+  const kpi = (v, l, ic) => `<div class="kpi"><span class="kpi-ic">${ico(ic)}</span><b>${v}</b><small>${l}</small></div>`;
+  const rows = st.done ? D.TOPICS.map(t => { const p = R.per[t.id], ss = R.status(t.id); return `<li class="prow"><span class="chip-ic">${t.ic}</span><span class="pr-t">${L(t)}</span>${bar(p.n ? p.c / p.n : 0, ss)}<span class="pr-n">${p.c}/${p.n}</span>${pill(ss)}</li>`; }).join('') : `<li class="p-none">${T('p_topics_none')} <button type="button" class="btn btn-primary" data-act="subj" data-v="${s}">${T('t_start')}${ARR}</button></li>`;
+  return `<section class="wrap pg">
+    <div class="pg-h row-sb"><div><h1>${T('prog_h')}</h1><p>${T('prog_p')}</p></div><div class="seg" role="tablist"><button type="button" role="tab" data-act="psubj" data-v="mat" aria-selected="${s === 'mat'}">${T('subj_mat')}</button><button type="button" role="tab" data-act="psubj" data-v="dab" aria-selected="${s === 'dab'}">${T('subj_dab')}</button></div></div>
+    <div class="kpis">
+      <div class="kpi kpi-ring">${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}</div>
+      ${kpi(`${tasksSolved(s)}<small>/${tasksTotal(s)}</small>`, T('p_tasks'), 'my')}
+      ${kpi(`${lessonsDone}<small>/${Object.keys(D.LESSONS || {}).length}</small>`, T('p_lessons'), 'lessons')}
+      ${kpi(streak(), T('p_streak'), 'prog')}
+    </div>
+    <div class="pg-cols">
+      <div class="dcard"><h2>${T('p_topics')}${st.done ? ` · ${R.score}/${R.n}` : ''}</h2><ul class="prows">${rows}</ul></div>
+      <div class="dcard"><h2>${T('p_badges')}</h2><ul class="bdg">${badges().map(([k, on]) => `<li class="${on ? 'on' : ''}"><span class="bdg-ic">${on ? '★' : '☆'}</span><span><b>${B[k][0]}</b><small>${B[k][1]}</small></span></li>`).join('')}</ul></div>
+    </div>
+    <p class="dev-note">${T('dev_note')}</p>
+  </section>`;
+}
+
+const PLATFORM_VIEWS = { kurss: viewCourse, kursi: viewMy, testi: viewTests, progress: viewProgress };
+const PLATFORM_ACT = {
+  ltab(b) { mem.ltab = b.dataset.v; document.querySelectorAll('.ltab').forEach(x => x.setAttribute('aria-selected', String(x === b))); document.querySelectorAll('.lpanel').forEach(p => (p.hidden = p.dataset.panel !== mem.ltab)); },
+  openLes(b, e) { if (e) e.preventDefault(); setSubject(b.dataset.s); mem.ltab = 'notes'; location.hash = 'demo-' + b.dataset.v; },
+  nextLes() { mem.ltab = 'notes'; },
+  lesDone(b) { setLessonDone(b.dataset.v); rerender(); },
+  psubj(b) { mem.psubj = b.dataset.v; rerender(); },
+  retake(b) { mem.retake = b.dataset.v; rerender(); },
+  retakeNo() { mem.retake = null; rerender(); },
+  retakeYes(b) {
+    const s = b.dataset.v; mem.retake = null; setSubject(s);
+    Object.assign(state, { answers: [], idx: 0, done: false, sel: null, plan: undefined, sentResults: false }); save();
+    location.hash = state.lead ? 'tests' : 'pieteikums';
+  },
+};
+
 // ---------- App ----------
 const STORE = 'm9_state_v1';
-const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null };
+const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null, les: {}, days: [], hist: {}, last: null };
 const mem = { resetAsk: false, sendTimer: null };
 
 function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage may be unavailable */ } }
@@ -3177,7 +3585,7 @@ function optHTML(o, i, extra = '', unit = '') {
   return `<button type="button" class="opt" ${extra}><span class="key">${'ABCD'[i]}</span><span class="ot">${L(o.t)}${unit}</span></button>`;
 }
 function renderHeader(view) {
-  const stepOf = { pieteikums: 0, tests: 1, rezultati: 2, demo: 3, abonements: 3, paldies: 3 }[view];
+  const stepOf = { pieteikums: 0, tests: 1, rezultati: 2, abonements: 3, paldies: 3 }[view];
   const st = $('#stepper');
   if (stepOf == null) { st.hidden = true; } else {
     st.hidden = false;
@@ -3209,23 +3617,24 @@ const NAV_IC = {
 };
 const ico = (k, cls = 'nic') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${NAV_IC[k]}</svg>`;
 function renderSide(view) {
-  const N = T('nav'), sec = mem.sec || '';
-  const item = (k, href, act, secId, on) => `<a class="nav-i${on ? ' on' : ''}" href="${href}"${act ? ` data-act="go" data-sec="${secId}"` : ''}${on ? ' aria-current="page"' : ''}>${ico(k)}<span>${N[k]}</span></a>`;
-  const home = view === 'sakums';
+  const N = T('nav2'), sec = mem.sec || '', home = view === 'sakums';
+  const lnk = (k, ic, href, on, secId) => `<a class="nav-i${on ? ' on' : ''}" href="${href}"${secId ? ` data-act="go" data-sec="${secId}"` : ''}${on ? ' aria-current="page"' : ''}>${ico(ic)}<span>${N[k]}</span></a>`;
   $('#side').innerHTML = `<a class="side-logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small>${T('tagline')}</small></span></a>
-    <button type="button" class="side-x" data-act="side-close" aria-label="${N.close}">×</button>
+    <button type="button" class="side-x" data-act="side-close" aria-label="${T('nav').close}">×</button>
+    <p class="side-h">${N.learn}</p>
     <nav class="side-nav">
-      ${item('home', '#sakums', true, 'top', home && (!sec || sec === 'top'))}
-      ${item('subj', '#sakums', true, 'prieksmeti', home && sec === 'prieksmeti')}
-      ${item('lessons', '#sakums', true, 'temas', home && sec === 'temas')}
-      ${item('exams', '#eksameni', false, '', view === 'eksameni')}
-      ${item('prices', '#sakums', true, 'cenas', home && sec === 'cenas')}
+      ${lnk('home', 'home', '#sakums', home && (!sec || sec === 'top'), 'top')}
+      ${lnk('courses', 'subj', '#kursi', view === 'kursi')}
+      ${lnk('lessons', 'lessons', '#kurss-' + state.subj, view === 'kurss' || view === 'demo')}
+      ${lnk('tests', 'my', '#testi', ['testi', 'tests', 'pieteikums', 'rezultati'].includes(view))}
+      ${lnk('prog', 'prog', '#progress', view === 'progress')}
     </nav>
-    <div class="side-soon"><p class="side-h">${N.soon}</p>
-      <span class="nav-i dis" aria-disabled="true">${ico('my')}<span>${N.my}</span><em>${N.soon_tag}</em></span>
-      <span class="nav-i dis" aria-disabled="true">${ico('prog')}<span>${N.prog}</span><em>${N.soon_tag}</em></span>
-    </div>
-    <div class="side-foot"><p>${T('subj_mat')} · <b>${dateShort(CONFIG.examDate)}</b><br>${T('subj_dab')} · <b>${dateShort(CONFIG.sciDate)}</b></p></div>`;
+    <p class="side-h">${N.info}</p>
+    <nav class="side-nav">
+      ${lnk('exams', 'exams', '#eksameni', view === 'eksameni')}
+      ${lnk('prices', 'prices', '#sakums', home && sec === 'cenas', 'cenas')}
+    </nav>
+    <div class="side-foot"><p>${T('subj_mat')} · <b>${dateShort(CONFIG.examDate)}</b><br>${T('subj_dab')} · <b>${dateShort(CONFIG.sciDate)}</b></p><p class="sf-note">${T('dev_note')}</p></div>`;
 }
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
@@ -3254,8 +3663,8 @@ function viewLanding() {
   const stats = (h, note, arr) => `<div class="stats-block"><div class="sec-head sm"><h3>${T(h)}</h3><p class="src">${T(note)}</p></div><div class="stats2">${arr.map(s => `<div class="stat2"><b>${String(s.p).replace('.', ',')}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div></div>`;
   const nM = daysTo(CONFIG.examDate), nD = daysTo(CONFIG.sciDate), yr = Math.max(1, (new Date(CONFIG.examDate) - new Date('2026-09-01')) / 864e5), ring = Math.max(0, Math.min(1, nM / yr));
   const arr = '<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  const nextS = ['mat', 'dab'].find(k => !subjDone(k));
-  const next = nextS ? `<button type="button" class="next-card" data-act="subj" data-v="${nextS}"><span><b>${T('next_test', { s: subjName(nextS) })}</b><small>${T('next_test_p')}</small></span>${arr}</button>`
+  const nextS = ['mat', 'dab'].find(k => !subjDone(k)), LL = lastLesson();
+  const next = LL ? `<button type="button" class="next-card" data-act="openLes" data-s="${LL.s}" data-v="${LL.tid}"><span><b>${T('cont_h')}</b><small>${T('cont_p', { s: L(LL.topic), k: tasksSolved(LL.s, LL.tid), n: tasksTotal(LL.s, LL.tid) })}</small></span>${arr}</button>` : nextS ? `<button type="button" class="next-card" data-act="subj" data-v="${nextS}"><span><b>${T('next_test', { s: subjName(nextS) })}</b><small>${T('next_test_p')}</small></span>${arr}</button>`
     : `<button type="button" class="next-card" data-act="subj" data-v="${state.subj}"><span><b>${T('next_res', { s: subjName(state.subj) })}</b><small>${T('next_res_p')}</small></span>${arr}</button>`;
   const ev = (iso, txt, ic) => `<li><span class="ev-ic">${ico(ic)}</span><span><b>${dateLong(iso)}</b>${txt}</span></li>`;
   const sCard = k => {
@@ -3654,11 +4063,12 @@ function privacyHTML() {
 }
 
 // ---------- router ----------
-const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewDemo, abonements: viewSub, paldies: viewThanks };
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, abonements: viewSub, paldies: viewThanks };
 let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
   if (h.startsWith('demo-')) { topic = h.slice(5); h = 'demo'; }
+  if (h.startsWith('kurss-')) { topic = h.slice(6); h = 'kurss'; }
   if (topic) { const s = DAB.LESSONS && DAB.LESSONS[topic] ? 'dab' : MAT.LESSONS && MAT.LESSONS[topic] ? 'mat' : null; if (s && s !== state.subj) setSubject(s); }
   let want = h;
   if (!VIEWS[want]) want = 'sakums';
@@ -3703,6 +4113,8 @@ function markSolved(t, tid) {
   st.solved = true; save();
   const el = $('#task-' + t.id); if (el) el.outerHTML = taskHTML(t, LESSONS[tid].tasks.indexOf(t));
   const c = $('#solved-c'); if (c) c.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length });
+  const c2 = $('#solved-c2'); if (c2) c2.textContent = solvedCount(tid) + '/' + LESSONS[tid].tasks.length;
+  touchDay(); if (solvedCount(tid) === LESSONS[tid].tasks.length && !lessonDone(tid)) setLessonDone(tid);
   document.querySelectorAll(`.side-item[href="#demo-${tid}"] small`).forEach(s => (s.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length })));
   clearTimeout(mem.sendTimer);
   mem.sendTimer = setTimeout(() => send('demo', { solved: Object.values(state.demo).filter(x => x.solved).length }), 3000);
@@ -3770,7 +4182,7 @@ const ACT = {
   tnext() {
     if (state.answers[state.idx] == null) return;
     if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
-    state.done = true; save();
+    state.done = true; save(); pushHist();
     const R = results();
     if (!state.sentResults) { send('results', { subj: state.subj, code: (state.subj === 'dab' && !CONFIG.sciScoring ? 'D' : '') + answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') }); state.sentResults = true; save(); }
     location.hash = 'rezultati';
@@ -3782,7 +4194,7 @@ const ACT = {
     $('#player').outerHTML = slidesHTML(tid);
     const nb = $('#player .p-nav .btn-primary'); if (nb && !nb.disabled) nb.focus({ preventScroll: true });
   },
-  'to-example'() { const ex = $('#example'); if (!ex) return; ex.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); const b = ex.querySelector('button.btn-primary'); if (b) b.focus({ preventScroll: true }); },
+  'to-example'() { const tb = $('.ltab[data-v="example"]'); if (tb) { ACT.ltab(tb); }  const ex = $('#example'); if (!ex) return; ex.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); const b = ex.querySelector('button.btn-primary'); if (b) b.focus({ preventScroll: true }); },
   step() { const tid = currentTopic(); state.steps[tid] = (state.steps[tid] || 1) + 1; save(); $('#example').outerHTML = exampleHTML(tid); },
   'steps-all'() { const tid = currentTopic(); state.steps[tid] = 99; save(); $('#example').outerHTML = exampleHTML(tid); },
   mc(b) {
@@ -3816,6 +4228,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
+Object.assign(ACT, PLATFORM_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -3898,6 +4311,7 @@ function submitLead(f) {
 function boot() {
   load();
   if (!state.bySubj) state.bySubj = {};
+  ['les', 'hist'].forEach(k => { if (!state[k] || typeof state[k] !== 'object') state[k] = {}; }); if (!Array.isArray(state.days)) state.days = [];
   applySubject();
   try {
     const q = new URLSearchParams(location.search);
