@@ -839,20 +839,168 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 .sci-vid .vid-tag { white-space: normal; }
 .show { padding-top: 72px; padding-bottom: 72px; } .show-txt > p { margin-bottom: 0; } .show-side .show-chips li { font-size: 15.5px; padding: 9px 14px 9px 9px; }
 
+/* ===== v2: app shell (sidebar now, personal cabinet later) ===== */
+:root { --bg: #F3F6FC; --side: #0F1830; --side-ink: #C3CCE2; --tint-b: #E6EDFF; --tint-v: #EEE9FF; --tint-g: #E3F6EC; --tint-o: #FFF0E2; --tint-s: #E5F2FF; --green: #12895A; --r: 20px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --side: #0A1122; --tint-b: #1A2546; --tint-v: #221F3F; --tint-g: #15302A; --tint-o: #33261A; --tint-s: #172B42; --green: #3CC78A; } }
+:root[data-theme="dark"] { --side: #0A1122; --tint-b: #1A2546; --tint-v: #221F3F; --tint-g: #15302A; --tint-o: #33261A; --tint-s: #172B42; --green: #3CC78A; }
+body { background-image: none; display: block; }
+.app { display: grid; grid-template-columns: 252px minmax(0, 1fr); min-height: 100vh; background: linear-gradient(90deg, var(--side) 252px, transparent 252px); }
+.app-main { display: flex; flex-direction: column; min-width: 0; min-height: 100vh; }
+.app-main > main { flex: 1; }
+.app-main .wrap { max-width: 1200px; padding-left: 28px; padding-right: 28px; }
+
+.side { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; background: var(--side); color: var(--side-ink); padding: 22px 16px 18px; display: flex; flex-direction: column; gap: 6px; z-index: 40; }
+.side-logo { display: flex; align-items: center; gap: 11px; color: #fff; text-decoration: none; padding: 0 8px 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.side-logo .logo-txt { font: 800 19px/1.1 var(--f-display); }
+.side-logo small { display: block; font: 500 12px var(--f-body); color: #8E9AB8; margin-top: 2px; }
+.side-x { display: none; }
+.side-nav, .side-soon { display: flex; flex-direction: column; gap: 4px; }
+.nav-i { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 13px; color: var(--side-ink); text-decoration: none; font: 600 15.5px/1.2 var(--f-body); transition: background .15s, color .15s; }
+.nav-i:hover { background: rgba(255, 255, 255, .06); color: #fff; }
+.nav-i.on { background: linear-gradient(135deg, #2F57D9, #2445B8); color: #fff; box-shadow: 0 8px 20px -10px rgba(47, 87, 217, .9); }
+.nic { width: 21px; height: 21px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.side-soon { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .08); }
+.side-h { margin: 0 14px 4px; font: 700 11.5px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: #6F7C9C; }
+.nav-i.dis { opacity: .55; cursor: default; }
+.nav-i.dis:hover { background: none; color: var(--side-ink); }
+.nav-i em { margin-left: auto; font: 600 10.5px var(--f-body); font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #9AA6C4; white-space: nowrap; }
+.side-foot { margin-top: auto; padding: 14px; border-radius: 14px; background: rgba(255, 255, 255, .05); font-size: 13.5px; line-height: 1.6; color: #9AA6C4; }
+.side-foot p { margin: 0; } .side-foot b { color: #fff; }
+.side-scrim { position: fixed; inset: 0; background: rgba(8, 14, 30, .5); z-index: 35; }
+
+.top { background: color-mix(in srgb, var(--bg) 88%, transparent); border-bottom: 1px solid transparent; }
+.top-in { min-height: 68px; }
+.top .logo, .burger { display: none; }
+.top .lang { margin-left: auto; }
+.top-cta { padding: 11px 18px; font-size: 15px; border-radius: 12px; white-space: nowrap; }
+.burger { width: 42px; height: 42px; border: 0; border-radius: 12px; background: var(--paper); box-shadow: var(--shadow); place-items: center; cursor: pointer; color: var(--ink); }
+.burger svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* dashboard-style first screen */
+.dash { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 24px; padding-top: 12px; padding-bottom: 8px; align-items: stretch; }
+.dash-hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 28px; align-items: center; padding: 38px 36px; border-radius: 30px; background: linear-gradient(125deg, var(--tint-b) 0%, var(--tint-v) 70%, color-mix(in srgb, var(--tint-v) 70%, var(--paper)) 100%); position: relative; overflow: hidden; }
+.dash-hero::after { content: ""; position: absolute; right: -80px; bottom: -120px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(124, 92, 255, .18), transparent 70%); pointer-events: none; }
+.dh-txt { display: flex; flex-direction: column; gap: 18px; position: relative; z-index: 1; }
+.dh-badge { align-self: flex-start; padding: 7px 14px; border-radius: 999px; background: var(--paper); font: 700 13.5px var(--f-body); box-shadow: var(--shadow); }
+.dash-hero h1 { font-size: clamp(30px, 3.3vw, 46px); line-height: 1.06; }
+.dh-lead { margin: 0; color: var(--muted); font-size: 16.5px; max-width: 54ch; }
+.btn-white { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+.btn-white:hover { box-shadow: inset 0 0 0 1.5px var(--accent), var(--shadow); }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { filter: brightness(.92); }
+.dh-vid { position: relative; z-index: 1; }
+.dh-vid .vid-frame { transform: rotate(1.5deg); border-radius: 20px; }
+.dh-vid figcaption { margin-top: 14px; }
+
+.dash-side { display: flex; flex-direction: column; gap: 18px; }
+.dcard { background: var(--paper); border-radius: 24px; padding: 22px; box-shadow: var(--shadow); }
+.dcard h2 { font-size: 19px; margin-bottom: 14px; }
+.dch { display: flex; align-items: center; gap: 10px; }
+.hic { width: 24px; height: 24px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; padding: 3px; border-radius: 8px; background: var(--accent-soft); box-sizing: content-box; }
+.ring { position: relative; width: 164px; height: 164px; margin: 4px auto 16px; }
+.ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke: var(--soft); stroke-width: 11; }
+.ring .ring-v { stroke: var(--accent); stroke-linecap: round; stroke-dasharray: var(--p) 1; }
+.ring span { position: absolute; inset: 18px; display: grid; place-content: center; text-align: center; font-size: 12.5px; line-height: 1.25; color: var(--muted); }
+.ring b { font: 800 38px/1 var(--f-display); color: var(--ink); }
+.cd-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 14.5px; font-weight: 600; }
+.cd-rows li { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; }
+.cd-rows span { color: var(--muted); font-weight: 500; }
+.cd-rows i { width: 10px; height: 10px; border-radius: 50%; }
+.dot-b { background: var(--accent); } .dot-g { background: var(--green); }
+.next-card { width: 100%; display: flex; align-items: center; gap: 10px; justify-content: space-between; text-align: left; border: 0; cursor: pointer; padding: 14px 16px; border-radius: 16px; background: var(--tint-b); color: var(--ink); font: inherit; }
+.next-card:hover { box-shadow: inset 0 0 0 1.5px var(--accent); }
+.next-card b { display: block; font-size: 15.5px; } .next-card small { color: var(--muted); font-size: 13.5px; }
+.next-card .arr { width: 20px; height: 20px; flex: 0 0 auto; fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ev { list-style: none; margin: 0; padding: 0; display: grid; }
+.ev li { display: flex; gap: 12px; align-items: flex-start; padding: 11px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.ev li:first-child { border-top: 0; padding-top: 2px; }
+.next-card + .ev { margin-top: 14px; }
+.ev b { display: block; color: var(--ink); font-size: 14.5px; }
+.ev-ic { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 12px; background: var(--tint-v); display: grid; place-items: center; }
+.ev-ic .nic { stroke: #6B4EE6; width: 19px; height: 19px; }
+
+.sec2 { padding-top: 44px; padding-bottom: 8px; }
+.sec-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 8px 24px; margin-bottom: 20px; }
+.sec-row h2 { font-size: 26px; }
+.sec-row p { margin: 0; color: var(--muted); max-width: 60ch; grid-column: 1 / -1; grid-row: 2; }
+.sc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.sc { position: relative; overflow: hidden; border-radius: 26px; padding: 28px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.sc-mat { background: linear-gradient(135deg, var(--tint-b), var(--tint-v)); }
+.sc-dab { background: linear-gradient(135deg, var(--tint-g), color-mix(in srgb, var(--tint-g) 50%, var(--paper))); }
+.sc h3 { font-size: 28px; }
+.sc-art { position: absolute; right: 22px; top: 22px; display: flex; gap: 8px; }
+.sc-art span { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; font: 800 22px var(--f-display); background: var(--paper); box-shadow: var(--shadow); transform: rotate(-6deg); }
+.sc-art span:nth-child(2) { transform: translateY(14px) rotate(5deg); }
+.sc-art span:nth-child(3) { transform: rotate(-2deg); }
+.sc-mat .sc-art span { color: var(--accent); } .sc-dab .sc-art span { color: var(--green); }
+.sc-meta { margin: 0; display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: var(--muted); }
+.sic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sc-mat .sic { color: var(--accent); } .sc-dab .sic { color: var(--green); }
+.sc-date { margin: 0; font-size: 14.5px; } .sc-d { margin: 0 0 8px; color: var(--muted); max-width: 46ch; }
+.seg { display: inline-flex; padding: 4px; border-radius: 14px; background: var(--paper); box-shadow: var(--shadow); }
+.seg button { border: 0; background: none; padding: 9px 16px; border-radius: 10px; font: 650 14.5px var(--f-body); color: var(--muted); cursor: pointer; }
+.seg button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.tile { text-align: left; border: 0; cursor: pointer; font: inherit; color: var(--ink); border-radius: 22px; padding: 12px 12px 16px; display: flex; flex-direction: column; gap: 8px; position: relative; transition: transform .15s, box-shadow .15s; }
+.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.tile-0 { background: var(--tint-v); } .tile-1 { background: var(--tint-o); } .tile-2 { background: var(--tint-s); } .tile-3 { background: var(--tint-g); }
+.tile-img { display: block; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--soft); }
+.tile-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tile-ic { display: none; min-width: 34px; height: 34px; padding: 0 8px; border-radius: 11px; background: var(--paper); display: grid; place-items: center; font: 800 16px var(--f-display); color: var(--accent); box-shadow: var(--shadow); }
+.tile b { font: 800 16.5px/1.25 var(--f-display); padding: 0 6px; }
+.tile small { display: flex; align-items: center; gap: 6px; padding: 0 6px; color: var(--muted); font-weight: 600; font-size: 13.5px; }
+
+@media (max-width: 1240px) { .dash { grid-template-columns: minmax(0, 1fr); } .dash-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1100px) {
+  .app { grid-template-columns: minmax(0, 1fr); background: none; }
+  .side { position: fixed; left: 0; top: 0; width: 280px; transform: translateX(-102%); transition: transform .25s; box-shadow: 20px 0 50px rgba(0, 0, 0, .25); }
+  body.side-open .side { transform: none; }
+  .side-x { display: block; position: absolute; right: 12px; top: 18px; width: 36px; height: 36px; border: 0; border-radius: 10px; background: rgba(255, 255, 255, .08); color: #fff; font-size: 22px; cursor: pointer; }
+  .top .logo { display: flex; } .burger { display: grid; }
+}
+@media (max-width: 900px) { .dash-hero { grid-template-columns: minmax(0, 1fr); padding: 26px 22px; } .dash-side { grid-template-columns: minmax(0, 1fr); } .sc-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  .app-main .wrap { padding-left: 16px; padding-right: 16px; }
+  .top-cta { display: none; }
+  .tiles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+  .tile b { font-size: 14.5px; } .tile small { display: none; }
+  .sc { padding: 22px; } .sc-art span { width: 40px; height: 40px; font-size: 17px; }
+  .sec-row h2 { font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) { .side, .tile { transition: none; } }
+
+@media (max-width: 1240px) and (min-width: 901px) { .dash-side .dcard { display: flex; flex-direction: column; } }
+@media (max-width: 640px) {
+  .sc-art { position: static; order: -1; margin-bottom: 4px; } .sc-art span:nth-child(2) { transform: rotate(5deg); }
+  .ring { width: 132px; height: 132px; } .ring b { font-size: 32px; }
+  .dash-hero { border-radius: 24px; } .dh-vid .vid-frame { transform: none; }
+}
+
+@media (max-width: 640px) { .sec-row { grid-template-columns: minmax(0, 1fr); } .sec-row .seg { justify-self: start; } }
+
 </style>
 </head>
 <body>
+<div class="app">
+<aside class="side" id="side" aria-label="Navigācija"></aside>
+<div class="side-scrim" id="side-scrim" data-act="side-close" hidden></div>
+<div class="app-main">
 <header class="top">
   <div class="wrap top-in">
+    <button type="button" class="burger" data-act="side-open" aria-label="Izvēlne"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     <a class="logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small id="tagline">matemātika · dabaszinātnes</small></span></a>
     <span class="subj-pill" id="subj-pill" hidden></span>
     <ol class="stepper" id="stepper" hidden></ol>
     <div class="lang" id="lang-group" role="group" aria-label="Valoda"><button type="button" data-act="lang" data-v="lv" aria-pressed="true">LV</button><button type="button" data-act="lang" data-v="ru" aria-pressed="false">RU</button></div>
+    <a class="btn btn-primary top-cta" id="top-cta" href="#sakums" data-act="go" data-sec="cenas"></a>
   </div>
 </header>
 <div class="preview-bar" id="preview-bar" hidden><div class="wrap"><span id="preview-text"></span><button type="button" id="pv-close" data-act="pv-close" aria-label="Aizvērt">×</button></div></div>
 <main id="view"></main>
 <footer id="footer"></footer>
+</div>
+</div>
 <div id="modal" hidden></div>
 <script>
 // ---------- Settings: fill these in before going live ----------
@@ -867,7 +1015,7 @@ const CONFIG = {
   sciDate: '2027-06-02',      // centralised exam in natural sciences
   sciScoring: true,          // true once the Apps Script with the science answer key is deployed
   examDate: '2027-05-25',
-  launchDate: '2026-12-15',
+  launchDate: '2027-01-15',
   earlyDiscount: 50,          // % off the first month for reservations
   controller: 'Matemātika 9', // who collects the data: name, surname or company
   contactEmail: 'ai.skolens@gmail.com', // where people can ask to delete their data
@@ -1087,6 +1235,26 @@ const I18N = {
     tbd: '[jāaizpilda]',
 
     doc_title: 'Eksāmens 9 — matemātika un dabaszinātnes 9. klasei',
+    nav: { home: 'Sākums', subj: 'Priekšmeti', lessons: 'Video nodarbības', exams: 'Eksāmeni 2027', prices: 'Cenas', soon: 'Drīzumā', my: 'Mani kursi', prog: 'Mans progress', soon_tag: 'pēc starta', menu: 'Izvēlne', close: 'Aizvērt izvēlni' },
+    top_cta: 'Rezervēt vietu',
+    dash_badge: '9. klases eksāmeni 2027',
+    dash_watch: 'Skatīt nodarbību',
+    cd_h: 'Līdz eksāmeniem',
+    cd_left: 'līdz matemātikai',
+    next_h: 'Tavs nākamais solis',
+    next_test: 'Bezmaksas tests: {s}',
+    next_test_p: '16 uzdevumi, ~15 minūtes',
+    next_res: 'Tavs rezultāts: {s}',
+    next_res_p: 'Redzi, kuras tēmas jāatkārto',
+    ev_h: 'Tuvākie notikumi',
+    ev_launch: 'Platformas starts · −{d} % rezervētājiem',
+    ev_mat: 'Matemātikas eksāmens',
+    ev_dab: 'Dabaszinātņu eksāmens',
+    subj_counts: '{t} tēmas · {v} video nodarbības',
+    subj_counts_soon: '{t} tēmas · video drīzumā',
+    pop_h: 'Tēmas ar video nodarbībām',
+    pop_all: 'Visas tēmas',
+    pop_tag: 'Video + uzdevumi',
     ex_doc_title: '9. klases eksāmeni 2027: atgādne vecākiem',
     ex_eyebrow: 'Atgādne vecākiem · 2026./2027. mācību gads',
     ex_h: '9. klases eksāmeni 2027',
@@ -1350,6 +1518,26 @@ const I18N = {
     tbd: '[заполнить]',
 
     doc_title: 'Eksāmens 9 — математика и естественные науки, 9 класс',
+    nav: { home: 'Главная', subj: 'Предметы', lessons: 'Видеоуроки', exams: 'Экзамены 2027', prices: 'Цены', soon: 'Скоро', my: 'Мои курсы', prog: 'Мой прогресс', soon_tag: 'после старта', menu: 'Меню', close: 'Закрыть меню' },
+    top_cta: 'Забронировать место',
+    dash_badge: 'Экзамены 9 класса 2027',
+    dash_watch: 'Смотреть урок',
+    cd_h: 'До экзаменов',
+    cd_left: 'до математики',
+    next_h: 'Твой следующий шаг',
+    next_test: 'Бесплатный тест: {s}',
+    next_test_p: '16 заданий, ~15 минут',
+    next_res: 'Твой результат: {s}',
+    next_res_p: 'Посмотри, какие темы повторить',
+    ev_h: 'Ближайшие события',
+    ev_launch: 'Старт платформы · −{d} % для забронировавших',
+    ev_mat: 'Экзамен по математике',
+    ev_dab: 'Экзамен по естественным наукам',
+    subj_counts: '{t} тем · {v} видеоуроков',
+    subj_counts_soon: '{t} тем · видео скоро',
+    pop_h: 'Темы с видеоуроками',
+    pop_all: 'Все темы',
+    pop_tag: 'Видео + задания',
     ex_doc_title: 'Экзамены 9 класса 2027: шпаргалка для родителей',
     ex_eyebrow: 'Шпаргалка для родителей · 2026/27 учебный год',
     ex_h: 'Экзамены 9 класса — 2027',
@@ -2996,6 +3184,9 @@ function renderHeader(view) {
     st.innerHTML = T('steps').map((s, i) => `<li class="${i < stepOf ? 'done' : i === stepOf ? 'now' : ''}"><span class="sn">${i < stepOf ? '✓' : i + 1}</span><span class="sl">${s}</span></li>`).join('');
   }
   $('#tagline').textContent = T('tagline');
+  renderSide(view);
+  const tc = $('#top-cta'); if (tc) { tc.textContent = T('top_cta'); tc.hidden = ['tests'].includes(view); }
+  const bg = $('.burger'); if (bg) bg.setAttribute('aria-label', T('nav').menu);
   const sp = $('#subj-pill'); if (sp) { const show = ['pieteikums', 'tests', 'rezultati', 'demo', 'abonements', 'paldies'].includes(view); sp.hidden = !show; sp.textContent = subjName(state.subj); sp.className = 'subj-pill subj-pill-' + state.subj; }
   document.querySelectorAll('[data-act="lang"]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === state.lang)));
   $('#lang-group').setAttribute('aria-label', T('lang_label'));
@@ -3004,6 +3195,37 @@ function renderHeader(view) {
   $('#preview-text').textContent = T('preview_bar');
   $('#pv-close').setAttribute('aria-label', T('close'));
   document.documentElement.lang = state.lang;
+}
+
+const NAV_IC = {
+  home: '<path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/>',
+  subj: '<path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"/>',
+  lessons: '<rect x="3" y="5" width="13" height="14" rx="3"/><path d="M16 10l5-3v10l-5-3"/>',
+  exams: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
+  prices: '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+  my: '<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5"/>',
+  prog: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+};
+const ico = (k, cls = 'nic') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${NAV_IC[k]}</svg>`;
+function renderSide(view) {
+  const N = T('nav'), sec = mem.sec || '';
+  const item = (k, href, act, secId, on) => `<a class="nav-i${on ? ' on' : ''}" href="${href}"${act ? ` data-act="go" data-sec="${secId}"` : ''}${on ? ' aria-current="page"' : ''}>${ico(k)}<span>${N[k]}</span></a>`;
+  const home = view === 'sakums';
+  $('#side').innerHTML = `<a class="side-logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small>${T('tagline')}</small></span></a>
+    <button type="button" class="side-x" data-act="side-close" aria-label="${N.close}">×</button>
+    <nav class="side-nav">
+      ${item('home', '#sakums', true, 'top', home && (!sec || sec === 'top'))}
+      ${item('subj', '#sakums', true, 'prieksmeti', home && sec === 'prieksmeti')}
+      ${item('lessons', '#sakums', true, 'temas', home && sec === 'temas')}
+      ${item('exams', '#eksameni', false, '', view === 'eksameni')}
+      ${item('prices', '#sakums', true, 'cenas', home && sec === 'cenas')}
+    </nav>
+    <div class="side-soon"><p class="side-h">${N.soon}</p>
+      <span class="nav-i dis" aria-disabled="true">${ico('my')}<span>${N.my}</span><em>${N.soon_tag}</em></span>
+      <span class="nav-i dis" aria-disabled="true">${ico('prog')}<span>${N.prog}</span><em>${N.soon_tag}</em></span>
+    </div>
+    <div class="side-foot"><p>${T('subj_mat')} · <b>${dateShort(CONFIG.examDate)}</b><br>${T('subj_dab')} · <b>${dateShort(CONFIG.sciDate)}</b></p></div>`;
 }
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
@@ -3030,27 +3252,62 @@ function viewLanding() {
     </article>`;
   };
   const stats = (h, note, arr) => `<div class="stats-block"><div class="sec-head sm"><h3>${T(h)}</h3><p class="src">${T(note)}</p></div><div class="stats2">${arr.map(s => `<div class="stat2"><b>${String(s.p).replace('.', ',')}<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:${s.p}%"></i></span><p>${L(s)}</p></div>`).join('')}</div></div>`;
-  return `<section class="hero2">
-    <div class="wrap hero2-in">
-    <div class="hero2-txt">
-      <p class="hero2-eyebrow">${n > 0 ? `<span class="days"><b>${n}</b> ${daysWord(n)} ${T('hero2_days')}</span>` : ''}<span>${T('subj_mat')} ${dateShort(CONFIG.examDate)} · ${T('subj_dab')} ${dateShort(CONFIG.sciDate)}</span></p>
-      <h1>${T('hero2_h')}</h1>
-      <p class="hero2-lead">${T('hero2_p')}</p>
-      <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><button type="button" class="btn btn-secondary btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div>
-      <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
-    </div>
-    <figure class="hero2-vid">
-      <div class="vid-frame">
-        <video id="hero-video" preload="none" playsinline poster="${v}-clip.jpg"><source src="${v}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}-clip.vtt"></video>
-        <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+  const nM = daysTo(CONFIG.examDate), nD = daysTo(CONFIG.sciDate), yr = Math.max(1, (new Date(CONFIG.examDate) - new Date('2026-09-01')) / 864e5), ring = Math.max(0, Math.min(1, nM / yr));
+  const arr = '<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const nextS = ['mat', 'dab'].find(k => !subjDone(k));
+  const next = nextS ? `<button type="button" class="next-card" data-act="subj" data-v="${nextS}"><span><b>${T('next_test', { s: subjName(nextS) })}</b><small>${T('next_test_p')}</small></span>${arr}</button>`
+    : `<button type="button" class="next-card" data-act="subj" data-v="${state.subj}"><span><b>${T('next_res', { s: subjName(state.subj) })}</b><small>${T('next_res_p')}</small></span>${arr}</button>`;
+  const ev = (iso, txt, ic) => `<li><span class="ev-ic">${ico(ic)}</span><span><b>${dateLong(iso)}</b>${txt}</span></li>`;
+  const sCard = k => {
+    const D = k === 'dab' ? DAB : MAT, v = Object.keys(D.VIDEOS || {}).length, t = D.TOPICS.length, done = subjDone(k);
+    return `<article class="sc sc-${k}">
+      <div class="sc-art" aria-hidden="true">${k === 'dab' ? '<span>B</span><span>F</span><span>Ķ</span>' : '<span>x²</span><span>%</span><span>∟</span>'}</div>
+      <h3>${subjName(k)}</h3>
+      <p class="sc-meta">${ico('lessons', 'sic')}${T(v ? 'subj_counts' : 'subj_counts_soon', { t, v })}</p>
+      <p class="sc-date">${T('cd_h')}: <b>${daysTo(examDateOf(k))} ${daysWord(daysTo(examDateOf(k)))}</b> · ${dateLong(examDateOf(k))}</p>
+      <p class="sc-d">${T(k === 'dab' ? 'subj_dab_d' : 'subj_mat_d')}</p>
+      <button type="button" class="btn ${k === 'dab' ? 'btn-green' : 'btn-primary'} btn-lg" data-act="subj" data-v="${k}">${done ? T('ex_cta_done') : T(k === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}${arr}</button>
+    </article>`;
+  };
+  const tile = (D, k, t, i) => `<button type="button" class="tile tile-${i % 4}" data-act="topic" data-s="${k}" data-v="${t.id}">
+      <span class="tile-img"><img src="video/${t.id}-${state.lang}.jpg" alt="" loading="lazy" width="320" height="180"></span>
+      <b>${L(t)}</b><small>${ico('lessons', 'sic')}${T('pop_tag')}</small></button>`;
+  return `<section class="wrap dash" id="top">
+    <div class="dash-hero">
+      <div class="dh-txt">
+        <span class="dh-badge">${T('dash_badge')}</span>
+        <h1>${T('hero2_h')}</h1>
+        <p class="dh-lead">${T('hero2_p')}</p>
+        <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}${arr}</button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div>
+        <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
       </div>
-      <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · ${state.lang === 'ru' ? '0:48' : '0:51'}</span><span class="vid-note" aria-hidden="true">${T('hero2_vid_note')}</span></figcaption>
-    </figure>
+      <figure class="hero2-vid dh-vid">
+        <div class="vid-frame">
+          <video id="hero-video" preload="none" playsinline poster="${v}-clip.jpg"><source src="${v}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}-clip.vtt"></video>
+          <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+        </div>
+        <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · ${state.lang === 'ru' ? '0:48' : '0:51'}</span></figcaption>
+      </figure>
     </div>
+    <aside class="dash-side">
+      <div class="dcard cd">
+        <h2>${T('cd_h')}</h2>
+        <div class="ring" style="--p:${ring.toFixed(3)}"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"/><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"/></svg><span><b>${Math.max(0, nM)}</b>${T('cd_left')}</span></div>
+        <ul class="cd-rows">
+          <li><i class="dot-b"></i>${T('subj_mat')}<b>${Math.max(0, nM)} ${daysWord(nM)}</b></li>
+          <li><i class="dot-g"></i>${T('subj_dab')}<b>${Math.max(0, nD)} ${daysWord(nD)}</b></li>
+        </ul>
+      </div>
+      <div class="dcard"><h2 class="dch">${ico('prog', 'hic')}${T('next_h')}</h2>${next}<ul class="ev">${ev(CONFIG.launchDate, T('ev_launch', { d: CONFIG.earlyDiscount }), 'lessons')}</ul></div>
+    </aside>
   </section>
-  <section class="wrap sec subj-sec" id="prieksmeti">
-    <div class="sec-head"><h2>${T('subj_pick_h')}</h2><p>${T('subj_pick_p')}</p></div>
-    <div class="subj-grid">${subjCard('mat', 'subj_mat_d')}${subjCard('dab', 'subj_dab_d')}</div>
+  <section class="wrap sec2" id="prieksmeti">
+    <div class="sec-row"><h2>${T('subj_pick_h')}</h2><p>${T('subj_pick_p')}</p></div>
+    <div class="sc-grid">${sCard('mat')}${sCard('dab')}</div>
+  </section>
+  <section class="wrap sec2" id="temas">
+    <div class="sec-row"><h2>${T('pop_h')}</h2><div class="seg" role="tablist"><button type="button" role="tab" data-act="popTab" data-v="mat" aria-selected="${mem.pop !== 'dab'}">${T('subj_mat')}</button><button type="button" role="tab" data-act="popTab" data-v="dab" aria-selected="${mem.pop === 'dab'}">${T('subj_dab')}</button></div></div>
+    <div class="tiles">${(mem.pop === 'dab' ? DAB : MAT).TOPICS.filter(t => (mem.pop === 'dab' ? DAB : MAT).VIDEOS[t.id]).map((t, i) => tile(null, mem.pop === 'dab' ? 'dab' : 'mat', t, i)).join('')}</div>
   </section>
   <section class="wrap sec sci-clip" id="dab-video">
     <figure class="hero2-vid sci-vid">
@@ -3411,7 +3668,7 @@ function route(keepScroll = false) {
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
   const y = window.scrollY;
-  current = want;
+  current = want; if (want !== 'sakums') mem.sec = '';
   renderHeader(want);
   document.title = want === 'eksameni' ? T('ex_doc_title') : T('doc_title');
   $('#view').innerHTML = VIEWS[want](topic);
@@ -3484,6 +3741,15 @@ const ACT = {
     location.hash = !state.lead ? 'pieteikums' : state.done ? 'rezultati' : 'tests';
     if (location.hash === '#' + current) rerender();
   },
+  go(b, e) {
+    e.preventDefault(); mem.sec = b.dataset.sec || ''; document.body.classList.remove('side-open'); $('#side-scrim').hidden = true;
+    const scroll = () => { const el = mem.sec && mem.sec !== 'top' ? $('#' + mem.sec) : null; if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); else window.scrollTo({ top: 0, behavior: 'smooth' }); renderSide(current); };
+    if (current !== 'sakums') { location.hash = 'sakums'; setTimeout(scroll, 60); } else scroll();
+  },
+  'side-open'() { document.body.classList.add('side-open'); $('#side-scrim').hidden = false; const x = $('.side-x'); if (x) x.focus(); },
+  'side-close'() { document.body.classList.remove('side-open'); $('#side-scrim').hidden = true; },
+  popTab(b) { mem.pop = b.dataset.v; rerender(); },
+  topic(b) { setSubject(b.dataset.s); location.hash = 'demo-' + b.dataset.v; },
   toSubj(b, e) { e.preventDefault(); const el = $('#prieksmeti'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
   heroPlay(b) {
     const vid = $('#' + ((b && b.dataset.vid) || 'hero-video')); if (!vid) return;
