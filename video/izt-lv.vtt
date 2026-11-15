@@ -1,85 +1,85 @@
 WEBVTT
 
-00:00.250 --> 00:06.642
+00:00.250 --> 00:06.640
 Sveiki! Šī ir demo nodarbība par pakāpēm, saknēm un saīsinātās reizināšanas formulām.
 
-00:07.142 --> 00:14.606
+00:07.140 --> 00:14.610
 Apskatīsim trīs lietas, kurās eksāmenā visbiežāk zaudē punktus: pakāpes, summas kvadrātu un saknes.
 
-00:15.845 --> 00:23.586
+00:15.845 --> 00:23.585
 Pakāpe ir atkārtota reizināšana. Nulle komats divi kubā ir nulle komats divi, reizināts pats ar sevi trīs reizes.
 
-00:24.086 --> 00:31.227
+00:24.085 --> 00:31.225
 Galvenais slazds ir komats. Katrā reizinātājā ir viens cipars aiz komata, tātad atbildē tie ir trīs.
 
-00:31.727 --> 00:36.316
+00:31.725 --> 00:36.315
 Iegūstam nulle komats nulle nulle astoņi, nevis nulle komats astoņi.
 
-00:37.553 --> 00:42.868
+00:37.553 --> 00:42.873
 Tagad negatīvs kāpinātājs. Mīnuss kāpinātājā nepadara skaitli negatīvu.
 
-00:43.368 --> 00:50.123
+00:43.373 --> 00:50.123
 Tas nozīmē daļu: divi pakāpē mīnus trīs ir viens, dalīts ar divi kubā, tātad viena astotā.
 
-00:50.623 --> 00:53.620
+00:50.623 --> 00:53.623
 Nevis mīnus astoņi, bet viena astotā!
 
-00:54.120 --> 00:59.815
+00:54.123 --> 00:59.813
 Un vēl viens likums: jebkurš skaitlis, izņemot nulli, nultajā pakāpē ir viens.
 
-01:01.063 --> 01:04.042
+01:01.063 --> 01:04.043
 Biežākā kļūda eksāmenā ir summas kvadrāts.
 
-01:04.542 --> 01:13.628
+01:04.543 --> 01:13.623
 Paskaties uz kvadrātu ar malu a plus bē. Tajā ir kvadrāts ar malu a, kvadrāts ar malu bē un divi vienādi taisnstūri a reiz bē.
 
-01:14.128 --> 01:23.227
+01:14.123 --> 01:23.223
 Tāpēc a plus bē kvadrātā ir a kvadrātā plus divi a bē plus bē kvadrātā. Nevis vienkārši a kvadrātā plus bē kvadrātā.
 
-01:23.727 --> 01:27.312
+01:23.723 --> 01:27.313
 Tāpat darbojas starpības kvadrāts un kvadrātu starpība.
 
-01:28.544 --> 01:33.291
+01:28.544 --> 01:33.294
 Tagad saknes. Reizinājuma sakne ir vienāda ar sakņu reizinājumu.
 
-01:33.791 --> 01:39.980
+01:33.794 --> 01:39.984
 Tāpēc kvadrātsakne no divpadsmit ir sakne no četri reiz trīs, tātad divas saknes no trīs.
 
-01:40.480 --> 01:51.926
+01:40.484 --> 01:51.924
 Sakne no divdesmit septiņi ir trīs saknes no trīs. Saskaitīt var tikai vienādas saknes: divas saknes no trīs plus trīs saknes no trīs ir piecas saknes no trīs.
 
-01:52.426 --> 01:56.801
+01:52.424 --> 01:56.804
 Bet sakne no trīsdesmit deviņi te nesanāk: saknes tā nesaskaita.
 
-01:58.036 --> 02:05.531
-Atrisināsim piemēru: vienkāršo izteiksmi iks mīnus četri kvadrātā mīnus iks, reizināts ar iks mīnus astoņi.
+01:58.036 --> 02:07.636
+Atrisināsim piemēru: vienkāršo izteiksmi — iekavās iks mīnus četri, kvadrātā, mīnus iks, reizināts ar iekavās iks mīnus astoņi.
 
-02:06.031 --> 02:11.344
+02:08.136 --> 02:13.446
 Vispirms starpības kvadrāts: iks kvadrātā mīnus astoņi iks plus sešpadsmit.
 
-02:12.586 --> 02:19.486
+02:14.686 --> 02:21.586
 Tagad atveram otrās iekavas: iks reiz iks mīnus astoņi ir iks kvadrātā mīnus astoņi iks.
 
-02:20.737 --> 02:25.389
+02:22.837 --> 02:27.487
 Pirms iekavām ir mīnuss, tāpēc visas zīmes iekavās mainās uz pretējām.
 
-02:25.889 --> 02:32.996
+02:27.987 --> 02:35.097
 Iegūstam: iks kvadrātā mīnus astoņi iks plus sešpadsmit mīnus iks kvadrātā plus astoņi iks.
 
-02:34.242 --> 02:43.418
+02:36.342 --> 02:45.522
 Savelkam līdzīgos locekļus. Iks kvadrātā un mīnus iks kvadrātā dod nulli. Mīnus astoņi iks un plus astoņi iks arī dod nulli.
 
-02:43.918 --> 02:46.241
+02:46.022 --> 02:48.342
 Paliek sešpadsmit. Tā ir atbilde.
 
-02:47.486 --> 02:53.646
-Pārbaudām ar iks vienāds ar viens. Viens mīnus četri kvadrātā ir deviņi.
+02:49.586 --> 02:56.606
+Pārbaudām ar iks vienāds ar viens. Viens mīnus četri ir mīnus trīs, un mīnus trīs kvadrātā ir deviņi.
 
-02:54.146 --> 03:03.176
+02:57.106 --> 03:06.136
 Otrā daļa: viens reiz mīnus septiņi ir mīnus septiņi, un mēs to atņemam, tātad plus septiņi. Deviņi plus septiņi ir sešpadsmit. Sakrīt!
 
-03:04.413 --> 03:09.085
+03:07.373 --> 03:12.043
 Tagad tava kārta. Zem video ir trīs uzdevumi ar tūlītēju pārbaudi.
 
-03:09.585 --> 03:13.310
+03:12.543 --> 03:16.273
 Ja kļūdīsies, uzreiz redzēsi, kur tieši ir kļūda.
