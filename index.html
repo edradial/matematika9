@@ -849,7 +849,7 @@ body { background-image: none; display: block; }
 .app-main > main { flex: 1; }
 .app-main .wrap { max-width: 1200px; padding-left: 28px; padding-right: 28px; }
 
-.side { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; background: var(--side); color: var(--side-ink); padding: 22px 16px 18px; display: flex; flex-direction: column; gap: 6px; z-index: 40; }
+.appnav { position: sticky; top: 0; align-self: start; height: 100vh; overflow-y: auto; background: var(--side); color: var(--side-ink); padding: 22px 16px 18px; display: flex; flex-direction: column; gap: 6px; z-index: 40; }
 .side-logo { display: flex; align-items: center; gap: 11px; color: #fff; text-decoration: none; padding: 0 8px 20px; margin-bottom: 10px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
 .side-logo .logo-txt { font: 800 19px/1.1 var(--f-display); }
 .side-logo small { display: block; font: 500 12px var(--f-body); color: #8E9AB8; margin-top: 2px; }
@@ -860,7 +860,7 @@ body { background-image: none; display: block; }
 .nav-i.on { background: linear-gradient(135deg, #2F57D9, #2445B8); color: #fff; box-shadow: 0 8px 20px -10px rgba(47, 87, 217, .9); }
 .nic { width: 21px; height: 21px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .side-soon { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .08); }
-.side-h { margin: 0 14px 4px; font: 700 11.5px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: #6F7C9C; }
+.appnav .side-h { margin: 0 14px 4px; font: 700 11.5px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: #6F7C9C; }
 .nav-i.dis { opacity: .55; cursor: default; }
 .nav-i.dis:hover { background: none; color: var(--side-ink); }
 .nav-i em { margin-left: auto; font: 600 10.5px var(--f-body); font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #9AA6C4; white-space: nowrap; }
@@ -954,8 +954,8 @@ body { background-image: none; display: block; }
 @media (max-width: 1240px) { .dash { grid-template-columns: minmax(0, 1fr); } .dash-side { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); } .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 1100px) {
   .app { grid-template-columns: minmax(0, 1fr); background: none; }
-  .side { position: fixed; left: 0; top: 0; width: 280px; transform: translateX(-102%); transition: transform .25s; box-shadow: 20px 0 50px rgba(0, 0, 0, .25); }
-  body.side-open .side { transform: none; }
+  .appnav { position: fixed; left: 0; top: 0; width: 280px; transform: translateX(-102%); transition: transform .25s; box-shadow: 20px 0 50px rgba(0, 0, 0, .25); }
+  body.side-open .appnav { transform: none; }
   .side-x { display: block; position: absolute; right: 12px; top: 18px; width: 36px; height: 36px; border: 0; border-radius: 10px; background: rgba(255, 255, 255, .08); color: #fff; font-size: 22px; cursor: pointer; }
   .top .logo { display: flex; } .burger { display: grid; }
 }
@@ -968,7 +968,7 @@ body { background-image: none; display: block; }
   .sc { padding: 22px; } .sc-art span { width: 40px; height: 40px; font-size: 17px; }
   .sec-row h2 { font-size: 23px; }
 }
-@media (prefers-reduced-motion: reduce) { .side, .tile { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .appnav, .tile { transition: none; } }
 
 @media (max-width: 1240px) and (min-width: 901px) { .dash-side .dcard { display: flex; flex-direction: column; } }
 @media (max-width: 640px) {
@@ -983,7 +983,7 @@ body { background-image: none; display: block; }
 </head>
 <body>
 <div class="app">
-<aside class="side" id="side" aria-label="Navigācija"></aside>
+<aside class="appnav" id="side" aria-label="Navigācija"></aside>
 <div class="side-scrim" id="side-scrim" data-act="side-close" hidden></div>
 <div class="app-main">
 <header class="top">
