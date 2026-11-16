@@ -1283,6 +1283,33 @@ a.pl-item:hover { border-color: var(--accent); }
 }
 @media (max-width: 900px) { .pl-set { position: static; order: -1; } }
 
+/* ---------- mock exam ---------- */
+.mk-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.mk-time { font-weight: 700; padding: 6px 12px; border-radius: 99px; background: var(--soft); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.mk-time.low { background: #fde8e6; color: #b42318; border-color: #f5c2bd; }
+.mk-pal { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.mk-pal button { width: 34px; height: 34px; border-radius: 10px; border: 1px solid var(--line); background: var(--paper); font: 600 13px var(--f-body); cursor: pointer; color: var(--muted); }
+.mk-pal button.on { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
+.mk-pal button.cur { border: 2px solid var(--accent); color: var(--ink); }
+.mk-sub { margin-top: 18px; text-align: center; }
+.mk-sub p { display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.mk-intro { margin-top: 16px; }
+.mk-info { margin-top: 0; }
+.mk-score { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.mk-score p { margin: 4px 0; }
+.mk-pts { font: 800 22px var(--f-head, inherit); }
+.mk-res h3 { margin: 22px 0 10px; }
+.mk-review { padding-left: 0; list-style: none; display: grid; gap: 12px; margin: 0; }
+.mk-mis { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.mk-mis p { margin: 6px 0; }
+.mk-mn { font-weight: 600; }
+.mk-card .row { margin-top: 12px; }
+.mk-det summary { cursor: pointer; list-style: none; }
+.mk-det summary::-webkit-details-marker { display: none; }
+.mk-det summary h3 { display: inline-block; }
+.mk-det summary h3::after { content: ' ▾'; color: var(--muted); }
+.mk-det[open] summary h3::after { content: ' ▴'; }
+
 </style>
 </head>
 <body>
@@ -3487,7 +3514,7 @@ Object.assign(I18N.lv, {
   t_retake: 'Pildīt vēlreiz',
   t_hist: 'Mēģinājumi',
   t_soon_h: 'Tēmu testi',
-  t_soon_p: 'Īsi testi katrai tēmai un pilni eksāmena varianti būs pieejami pēc starta.',
+  t_soon_p: 'Īsi testi katrai tēmai un vairāk izmēģinājuma eksāmena variantu būs pieejami pēc starta.',
   prog_h: 'Mans progress',
   prog_p: 'Viss, ko esi izdarījis, vienuviet.',
   p_course: 'Kurss',
@@ -3542,7 +3569,7 @@ Object.assign(I18N.ru, {
   t_retake: 'Пройти снова',
   t_hist: 'Попытки',
   t_soon_h: 'Тесты по темам',
-  t_soon_p: 'Короткие тесты по каждой теме и полные варианты экзамена появятся после старта.',
+  t_soon_p: 'Короткие тесты по каждой теме и больше вариантов пробного экзамена появятся после старта.',
   prog_h: 'Мой прогресс',
   prog_p: 'Всё, что ты сделал, в одном месте.',
   p_course: 'Курс',
@@ -3696,6 +3723,7 @@ function viewTests() {
   };
   return `<section class="wrap pg"><div class="pg-h"><h1>${T('tests_h')}</h1><p>${T('tests_p')}</p></div>
     <div class="mc-grid">${card('mat')}${card('dab')}</div>
+    ${mockCardHTML()}
     <article class="tc soon">${LOCK}<div><h2>${T('t_soon_h')}</h2><p>${T('t_soon_p')}</p></div><em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em></article>
   </section>`;
 }
@@ -4337,7 +4365,7 @@ function viewPlan() {
   const segBtn = (act, v, on, txt) => `<button type="button" role="radio" aria-checked="${on}" data-act="${act}" data-v="${v}">${txt}</button>`;
   const notTested = P.subs.filter(s => !subjDone(s));
   const showAll = mem.plAll, list = showAll ? P.weeks : P.weeks.slice(0, 4);
-  const reviews = P.marks.map(m => `<li class="pl-week review"><div class="pl-wh"><b>${T('pl_review')} · ${subjName(m.s)}</b><small>${plRange(m.review)}</small></div><p class="muted">${T('pl_review_p')}</p><p class="pl-exam">${T('pl_exam', { s: `${subjName(m.s)}, ${dateLong(m.exam)}` })}</p></li>`).join('');
+  const reviews = P.marks.map(m => `<li class="pl-week review"><div class="pl-wh"><b>${T('pl_review')} · ${subjName(m.s)}</b><small>${plRange(m.review)}</small></div><p class="muted">${T('pl_review_p')}</p><p><a class="btn btn-white" href="#izmegin" data-act="mkOpen" data-v="${m.s}">${T('mk_nav')}${ARR}</a></p><p class="pl-exam">${T('pl_exam', { s: `${subjName(m.s)}, ${dateLong(m.exam)}` })}</p></li>`).join('');
   return `<section class="wrap pg plpg">
     <div class="pg-h"><h1>${T('pl_h')}</h1><p>${T('pl_p')}</p></div>
     <div class="pg-cols">
@@ -4371,6 +4399,244 @@ const PLAN_ACT = {
   plSubj(b) { state.plan = { ...planCfg(), subj: b.dataset.v }; save(); rerender(); track('plan_set', { subj: b.dataset.v }); },
   plDays(b) { state.plan = { ...planCfg(), days: +b.dataset.v }; save(); rerender(); track('plan_set', { days: +b.dataset.v }); },
   plAll() { mem.plAll = !mem.plAll; rerender(); },
+};
+
+// ---------- timed mock exam: one variant per subject, auto-graded, review with explanations ----------
+// state.mock[s] = { t0: ms, ans: [], idx, done, t1: ms }
+const MO = (lv, ru) => ({ lv, ru });
+const MOCK = {
+  mat: { min: 60, calc: false, items: [
+    { topic: 'izt', q: MO('Vienkāršo izteiksmi:', 'Упрости выражение:'), math: 'a⁵ · a³ : a²', opts: ['a⁶', 'a¹⁰', 'a¹³', 'a¹⁷'], a: 0,
+      ex: MO('Reizinot pakāpju kāpinātājus saskaita, dalot — atņem: 5 + 3 − 2 = 6.', 'При умножении показатели складывают, при делении вычитают: 5 + 3 − 2 = 6.') },
+    { topic: 'izt', q: MO('Aprēķini:', 'Вычисли:'), math: '√49 + √0,09', opts: ['7,03', '7,09', '7,3', '7,9'], a: 2,
+      ex: MO('√49 = 7, √0,09 = 0,3, jo 0,3 · 0,3 = 0,09. Kopā 7,3.', '√49 = 7, √0,09 = 0,3, так как 0,3 · 0,3 = 0,09. Всего 7,3.') },
+    { topic: 'izt', q: MO('Sadali reizinātājos:', 'Разложи на множители:'), math: 'x² − 25', opts: ['(x − 5)²', '(x − 5)(x + 5)', '(x − 25)(x + 1)', 'x(x − 25)'], a: 1,
+      ex: MO('Kvadrātu starpība: a² − b² = (a − b)(a + b), šeit b = 5.', 'Разность квадратов: a² − b² = (a − b)(a + b), здесь b = 5.') },
+    { topic: 'proc', q: MO('Preces cena bija 40 €. To samazināja par 15 %. Kāda ir jaunā cena?', 'Цена товара была 40 €. Её снизили на 15 %. Какая новая цена?'), opts: ['25 €', '34 €', '35 €', '6 €'], a: 1,
+      ex: MO('15 % no 40 € ir 6 €. 40 − 6 = 34 €. Var arī 40 · 0,85 = 34.', '15 % от 40 € — это 6 €. 40 − 6 = 34 €. Или 40 · 0,85 = 34.') },
+    { topic: 'proc', q: MO('Cena pieauga no 50 € līdz 60 €. Par cik procentiem pieauga cena?', 'Цена выросла с 50 € до 60 €. На сколько процентов выросла цена?'), opts: ['10 %', '16,7 %', '20 %', '120 %'], a: 2,
+      ex: MO('Pieaugums 10 € salīdzina ar sākuma cenu 50 €: 10 : 50 = 0,2 = 20 %.', 'Прирост 10 € сравниваем с начальной ценой 50 €: 10 : 50 = 0,2 = 20 %.') },
+    { topic: 'proc', q: MO('30 % no skaitļa ir 12. Kāds ir šis skaitlis?', '30 % от числа равны 12. Какое это число?'), opts: ['3,6', '36', '40', '4'], a: 2,
+      ex: MO('1 % ir 12 : 30 = 0,4, tātad 100 % ir 40.', '1 % — это 12 : 30 = 0,4, значит 100 % — это 40.') },
+    { topic: 'vien', q: MO('Atrisini vienādojumu:', 'Реши уравнение:'), math: '5x − 3 = 2x + 9', opts: ['x = 2', 'x = 4', 'x = −4', 'x = 12'], a: 1,
+      ex: MO('5x − 2x = 9 + 3, 3x = 12, x = 4.', '5x − 2x = 9 + 3, 3x = 12, x = 4.') },
+    { topic: 'vien', q: MO('Atrisini vienādojumu:', 'Реши уравнение:'), math: 'x² − 7x + 10 = 0', opts: ['x = −2; x = −5', 'x = 2; x = 5', 'x = 1; x = 10', 'x = −1; x = 10'], a: 1,
+      ex: MO('Saknes reizinājums 10, summa 7 (Vjeta teorēma): 2 un 5. Pārbaude: 4 − 14 + 10 = 0.', 'Произведение корней 10, сумма 7 (теорема Виета): 2 и 5. Проверка: 4 − 14 + 10 = 0.') },
+    { topic: 'vien', q: MO('Divu skaitļu summa ir 30, un viens skaitlis ir par 6 lielāks nekā otrs. Kāds ir mazākais skaitlis?', 'Сумма двух чисел 30, одно число на 6 больше другого. Чему равно меньшее число?'), opts: ['12', '15', '18', '24'], a: 0,
+      ex: MO('x + (x + 6) = 30, 2x = 24, x = 12. Lielākais ir 18.', 'x + (x + 6) = 30, 2x = 24, x = 12. Большее — 18.') },
+    { topic: 'nev', q: MO('Atrisini nevienādību:', 'Реши неравенство:'), math: '−2x > 8', opts: ['x > −4', 'x < −4', 'x > 4', 'x < 4'], a: 1,
+      ex: MO('Dalot ar negatīvu skaitli −2, nevienādības zīme mainās: x < −4.', 'При делении на отрицательное число −2 знак неравенства меняется: x < −4.') },
+    { topic: 'nev', q: MO('Kurš intervāls ir sistēmas atrisinājums?', 'Какой промежуток является решением системы?'), math: 'x − 1 ≥ 0;  x < 3', opts: ['(1; 3)', '[1; 3)', '[1; 3]', '(−∞; 3)'], a: 1,
+      ex: MO('No pirmās x ≥ 1 (1 pieder — kvadrātiekava), no otrās x < 3 (3 nepieder — apaļā iekava).', 'Из первого x ≥ 1 (1 входит — квадратная скобка), из второго x < 3 (3 не входит — круглая скобка).') },
+    { topic: 'fun', q: MO('Kurā punktā funkcijas y = 3x − 6 grafiks krusto x asi?', 'В какой точке график функции y = 3x − 6 пересекает ось x?'), opts: ['(0; −6)', '(2; 0)', '(−6; 0)', '(0; 2)'], a: 1,
+      ex: MO('Uz x ass y = 0: 3x − 6 = 0, x = 2. Punkts (2; 0).', 'На оси x y = 0: 3x − 6 = 0, x = 2. Точка (2; 0).') },
+    { topic: 'fun', q: MO('Kurš punkts pieder funkcijas y = x² − 4 grafikam?', 'Какая точка принадлежит графику функции y = x² − 4?'), opts: ['(2; 4)', '(−1; 3)', '(3; 5)', '(0; 4)'], a: 2,
+      ex: MO('Ievieto x = 3: 9 − 4 = 5, tātad (3; 5) pieder. Citiem punktiem y nesakrīt.', 'Подставим x = 3: 9 − 4 = 5, значит (3; 5) принадлежит. У остальных точек y не совпадает.') },
+    { topic: 'fun', q: MO('Kuras ir parabolas y = (x − 1)² + 3 virsotnes koordinātas?', 'Каковы координаты вершины параболы y = (x − 1)² + 3?'), opts: ['(−1; 3)', '(1; −3)', '(1; 3)', '(3; 1)'], a: 2,
+      ex: MO('Formā y = (x − m)² + n virsotne ir (m; n) = (1; 3).', 'В виде y = (x − m)² + n вершина — (m; n) = (1; 3).') },
+    { topic: 'tri', q: MO('Taisnleņķa trijstūra katetes ir 6 cm un 8 cm. Cik gara ir hipotenūza?', 'Катеты прямоугольного треугольника 6 см и 8 см. Какова длина гипотенузы?'), opts: ['10 cm', '12 cm', '14 cm', '48 cm'], a: 0,
+      ex: MO('c² = 6² + 8² = 36 + 64 = 100, c = 10 cm.', 'c² = 6² + 8² = 36 + 64 = 100, c = 10 см.') },
+    { topic: 'tri', q: MO('Taisnleņķa trijstūrī leņķim α pretējā katete ir 3, hipotenūza 5. Kāds ir sin α?', 'В прямоугольном треугольнике катет, противолежащий углу α, равен 3, гипотенуза 5. Чему равен sin α?'), opts: ['3/5', '4/5', '3/4', '5/3'], a: 0,
+      ex: MO('sin α = pretējā katete : hipotenūza = 3/5.', 'sin α = противолежащий катет : гипотенуза = 3/5.') },
+    { topic: 'lauk', q: MO('Taisnstūra laukums ir 48 cm², viena mala 6 cm. Kāds ir tā perimetrs?', 'Площадь прямоугольника 48 см², одна сторона 6 см. Каков его периметр?'), opts: ['14 cm', '28 cm', '48 cm', '54 cm'], a: 1,
+      ex: MO('Otra mala 48 : 6 = 8 cm. P = 2 · (6 + 8) = 28 cm.', 'Вторая сторона 48 : 6 = 8 см. P = 2 · (6 + 8) = 28 см.') },
+    { topic: 'lauk', q: MO('Divi trijstūri ir līdzīgi ar līdzības koeficientu 3. Mazākā laukums ir 5 cm². Kāds ir lielākā laukums?', 'Два треугольника подобны с коэффициентом 3. Площадь меньшего 5 см². Какова площадь большего?'), opts: ['15 cm²', '25 cm²', '45 cm²', '125 cm²'], a: 2,
+      ex: MO('Laukumu attiecība ir koeficienta kvadrāts: 3² = 9. 5 · 9 = 45 cm².', 'Отношение площадей равно квадрату коэффициента: 3² = 9. 5 · 9 = 45 см².') },
+    { topic: 'stat', q: MO('Kāds ir skaitļu 4; 7; 7; 10; 12 vidējais aritmētiskais?', 'Чему равно среднее арифметическое чисел 4; 7; 7; 10; 12?'), opts: ['7', '8', '10', '40'], a: 1,
+      ex: MO('Summa 40, skaitļu ir 5: 40 : 5 = 8.', 'Сумма 40, чисел 5: 40 : 5 = 8.') },
+    { topic: 'stat', q: MO('Met spēļu kauliņu. Kāda ir varbūtība, ka uzkritīs pāra skaitlis, kas lielāks par 2?', 'Бросают игральный кубик. Какова вероятность, что выпадет чётное число больше 2?'), opts: ['1/6', '1/3', '1/2', '2/3'], a: 1,
+      ex: MO('Der 4 un 6 — 2 iznākumi no 6. P = 2/6 = 1/3.', 'Подходят 4 и 6 — 2 исхода из 6. P = 2/6 = 1/3.') },
+  ] },
+  dab: { min: 40, calc: true, items: [
+    { topic: 'cilv', q: MO('Kurš orgāns sūknē asinis pa visu organismu?', 'Какой орган перекачивает кровь по всему организму?'), opts: [MO('plaušas', 'лёгкие'), MO('sirds', 'сердце'), MO('aknas', 'печень'), MO('nieres', 'почки')], a: 1,
+      ex: MO('Sirds ir muskuļu sūknis; plaušās notiek gāzu maiņa, aknas un nieres attīra asinis.', 'Сердце — мышечный насос; в лёгких идёт газообмен, печень и почки очищают кровь.') },
+    { topic: 'cilv', q: MO('Kur plaušās notiek gāzu maiņa starp gaisu un asinīm?', 'Где в лёгких происходит газообмен между воздухом и кровью?'), opts: [MO('trahejā', 'в трахее'), MO('bronhos', 'в бронхах'), MO('alveolās', 'в альвеолах'), MO('balsenē', 'в гортани')], a: 2,
+      ex: MO('Alveolas ir sīki pūslīši ar plānu sieniņu un kapilāru tīklu — tur O₂ nonāk asinīs, CO₂ iziet.', 'Альвеолы — мелкие пузырьки с тонкой стенкой и сетью капилляров: там O₂ уходит в кровь, CO₂ выходит.') },
+    { topic: 'cilv', q: MO('Kuras asins šūnas pārnēsā skābekli?', 'Какие клетки крови переносят кислород?'), opts: [MO('eritrocīti', 'эритроциты'), MO('leikocīti', 'лейкоциты'), MO('trombocīti', 'тромбоциты'), MO('neironi', 'нейроны')], a: 0,
+      ex: MO('Eritrocītos ir hemoglobīns, kas saista skābekli. Leikocīti aizsargā, trombocīti nodrošina asins recēšanu.', 'В эритроцитах есть гемоглобин, связывающий кислород. Лейкоциты защищают, тромбоциты отвечают за свёртывание.') },
+    { topic: 'cilv', q: MO('Kurā gremošanas sistēmas daļā barības vielas galvenokārt uzsūcas asinīs?', 'В каком отделе пищеварительной системы питательные вещества в основном всасываются в кровь?'), opts: [MO('barības vadā', 'в пищеводе'), MO('kuņģī', 'в желудке'), MO('tievajā zarnā', 'в тонкой кишке'), MO('resnajā zarnā', 'в толстой кишке')], a: 2,
+      ex: MO('Tievās zarnas bārkstiņas palielina virsmu, tāpēc tur uzsūcas lielākā daļa barības vielu. Resnajā zarnā galvenokārt uzsūcas ūdens.', 'Ворсинки тонкой кишки увеличивают поверхность, поэтому там всасывается большая часть питательных веществ. В толстой кишке в основном всасывается вода.') },
+    { topic: 'eko', q: MO('Barības ķēde: zāle → zaķis → lapsa. Kurš ir producents?', 'Пищевая цепь: трава → заяц → лиса. Кто является продуцентом?'), opts: [MO('zāle', 'трава'), MO('zaķis', 'заяц'), MO('lapsa', 'лиса'), MO('neviens', 'никто')], a: 0,
+      ex: MO('Producenti paši ražo organiskās vielas fotosintēzē — tie ir augi.', 'Продуценты сами производят органические вещества при фотосинтезе — это растения.') },
+    { topic: 'eko', q: MO('Kurā procesā augi izdala skābekli?', 'В каком процессе растения выделяют кислород?'), opts: [MO('elpošanā', 'при дыхании'), MO('fotosintēzē', 'при фотосинтезе'), MO('transpirācijā', 'при транспирации'), MO('dīgšanā', 'при прорастании')], a: 1,
+      ex: MO('Fotosintēzē no CO₂ un ūdens gaismā veidojas glikoze un skābeklis. Elpošanā skābeklis tiek patērēts.', 'При фотосинтезе из CO₂ и воды на свету образуются глюкоза и кислород. При дыхании кислород расходуется.') },
+    { topic: 'eko', q: MO('Mežā izzūd lapsas. Kas īsā laikā visticamāk notiks ar zaķu skaitu?', 'В лесу исчезли лисы. Что скорее всего произойдёт с числом зайцев за короткое время?'), opts: [MO('palielināsies', 'увеличится'), MO('samazināsies', 'уменьшится'), MO('nemainīsies', 'не изменится'), MO('zaķi izzudīs', 'зайцы исчезнут')], a: 0,
+      ex: MO('Lapsa ir zaķa plēsējs. Bez plēsēja zaķu skaits sākumā aug, līdz to ierobežo barības daudzums.', 'Лиса — хищник для зайца. Без хищника число зайцев сначала растёт, пока его не ограничит количество корма.') },
+    { topic: 'eko', q: MO('Kas raksturo bioloģisko daudzveidību ekosistēmā?', 'Что характеризует биологическое разнообразие экосистемы?'), opts: [MO('sugu skaits', 'число видов'), MO('visu organismu masa', 'масса всех организмов'), MO('teritorijas platība', 'площадь территории'), MO('gada vidējā temperatūra', 'средняя годовая температура')], a: 0,
+      ex: MO('Bioloģiskā daudzveidība ir dažādu sugu (un to īpatņu) daudzveidība — jo vairāk sugu, jo tā lielāka.', 'Биологическое разнообразие — это разнообразие видов (и их особей): чем больше видов, тем оно выше.') },
+    { topic: 'spek', q: MO('Ķermeņa masa ir 5 kg. Kāds ir tā smaguma spēks? (g = 10 N/kg)', 'Масса тела 5 кг. Какова сила тяжести? (g = 10 Н/кг)'), opts: ['0,5 N', '5 N', '50 N', '500 N'], a: 2,
+      ex: MO('F = m · g = 5 kg · 10 N/kg = 50 N.', 'F = m · g = 5 кг · 10 Н/кг = 50 Н.') },
+    { topic: 'spek', q: MO('Automašīna 2 stundās nobrauc 150 km. Kāds ir tās vidējais ātrums?', 'Автомобиль за 2 часа проезжает 150 км. Какова его средняя скорость?'), opts: ['75 km/h', '148 km/h', '152 km/h', '300 km/h'], a: 0,
+      ex: MO('v = s : t = 150 km : 2 h = 75 km/h.', 'v = s : t = 150 км : 2 ч = 75 км/ч.') },
+    { topic: 'spek', q: MO('Uz sviras kreisā pleca 0,3 m attālumā no atbalsta darbojas spēks 20 N. Kāds spēks jāpieliek labajā pusē 0,6 m attālumā, lai svira būtu līdzsvarā?', 'На левое плечо рычага на расстоянии 0,3 м от опоры действует сила 20 Н. Какую силу нужно приложить справа на расстоянии 0,6 м, чтобы рычаг был в равновесии?'), opts: ['6 N', '10 N', '20 N', '40 N'], a: 1,
+      ex: MO('F₁ · l₁ = F₂ · l₂: 20 · 0,3 = F · 0,6, F = 6 : 0,6 = 10 N. Garāks plecs — mazāks spēks.', 'F₁ · l₁ = F₂ · l₂: 20 · 0,3 = F · 0,6, F = 6 : 0,6 = 10 Н. Плечо длиннее — сила меньше.') },
+    { topic: 'spek', q: MO('Bumba krīt no balkona. Kas notiek ar tās potenciālo enerģiju?', 'Мяч падает с балкона. Что происходит с его потенциальной энергией?'), opts: [MO('pieaug', 'растёт'), MO('nemainās', 'не меняется'), MO('samazinās un pārvēršas kinētiskajā', 'уменьшается и переходит в кинетическую'), MO('pārvēršas elektriskajā', 'переходит в электрическую')], a: 2,
+      ex: MO('Augstums samazinās, tāpēc potenciālā enerģija samazinās, bet ātrums un kinētiskā enerģija aug.', 'Высота уменьшается, поэтому потенциальная энергия уменьшается, а скорость и кинетическая энергия растут.') },
+    { topic: 'silt', q: MO('Kā sauc vielas pāreju no šķidra stāvokļa gāzveida stāvoklī?', 'Как называется переход вещества из жидкого состояния в газообразное?'), opts: [MO('kondensācija', 'конденсация'), MO('iztvaikošana', 'испарение'), MO('kušana', 'плавление'), MO('sacietēšana', 'отвердевание')], a: 1,
+      ex: MO('Šķidrums → gāze ir iztvaikošana. Pretējais process — kondensācija.', 'Жидкость → газ — испарение. Обратный процесс — конденсация.') },
+    { topic: 'silt', q: MO('Kāpēc metāla karote karstā tējā sasilst ātrāk nekā koka karote?', 'Почему металлическая ложка в горячем чае нагревается быстрее деревянной?'), opts: [MO('metāls labi vada siltumu', 'металл хорошо проводит тепло'), MO('metāls ir smagāks', 'металл тяжелее'), MO('koks absorbē tēju', 'дерево впитывает чай'), MO('metālam ir lielāks tilpums', 'у металла больше объём')], a: 0,
+      ex: MO('Metāli ir labi siltumvadītāji, koks — slikts siltumvadītājs (izolators).', 'Металлы — хорошие проводники тепла, дерево — плохой (теплоизолятор).') },
+    { topic: 'silt', q: MO('Ledus kūst 0 °C temperatūrā. Kas notiek ar temperatūru, kamēr viss ledus nav izkusis?', 'Лёд тает при 0 °C. Что происходит с температурой, пока весь лёд не растаял?'), opts: [MO('pieaug', 'растёт'), MO('nemainās', 'не меняется'), MO('samazinās', 'понижается'), MO('svārstās', 'колеблется')], a: 1,
+      ex: MO('Kušanas laikā saņemtais siltums tiek patērēts kristālrežģa sagraušanai, tāpēc temperatūra paliek 0 °C.', 'Во время плавления полученное тепло тратится на разрушение кристаллической решётки, поэтому температура остаётся 0 °C.') },
+    { topic: 'silt', q: MO('Kā siltums no Saules nonāk līdz Zemei?', 'Каким способом тепло от Солнца доходит до Земли?'), opts: [MO('siltumvadīšanā', 'теплопроводностью'), MO('konvekcijā', 'конвекцией'), MO('starojumā', 'излучением'), MO('ar vēju', 'ветром')], a: 2,
+      ex: MO('Kosmosā gandrīz nav vielas, tāpēc siltumvadīšana un konvekcija nav iespējamas — siltums nonāk starojumā.', 'В космосе почти нет вещества, поэтому теплопроводность и конвекция невозможны — тепло передаётся излучением.') },
+    { topic: 'elek', q: MO('Caur rezistoru plūst 2 A stipra strāva, spriegums ir 12 V. Kāda ir pretestība?', 'Через резистор течёт ток 2 А, напряжение 12 В. Каково сопротивление?'), opts: ['6 Ω', '10 Ω', '14 Ω', '24 Ω'], a: 0,
+      ex: MO('Oma likums: R = U : I = 12 V : 2 A = 6 Ω.', 'Закон Ома: R = U : I = 12 В : 2 А = 6 Ом.') },
+    { topic: 'elek', q: MO('Kurš materiāls ir elektriskais izolators?', 'Какой материал является электрическим изолятором?'), opts: [MO('varš', 'медь'), MO('alumīnijs', 'алюминий'), MO('gumija', 'резина'), MO('dzelzs', 'железо')], a: 2,
+      ex: MO('Metāli vada strāvu. Gumija nevada, tāpēc to izmanto vadu izolācijai.', 'Металлы проводят ток. Резина не проводит, поэтому из неё делают изоляцию проводов.') },
+    { topic: 'elek', q: MO('Divas spuldzītes ir saslēgtas virknē. Viena izdeg. Kas notiek ar otru?', 'Две лампочки соединены последовательно. Одна перегорает. Что происходит с другой?'), opts: [MO('spīd spožāk', 'горит ярче'), MO('spīd tāpat', 'горит так же'), MO('nodziest', 'гаснет'), MO('spīd vājāk', 'горит слабее')], a: 2,
+      ex: MO('Virknes slēgumā strāvai ir viens ceļš. Ja tas pārtrūkst, strāva neplūst nevienā spuldzītē.', 'При последовательном соединении у тока один путь. Если он разорван, ток не идёт ни через одну лампочку.') },
+    { topic: 'elek', q: MO('Ierīces jauda ir 100 W, tā darbojas 10 stundas. Cik elektroenerģijas tā patērē?', 'Мощность прибора 100 Вт, он работает 10 часов. Сколько электроэнергии он потребляет?'), opts: ['0,1 kWh', '1 kWh', '10 kWh', '1000 kWh'], a: 1,
+      ex: MO('E = P · t = 0,1 kW · 10 h = 1 kWh.', 'E = P · t = 0,1 кВт · 10 ч = 1 кВт·ч.') },
+    { topic: 'viel', q: MO('Kāda ir ūdens ķīmiskā formula?', 'Какова химическая формула воды?'), opts: ['HO₂', 'H₂O', 'H₂O₂', 'OH'], a: 1,
+      ex: MO('Ūdens molekulā ir divi ūdeņraža un viens skābekļa atoms: H₂O. H₂O₂ ir ūdeņraža peroksīds.', 'В молекуле воды два атома водорода и один кислорода: H₂O. H₂O₂ — перекись водорода.') },
+    { topic: 'viel', q: MO('Cik atomu ir vienā oglekļa dioksīda molekulā CO₂?', 'Сколько атомов в одной молекуле углекислого газа CO₂?'), opts: ['1', '2', '3', '4'], a: 2,
+      ex: MO('Viens oglekļa atoms un divi skābekļa atomi: kopā 3.', 'Один атом углерода и два атома кислорода: всего 3.') },
+    { topic: 'viel', q: MO('Kura ķīmiskā elementa simbols ir Na?', 'Символ какого химического элемента Na?'), opts: [MO('slāpeklis', 'азот'), MO('neons', 'неон'), MO('nātrijs', 'натрий'), MO('niķelis', 'никель')], a: 2,
+      ex: MO('Na — nātrijs (no latīņu natrium). Slāpeklis ir N, neons Ne, niķelis Ni.', 'Na — натрий (от латинского natrium). Азот — N, неон — Ne, никель — Ni.') },
+    { topic: 'viel', q: MO('Kura no šīm vielām ir maisījums?', 'Какое из этих веществ является смесью?'), opts: [MO('destilēts ūdens', 'дистиллированная вода'), MO('skābeklis', 'кислород'), MO('gaiss', 'воздух'), MO('varš', 'медь')], a: 2,
+      ex: MO('Gaiss sastāv no slāpekļa, skābekļa, argona, CO₂ u. c. gāzēm, tāpēc tas ir maisījums. Pārējās ir tīras vielas.', 'Воздух состоит из азота, кислорода, аргона, CO₂ и других газов, поэтому это смесь. Остальные — чистые вещества.') },
+    { topic: 'reak', q: MO('Kura no šīm pārmaiņām ir ķīmiska?', 'Какое из этих изменений химическое?'), opts: [MO('ledus kušana', 'таяние льда'), MO('malkas degšana', 'горение дров'), MO('cukura šķīšana ūdenī', 'растворение сахара в воде'), MO('stikla saplīšana', 'разбивание стекла')], a: 1,
+      ex: MO('Degšanā veidojas jaunas vielas (CO₂, ūdens, pelni). Pārējās pārmaiņas ir fizikālas — viela paliek tā pati.', 'При горении образуются новые вещества (CO₂, вода, зола). Остальные изменения физические — вещество остаётся тем же.') },
+    { topic: 'reak', q: MO('Šķīduma pH ir 2. Kāda ir tā vide?', 'pH раствора равен 2. Какая у него среда?'), opts: [MO('skāba', 'кислая'), MO('neitrāla', 'нейтральная'), MO('bāziska', 'щелочная'), MO('to nevar noteikt', 'определить нельзя')], a: 0,
+      ex: MO('pH < 7 — skāba vide, pH = 7 — neitrāla, pH > 7 — bāziska.', 'pH < 7 — кислая среда, pH = 7 — нейтральная, pH > 7 — щелочная.') },
+    { topic: 'reak', q: MO('20 g sāls izšķīdināja 180 g ūdens. Kāda ir sāls masas daļa šķīdumā?', '20 г соли растворили в 180 г воды. Какова массовая доля соли в растворе?'), opts: ['9 %', '10 %', '11 %', '20 %'], a: 1,
+      ex: MO('Šķīduma masa 20 + 180 = 200 g. w = 20 : 200 = 0,1 = 10 %.', 'Масса раствора 20 + 180 = 200 г. w = 20 : 200 = 0,1 = 10 %.') },
+    { topic: 'pet', q: MO('Pētījumā noskaidro, vai gaismas daudzums ietekmē augu augšanu. Kurš ir neatkarīgais mainīgais?', 'В исследовании выясняют, влияет ли количество света на рост растений. Какая переменная независимая?'), opts: [MO('gaismas daudzums', 'количество света'), MO('auga augstums', 'высота растения'), MO('ūdens daudzums', 'количество воды'), MO('podiņa izmērs', 'размер горшка')], a: 0,
+      ex: MO('Neatkarīgo mainīgo pētnieks maina pats (gaismu). Auga augstums ir atkarīgais, ūdens un podiņš — nemainīgie lielumi.', 'Независимую переменную исследователь меняет сам (свет). Высота растения — зависимая, вода и горшок — постоянные условия.') },
+    { topic: 'pet', q: MO('Kāpēc eksperimentu ieteicams atkārtot vairākas reizes?', 'Зачем эксперимент рекомендуется повторять несколько раз?'), opts: [MO('lai rezultāti būtu ticamāki', 'чтобы результаты были надёжнее'), MO('lai pētījums ilgtu ilgāk', 'чтобы исследование длилось дольше'), MO('lai mainītu hipotēzi', 'чтобы изменить гипотезу'), MO('lai būtu vairāk mainīgo', 'чтобы было больше переменных')], a: 0,
+      ex: MO('Atkārtojumi samazina nejaušu kļūdu ietekmi; var aprēķināt vidējo vērtību.', 'Повторения уменьшают влияние случайных ошибок; можно посчитать среднее значение.') },
+    { topic: 'pet', q: MO('Ūdeni silda. Temperatūra: 0 min — 20 °C, 1 min — 26 °C, 2 min — 32 °C, 3 min — 38 °C. Kāda būs temperatūra pēc 4 min, ja tendence turpinās?', 'Воду нагревают. Температура: 0 мин — 20 °C, 1 мин — 26 °C, 2 мин — 32 °C, 3 мин — 38 °C. Какой будет температура через 4 мин, если тенденция сохранится?'), opts: ['40 °C', '42 °C', '44 °C', '48 °C'], a: 2,
+      ex: MO('Katru minūti temperatūra pieaug par 6 °C: 38 + 6 = 44 °C.', 'Каждую минуту температура растёт на 6 °C: 38 + 6 = 44 °C.') },
+  ] },
+};
+
+Object.assign(I18N.lv, {
+  mk_nav: 'Izmēģinājuma eksāmens',
+  mk_h: 'Izmēģinājuma eksāmens',
+  mk_p: 'Pārbaudi sevi eksāmena apstākļos: ierobežots laiks, bez atbilžu pārbaudes līdz beigām. Rezultātu un skaidrojumus redzēsi uzreiz pēc iesniegšanas.',
+  mk_info_mat: '{n} uzdevumi · {m} minūtes · bez kalkulatora. Saīsināts 1. daļas formāts: īstajā eksāmenā ir arī 2. daļa ar izvērstiem risinājumiem.',
+  mk_info_dab: '{n} izvēles jautājumi · {m} minūtes · kalkulatoru drīkst. Kā īstā eksāmena 1. daļa „Zināšanas un izpratne”.',
+  mk_rules: ['Laiks iet arī tad, ja aizver lapu — kā īstajā eksāmenā.', 'Starp uzdevumiem var pārvietoties un mainīt atbildes.', 'Kad laiks beidzas, darbs tiek iesniegts automātiski.'],
+  mk_start: 'Sākt eksāmenu', mk_again: 'Pildīt vēlreiz', mk_resume: 'Turpināt eksāmenu',
+  mk_left: 'Atlikušais laiks', mk_q: '{i}. uzdevums no {n}',
+  mk_submit: 'Iesniegt darbu', mk_submit_q: 'Iesniegt? Neatbildēti: {n}.', mk_submit_yes: 'Jā, iesniegt',
+  mk_res_h: 'Tavs rezultāts', mk_pts: '{c} no {n} punktiem', mk_time: 'Laiks: {t} no {m} min',
+  mk_bands: ['Vēl daudz darāmā — sāc ar sarkanajām tēmām plānā.', 'Pamati ir, bet ir robi. Atkārto tēmas ar kļūdām.', 'Labs rezultāts! Nostiprini pāris tēmas.', 'Lieliski! Tu esi gatavs eksāmenam.'],
+  mk_by_topic: 'Pa tēmām', mk_review: 'Kļūdu pārskats', mk_all_ok: 'Visas atbildes pareizas!',
+  mk_your: 'Tava atbilde', mk_none: 'nav atbildes', mk_right: 'Pareizi',
+  mk_last: 'Pēdējais mēģinājums: {d} · {c}/{n}',
+  mk_plan: 'Uz manu plānu',
+});
+Object.assign(I18N.ru, {
+  mk_nav: 'Пробный экзамен',
+  mk_h: 'Пробный экзамен',
+  mk_p: 'Проверь себя в условиях экзамена: время ограничено, ответы не проверяются до конца. Результат и объяснения увидишь сразу после сдачи.',
+  mk_info_mat: '{n} заданий · {m} минут · без калькулятора. Сокращённый формат 1-й части: на настоящем экзамене есть и 2-я часть с развёрнутыми решениями.',
+  mk_info_dab: '{n} вопросов с выбором ответа · {m} минут · калькулятор можно. Как 1-я часть настоящего экзамена «Знания и понимание».',
+  mk_rules: ['Время идёт, даже если закрыть страницу — как на настоящем экзамене.', 'Между заданиями можно переходить и менять ответы.', 'Когда время закончится, работа сдаётся автоматически.'],
+  mk_start: 'Начать экзамен', mk_again: 'Пройти ещё раз', mk_resume: 'Продолжить экзамен',
+  mk_left: 'Осталось времени', mk_q: 'Задание {i} из {n}',
+  mk_submit: 'Сдать работу', mk_submit_q: 'Сдать? Без ответа: {n}.', mk_submit_yes: 'Да, сдать',
+  mk_res_h: 'Твой результат', mk_pts: '{c} из {n} баллов', mk_time: 'Время: {t} из {m} мин',
+  mk_bands: ['Ещё много работы — начни с красных тем в плане.', 'Основа есть, но есть пробелы. Повтори темы с ошибками.', 'Хороший результат! Подтяни пару тем.', 'Отлично! Ты готов к экзамену.'],
+  mk_by_topic: 'По темам', mk_review: 'Разбор ошибок', mk_all_ok: 'Все ответы верные!',
+  mk_your: 'Твой ответ', mk_none: 'нет ответа', mk_right: 'Верно',
+  mk_last: 'Последняя попытка: {d} · {c}/{n}',
+  mk_plan: 'К моему плану',
+});
+
+const mkMem = { ask: false };
+function mkSubj() { return mem.mksubj || state.subj; }
+function mkGet(s) { state.mock = state.mock || {}; return state.mock[s]; }
+function mkLeft(m, s) { return Math.max(0, m.t0 + MOCK[s].min * 60000 - Date.now()); }
+const mkClock = ms => { const t = Math.ceil(ms / 1000); return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`; };
+function mkScore(s, m) {
+  const X = MOCK[s].items, per = {};
+  X.forEach((x, i) => { per[x.topic] = per[x.topic] || { c: 0, n: 0 }; per[x.topic].n++; if (m.ans[i] === x.a) per[x.topic].c++; });
+  return { c: X.filter((x, i) => m.ans[i] === x.a).length, n: X.length, per };
+}
+function mkFinish(s) {
+  const m = mkGet(s); if (!m || m.done) return;
+  m.done = true; m.t1 = Math.min(Date.now(), m.t0 + MOCK[s].min * 60000);
+  const R = mkScore(s, m); m.c = R.c; m.at = today();
+  (state.mockHist = state.mockHist || []).push({ s, d: m.at, c: R.c, n: R.n });
+  mkMem.ask = false; touchDay(); save();
+  track('mock_finish', { subj: s, score: R.c, of: R.n });
+}
+// one ticker for the whole app: updates the clock and submits when time is over
+setInterval(() => {
+  const ms = state.mock || {};
+  Object.keys(ms).forEach(s => { const m = ms[s]; if (m && !m.done && MOCK[s] && mkLeft(m, s) <= 0) { mkFinish(s); if (current === 'izmegin') rerender(); } });
+  const el = document.getElementById('mk-clock'), m = mkGet(mkSubj());
+  if (el && m && !m.done) { const left = mkLeft(m, mkSubj()); el.textContent = mkClock(left); el.parentElement.classList.toggle('low', left < 5 * 60000); }
+}, 1000);
+
+function viewMock() {
+  const s = mkSubj(), M = MOCK[s], m = mkGet(s), X = M.items;
+  const tabs = `<div class="seg" role="radiogroup">${['mat', 'dab'].map(k => `<button type="button" role="radio" aria-checked="${k === s}" data-act="mkSubj" data-v="${k}">${T('subj_' + k)}</button>`).join('')}</div>`;
+  if (m && !m.done) {
+    const i = Math.min(m.idx || 0, X.length - 1), x = X[i], a = m.ans[i], left = mkLeft(m, s);
+    const unanswered = X.filter((_, k) => m.ans[k] == null).length;
+    return `<section class="wrap narrow test mkpg">
+      <div class="mk-bar"><span class="tcount">${T('mk_q', { i: i + 1, n: X.length })}</span><span class="mk-time${left < 300000 ? ' low' : ''}" role="timer" aria-label="${T('mk_left')}">⏱ <b id="mk-clock">${mkClock(left)}</b></span></div>
+      <nav class="mk-pal" aria-label="${T('mk_h')}">${X.map((_, k) => `<button type="button" class="${m.ans[k] != null ? 'on' : ''}${k === i ? ' cur' : ''}" data-act="mkGo" data-i="${k}" aria-label="${k + 1}"${k === i ? ' aria-current="step"' : ''}>${k + 1}</button>`).join('')}</nav>
+      <article class="sheet nb qcard">
+        <div class="test-top"><span class="chip">${L(SUBJ_D(s).TOPICS.find(t => t.id === x.topic))}</span></div>
+        ${qHTML(x)}
+        <div class="opts opts-2">${x.opts.map((o, k) => optHTML({ t: o }, k, `data-act="mkAns" data-i="${k}" aria-pressed="${a === k}"`)).join('')}</div>
+        <div class="rep-row">${reportBtn('mock ' + s + ' q' + (i + 1))}</div>
+      </article>
+      <div class="test-nav">
+        <button type="button" class="btn btn-ghost" data-act="mkGo" data-i="${i - 1}" ${i === 0 ? 'disabled' : ''}>← ${T('prev')}</button>
+        ${i < X.length - 1 ? `<button type="button" class="btn btn-primary" data-act="mkGo" data-i="${i + 1}">${T('next')} →</button>` : ''}
+      </div>
+      <div class="mk-sub">${mkMem.ask ? `<p>${T('mk_submit_q', { n: unanswered })} <button type="button" class="btn btn-primary" data-act="mkSubmitYes">${T('mk_submit_yes')}</button> <button type="button" class="btn-link" data-act="mkSubmitNo">${T('no')}</button></p>`
+        : `<button type="button" class="btn ${i === X.length - 1 ? 'btn-primary' : 'btn-white'}" data-act="mkSubmit">${T('mk_submit')}</button>`}</div>
+    </section>`;
+  }
+  const intro = `<div class="dcard mk-intro"><p class="mk-info"><b>${T('mk_info_' + s, { n: X.length, m: M.min })}</b></p>
+      <ul class="acct-list">${T('mk_rules').map(r => `<li>${ARR}${r}</li>`).join('')}</ul>
+      <button type="button" class="btn ${s === 'dab' ? 'btn-green' : 'btn-primary'} btn-lg" data-act="mkStart">${m && m.done ? T('mk_again') : T('mk_start')}${ARR}</button></div>`;
+  let res = '';
+  if (m && m.done) {
+    const R = mkScore(s, m), pct = R.c / R.n, band = pct < 0.4 ? 0 : pct < 0.65 ? 1 : pct < 0.85 ? 2 : 3;
+    const used = Math.max(1, Math.round((m.t1 - m.t0) / 60000));
+    const topics = SUBJ_D(s).TOPICS.filter(t => R.per[t.id]).map(t => { const p = R.per[t.id], st = p.c === p.n ? 'ok' : p.c === 0 ? 'gap' : 'mid'; return `<li class="prow"><span class="chip-ic">${t.ic}</span><span class="pr-t">${L(t)}</span>${bar(p.c / p.n, st)}<span class="pr-n">${p.c}/${p.n}</span>${pill(st)}</li>`; }).join('');
+    const wrong = X.map((x, i) => ({ x, i })).filter(({ x, i }) => m.ans[i] !== x.a);
+    const review = wrong.length ? wrong.map(({ x, i }) => `<li class="mk-mis"><p class="mk-mn">${i + 1}. ${L(x.q)}${x.math ? ` <span class="m">${x.math}</span>` : ''}</p>
+        <p><span class="pl-tag gap">${T('mk_your')}</span> ${m.ans[i] != null ? L(x.opts[m.ans[i]]) : T('mk_none')}</p>
+        <p><span class="pl-tag ok">${T('mk_right')}</span> <b>${L(x.opts[x.a])}</b></p><p class="muted">${L(x.ex)}</p></li>`).join('') : `<li class="muted">${T('mk_all_ok')}</li>`;
+    res = `<div class="dcard mk-res"><h2>${T('mk_res_h')}</h2>
+        <div class="mk-score">${ring2(pct, Math.round(pct * 100) + '%', '', s === 'dab' ? 'var(--green)' : 'var(--accent)')}<div><p class="mk-pts">${T('mk_pts', { c: R.c, n: R.n })}</p><p class="muted">${T('mk_time', { t: used, m: M.min })}</p><p>${T('mk_bands')[band]}</p><a class="btn-link" href="#plans">${T('mk_plan')} →</a></div></div>
+        <h3>${T('mk_by_topic')}</h3><ul class="prows">${topics}</ul>
+        <details class="mk-det"${wrong.length <= 5 ? ' open' : ''}><summary><h3>${T('mk_review')} (${wrong.length})</h3></summary><ol class="mk-review">${review}</ol></details></div>`;
+  }
+  return `<section class="wrap pg mkpg">
+    <div class="pg-h row-sb"><div><h1>${T('mk_h')}</h1><p>${T('mk_p')}</p></div>${tabs}</div>
+    ${res}${intro}
+  </section>`;
+}
+
+function mockCardHTML() {
+  const last = (state.mockHist || []).slice(-1)[0];
+  return `<article class="tc mk-card"><div class="tc-h"><span class="tc-ic">⏱</span><div><h2>${T('mk_h')}</h2><p>${T('mk_info_dab', { n: MOCK.dab.items.length, m: MOCK.dab.min }).split('.')[0]} · ${T('mk_info_mat', { n: MOCK.mat.items.length, m: MOCK.mat.min }).split('.')[0]}</p></div></div>
+    ${last ? `<p class="muted">${T('mk_last', { d: dateShort(last.d), c: last.c, n: last.n })} · ${subjName(last.s)}</p>` : ''}
+    <div class="row"><a class="btn btn-primary" href="#izmegin" data-act="mkOpen" data-v="mat">${T('subj_mat')}${ARR}</a><a class="btn btn-green" href="#izmegin" data-act="mkOpen" data-v="dab">${T('subj_dab')}${ARR}</a></div></article>`;
+}
+const MOCK_ACT = {
+  mkOpen(b, e) { if (e) e.preventDefault(); mem.mksubj = b.dataset.v; location.hash = 'izmegin'; },
+  mkSubj(b) { mem.mksubj = b.dataset.v; rerender(); },
+  mkStart() {
+    const s = mkSubj(); state.mock = state.mock || {};
+    state.mock[s] = { t0: Date.now(), ans: [], idx: 0, done: false }; save();
+    track('mock_start', { subj: s }); rerender(); scrollTo(0, 0);
+  },
+  mkAns(b) { const s = mkSubj(), m = mkGet(s); if (!m || m.done) return; m.ans[m.idx || 0] = +b.dataset.i; save(); rerender(true); },
+  mkGo(b) { const s = mkSubj(), m = mkGet(s); if (!m) return; m.idx = Math.max(0, Math.min(MOCK[s].items.length - 1, +b.dataset.i)); mkMem.ask = false; save(); rerender(); },
+  mkSubmit() { mkMem.ask = true; rerender(true); },
+  mkSubmitNo() { mkMem.ask = false; rerender(true); },
+  mkSubmitYes() { mkFinish(mkSubj()); rerender(); scrollTo(0, 0); },
 };
 
 // ---------- App ----------
@@ -4524,6 +4790,7 @@ function renderSide(view) {
       ${lnk('lessons', 'lessons', '#kurss-' + state.subj, view === 'kurss' || view === 'demo')}
       ${lnk('tests', 'my', '#testi', ['testi', 'tests', 'pieteikums', 'rezultati'].includes(view))}
       ${lnk('prog', 'prog', '#progress', view === 'progress')}
+      <a class="nav-i${view === 'izmegin' ? ' on' : ''}" href="#izmegin"${view === 'izmegin' ? ' aria-current="page"' : ''}>${ico('my')}<span>${T('mk_nav')}</span></a>
       <a class="nav-i${view === 'plans' ? ' on' : ''}" href="#plans"${view === 'plans' ? ' aria-current="page"' : ''}>${ico('exams')}<span>${T('pl_nav')}</span></a>
       ${authed() ? `<a class="nav-i${view === 'konts' ? ' on' : ''}" href="#konts"${view === 'konts' ? ' aria-current="page"' : ''}>${ico('user')}<span>${T('au_cab_nav')}</span></a>` : ''}
     </nav>
@@ -4981,7 +5248,7 @@ function privacyHTML() {
 }
 
 // ---------- router ----------
-const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, plans: viewPlan, abonements: viewSub, paldies: viewThanks };
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, plans: viewPlan, izmegin: viewMock, abonements: viewSub, paldies: viewThanks };
 let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
@@ -5190,7 +5457,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT, MOCK_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
