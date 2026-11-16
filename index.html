@@ -1231,6 +1231,19 @@ body.ck-on .sticky-cta { display: none !important; }
 
 .au-tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
 
+/* account page */
+.acct-main, .acct-side { display: grid; gap: 20px; align-content: start; }
+.acctpg .dcard h2 { font-size: 20px; margin-bottom: 12px; }
+.acct-badge { display: inline-block; padding: 6px 12px; border-radius: 99px; background: var(--soft); font-weight: 800; margin: 0 0 8px; }
+.acct-badge.paid { background: var(--good-bg); color: var(--good); } .acct-badge.res { background: var(--mark); color: #14213A; }
+.acct-subjs { list-style: none; margin: 14px 0 10px; padding: 0; display: grid; gap: 10px; }
+.acct-subj { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)) auto; gap: 10px; align-items: center; padding: 12px 14px; border: 1px solid var(--line); border-radius: 16px; }
+.acct-subj small { display: block; color: var(--muted); font-size: 12.5px; } .acct-subj b { font-size: 15.5px; } .acct-subj .btn { padding: 8px 10px; }
+.acct-form { display: flex; flex-direction: column; gap: 14px; } .acct-form .seg { display: flex; } .acct-form .seg label { flex: 1; }
+.acct-del-b { margin-top: 14px; } .acct-del { margin: 14px 0 0; }
+.acct-out { max-width: 640px; } .acct-out h1 { font-size: 30px; } .acct-list { list-style: none; padding: 0; margin: 16px 0 22px; display: grid; gap: 10px; } .acct-list li { display: flex; gap: 10px; align-items: center; font-weight: 600; } .acct-list .arr { width: 18px; height: 18px; color: var(--accent); flex: 0 0 auto; }
+@media (max-width: 717px) { .acct-subj { grid-template-columns: 1fr 1fr 1fr; } .acct-subj > div:first-child { grid-column: 1 / -1; } .acct-subj .btn { display: none; } }
+
 </style>
 </head>
 <body>
@@ -3790,7 +3803,7 @@ function authErr(res) {
   if (c === 'otp_expired' || m.includes('expired')) return T('au_e_link');
   return T('au_e_cred');
 }
-function sesFrom(d) { return { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Math.floor(Date.now() / 1000) + (Number(d.expires_in) || 3600), user: d.user ? { id: d.user.id, email: d.user.email } : (auth.ses && auth.ses.user) || null }; }
+function sesFrom(d) { return { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Math.floor(Date.now() / 1000) + (Number(d.expires_in) || 3600), user: d.user ? { id: d.user.id, email: d.user.email, provider: (d.user.app_metadata || {}).provider || 'email' } : (auth.ses && auth.ses.user) || null }; }
 async function authToken() {
   if (!auth.ses) return null;
   if ((auth.ses.expires_at || 0) - 90 > Date.now() / 1000) return auth.ses.access_token;
@@ -3814,7 +3827,7 @@ async function syncPull() {
   } else if (meaningful(state)) syncPush(true);
   const e = await sbCall(`/rest/v1/entitlements?user_id=eq.${uid}&select=plan,subj,valid_until&valid_until=gt.${new Date().toISOString()}`, { token: tk });
   auth.ent = e.ok && Array.isArray(e.data) ? e.data : [];
-  authPaint();
+  authPaint(); if (typeof current !== 'undefined' && current === 'konts') rerender();
 }
 function syncPush(now) {
   if (!authed()) return;
@@ -3839,7 +3852,7 @@ async function authConsumeHash() {
   authStore(sesFrom({ access_token: q.get('access_token'), refresh_token: q.get('refresh_token'), expires_in: q.get('expires_in') }));
   const u = await sbCall('/auth/v1/user', { token: auth.ses.access_token });
   if (!u.ok || !u.data.id) { authStore(null); return; }
-  authStore({ ...auth.ses, user: { id: u.data.id, email: u.data.email } });
+  authStore({ ...auth.ses, user: { id: u.data.id, email: u.data.email, provider: (u.data.app_metadata || {}).provider || 'email' } });
   if (q.get('type') === 'recovery') { auth.mode = 'setpw'; auth.err = ''; auth.msg = ''; authOpen(); }
   authPaint();
 }
@@ -3856,7 +3869,8 @@ function authHTML() {
   const note = `${auth.err ? `<p class="au-err" role="alert">${auth.err}</p>` : ''}${auth.msg ? `<p class="au-ok" role="status">${auth.msg}</p>` : ''}`;
   const email = esc((state.lead && state.lead.email) || '');
   const dis = auth.busy ? 'disabled' : '';
-  if (authed() && auth.mode !== 'setpw') {
+  if (authed() && auth.mode !== 'setpw') { // signed in: the account lives on its own page now
+    auth.mode = 'in';
     const ent = (auth.ent || []).slice().sort((a, b) => (a.valid_until < b.valid_until ? 1 : -1))[0];
     return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="au-h"><div class="modal-top"><h2 id="au-h">${T('au_acct_h')}</h2>${x}</div>
       <p class="au-mail">${esc(auth.ses.user.email || '')}</p>
@@ -3928,15 +3942,111 @@ async function authSubmit(f) {
     auth.busy = false;
     if (!res.ok) { auth.err = authErr(res); return authOpen(); }
   }
-  authStore(sesFrom(res.data)); authPaint(); closeModal(); syncPull();
+  authStore(sesFrom(res.data)); authPaint(); closeModal(); syncPull(); if (typeof rerender === 'function') rerender();
 }
 const AUTH_ACT = {
-  acct() { auth.err = ''; auth.msg = ''; if (!authed() && auth.mode === 'setpw') auth.mode = 'in'; if (authed()) auth.mode = 'in'; authOpen(); },
+  acct() { auth.err = ''; auth.msg = ''; if (authed()) { location.hash = 'konts'; return; } if (auth.mode === 'setpw') auth.mode = 'in'; authOpen(); },
   auMode(b) { auth.mode = b.dataset.v; auth.err = ''; auth.msg = ''; authOpen(); },
   auGoogle() { location.href = SB.url + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(siteUrl()); },
-  async auOut() { const tk = auth.ses && auth.ses.access_token; authStore(null); auth.ent = null; authPaint(); closeModal(); if (tk) sbCall('/auth/v1/logout?scope=local', { method: 'POST', token: tk }); },
+  async auOut() { const tk = auth.ses && auth.ses.access_token; authStore(null); auth.ent = null; authPaint(); closeModal(); if (typeof rerender === 'function') rerender(); if (tk) sbCall('/auth/v1/logout?scope=local', { method: 'POST', token: tk }); },
 };
 function authBoot() { authLoad(); authPaint(); authConsumeHash().then(() => { if (authed()) syncPull(); }); }
+
+// ---------- account page (#konts) ----------
+Object.assign(I18N.lv, {
+  k_h: 'Mans konts', k_hi: 'Sveiki, {n}!', k_hi0: 'Sveiki!', k_out_h: 'Tavs konts Eksāmens 9',
+  k_out_p: 'Konts saglabā tavu progresu, testu rezultātus un kursa piekļuvi. Tad vari mācīties gan telefonā, gan datorā.',
+  k_out_list: ['Progress un rezultāti saglabājas arī citā ierīcē', 'Piekļuve pilnajam kursam pēc apmaksas', 'Ieiet var ar e-pastu vai Google'],
+  k_plan_h: 'Mans plāns', k_plan_free: 'Bezmaksas versija', k_plan_free_p: 'Tests un demo nodarbības katrā tēmā.',
+  k_plan_paid: 'Pilnais kurss', k_plan_until: 'Piekļuve līdz {date}', k_res: 'Rezervēts: {p}', k_res_p: 'Pirms starta ({date}) uz {email} nosūtīsim maksājuma saiti ar −{d} % atlaidi.',
+  k_plan_names: { month: 'pa mēnešiem', exam: 'līdz eksāmenam', both: 'abi priekšmeti' }, k_choose: 'Izvēlēties plānu', k_compare: 'Ar ko atšķiras pilnais kurss',
+  k_study_h: 'Mācības', k_test: 'Tests', k_test_none: 'vēl nav kārtots', k_course: 'Kurss', k_tasks: 'Uzdevumi',
+  k_profile_h: 'Profils', k_name: 'Vārds', k_role: 'Kas izmanto kontu?', k_lang: 'Valoda', k_news: 'Gribu saņemt ziņas par kursa sākumu un jaunām nodarbībām',
+  k_save: 'Saglabāt', k_saved: 'Saglabāts.', k_sec_h: 'Drošība', k_via_google: 'Tu ieej ar Google, parole nav vajadzīga.',
+  k_del: 'Dzēst kontu', k_del_q: 'Dzēst kontu un visus datus? To nevarēs atsaukt.', k_del_yes: 'Jā, dzēst', k_del_sent: 'Pieprasījums nosūtīts. Dzēsīsim kontu 3 darba dienu laikā un paziņosim uz e-pastu.',
+  au_cab_nav: 'Mans konts', dev_note_acct: 'Progress tiek saglabāts tavā kontā.',
+});
+Object.assign(I18N.ru, {
+  k_h: 'Мой кабинет', k_hi: 'Привет, {n}!', k_hi0: 'Привет!', k_out_h: 'Твой кабинет Eksāmens 9',
+  k_out_p: 'Кабинет хранит твой прогресс, результаты тестов и доступ к курсу. Заниматься можно и с телефона, и с компьютера.',
+  k_out_list: ['Прогресс и результаты доступны с любого устройства', 'Доступ к полному курсу после оплаты', 'Войти можно по e-mail или через Google'],
+  k_plan_h: 'Мой тариф', k_plan_free: 'Бесплатная версия', k_plan_free_p: 'Тест и демо-урок в каждой теме.',
+  k_plan_paid: 'Полный курс', k_plan_until: 'Доступ до {date}', k_res: 'Забронировано: {p}', k_res_p: 'До старта ({date}) пришлём на {email} ссылку на оплату со скидкой −{d} %.',
+  k_plan_names: { month: 'помесячно', exam: 'до экзамена', both: 'оба предмета' }, k_choose: 'Выбрать тариф', k_compare: 'Чем отличается полный курс',
+  k_study_h: 'Учёба', k_test: 'Тест', k_test_none: 'ещё не пройден', k_course: 'Курс', k_tasks: 'Задачи',
+  k_profile_h: 'Профиль', k_name: 'Имя', k_role: 'Кто пользуется кабинетом?', k_lang: 'Язык', k_news: 'Хочу получать новости о старте курса и новых уроках',
+  k_save: 'Сохранить', k_saved: 'Сохранено.', k_sec_h: 'Безопасность', k_via_google: 'Ты входишь через Google, пароль не нужен.',
+  k_del: 'Удалить кабинет', k_del_q: 'Удалить кабинет и все данные? Отменить будет нельзя.', k_del_yes: 'Да, удалить', k_del_sent: 'Запрос отправлен. Удалим кабинет в течение 3 рабочих дней и сообщим на e-mail.',
+  au_cab_nav: 'Мой кабинет', dev_note_acct: 'Прогресс сохраняется в твоём кабинете.',
+});
+const acctMem = { saved: false, delAsk: false, delSent: false };
+function viewAccount() {
+  if (!authed()) {
+    return `<section class="wrap pg acctpg"><div class="dcard acct-out"><h1>${T('k_out_h')}</h1><p class="muted">${T('k_out_p')}</p>
+      <ul class="acct-list">${T('k_out_list').map(x => `<li>${ARR}${x}</li>`).join('')}</ul>
+      <div class="row"><button type="button" class="btn btn-primary btn-lg" data-act="auOpen" data-v="up">${T('au_btn_up')}</button><button type="button" class="btn btn-white btn-lg" data-act="auOpen" data-v="in">${T('au_btn_in')}</button></div></div></section>`;
+  }
+  const ld = state.lead || {}, u = auth.ses.user, name = ld.name || '';
+  const ent = (auth.ent || []).slice().sort((a, b) => (a.valid_until < b.valid_until ? 1 : -1))[0];
+  const res = state.reserve || ['mat', 'dab'].map(s => subjState(s).reserve).find(Boolean);
+  const plan = ent ? `<p class="acct-badge paid">${T('k_plan_paid')}</p><p>${T('k_plan_until', { date: dateLong(ent.valid_until.slice(0, 10)) })}</p>`
+    : res ? `<p class="acct-badge res">${T('k_res', { p: `${T('k_plan_names')[res.plan] || ''} · ${eur(res.price)} €` })}</p><p class="muted">${T('k_res_p', { date: dateShort(CONFIG.launchDate), email: esc(u.email || ld.email || ''), d: CONFIG.earlyDiscount })}</p>`
+    : `<p class="acct-badge">${T('k_plan_free')}</p><p class="muted">${T('k_plan_free_p')}</p><div class="row"><a class="btn btn-primary" href="#sakums" data-act="go" data-sec="cenas">${T('k_choose')}${ARR}</a><a class="btn-link" href="#sakums" data-act="go" data-sec="atskiriba">${T('k_compare')}</a></div>`;
+  const subj = s => {
+    const st = subjState(s), R = resultsFor(s), C = courseStats(s);
+    return `<li class="acct-subj"><div><b>${subjName(s)}</b><small>${dateLong(examDateOf(s))}</small></div>
+      <span><small>${T('k_test')}</small><b>${st.done ? `${R.score}/${R.n}` : T('k_test_none')}</b></span>
+      <span><small>${T('k_course')}</small><b>${C.pct}%</b></span>
+      <span><small>${T('k_tasks')}</small><b>${tasksSolved(s)}/${tasksTotal(s)}</b></span>
+      <a class="btn btn-white" href="#kurss-${s}" aria-label="${subjName(s)}">${ARR}</a></li>`;
+  };
+  const ll = lastLesson();
+  const google = u.provider && u.provider !== 'email';
+  return `<section class="wrap pg acctpg">
+    <div class="pg-h"><h1>${name ? T('k_hi', { n: esc(name) }) : T('k_hi0')}</h1><p>${esc(u.email || '')}</p></div>
+    <div class="pg-cols">
+      <div class="acct-main">
+        <div class="dcard"><h2>${T('k_plan_h')}</h2>${plan}</div>
+        <div class="dcard"><h2>${T('k_study_h')}</h2>
+          ${ll ? `<button type="button" class="cont" data-act="openLes" data-s="${ll.s}" data-v="${ll.tid}">${PLAY}<span><small>${T('cont_h')}</small><b>${L(ll.topic)}</b></span>${ARR}</button>` : ''}
+          <ul class="acct-subjs">${subj('mat')}${subj('dab')}</ul>
+          <div class="row"><a class="btn-link" href="#progress">${T('nav2').prog} →</a><a class="btn-link" href="#testi">${T('nav2').tests} →</a></div></div>
+      </div>
+      <div class="acct-side">
+        <form class="dcard acct-form" id="acct-form" novalidate><h2>${T('k_profile_h')}</h2>
+          <div class="field"><label for="k-name">${T('k_name')}</label><input id="k-name" maxlength="60" autocomplete="given-name" value="${esc(name)}"></div>
+          <fieldset class="seg"><legend>${T('k_role')}</legend><label><input type="radio" name="k-role" value="student" ${ld.role !== 'parent' ? 'checked' : ''}><span>${T('who_student')}</span></label><label><input type="radio" name="k-role" value="parent" ${ld.role === 'parent' ? 'checked' : ''}><span>${T('who_parent')}</span></label></fieldset>
+          <fieldset class="seg"><legend>${T('k_lang')}</legend><label><input type="radio" name="k-lang" value="lv" ${state.lang === 'lv' ? 'checked' : ''}><span>Latviešu</span></label><label><input type="radio" name="k-lang" value="ru" ${state.lang === 'ru' ? 'checked' : ''}><span>Русский</span></label></fieldset>
+          <label class="check"><input type="checkbox" id="k-news" ${ld.news ? 'checked' : ''}><span>${T('k_news')}</span></label>
+          <button class="btn btn-primary" type="submit">${T('k_save')}</button>${acctMem.saved ? `<p class="au-ok" role="status">${T('k_saved')}</p>` : ''}
+        </form>
+        <div class="dcard"><h2>${T('k_sec_h')}</h2>
+          ${google ? `<p class="muted">${T('k_via_google')}</p>` : `<button type="button" class="btn btn-secondary" data-act="auOpen" data-v="setpw">${T('au_chpw')}</button>`}
+          <div class="row"><button type="button" class="btn btn-ghost" data-act="auOut">${T('au_out')}</button></div>
+          ${acctMem.delSent ? `<p class="au-ok">${T('k_del_sent')}</p>` : acctMem.delAsk ? `<p class="acct-del">${T('k_del_q')} <button type="button" class="btn-link danger" data-act="acctDelYes">${T('k_del_yes')}</button> <button type="button" class="btn-link" data-act="acctDelNo">${T('no')}</button></p>` : `<button type="button" class="btn-link danger acct-del-b" data-act="acctDel">${T('k_del')}</button>`}
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+function acctSave(f) {
+  const name = f.querySelector('#k-name').value.trim().slice(0, 60), role = (f.querySelector('input[name="k-role"]:checked') || {}).value || 'student';
+  const lang = (f.querySelector('input[name="k-lang"]:checked') || {}).value || state.lang, news = f.querySelector('#k-news').checked;
+  state.lead = { ...(state.lead || {}), id: (state.lead && state.lead.id) || uid(), name, role, news, email: (state.lead && state.lead.email) || auth.ses.user.email };
+  state.lang = lang; save(); syncPush(true); acctMem.saved = true; rerender();
+  setTimeout(() => { acctMem.saved = false; }, 3000);
+}
+Object.assign(AUTH_ACT, {
+  auOpen(b) { auth.mode = b.dataset.v || 'in'; auth.err = ''; auth.msg = ''; authOpen(); },
+  acctDel() { acctMem.delAsk = true; rerender(); },
+  acctDelNo() { acctMem.delAsk = false; rerender(); },
+  acctDelYes() {
+    acctMem.delAsk = false; acctMem.delSent = true;
+    const payload = { id: uid(), stage: 'report', lang: state.lang, msg: 'Lūgums dzēst kontu / Запрос на удаление кабинета: ' + (auth.ses.user.email || '') + ' (user ' + auth.ses.user.id + ')', email: auth.ses.user.email || '', ctx: 'delete-account', url: location.href, ua: navigator.userAgent };
+    if (CONFIG.endpoint) try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { }
+    rerender();
+  },
+});
 
 // ---------- App ----------
 const STORE = 'm9_state_v1';
@@ -4071,6 +4181,7 @@ const NAV_IC = {
   lessons: '<rect x="3" y="5" width="13" height="14" rx="3"/><path d="M16 10l5-3v10l-5-3"/>',
   exams: '<rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/>',
   prices: '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
+  user: '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>',
   my: '<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5"/>',
   prog: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
   lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
@@ -4088,13 +4199,14 @@ function renderSide(view) {
       ${lnk('lessons', 'lessons', '#kurss-' + state.subj, view === 'kurss' || view === 'demo')}
       ${lnk('tests', 'my', '#testi', ['testi', 'tests', 'pieteikums', 'rezultati'].includes(view))}
       ${lnk('prog', 'prog', '#progress', view === 'progress')}
+      ${authed() ? `<a class="nav-i${view === 'konts' ? ' on' : ''}" href="#konts"${view === 'konts' ? ' aria-current="page"' : ''}>${ico('user')}<span>${T('au_cab_nav')}</span></a>` : ''}
     </nav>
     <p class="side-h">${N.info}</p>
     <nav class="side-nav">
       ${lnk('exams', 'exams', '#eksameni', view === 'eksameni')}
       ${lnk('prices', 'prices', '#sakums', home && sec === 'cenas', 'cenas')}
     </nav>
-    <div class="side-foot"><p>${T('subj_mat')} · <b>${dateShort(CONFIG.examDate)}</b><br>${T('subj_dab')} · <b>${dateShort(CONFIG.sciDate)}</b></p><p class="sf-note">${T('dev_note')}</p></div>`;
+    <div class="side-foot"><p>${T('subj_mat')} · <b>${dateShort(CONFIG.examDate)}</b><br>${T('subj_dab')} · <b>${dateShort(CONFIG.sciDate)}</b></p><p class="sf-note">${T(authed() ? 'dev_note_acct' : 'dev_note')}</p></div>`;
 }
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
@@ -4543,7 +4655,7 @@ function privacyHTML() {
 }
 
 // ---------- router ----------
-const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, abonements: viewSub, paldies: viewThanks };
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, abonements: viewSub, paldies: viewThanks };
 let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
@@ -4795,6 +4907,7 @@ function ineqPreview(f) {
 
 document.addEventListener('submit', e => {
   const f = e.target;
+  if (f.id === 'acct-form') { e.preventDefault(); acctSave(f); return; }
   if (f.id === 'auth-form') { e.preventDefault(); authSubmit(f); return; }
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
