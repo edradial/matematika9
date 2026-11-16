@@ -1201,6 +1201,21 @@ body.ck-on .sticky-cta { display: none !important; }
 .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 717px) { .promo { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 8px; } .promo-pct { font-size: 34px; } .promo strong { font-size: 18px; } }
 
+/* free vs full course */
+.cmp-wrap { background: var(--paper); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
+.cmp { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 15.5px; }
+.cmp th, .cmp td { padding: 14px 18px; text-align: left; vertical-align: middle; border-top: 1px solid var(--line); }
+.cmp thead th { border-top: 0; padding: 18px; } .cmp thead b { display: block; font: 800 19px/1.2 var(--f-display); } .cmp thead small { display: block; margin-top: 2px; font-weight: 600; font-size: 13.5px; color: var(--muted); }
+.cmp tbody th { font-weight: 600; width: 40%; } .cmp col, .cmp th:first-child { width: 40%; }
+.cmp .cmp-free { color: var(--muted); } .cmp thead .cmp-free b { color: var(--ink); }
+.cmp .cmp-full { background: var(--accent-soft); font-weight: 700; color: var(--ink); } .cmp thead .cmp-full { background: var(--accent); color: #fff; } .cmp thead .cmp-full small { color: #D5DEFF; }
+.cmp-y { width: 22px; height: 22px; fill: none; stroke: var(--good); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; } .cmp-n { color: var(--muted); font-weight: 700; }
+.sub-cmp { margin-top: 34px; } .sub-cmp h2 { font-size: 24px; margin-bottom: 14px; }
+@media (max-width: 717px) {
+  .cmp { font-size: 13.5px; } .cmp th, .cmp td { padding: 11px 10px; } .cmp thead th { padding: 12px 10px; } .cmp thead b { font-size: 15px; } .cmp thead small { font-size: 12px; }
+  .cmp tbody th, .cmp th:first-child { width: 36%; }
+}
+
 </style>
 </head>
 <body>
@@ -1262,6 +1277,18 @@ const I18N = {
     show_p: 'Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.',
     show_more: 'Kursa tēmas, katrai ir video:',
     show_play: 'Skatīties',
+    cmp_h: 'Bez maksas un pilnais kurss: ar ko tie atšķiras',
+    cmp_p: 'Tests un demo nodarbības paliek bez maksas. Maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.',
+    cmp_yes: 'ir', cmp_no: 'nav', cmp_free: 'Bez maksas', cmp_full: 'Pilnais kurss', cmp_free_s: 'tests + demo', cmp_full_s: 'no {p} €', cmp_price: 'Cena', cmp_free_price: '0 €',
+    cmp: [
+      ['Tests: 16 eksāmena tipa uzdevumi', true, true],
+      ['Rezultāts pa tēmām un kopija e-pastā', true, true],
+      ['Video nodarbības', '1 demo nodarbība katrā tēmā', 'Visas 6–8 nodarbības katrā tēmā'],
+      ['Uzdevumi ar tūlītēju pārbaudi', '3 uzdevumi katrā tēmā', 'Visi kursa uzdevumi'],
+      ['Eksāmena tipa uzdevumi ar risinājumiem', false, true],
+      ['MI palīgs: jautā rakstot vai balsī', false, true],
+      ['Progresa pārskats vecākiem e-pastā', false, true],
+    ],
     inc_h: 'Kas ir abonementā',
     inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
     plans_h: 'Izvēlies savu variantu',
@@ -1562,6 +1589,18 @@ const I18N = {
     show_p: 'Короткое видео с голосом и анимацией: формула появляется ровно тогда, когда о ней говорят. После видео — задачи с мгновенной проверкой.',
     show_more: 'Темы курса, у каждой есть видео:',
     show_play: 'Смотреть',
+    cmp_h: 'Бесплатно и полный курс: в чём разница',
+    cmp_p: 'Тест и демо-уроки остаются бесплатными. Платишь за полный курс: все уроки, задачи как на экзамене и помощника.',
+    cmp_yes: 'есть', cmp_no: 'нет', cmp_free: 'Бесплатно', cmp_full: 'Полный курс', cmp_free_s: 'тест + демо', cmp_full_s: 'от {p} €', cmp_price: 'Цена', cmp_free_price: '0 €',
+    cmp: [
+      ['Тест: 16 задач как на экзамене', true, true],
+      ['Результат по темам и копия на e-mail', true, true],
+      ['Видеоуроки', '1 демо-урок в каждой теме', 'Все 6–8 уроков в каждой теме'],
+      ['Задачи с мгновенной проверкой', '3 задачи в каждой теме', 'Все задачи курса'],
+      ['Задачи как на экзамене с решениями', false, true],
+      ['ИИ-помощник: спрашивай текстом или голосом', false, true],
+      ['Отчёт о прогрессе для родителей на e-mail', false, true],
+    ],
     inc_h: 'Что входит в подписку',
     inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
     plans_h: 'Выбери свой вариант',
@@ -3946,9 +3985,9 @@ function viewLanding() {
     <div class="sec-head"><h2>${T('how_h')}</h2></div>
     <ol class="how2">${T('how').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
   </section>
-  <section class="wrap sec inc">
-    <div class="sec-head"><h2>${T('inc_h')}</h2><p>${T('inc_p')}</p></div>
-    <ul class="inc-grid">${T('sub_incl').map((x, i) => `<li><span class="inc-ic"><svg viewBox="0 0 24 24" aria-hidden="true">${INC_IC[i]}</svg></span>${x}</li>`).join('')}</ul>
+  <section class="wrap sec inc" id="atskiriba">
+    <div class="sec-head"><h2>${T('cmp_h')}</h2><p>${T('cmp_p')}</p></div>
+    ${compareHTML()}
   </section>
   ${plansHTML()}
   <section class="wrap sec faq">
@@ -3973,6 +4012,14 @@ function priceHTML(k, cls) {
 }
 function promoHTML(cls) {
   return earlyOn() ? `<div class="promo ${cls || ''}"><b class="promo-pct">−${CONFIG.earlyDiscount} %</b><span><strong>${T('promo_h', { date: dateShort(CONFIG.launchDate) })}</strong><small>${T('promo_p')}</small></span></div>` : '';
+}
+function compareHTML() {
+  const yes = '<svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>', no = '<span class="cmp-n" aria-hidden="true">—</span>';
+  const cell = (v, cls) => `<td class="${cls}">${v === true ? yes + `<span class="sr">${T('cmp_yes')}</span>` : v === false ? no + `<span class="sr">${T('cmp_no')}</span>` : v}</td>`;
+  return `<div class="cmp-wrap"><table class="cmp">
+    <thead><tr><th scope="col"><span class="sr">${T('cmp_h')}</span></th><th scope="col" class="cmp-free"><b>${T('cmp_free')}</b><small>${T('cmp_free_s')}</small></th><th scope="col" class="cmp-full"><b>${T('cmp_full')}</b><small>${T('cmp_full_s', { p: eur(deal(CONFIG.priceAll)) })}</small></th></tr></thead>
+    <tbody>${T('cmp').map(r => `<tr><th scope="row">${r[0]}</th>${cell(r[1], 'cmp-free')}${cell(r[2], 'cmp-full')}</tr>`).join('')}</tbody>
+  </table></div>`;
 }
 function plansHTML() {
   const m = examMonths();
@@ -4242,6 +4289,7 @@ function viewSub() {
           : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')}</p>`}
       </aside>
     </div>
+    <div class="sub-cmp"><h2>${T('cmp_h')}</h2>${compareHTML()}</div>
   </section>`;
 }
 
