@@ -1244,6 +1244,45 @@ body.ck-on .sticky-cta { display: none !important; }
 .acct-out { max-width: 640px; } .acct-out h1 { font-size: 30px; } .acct-list { list-style: none; padding: 0; margin: 16px 0 22px; display: grid; gap: 10px; } .acct-list li { display: flex; gap: 10px; align-items: center; font-weight: 600; } .acct-list .arr { width: 18px; height: 18px; color: var(--accent); flex: 0 0 auto; }
 @media (max-width: 717px) { .acct-subj { grid-template-columns: 1fr 1fr 1fr; } .acct-subj > div:first-child { grid-column: 1 / -1; } .acct-subj .btn { display: none; } }
 
+/* ---------- study plan ---------- */
+.plpg .pg-cols { align-items: start; }
+.pl-set { position: sticky; top: 84px; }
+.pl-set .seg { display: flex; flex-wrap: wrap; margin: 4px 0 16px; }
+.pl-set .seg button { padding: 9px 12px; flex: 1 1 auto; }
+.pl-lbl { font-weight: 700; margin: 0; }
+.pl-note { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 16px; }
+.pl-note p { margin: 0; flex: 1 1 260px; }
+.pl-pace { font-weight: 600; color: var(--muted); margin: 0 0 14px; }
+.pl-pace.tight { color: var(--red, #c0392b); }
+.pl-weeks { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 14px; }
+.pl-week { background: var(--paper); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px; }
+.pl-week.now { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.pl-week.review { background: var(--soft); }
+.pl-week.review p { margin: 6px 0 0; }
+.pl-exam { font-weight: 700; }
+.pl-wh { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.pl-wh small { color: var(--muted); }
+.pl-items { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.pl-item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line); color: inherit; text-decoration: none; background: var(--paper); }
+a.pl-item:hover { border-color: var(--accent); }
+.pl-item.done { opacity: .75; }
+.pl-item.soon { grid-template-columns: auto minmax(0, 1fr) auto; color: var(--muted); }
+.pl-item.soon em { grid-column: 2 / -1; font-style: normal; font-size: 13px; }
+.pl-t { display: grid; min-width: 0; }
+.pl-t b { overflow-wrap: anywhere; }
+.pl-t small { color: var(--muted); }
+.pl-tag { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 99px; background: var(--soft); white-space: nowrap; }
+.pl-tag.gap { background: #fde8e6; color: #b42318; }
+.pl-tag.mid { background: #fff4d6; color: #8a5a00; }
+.pl-tag.ok { background: #e3f6ea; color: #17663a; }
+.pl-card .pl-items { margin: 4px 0 12px; }
+@media (max-width: 560px) {
+  .pl-item { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .pl-item .arr { display: none; }
+  .pl-tag { grid-column: 2; justify-self: start; }
+}
+@media (max-width: 900px) { .pl-set { position: static; order: -1; } }
+
 </style>
 </head>
 <body>
@@ -4029,6 +4068,7 @@ function viewAccount() {
     <div class="pg-cols">
       <div class="acct-main">
         <div class="dcard"><h2>${T('k_plan_h')}</h2>${plan}</div>
+        ${planCardHTML()}
         <div class="dcard"><h2>${T('k_study_h')}</h2>
           ${ll ? `<button type="button" class="cont" data-act="openLes" data-s="${ll.s}" data-v="${ll.tid}">${PLAY}<span><small>${T('cont_h')}</small><b>${L(ll.topic)}</b></span>${ARR}</button>` : ''}
           <ul class="acct-subjs">${subj('mat')}${subj('dab')}</ul>
@@ -4162,6 +4202,175 @@ function submitWithdraw(f) {
 }
 const LEGAL_ACT = {
   withdraw() { const m = $('#modal'); m.innerHTML = withdrawHTML(); m.hidden = false; const n = $('#w-name'); if (n) n.focus(); },
+};
+
+// ---------- personal study plan to the exam: week by week, built from the test result and finished lessons ----------
+// Stored in state.plan = { subj: 'both'|'mat'|'dab', days: 2..6, from: 'YYYY-MM-DD' } so it syncs with the account.
+Object.assign(I18N.lv, {
+  pl_nav: 'Mans plāns',
+  pl_h: 'Mans plāns līdz eksāmenam',
+  pl_p: 'Plāns pa nedēļām: vispirms tēmas, kur testā bija kļūdas, pēc tam pārējās. Pēdējās divas nedēļas pirms eksāmena — atkārtošana un izmēģinājuma eksāmens.',
+  pl_set_h: 'Iestatījumi',
+  pl_subj: 'Ko gatavot', pl_both: 'Abus',
+  pl_days: 'Cik dienas nedēļā vari mācīties?', pl_days_n: '{n} d.',
+  pl_mins: 'Viena nodarbība — apmēram 30 minūtes: video, piezīmes un 3–5 uzdevumi.',
+  pl_week: '{n}. nedēļa', pl_now: 'Šonedēļ', pl_next: 'Nākamā nedēļa',
+  pl_sess: '{n} nodarbības', pl_sess1: '1 nodarbība',
+  pl_review: 'Atkārtošana un izmēģinājuma eksāmens', pl_review_p: 'Visas tēmas īsi, kļūdu pārskats, pilns eksāmens ar laiku.',
+  pl_exam: 'Eksāmens: {s}',
+  pl_gap: 'testā kļūdas', pl_mid: 'daļēji', pl_ok: 'testā labi', pl_new: 'vēl nav testa', pl_done: 'nodarbība pabeigta', pl_again: 'atkārtot',
+  pl_soon: 'atvērsies drīz',
+  pl_tight: 'Laika ir maz: šim tempam vajag {n} nodarbības nedēļā. Pievieno dienas vai sāc ar sarkanajām tēmām.',
+  pl_pace: 'Temps: {n} nodarbības nedēļā · visas tēmas līdz {d}, pēc tam otrais aplis — atkārtošana',
+  pl_notest: 'Plāns būs precīzāks pēc bezmaksas testa — tad sāksim ar tēmām, kur ir robi.',
+  pl_test: 'Pildīt testu',
+  pl_all: 'Visa grafika', pl_less: 'Rādīt mazāk',
+  pl_card_h: 'Šīs nedēļas plāns', pl_card_open: 'Atvērt plānu',
+  pl_empty: 'Šonedēļ plānā nekā nav — atpūties vai atkārto kādu tēmu.',
+  pl_past: 'Eksāmens jau ir pagājis.',
+});
+Object.assign(I18N.ru, {
+  pl_nav: 'Мой план',
+  pl_h: 'Мой план до экзамена',
+  pl_p: 'План по неделям: сначала темы, где в тесте были ошибки, потом остальные. Последние две недели перед экзаменом — повторение и пробный экзамен.',
+  pl_set_h: 'Настройки',
+  pl_subj: 'Что готовим', pl_both: 'Оба',
+  pl_days: 'Сколько дней в неделю можешь заниматься?', pl_days_n: '{n} дн.',
+  pl_mins: 'Одно занятие — около 30 минут: видео, конспект и 3–5 задач.',
+  pl_week: '{n}-я неделя', pl_now: 'На этой неделе', pl_next: 'Следующая неделя',
+  pl_sess: '{n} {w}', pl_sess1: '1 занятие',
+  pl_review: 'Повторение и пробный экзамен', pl_review_p: 'Коротко все темы, разбор ошибок, полный экзамен на время.',
+  pl_exam: 'Экзамен: {s}',
+  pl_gap: 'ошибки в тесте', pl_mid: 'частично', pl_ok: 'в тесте хорошо', pl_new: 'теста ещё нет', pl_done: 'урок пройден', pl_again: 'повторить',
+  pl_soon: 'скоро откроется',
+  pl_tight: 'Времени мало: при таком темпе нужно {n} {w} в неделю. Добавь дни или начни с красных тем.',
+  pl_pace: 'Темп: {n} {w} в неделю · все темы к {d}, потом второй круг — повторение',
+  pl_notest: 'План станет точнее после бесплатного теста — тогда начнём с тем, где есть пробелы.',
+  pl_test: 'Пройти тест',
+  pl_all: 'Весь график', pl_less: 'Показать меньше',
+  pl_card_h: 'План на эту неделю', pl_card_open: 'Открыть план',
+  pl_empty: 'На этой неделе в плане ничего нет — отдохни или повтори любую тему.',
+  pl_past: 'Экзамен уже прошёл.',
+});
+
+const plW = n => (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'занятия' : 'занятий'); // Russian plural; Latvian strings ignore {w}
+const PL_COST = { gap: 4, mid: 3, new: 3, ok: 2, done: 1 };
+const PL_RANK = { gap: 0, mid: 1, new: 2, ok: 3, done: 4 };
+function planCfg() { return Object.assign({ subj: 'both', days: 3 }, state.plan || {}); }
+const isoD = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+function mondayOf(d) { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() - ((x.getDay() + 6) % 7)); return x; }
+function addDays(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+
+// status of one topic for planning: finished lesson > test result > not tested
+function planStatus(s, tid) {
+  if (lessonDone(tid)) return 'done';
+  if (!subjState(s).done) return 'new';
+  return resultsFor(s).status(tid);
+}
+
+function buildPlan() {
+  const cfg = planCfg(), subs = cfg.subj === 'both' ? ['mat', 'dab'] : [cfg.subj];
+  const start = mondayOf(new Date());
+  // content has to be finished two weeks before each exam
+  const lastWeek = s => mondayOf(addDays(new Date(examDateOf(s) + 'T09:00:00'), -14));
+  const weeksFor = s => Math.max(0, Math.round((lastWeek(s) - start) / (7 * 864e5)));
+  const queues = {};
+  subs.forEach(s => {
+    const D = SUBJ_D(s);
+    queues[s] = D.TOPICS.map((t, i) => ({ s, t, i, st: planStatus(s, t.id) }))
+      .sort((a, b) => PL_RANK[a.st] - PL_RANK[b.st] || a.i - b.i)
+      .map(x => ({ ...x, cost: PL_COST[x.st], left: PL_COST[x.st] }));
+  });
+  // interleave the subjects so a week mixes math and science
+  const order = [];
+  const qs = subs.map(s => queues[s].slice());
+  while (qs.some(q => q.length)) qs.forEach(q => { if (q.length) order.push(q.shift()); });
+  const total = order.reduce((k, x) => k + x.cost, 0);
+  const W = Math.max(1, Math.min(...subs.map(weeksFor)));
+  const need = Math.ceil(total / W), pace = cfg.days;
+  // spare weeks before the review block: a second round over the topics, weakest first, one session each
+  const cap = W * pace, firstRound = order.slice();
+  let used = total;
+  while (used < cap && firstRound.length) {
+    for (const x of firstRound) { if (used >= cap) break; order.push({ ...x, cost: 1, rep: true }); used++; }
+  }
+  const weeks = [];
+  let wi = 0;
+  const week = i => (weeks[i] = weeks[i] || { i, from: addDays(start, i * 7), items: [], n: 0 });
+  order.forEach(x => {
+    let left = x.cost;
+    while (left > 0) {
+      const w = week(wi), room = pace - w.n;
+      if (room <= 0) { wi++; continue; }
+      const take = Math.min(room, left);
+      const ex = w.items.find(y => y.t.id === x.t.id && !!y.rep === !!x.rep);
+      if (ex) ex.n += take; else w.items.push({ s: x.s, t: x.t, st: x.st, rep: x.rep, n: take });
+      w.n += take; left -= take;
+      if (w.n >= pace) wi++;
+    }
+  });
+  const lastNew = weeks.filter(w => w.items.some(y => !y.rep)).pop();
+  const endContent = lastNew ? lastNew.from : start;
+  // review blocks and exams, one per subject
+  const marks = subs.map(s => ({ s, review: lastWeek(s), exam: examDateOf(s) }));
+  return { cfg, subs, start, weeks, pace, need, tight: need > cfg.days, endContent, marks, total };
+}
+
+const PL_ST_CLS = { gap: 'gap', mid: 'mid', ok: 'ok', new: 'new', done: 'ok' };
+function planItemHTML(x) {
+  const has = !!(SUBJ_D(x.s).LESSONS || {})[x.t.id], done = lessonDone(x.t.id);
+  const tag = x.rep || done ? T('pl_again') : T('pl_' + x.st);
+  const inner = `<span class="chip-ic">${x.t.ic}</span><span class="pl-t"><b>${L(x.t)}</b><small>${subjName(x.s)} · ${x.n === 1 ? T('pl_sess1') : T('pl_sess', { n: x.n, w: plW(x.n) })}</small></span><span class="pl-tag ${x.rep ? '' : PL_ST_CLS[x.st]}">${tag}</span>`;
+  return `<li>${has ? `<a class="pl-item${done ? ' done' : ''}" href="#demo-${x.t.id}" data-act="openLes" data-s="${x.s}" data-v="${x.t.id}">${inner}${ARR}</a>` : `<span class="pl-item soon">${inner}<em>${T('pl_soon')}</em></span>`}</li>`;
+}
+const plRange = d => `${dateShort(isoD(d))} – ${dateShort(isoD(addDays(d, 6)))}`;
+
+function planWeekHTML(w, now) {
+  const lbl = w.i === 0 ? T('pl_now') : w.i === 1 ? T('pl_next') : T('pl_week', { n: w.i + 1 });
+  return `<li class="pl-week${w.i === 0 ? ' now' : ''}"><div class="pl-wh"><b>${lbl}</b><small>${plRange(w.from)}</small></div>
+    <ul class="pl-items">${w.items.map(planItemHTML).join('')}</ul></li>`;
+}
+
+function viewPlan() {
+  const P = buildPlan(), cfg = P.cfg;
+  if (P.marks.every(m => daysTo(m.exam) < 0)) return `<section class="wrap pg"><div class="pg-h"><h1>${T('pl_h')}</h1><p>${T('pl_past')}</p></div></section>`;
+  const segBtn = (act, v, on, txt) => `<button type="button" role="radio" aria-checked="${on}" data-act="${act}" data-v="${v}">${txt}</button>`;
+  const notTested = P.subs.filter(s => !subjDone(s));
+  const showAll = mem.plAll, list = showAll ? P.weeks : P.weeks.slice(0, 4);
+  const reviews = P.marks.map(m => `<li class="pl-week review"><div class="pl-wh"><b>${T('pl_review')} · ${subjName(m.s)}</b><small>${plRange(m.review)}</small></div><p class="muted">${T('pl_review_p')}</p><p class="pl-exam">${T('pl_exam', { s: `${subjName(m.s)}, ${dateLong(m.exam)}` })}</p></li>`).join('');
+  return `<section class="wrap pg plpg">
+    <div class="pg-h"><h1>${T('pl_h')}</h1><p>${T('pl_p')}</p></div>
+    <div class="pg-cols">
+      <div>
+        ${notTested.length ? `<div class="dcard pl-note"><p>${T('pl_notest')}</p><button type="button" class="btn btn-primary" data-act="subj" data-v="${notTested[0]}">${T('pl_test')}${ARR}</button></div>` : ''}
+        <p class="pl-pace ${P.tight ? 'tight' : ''}">${P.tight ? T('pl_tight', { n: P.need, w: plW(P.need) }) : T('pl_pace', { n: P.pace, w: plW(P.pace), d: dateShort(isoD(addDays(P.endContent, 6))) })}</p>
+        <ol class="pl-weeks">${list.map(w => planWeekHTML(w)).join('')}
+          ${!showAll && P.weeks.length > 4 ? '' : reviews}</ol>
+        ${P.weeks.length > 4 ? `<button type="button" class="btn btn-white" data-act="plAll">${showAll ? T('pl_less') : T('pl_all')}</button>` : ''}
+      </div>
+      <aside class="dcard pl-set"><h2>${T('pl_set_h')}</h2>
+        <p class="pl-lbl">${T('pl_subj')}</p>
+        <div class="seg" role="radiogroup" aria-label="${T('pl_subj')}">${segBtn('plSubj', 'both', cfg.subj === 'both', T('pl_both'))}${segBtn('plSubj', 'mat', cfg.subj === 'mat', T('subj_mat'))}${segBtn('plSubj', 'dab', cfg.subj === 'dab', T('subj_dab'))}</div>
+        <p class="pl-lbl">${T('pl_days')}</p>
+        <div class="seg pl-days" role="radiogroup" aria-label="${T('pl_days')}">${[2, 3, 4, 5, 6].map(n => segBtn('plDays', n, cfg.days === n, T('pl_days_n', { n }))).join('')}</div>
+        <p class="muted small">${T('pl_mins')}</p>
+      </aside>
+    </div>
+  </section>`;
+}
+
+// short card for the account page and dashboard
+function planCardHTML() {
+  const P = buildPlan(), w = P.weeks[0];
+  return `<div class="dcard pl-card"><div class="row-sb"><h2>${T('pl_card_h')}</h2><small class="muted">${plRange(P.start)}</small></div>
+    ${w && w.items.length ? `<ul class="pl-items">${w.items.map(planItemHTML).join('')}</ul>` : `<p class="muted">${T('pl_empty')}</p>`}
+    <a class="btn-link" href="#plans">${T('pl_card_open')} →</a></div>`;
+}
+
+const PLAN_ACT = {
+  plSubj(b) { state.plan = { ...planCfg(), subj: b.dataset.v }; save(); rerender(); track('plan_set', { subj: b.dataset.v }); },
+  plDays(b) { state.plan = { ...planCfg(), days: +b.dataset.v }; save(); rerender(); track('plan_set', { days: +b.dataset.v }); },
+  plAll() { mem.plAll = !mem.plAll; rerender(); },
 };
 
 // ---------- App ----------
@@ -4315,6 +4524,7 @@ function renderSide(view) {
       ${lnk('lessons', 'lessons', '#kurss-' + state.subj, view === 'kurss' || view === 'demo')}
       ${lnk('tests', 'my', '#testi', ['testi', 'tests', 'pieteikums', 'rezultati'].includes(view))}
       ${lnk('prog', 'prog', '#progress', view === 'progress')}
+      <a class="nav-i${view === 'plans' ? ' on' : ''}" href="#plans"${view === 'plans' ? ' aria-current="page"' : ''}>${ico('exams')}<span>${T('pl_nav')}</span></a>
       ${authed() ? `<a class="nav-i${view === 'konts' ? ' on' : ''}" href="#konts"${view === 'konts' ? ' aria-current="page"' : ''}>${ico('user')}<span>${T('au_cab_nav')}</span></a>` : ''}
     </nav>
     <p class="side-h">${N.info}</p>
@@ -4771,7 +4981,7 @@ function privacyHTML() {
 }
 
 // ---------- router ----------
-const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, abonements: viewSub, paldies: viewThanks };
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, plans: viewPlan, abonements: viewSub, paldies: viewThanks };
 let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
@@ -4980,7 +5190,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
