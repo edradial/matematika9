@@ -1286,6 +1286,9 @@ const I18N = {
     f_phone: 'Tālrunis', f_phone_opt: 'neobligāts', f_phone_ph: '+371 2…',
     f_consent: 'Piekrītu, ka mani dati tiek izmantoti, lai nosūtītu testa rezultātus un demo nodarbības.',
     f_privacy: 'Privātuma politika',
+    f_report: 'Ziņot par kļūdu',
+    report_subj: 'Kļūda vietnē Eksāmens 9',
+    report_body: 'Aprakstiet, kas nav kārtībā (kurš uzdevums vai lapa, kas bija nepareizi):',
     f_news: 'Paziņot man, kad sāksies pilnais kurss',
     f_submit: 'Sākt testu',
     err_name: 'Ieraksti vārdu.',
@@ -1570,6 +1573,9 @@ const I18N = {
     f_phone: 'Телефон', f_phone_opt: 'необязательно', f_phone_ph: '+371 2…',
     f_consent: 'Согласен(-на), что мои данные используются, чтобы прислать результат теста и демо-уроки.',
     f_privacy: 'Политика конфиденциальности',
+    f_report: 'Сообщить об ошибке',
+    report_subj: 'Ошибка на сайте Eksāmens 9',
+    report_body: 'Опишите, что не так (какое задание или страница, в чём ошибка):',
     f_news: 'Сообщить мне, когда начнётся полный курс',
     f_submit: 'Начать тест',
     err_name: 'Впиши имя.',
@@ -3723,7 +3729,7 @@ function renderSide(view) {
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
     <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
-    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button>
     ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
       : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
 }
@@ -4214,6 +4220,7 @@ function wrongTry(t, msg) {
 // ---------- events ----------
 const ACT = {
   lang(b) { state.lang = b.dataset.v; save(); rerender(); if (document.getElementById('ck')) ckShow(document.getElementById('ck').classList.contains('open')); },
+  report() { const u = location.href.split('?')[0].split('#')[0] + location.hash; location.href = 'mailto:' + CONFIG.contactEmail + '?subject=' + encodeURIComponent(T('report_subj')) + '&body=' + encodeURIComponent(T('report_body') + '\n\n---\n' + u + '\n' + navigator.userAgent); },
   privacy() { const m = $('#modal'); m.innerHTML = privacyHTML(); m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus(); },
   'close-modal'() { closeModal(); },
   'pv-close'() { state.pvHidden = true; save(); $('#preview-bar').hidden = true; },
