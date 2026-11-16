@@ -1134,6 +1134,14 @@ body.ck-on .sticky-cta { display: none !important; }
 
 @media (max-width: 600px) { .tc-h > div { flex-basis: calc(100% - 68px); } .tc-st { margin-left: 68px; } }
 
+.rep-row { margin-top: 10px; text-align: right; }
+.rep { font-size: 13.5px; font-weight: 500; color: var(--muted); }
+.vid figcaption .rep { margin-left: 8px; }
+.rep-form { display: flex; flex-direction: column; gap: 14px; }
+.rep-form textarea { border: 2px solid var(--line); background: var(--paper); border-radius: 12px; padding: 12px 14px; font-size: 17px; width: 100%; font-family: inherit; resize: vertical; }
+.rep-form textarea:focus { outline: none; border-color: var(--accent); }
+.rep-err { color: var(--bad); margin: 0; font-weight: 600; }
+
 </style>
 </head>
 <body>
@@ -1287,8 +1295,14 @@ const I18N = {
     f_consent: 'Piekrītu, ka mani dati tiek izmantoti, lai nosūtītu testa rezultātus un demo nodarbības.',
     f_privacy: 'Privātuma politika',
     f_report: 'Ziņot par kļūdu',
-    report_subj: 'Kļūda vietnē Eksāmens 9',
-    report_body: 'Aprakstiet, kas nav kārtībā (kurš uzdevums vai lapa, kas bija nepareizi):',
+    rep_h: 'Ziņot par kļūdu',
+    rep_p: 'Atradi kļūdu uzdevumā, atbildē, tulkojumā vai video? Uzraksti, un mēs to izlabosim.',
+    rep_msg: 'Kas nav kārtībā?',
+    rep_mail: 'Tavs e-pasts (nav obligāts, ja vēlies atbildi)',
+    rep_err: 'Lūdzu, uzraksti dažus vārdus.',
+    rep_send: 'Nosūtīt',
+    rep_ok_h: 'Paldies!',
+    rep_ok: 'Ziņojums nosūtīts. Mēs to izskatīsim un izlabosim kļūdu.',
     f_news: 'Paziņot man, kad sāksies pilnais kurss',
     f_submit: 'Sākt testu',
     err_name: 'Ieraksti vārdu.',
@@ -1574,8 +1588,14 @@ const I18N = {
     f_consent: 'Согласен(-на), что мои данные используются, чтобы прислать результат теста и демо-уроки.',
     f_privacy: 'Политика конфиденциальности',
     f_report: 'Сообщить об ошибке',
-    report_subj: 'Ошибка на сайте Eksāmens 9',
-    report_body: 'Опишите, что не так (какое задание или страница, в чём ошибка):',
+    rep_h: 'Сообщить об ошибке',
+    rep_p: 'Нашли ошибку в задании, ответе, переводе или видео? Напишите, и мы исправим.',
+    rep_msg: 'Что не так?',
+    rep_mail: 'Ваш e-mail (необязательно, если хотите получить ответ)',
+    rep_err: 'Пожалуйста, напишите пару слов.',
+    rep_send: 'Отправить',
+    rep_ok_h: 'Спасибо!',
+    rep_ok: 'Сообщение отправлено. Мы посмотрим и исправим ошибку.',
     f_news: 'Сообщить мне, когда начнётся полный курс',
     f_submit: 'Начать тест',
     err_name: 'Впиши имя.',
@@ -3913,6 +3933,7 @@ function viewTest() {
       ${d.fig ? `<div class="figbox">${d.fig()}</div>` : ''}
       <div class="opts opts-2">${d.opts.map((o, k) => optHTML(o, k, `data-act="ans" data-i="${k}" aria-pressed="${a === k}"`, unit)).join('')}</div>
       <button type="button" class="dk" data-act="ans" data-i="4" aria-pressed="${a === 4}">${T('dont_know')}</button>
+      <div class="rep-row">${reportBtn('test ' + state.subj + ' q' + (i + 1))}</div>
     </article>
     <div class="test-nav">
       <button type="button" class="btn btn-ghost" data-act="tprev" ${i === 0 ? 'disabled' : ''}>← ${T('prev')}</button>
@@ -4066,8 +4087,10 @@ function taskHTML(t, k) {
     ${body}
     <div class="fb" id="fb-${t.id}" aria-live="polite">${solvedBox}</div>
     ${tools}
+    <div class="rep-row">${reportBtn('task ' + t.id)}</div>
   </article>`;
 }
+function reportBtn(ctx) { return `<button type="button" class="btn-link rep" data-act="report" data-ctx="${esc(ctx)}">⚑ ${T('f_report')}</button>`; }
 function solvedCount(tid) { return LESSONS[tid].tasks.filter(t => state.demo[t.id] && state.demo[t.id].solved).length; }
 
 function viewDemo(topic) {
@@ -4100,7 +4123,7 @@ function viewDemo(topic) {
 function videoHTML(tid) {
   if (!VIDEOS[tid]) return '';
   const v = `video/${tid}-${state.lang}`;
-  return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')}</figcaption></figure>`;
+  return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')} ${reportBtn('video ' + tid)}</figcaption></figure>`;
 }
 
 function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFIG.priceAll); }
@@ -4220,7 +4243,18 @@ function wrongTry(t, msg) {
 // ---------- events ----------
 const ACT = {
   lang(b) { state.lang = b.dataset.v; save(); rerender(); if (document.getElementById('ck')) ckShow(document.getElementById('ck').classList.contains('open')); },
-  report() { const u = location.href.split('?')[0].split('#')[0] + location.hash; location.href = 'mailto:' + CONFIG.contactEmail + '?subject=' + encodeURIComponent(T('report_subj')) + '&body=' + encodeURIComponent(T('report_body') + '\n\n---\n' + u + '\n' + navigator.userAgent); },
+  report(b) {
+    const m = $('#modal'); m.dataset.ctx = (b && b.dataset.ctx) || 'footer';
+    m.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rp-h"><div class="modal-top"><h2 id="rp-h">${T('rep_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div>
+      <form id="report-form" class="rep-form" novalidate>
+        <p class="muted">${T('rep_p')}</p>
+        <div class="field"><label for="rp-msg">${T('rep_msg')}</label><textarea id="rp-msg" rows="5" maxlength="1500" required></textarea></div>
+        <div class="field"><label for="rp-mail">${T('rep_mail')}</label><input id="rp-mail" type="email" autocomplete="email" maxlength="120"></div>
+        <p class="rep-err" id="rp-err" role="alert" hidden>${T('rep_err')}</p>
+        <button class="btn btn-primary btn-lg wide" type="submit">${T('rep_send')}</button>
+      </form></div>`;
+    m.hidden = false; const c = $('#rp-msg'); if (c) c.focus();
+  },
   privacy() { const m = $('#modal'); m.innerHTML = privacyHTML(); m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus(); },
   'close-modal'() { closeModal(); },
   'pv-close'() { state.pvHidden = true; save(); $('#preview-bar').hidden = true; },
@@ -4366,6 +4400,7 @@ function ineqPreview(f) {
 
 document.addEventListener('submit', e => {
   const f = e.target;
+  if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
   const kind = f.dataset.actForm; if (!kind) return;
   e.preventDefault();
@@ -4383,6 +4418,13 @@ document.addEventListener('submit', e => {
   wrongTry(t, w ? L(w.fb) : T('wrong_generic'));
 });
 
+function submitReport(f) {
+  const msg = f.querySelector('#rp-msg').value.trim(), mail = f.querySelector('#rp-mail').value.trim();
+  if (msg.length < 3) { f.querySelector('#rp-err').hidden = false; f.querySelector('#rp-msg').focus(); return; }
+  const payload = { id: uid(), stage: 'report', lang: state.lang, msg, email: mail, ctx: $('#modal').dataset.ctx || '', url: location.origin + location.pathname + location.hash, ua: navigator.userAgent };
+  if (CONFIG.endpoint) { try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { } } else console.info('[preview] not sent:', payload);
+  $('#modal .modal-card').innerHTML = `<div class="modal-top"><h2>${T('rep_ok_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><p>${T('rep_ok')}</p><button type="button" class="btn btn-primary" data-act="close-modal">${T('close')}</button>`;
+}
 function submitLead(f) {
   const name = $('#f-name').value.trim(), email = $('#f-email').value.trim(), phone = $('#f-phone').value.trim();
   const consent = $('#f-consent').checked, news = $('#f-news').checked, role = (f.querySelector('input[name="role"]:checked') || {}).value || 'student';
