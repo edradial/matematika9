@@ -1188,6 +1188,19 @@ body.ck-on .sticky-cta { display: none !important; }
   .dcard.cd .ring { width: 112px; height: 112px; } .dcard.cd .ring b { font-size: 28px; } .dcard.cd .ring span { font-size: 11px; inset: 12px; }
 }
 
+/* pricing with early-booking discount */
+.plan-price, .price { flex-wrap: wrap; } .plan-price s, .price s { font: 700 22px/1 var(--f-display); color: var(--muted); text-decoration-thickness: 2px; text-decoration-color: var(--margin); align-self: center; }
+.plan-hi .plan-price s { color: #A9B6CC; } .then { margin: -12px 0 16px; font-size: 14px; color: var(--muted); font-weight: 600; } .plan-hi .then { color: #A9B6CC; } .price-card .then { margin: -4px 0 0; }
+.promo { display: flex; align-items: center; gap: 18px; margin: 0 0 34px; padding: 18px 22px; border-radius: 22px; background: var(--mark); color: #14213A; box-shadow: 0 14px 34px -18px rgba(180, 140, 0, .7); }
+.promo-pct { flex: 0 0 auto; font: 800 44px/1 var(--f-display); letter-spacing: -0.03em; background: #14213A; color: var(--mark); padding: 10px 16px; border-radius: 16px; transform: rotate(-3deg); animation: promo 2.6s ease-in-out infinite; }
+.promo strong { display: block; font: 800 21px/1.25 var(--f-display); } .promo small { display: block; margin-top: 4px; font-size: 14.5px; color: #3B4660; }
+.promo-sm { margin: 18px 0 0; padding: 12px 16px; gap: 14px; } .promo-sm .promo-pct { font-size: 28px; padding: 8px 12px; } .promo-sm strong { font-size: 17px; } .promo-sm small { font-size: 13.5px; }
+@keyframes promo { 0%, 100% { transform: rotate(-3deg) scale(1); } 50% { transform: rotate(-3deg) scale(1.06); } }
+.hero-promo { display: inline-flex; align-items: center; gap: 10px; margin: 16px 0 0; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--mark); color: #14213A; font-weight: 700; font-size: 14.5px; text-decoration: none; }
+.hero-promo b { white-space: nowrap; flex: 0 0 auto; font: 800 15px/1 var(--f-display); background: #14213A; color: var(--mark); padding: 7px 10px; border-radius: 999px; }
+.plans { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 717px) { .promo { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 8px; } .promo-pct { font-size: 34px; } .promo strong { font-size: 18px; } }
+
 </style>
 </head>
 <body>
@@ -1217,15 +1230,14 @@ const CONFIG = {
   brand: 'Eksāmens 9',
   endpoint: 'https://script.google.com/macros/s/AKfycbxP-R2ni1pFoBZHcRhKUoUiuor6ta3MoJazvDGF1E3aUUfOW5w4jSLmeSc5TLO5NFjx/exec', // Google Apps Script web app URL (…/exec). Empty = preview mode, nothing is sent.
   payLinks: null,             // Stripe/Payhip links by topic count, e.g. { 1: 'https://…', 2: '…', 3: '…', all: '…' }. Empty = free reservation.
-  pricePerTopic: 5,           // € per topic per month
-  priceAll: 19,               // € per month for all topics (cap)
-  priceExam: 69,              // € once: all topics of one subject until the exam
-  priceBoth: 99,              // € once: both subjects until the exams
+  priceAll: 9.9,              // € per month: all topics of one subject
+  priceExam: 39,              // € once: all topics of one subject until the exam
+  priceBoth: 59,              // € once: both subjects until the exams
   sciDate: '2027-06-02',      // centralised exam in natural sciences
   sciScoring: true,          // true once the Apps Script with the science answer key is deployed
   examDate: '2027-05-25',
   launchDate: '2027-01-15',
-  earlyDiscount: 50,          // % off the first month for reservations
+  earlyDiscount: 50,          // % off every plan (first month of the monthly one) for reservations made before launchDate
   controller: 'Eduards Krivko', // who collects the data: name, surname or company
   contactEmail: 'ai.skolens@gmail.com', // where people can ask to delete their data
 };
@@ -1253,9 +1265,14 @@ const I18N = {
     inc_h: 'Kas ir abonementā',
     inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
     plans_h: 'Izvēlies savu variantu',
-    plans_p: 'Vispirms — bezmaksas tests. Tas parādīs, kuras tēmas tev tiešām vajag.',
-    plan_topic: ['Viena tēma', 'Ja jāpievelk tikai dažas tēmas jebkurā priekšmetā.'],
-    plan_all: ['Visas 8 tēmas', 'Viss viena priekšmeta kurss.'],
+    plans_p: 'Vispirms — bezmaksas tests. Pēc tam izvēlies, kā maksāt: pa mēnešiem vai vienreiz līdz eksāmenam.',
+    plan_badge_both: 'Izdevīgākais',
+    plan_feat_both: ['Matemātika un dabaszinātnes: 16 tēmas', 'Bez ikmēneša maksājumiem', 'Par {s} € lētāk nekā divi atsevišķi'],
+    plan_guarantee: '14 dienu naudas atgriešanas garantija.',
+    first_month: 'pirmajā mēnesī', then_month: 'pēc tam {p} € mēnesī',
+    promo_h: '−50 % visiem variantiem, ja rezervē līdz {date}', promo_p: 'Rezervācija ir bez maksas un ne pie kā nesaista. Cenu ar atlaidi nosūtīsim uz e-pastu pirms starta.', promo_hero: 'visiem variantiem, rezervējot līdz {date}',
+    sub_month_note: 'Visas 8 priekšmeta tēmas. Atcelt var jebkurā brīdī.', 
+    plan_all: ['Pa mēnešiem', 'Viss viena priekšmeta kurss, atcelt var jebkurā brīdī.'],
     plan_exam: ['Līdz eksāmenam', 'Visas viena priekšmeta tēmas līdz eksāmenam vienā maksājumā.'],
     plan_badge_all: 'Izdevīgāk no 4 tēmām',
     plan_badge_exam: 'Ietaupi {s} €',
@@ -1263,14 +1280,14 @@ const I18N = {
     plan_per_topic: 'par tēmu mēnesī',
     plan_feat_topic: ['Video un uzdevumi izvēlētajām tēmām', 'Atcelt var jebkurā brīdī'],
     plan_feat_all: ['Viss kurss: 8 tēmas', 'MI palīgs un progresa pārskats', 'Atcelt var jebkurā brīdī'],
-    plan_feat_exam: ['Viss kurss līdz eksāmenam', 'Bez ikmēneša maksājumiem', 'Lētāk nekā {n} × {pa} € = {t} €'],
+    plan_feat_exam: ['Viss kurss līdz eksāmenam', 'Bez ikmēneša maksājumiem', 'Lētāk nekā {n} mēn. × {pa} € = {t} €'],
     plan_cta: 'Sākt ar bezmaksas testu',
-    plan_early: 'Rezervē līdz {date} un saņem −{d} % pirmajam mēnesim.',
+    plan_early: 'Rezervē līdz {date} un saņem −{d} % jebkuram variantam.',
     faq_h: 'Biežākie jautājumi',
     faq: [
       ['Kas būs dabaszinātņu eksāmenā?', 'Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.'],
       ['Kad sāksies kurss?', 'Kurss sāksies {launch}. Tēmas atvērsim pakāpeniski, un mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.'],
-      ['Kā notiek maksāšana?', 'Tagad vietu var rezervēt bez maksas. Pirms starta nosūtīsim uz e-pastu maksājuma saiti. Ikmēneša variantam pirmais mēnesis ir ar −{d} % atlaidi, variantu «Līdz eksāmenam» apmaksā vienu reizi.'],
+      ['Kā notiek maksāšana?', 'Tagad vietu var rezervēt bez maksas. Pirms starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz startam, saņem −{d} % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.'],
       ['Vai var atcelt?', 'Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.'],
       ['Kādā valodā ir nodarbības?', 'Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.'],
       ['Vai vajag skolotāju vai privātstundas?', 'Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Vecāki saņem progresa pārskatu e-pastā.'],
@@ -1300,12 +1317,12 @@ const I18N = {
     stats_mat_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.',
     stats_dab_h: 'Dabaszinātnes: vājākā vieta valstī',
     stats_dab_note: 'Vidējais rezultāts 2026. gada diagnosticējošajā darbā (~15 000 skolēnu). Avots: VIAA, LSM.',
-    plan_both: ['Abi priekšmeti līdz eksāmeniem', 'Matemātika un dabaszinātnes — visas tēmas līdz {date} vienā maksājumā.'],
-    plan_both_save: 'Ietaupi {s} € salīdzinājumā ar diviem atsevišķiem',
+    plan_both: ['Abi priekšmeti', 'Matemātika un dabaszinātnes — visas tēmas līdz {date} vienā maksājumā.'],
+    plan_both_save: 'Par {s} € lētāk nekā divi priekšmeti atsevišķi',
     sub_mode_both: 'Abi priekšmeti',
     sub_both_note: 'Visas matemātikas un dabaszinātņu tēmas līdz {date}. Viens maksājums, bez atjaunošanas.',
     sub_subj_h: 'Priekšmets: {s}',
-    res_dab_btn: 'Izvēlēties tēmas kursam',
+    res_dab_btn: 'Izvēlēties kursa variantu',
     res_dab_p: 'Dabaszinātņu video nodarbības gatavojam. Rezervē vietu kursā — tās būs pirmās, ko atvērsim.',
     res_dab_sent: 'Rezultāts saglabāts šajā pārlūkā.',
     res_other: 'Pamēģini arī otru testu:',
@@ -1409,11 +1426,11 @@ const I18N = {
     locked: 'pilnajā kursā',
     cta_full_h: 'Patika? Pilnajā kursā ir viss pārējais',
     cta_full_p: 'Katrā tēmā 6–8 nodarbības ar video skaidrojumiem, daudz uzdevumu ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs, kuram jautājumus var uzdot arī balsī.',
-    cta_full_btn: 'Izvēlēties tēmas',
+    cta_full_btn: 'Izvēlēties variantu',
     your_answer_line: 'Tava atbilde uz skaitļu ass',
 
-    sub_h: 'Pilnais kurss tavām tēmām',
-    sub_p: 'Atzīmē tēmas, kuras gribi apgūt. Testa robi jau ir atzīmēti.',
+    sub_h: 'Pilnais kurss',
+    sub_p: 'Izvēlies, kā maksāt. Tēmas ar robiem no testa ir atzīmētas sarakstā.',
     sub_all: 'Atzīmēt visas',
     per_month: 'mēnesī',
     sub_calc: '{n} × {pp} €',
@@ -1422,6 +1439,7 @@ const I18N = {
     sub_incl_h: 'Abonementā',
     sub_incl: ['Video skaidrojumi ar latviešu terminiem', 'Uzdevumi ar tūlītēju pārbaudi un kļūdu skaidrojumu', 'Eksāmena tipa uzdevumi ar risinājumiem', 'MI palīgs: jautā rakstot vai balsī', 'Progresa pārskats vecākiem e-pastā', 'Atcelt var jebkurā brīdī'],
     sub_launch: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim. Mēnesi skaitīsim no dienas, kad atvērsim tavu pirmo tēmu.',
+    sub_launch_once: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi. Piekļuve visām tēmām būs līdz pat eksāmenam.',
     sub_launch_exam: 'Kurss sāksies {date}, tēmas atvērsim pakāpeniski. Rezervē vietu bez maksas: pirms starta nosūtīsim uz e-pastu maksājuma saiti. Piekļuve visām tēmām būs līdz pat eksāmenam.',
     sub_reserve: 'Rezervēt vietu bez maksas',
     sub_pay: 'Abonēt par {p} € mēnesī',
@@ -1429,7 +1447,7 @@ const I18N = {
     sub_fine: 'Rezervācija tevi ne pie kā nesaista.',
     sub_pick_one: 'Atzīmē vismaz vienu tēmu.',
     thanks_h: 'Vieta rezervēta!',
-    thanks_p: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim.',
+    thanks_p: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti ar −{d} % atlaidi.',
     thanks_p_exam: 'Pirms kursa sākuma ({date}) nosūtīsim uz {email} maksājuma saiti. Piekļuve visām tēmām būs līdz pat eksāmenam.',
     thanks_topics: 'Tavas tēmas',
     thanks_back: 'Turpināt demo kursu',
@@ -1547,9 +1565,14 @@ const I18N = {
     inc_h: 'Что входит в подписку',
     inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
     plans_h: 'Выбери свой вариант',
-    plans_p: 'Сначала — бесплатный тест. Он покажет, какие темы тебе действительно нужны.',
-    plan_topic: ['Одна тема', 'Если нужно подтянуть пару тем в любом предмете.'],
-    plan_all: ['Все 8 тем', 'Весь курс по одному предмету.'],
+    plans_p: 'Сначала — бесплатный тест. Потом выбери, как платить: помесячно или один раз до экзамена.',
+    plan_badge_both: 'Самый выгодный',
+    plan_feat_both: ['Математика и естественные науки: 16 тем', 'Без ежемесячных платежей', 'На {s} € дешевле, чем два по отдельности'],
+    plan_guarantee: 'Гарантия возврата денег 14 дней.',
+    first_month: 'в первый месяц', then_month: 'далее {p} € в месяц',
+    promo_h: '−50 % на все тарифы при брони до {date}', promo_p: 'Бронь бесплатная и ни к чему не обязывает. Цену со скидкой пришлём на e-mail перед стартом.', promo_hero: 'на все тарифы при брони до {date}',
+    sub_month_note: 'Все 8 тем предмета. Отменить можно в любой момент.', 
+    plan_all: ['Помесячно', 'Весь курс по одному предмету, отменить можно в любой момент.'],
     plan_exam: ['До экзамена', 'Все темы одного предмета до экзамена одним платежом.'],
     plan_badge_all: 'Выгоднее с 4 тем',
     plan_badge_exam: 'Экономия {s} €',
@@ -1557,14 +1580,14 @@ const I18N = {
     plan_per_topic: 'за тему в месяц',
     plan_feat_topic: ['Видео и задачи по выбранным темам', 'Отменить можно в любой момент'],
     plan_feat_all: ['Весь курс: 8 тем', 'ИИ-помощник и отчёт о прогрессе', 'Отменить можно в любой момент'],
-    plan_feat_exam: ['Весь курс до экзамена', 'Без ежемесячных платежей', 'Дешевле, чем {n} × {pa} € = {t} €'],
+    plan_feat_exam: ['Весь курс до экзамена', 'Без ежемесячных платежей', 'Дешевле, чем {n} мес. × {pa} € = {t} €'],
     plan_cta: 'Начать с бесплатного теста',
-    plan_early: 'Забронируй до {date} и получи −{d} % на первый месяц.',
+    plan_early: 'Забронируй до {date} и получи −{d} % на любой тариф.',
     faq_h: 'Частые вопросы',
     faq: [
       ['Что будет на экзамене по естественным наукам?', 'Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс.'],
       ['Когда стартует курс?', 'Курс стартует {launch}. Темы будем открывать постепенно, а месяц отсчитаем с того дня, когда откроется твоя первая тема.'],
-      ['Как проходит оплата?', 'Сейчас место можно забронировать бесплатно. До старта пришлём на e-mail ссылку на оплату. Для помесячной подписки первый месяц со скидкой −{d} %, вариант «До экзамена» оплачивается один раз.'],
+      ['Как проходит оплата?', 'Сейчас место можно забронировать бесплатно. До старта пришлём на e-mail ссылку на оплату. При брони до старта скидка −{d} % на любой тариф: для помесячного на первый месяц, для разовых на всю сумму. Действует гарантия возврата денег 14 дней.'],
       ['Можно ли отменить?', 'Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается.'],
       ['На каком языке уроки?', 'На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски.'],
       ['Нужен ли репетитор?', 'Нет. Ребёнок занимается в своём темпе: каждый ответ проверяется сразу, а ошибки объясняются. Родители получают отчёт о прогрессе на e-mail.'],
@@ -1594,12 +1617,12 @@ const I18N = {
     stats_mat_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: VIAA.',
     stats_dab_h: 'Естественные науки: самое слабое место в стране',
     stats_dab_note: 'Средний результат диагностической работы 2026 года (~15 000 учеников). Источник: VIAA, LSM.',
-    plan_both: ['Оба предмета до экзаменов', 'Математика и естественные науки — все темы до {date} одним платежом.'],
-    plan_both_save: 'Экономия {s} € по сравнению с двумя по отдельности',
+    plan_both: ['Оба предмета', 'Математика и естественные науки — все темы до {date} одним платежом.'],
+    plan_both_save: 'На {s} € дешевле, чем два предмета по отдельности',
     sub_mode_both: 'Оба предмета',
     sub_both_note: 'Все темы по математике и естественным наукам до {date}. Один платёж, без продления.',
     sub_subj_h: 'Предмет: {s}',
-    res_dab_btn: 'Выбрать темы для курса',
+    res_dab_btn: 'Выбрать тариф курса',
     res_dab_p: 'Видеоуроки по естественным наукам готовим. Забронируй место в курсе — их откроем первыми.',
     res_dab_sent: 'Результат сохранён в этом браузере.',
     res_other: 'Попробуй и второй тест:',
@@ -1703,11 +1726,11 @@ const I18N = {
     locked: 'в полном курсе',
     cta_full_h: 'Понравилось? В полном курсе всё остальное',
     cta_full_p: 'В каждой теме 6–8 уроков с видеообъяснениями, много задач с проверкой, задачи как на экзамене и ИИ-помощник, которому можно задавать вопросы и голосом.',
-    cta_full_btn: 'Выбрать темы',
+    cta_full_btn: 'Выбрать тариф',
     your_answer_line: 'Твой ответ на числовой прямой',
 
-    sub_h: 'Полный курс по твоим темам',
-    sub_p: 'Отметь темы, которые хочешь пройти. Пробелы из теста уже отмечены.',
+    sub_h: 'Полный курс',
+    sub_p: 'Выбери, как платить. Темы с пробелами из теста отмечены в списке.',
     sub_all: 'Отметить все',
     per_month: 'в месяц',
     sub_calc: '{n} × {pp} €',
@@ -1716,6 +1739,7 @@ const I18N = {
     sub_incl_h: 'В подписке',
     sub_incl: ['Видеообъяснения с латышскими терминами', 'Задачи с мгновенной проверкой и разбором ошибок', 'Задачи как на экзамене с решениями', 'ИИ-помощник: спрашивай текстом или голосом', 'Отчёт о прогрессе для родителей на e-mail', 'Отменить можно в любой момент'],
     sub_launch: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату со скидкой −{d} % на первый месяц. Месяц отсчитаем с того дня, когда откроется твоя первая тема.',
+    sub_launch_once: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату со скидкой −{d} %. Доступ ко всем темам — до самого экзамена.',
     sub_launch_exam: 'Курс стартует {date}, темы будем открывать постепенно. Забронируй место бесплатно: до старта пришлём на e-mail ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
     sub_reserve: 'Забронировать бесплатно',
     sub_pay: 'Подписаться за {p} € в месяц',
@@ -1723,7 +1747,7 @@ const I18N = {
     sub_fine: 'Бронь ни к чему не обязывает.',
     sub_pick_one: 'Отметь хотя бы одну тему.',
     thanks_h: 'Место забронировано!',
-    thanks_p: 'До старта курса ({date}) пришлём на {email} ссылку на оплату со скидкой −{d} % на первый месяц.',
+    thanks_p: 'До старта курса ({date}) пришлём на {email} ссылку на оплату со скидкой −{d} %.',
     thanks_p_exam: 'До старта курса ({date}) пришлём на {email} ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
     thanks_topics: 'Твои темы',
     thanks_back: 'Продолжить демо-курс',
@@ -3854,6 +3878,7 @@ function viewLanding() {
         <h1>${T('hero2_h')}</h1>
         <p class="dh-lead">${T('hero2_p')}</p>
         <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}${arr}</button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div>
+        ${earlyOn() ? `<a class="hero-promo" href="#cenas" data-act="go" data-sec="cenas"><b>−${CONFIG.earlyDiscount} %</b><span>${T('promo_hero', { date: dateShort(CONFIG.launchDate) })}</span></a>` : ''}
         <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
       </div>
       <figure class="hero2-vid dh-vid">
@@ -3938,19 +3963,30 @@ function viewLanding() {
 
 const INC_IC = ["<rect x=\"3\" y=\"5\" width=\"13\" height=\"14\" rx=\"3\"/><path d=\"M16 10l5-3v10l-5-3\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M8 12.5l2.8 2.8L16.5 9.5\"/>", "<path d=\"M7 3h7l5 5v13H7z\"/><path d=\"M14 3v5h5M10 13h6M10 17h4\"/>", "<path d=\"M12 3v3M12 18v3M3 12h3M18 12h3\"/><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"3\"/><path d=\"M10 12h4\"/>", "<path d=\"M4 20V10M10 20V4M16 20v-7M22 20H2\"/>", "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/>"];
 function examMonths() { const a = new Date(CONFIG.launchDate), b = new Date(CONFIG.examDate); return Math.max(1, Math.ceil((b - a) / (30.44 * 864e5))); }
+const eur = x => (Number.isInteger(x) ? String(x) : x.toFixed(2).replace('.', ','));
+const earlyOn = () => !CONFIG.payLinks && CONFIG.earlyDiscount > 0 && new Date() < new Date(CONFIG.launchDate + 'T00:00:00');
+const deal = p => (earlyOn() ? Math.round(p * (100 - CONFIG.earlyDiscount)) / 100 : p);
+const planPrice = k => (k === 'both' ? CONFIG.priceBoth : k === 'exam' ? CONFIG.priceExam : CONFIG.priceAll);
+function priceHTML(k, cls) {
+  const p = planPrice(k), unit = k === 'month' ? (earlyOn() ? T('first_month') : T('per_month')) : T('plan_once');
+  return `<p class="${cls}">${earlyOn() ? `<s>${eur(p)} €</s>` : ''}<b>${eur(deal(p))} €</b><span>${unit}</span></p>${earlyOn() && k === 'month' ? `<p class="then">${T('then_month', { p: eur(p) })}</p>` : ''}`;
+}
+function promoHTML(cls) {
+  return earlyOn() ? `<div class="promo ${cls || ''}"><b class="promo-pct">−${CONFIG.earlyDiscount} %</b><span><strong>${T('promo_h', { date: dateShort(CONFIG.launchDate) })}</strong><small>${T('promo_p')}</small></span></div>` : '';
+}
 function plansHTML() {
-  const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
-  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(CONFIG.priceAll).split('{t}').join(m * CONFIG.priceAll)}</li>`).join('');
-  const card = (k, price, unit, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(CONFIG.examDate))}</p><p class="plan-price"><b>${price} €</b><span>${unit}</span></p><ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#prieksmeti" data-act="toSubj">${T('plan_cta')}</a></div>`;
+  const m = examMonths();
+  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(eur(CONFIG.priceAll)).split('{t}').join(eur(m * CONFIG.priceAll)).split('{s}').join(eur(2 * CONFIG.priceExam - CONFIG.priceBoth))}</li>`).join('');
+  const card = (k, plan, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(plan === 'both' ? CONFIG.sciDate : CONFIG.examDate))}</p>${priceHTML(plan, 'plan-price')}<ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#prieksmeti" data-act="toSubj">${T('plan_cta')}</a></div>`;
   return `<section class="wrap sec plans-sec" id="cenas">
     <div class="sec-head"><h2>${T('plans_h')}</h2><p>${T('plans_p')}</p></div>
+    ${promoHTML()}
     <div class="plans">
-      ${card('plan_topic', CONFIG.pricePerTopic, T('plan_per_topic'), 'plan_feat_topic', '', false)}
-      ${card('plan_all', CONFIG.priceAll, T('per_month'), 'plan_feat_all', T('plan_badge_all'), true)}
-      ${card('plan_exam', CONFIG.priceExam, T('plan_once'), 'plan_feat_exam', save > 0 ? T('plan_badge_exam', { s: save }) : '', false)}
+      ${card('plan_all', 'month', 'plan_feat_all', '', false)}
+      ${card('plan_both', 'both', 'plan_feat_both', T('plan_badge_both'), true)}
+      ${card('plan_exam', 'exam', 'plan_feat_exam', '', false)}
     </div>
-    <div class="plan-both"><div><h3>${T('plan_both')[0]}</h3><p>${T('plan_both')[1].split('{date}').join(dateLong(CONFIG.sciDate))}</p></div><p class="plan-price"><b>${CONFIG.priceBoth} €</b><span>${T('plan_once')}</span></p><span class="plan-badge">${T('plan_both_save', { s: 2 * CONFIG.priceExam - CONFIG.priceBoth })}</span></div>
-    ${CONFIG.payLinks ? '' : `<p class="plans-early"><span class="dot" aria-hidden="true"></span>${T('plan_early', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p>`}
+    <p class="plans-early"><span class="dot" aria-hidden="true"></span>${T('plan_guarantee')}</p>
   </section>`;
 }
 
@@ -4182,32 +4218,28 @@ function videoHTML(tid) {
   return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')} ${reportBtn('video ' + tid)}</figcaption></figure>`;
 }
 
-function price(n) { return n <= 0 ? 0 : Math.min(n * CONFIG.pricePerTopic, CONFIG.priceAll); }
 function viewSub() {
   const R = results();
-  if (!Array.isArray(state.sel)) state.sel = R.weak.length ? R.weak.slice() : TOPICS.map(t => t.id);
-  const both = state.plan === 'both', exam = state.plan === 'exam' || both;
-  const n = exam ? TOPICS.length : state.sel.length, p = both ? CONFIG.priceBoth : exam ? CONFIG.priceExam : price(n), capped = !exam && n * CONFIG.pricePerTopic > CONFIG.priceAll;
-  const m = examMonths(), save = m * CONFIG.priceAll - CONFIG.priceExam;
-  const link = CONFIG.payLinks ? (both ? CONFIG.payLinks.both : exam ? CONFIG.payLinks.exam : (CONFIG.payLinks[n >= TOPICS.length || capped ? 'all' : n] || CONFIG.payLinks.all)) : null;
+  const both = state.plan === 'both', exam = state.plan === 'exam' || both, plan = both ? 'both' : exam ? 'exam' : 'month';
+  const n = TOPICS.length, p = deal(planPrice(plan));
+  const link = CONFIG.payLinks ? (both ? CONFIG.payLinks.both : exam ? CONFIG.payLinks.exam : CONFIG.payLinks.all) : null;
   const href = link && state.lead ? `${link}${link.includes('?') ? '&' : '?'}client_reference_id=${encodeURIComponent(state.lead.id)}${state.lead.email ? '&prefilled_email=' + encodeURIComponent(state.lead.email) : ''}` : link;
   return `<section class="wrap mid sub">
     <p class="eyebrow">${T('sub_subj_h', { s: subjName(state.subj) })} · <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>
     <h1>${T('sub_h')}</h1><p class="lead">${T('sub_p')}</p>
-    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')} <span class="seg-save seg-price">${T('from_price', { p: CONFIG.pricePerTopic })}</span></button><button type="button" role="radio" aria-checked="${exam && !both}" data-act="plan" data-v="exam">${T('sub_mode_exam')} <span class="seg-save seg-price">${CONFIG.priceExam} €</span></button><button type="button" role="radio" aria-checked="${both}" data-act="plan" data-v="both">${T('sub_mode_both')} <span class="seg-save seg-price">${CONFIG.priceBoth} €</span></button></div>
+    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceAll))} €</span></button><button type="button" role="radio" aria-checked="${exam && !both}" data-act="plan" data-v="exam">${T('sub_mode_exam')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceExam))} €</span></button><button type="button" role="radio" aria-checked="${both}" data-act="plan" data-v="both">${T('sub_mode_both')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceBoth))} €</span></button></div>
+    ${promoHTML('promo-sm')}
     <div class="sub-grid">
       <div class="sheet">
-        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" data-sel="${id}" ${exam || state.sel.includes(id) ? 'checked' : ''} ${exam ? 'disabled' : ''}><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
-        ${exam ? '' : `<button type="button" class="btn btn-ghost" data-act="sel-all">${T('sub_all')}</button>`}
+        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" checked disabled><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
       </div>
       <aside class="sheet price-card">
-        <p class="price"><b>${p} €</b><span>${exam ? T('plan_once') : T('per_month')}</span></p>
-        ${both ? `<p class="calc">${T('sub_both_note', { date: dateLong(CONFIG.sciDate) })}</p><p class="deal">${T('plan_both_save', { s: 2 * CONFIG.priceExam - CONFIG.priceBoth })}</p>` : exam ? `<p class="calc">${T('sub_exam_note', { date: dateLong(examDateOf(state.subj)) })}</p>${save > 0 ? `<p class="deal">${T('sub_exam_save', { n: m, pa: CONFIG.priceAll, s: save })}</p>` : ''}`
-          : `<p class="calc">${n ? (capped ? T('sub_capped', { pa: CONFIG.priceAll }) : T('sub_calc', { n, pp: CONFIG.pricePerTopic })) : T('sub_pick_one')}</p>
-        ${!capped && n < TOPICS.length ? `<p class="deal">${T('sub_all_deal', { pa: CONFIG.priceAll })}</p>` : ''}`}
-        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').filter((x, i) => !(exam && i === 5)).map(x => `<li>${x}</li>`).join('')}</ul>
-        ${link ? `<a class="btn btn-primary btn-lg wide ${n ? '' : 'disabled'}" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p }) : T('sub_pay', { p })}</a>`
-          : `<p class="launch">${T(exam ? 'sub_launch_exam' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve" ${n ? '' : 'disabled'}>${T('sub_reserve')}</button><p class="fine">${T('sub_fine')}</p>`}
+        ${priceHTML(plan, 'price')}
+        <p class="calc">${both ? T('sub_both_note', { date: dateLong(CONFIG.sciDate) }) : exam ? T('sub_exam_note', { date: dateLong(examDateOf(state.subj)) }) : T('sub_month_note')}</p>
+        ${both ? `<p class="deal">${T('plan_both_save', { s: eur(2 * CONFIG.priceExam - CONFIG.priceBoth) })}</p>` : ''}
+        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
+        ${link ? `<a class="btn btn-primary btn-lg wide" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p: eur(p) }) : T('sub_pay', { p: eur(p) })}</a>`
+          : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')}</p>`}
       </aside>
     </div>
   </section>`;
@@ -4217,7 +4249,7 @@ function viewThanks() {
   const r = state.reserve || { topics: [] };
   return `<section class="wrap narrow">
     <div class="sheet thanks"><span class="big-check" aria-hidden="true">✓</span><h1>${T('thanks_h')}</h1>
-    <p class="lead">${T(r.plan === 'exam' || r.plan === 'both' ? 'thanks_p_exam' : 'thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
+    <p class="lead">${T(!earlyOn() ? 'thanks_p_exam' : 'thanks_p', { date: dateShort(CONFIG.launchDate), email: esc((state.lead && state.lead.email) || '—'), d: CONFIG.earlyDiscount })}</p>
     <p class="side-h">${T('thanks_topics')}</p><ul class="chips">${r.topics.map(id => [...MAT.TOPICS, ...DAB.TOPICS].find(t => t.id === id)).filter(Boolean).map(t => `<li><span class="chip">${L(t)}</span></li>`).join('')}</ul>
     <p class="price small-p"><b>${r.price} €</b> ${r.plan === 'exam' || r.plan === 'both' ? T('plan_once') : T('per_month')}</p>
     <a class="btn btn-primary btn-lg" href="#demo">${T('thanks_back')}</a></div>
@@ -4419,16 +4451,15 @@ const ACT = {
   plan(b) { state.plan = ['exam', 'both'].includes(b.dataset.v) ? b.dataset.v : 'month'; save(); rerender(); },
   reserve() {
     const plan = state.plan === 'both' ? 'both' : state.plan === 'exam' ? 'exam' : 'month';
-    const topics = plan === 'both' ? [...MAT.TOPICS, ...DAB.TOPICS].map(t => t.id) : plan === 'exam' ? TOPICS.map(t => t.id) : state.sel || [];
-    if (!topics.length) return;
-    const p = plan === 'both' ? CONFIG.priceBoth : plan === 'exam' ? CONFIG.priceExam : price(topics.length);
+    const topics = plan === 'both' ? [...MAT.TOPICS, ...DAB.TOPICS].map(t => t.id) : TOPICS.map(t => t.id);
+    const p = deal(planPrice(plan));
     state.reserve = { topics: topics.slice(), price: p, plan, subj: state.subj, at: new Date().toISOString() }; save();
     send('reserve', { topics, price: p, plan, subj: state.subj });
     location.hash = 'paldies';
   },
   checkout() {
     const plan = state.plan === 'both' ? 'both' : state.plan === 'exam' ? 'exam' : 'month';
-    send('checkout', { subj: state.subj, plan, topics: plan === 'month' ? state.sel : TOPICS.map(t => t.id), price: plan === 'both' ? CONFIG.priceBoth : plan === 'exam' ? CONFIG.priceExam : price((state.sel || []).length) });
+    send('checkout', { subj: state.subj, plan, topics: TOPICS.map(t => t.id), price: deal(planPrice(plan)) });
   },
   playVid(b) {
     const id = b.dataset.t, v = `video/${id}-${state.lang}`, m = $('#modal');
