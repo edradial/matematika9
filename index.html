@@ -1218,6 +1218,19 @@ body.ck-on .sticky-cta { display: none !important; }
 
 .soon { display: inline-block; padding: 2px 9px; border-radius: 99px; background: var(--warn-bg); color: var(--warn); font-size: 12.5px; font-weight: 700; white-space: nowrap; }
 
+/* account */
+.acct { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); border-radius: 12px; padding: 9px 14px; font-weight: 700; font-size: 14.5px; cursor: pointer; white-space: nowrap; min-height: 40px; }
+.acct svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; } .acct.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+@media (max-width: 860px) { .acct { padding: 9px; } .acct span { display: none; } }
+.au { max-width: 440px; } .au-tabs { display: flex; margin-bottom: 14px; } .au-tabs button { flex: 1; }
+.au-form { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; } .au-form .hint, .au .fine { margin: 0; font-size: 13.5px; color: var(--muted); }
+.au-err { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--bad-bg); color: var(--bad); font-weight: 600; } .au-ok { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--good-bg); color: var(--good); font-weight: 600; }
+.au-or { display: flex; align-items: center; gap: 12px; margin: 14px 0 0; color: var(--muted); font-size: 14px; } .au-or::before, .au-or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.au-mail { font: 800 19px/1.3 var(--f-display); margin: 4px 0 10px; word-break: break-all; } .au-plan { display: inline-block; padding: 6px 12px; border-radius: 99px; background: var(--soft); font-weight: 700; font-size: 14.5px; margin: 0 0 10px; } .au-plan.paid { background: var(--good-bg); color: var(--good); }
+.au-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+.au-tabs button[aria-selected="true"] { background: var(--paper); color: var(--ink); box-shadow: var(--shadow); }
+
 </style>
 </head>
 <body>
@@ -1232,6 +1245,7 @@ body.ck-on .sticky-cta { display: none !important; }
     <span class="subj-pill" id="subj-pill" hidden></span>
     <ol class="stepper" id="stepper" hidden></ol>
     <div class="lang" id="lang-group" role="group" aria-label="Valoda"><button type="button" data-act="lang" data-v="lv" aria-pressed="true">LV</button><button type="button" data-act="lang" data-v="ru" aria-pressed="false">RU</button></div>
+    <button type="button" class="acct" id="acct" data-act="acct"></button>
     <a class="btn btn-primary top-cta" id="top-cta" href="#sakums" data-act="go" data-sec="cenas"></a>
   </div>
 </header>
@@ -1496,6 +1510,7 @@ const I18N = {
       ['Tiesiskais pamats', 'Tava piekrišana (VDAR 6. panta 1. punkta a) apakšpunkts). To var atsaukt jebkurā brīdī.'],
       ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
       ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs. Vietni mitina GitHub Pages (GitHub, Inc.), kas tehniskiem nolūkiem apstrādā apmeklētāja IP adresi.'],
+      ['Konts', 'Ja izveido kontu, glabājam tavu e-pastu, paroli šifrētā veidā (to neredzam) un tavu progresu, lai tas būtu pieejams arī citā ierīcē. Kontus un progresu glabā Supabase (apstrādātājs), serveri atrodas Eiropas Savienībā. Ja ieej ar Google, no Google saņemam tikai tavu e-pasta adresi un vārdu. Kontu vari lūgt dzēst, rakstot uz {email}.'],
       ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, analītiku vai reklāmas rīkus, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos. Ja nākotnē pievienosim analītiku vai reklāmas mērīšanu, tās ieslēgsies tikai pēc tavas piekrišanas sīkdatņu logā; izvēli var mainīt ar saiti „Sīkdatņu iestatījumi” vietnes apakšā.'],
       ['Tavas tiesības', 'Vari lūgt datus parādīt, labot vai dzēst, rakstot uz {email}. Sūdzību vari iesniegt Datu valsts inspekcijā (dvi.gov.lv).'],
       ['Ja tev nav 13 gadu', 'Lūdz vecākam aizpildīt pieteikumu.'],
@@ -1809,6 +1824,7 @@ const I18N = {
       ['Правовое основание', 'Твоё согласие (статья 6, пункт 1, подпункт a) GDPR). Его можно отозвать в любой момент.'],
       ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
       ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком. Сайт размещён на GitHub Pages (GitHub, Inc.), который в технических целях обрабатывает IP-адрес посетителя.'],
+      ['Кабинет', 'Если ты создаёшь кабинет, мы храним твой e-mail, пароль в зашифрованном виде (мы его не видим) и твой прогресс, чтобы он был доступен с другого устройства. Кабинеты и прогресс хранит Supabase (обработчик), серверы находятся в Европейском союзе. При входе через Google мы получаем от Google только твой e-mail и имя. Кабинет можно попросить удалить, написав на {email}.'],
       ['Куки и данные в браузере', 'Сайт не использует куки, аналитику или рекламные инструменты, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера. Если в будущем мы добавим аналитику или измерение рекламы, они включатся только после твоего согласия в окне куки; выбор можно изменить по ссылке «Настройки куки» внизу сайта.'],
       ['Твои права', 'Можно попросить показать, исправить или удалить данные, написав на {email}. Жалобу можно подать в Государственную инспекцию данных (dvi.gov.lv).'],
       ['Если тебе нет 13 лет', 'Попроси родителя заполнить заявку.'],
@@ -3711,12 +3727,223 @@ const CONSENT_ACT = {
   ckSettings() { ckShow(true); },
 };
 
+// ---------- accounts: e-mail + password and Google sign-in (Supabase Auth), progress kept on the server ----------
+// The publishable key is meant to be public: every table is protected by row level security.
+const SB = { url: 'https://njpdxjoegzzjgdcsqhim.supabase.co', key: 'sb_publishable_4g80feJhTN0y74jmqZe6MQ_xRsyFiSb', google: false };
+const AUTH_KEY = 'm9_auth_v1';
+
+Object.assign(I18N.lv, {
+  au_in: 'Ieiet', au_cab: 'Mans konts', au_h_in: 'Ieiet kontā', au_h_up: 'Izveidot kontu', au_tab_in: 'Ieiet', au_tab_up: 'Reģistrēties',
+  au_email: 'E-pasts', au_pw: 'Parole', au_pw_new: 'Jaunā parole', au_pw_hint: 'Vismaz 8 rakstzīmes.',
+  au_btn_in: 'Ieiet', au_btn_up: 'Izveidot kontu', au_google: 'Turpināt ar Google', au_or: 'vai',
+  au_forgot: 'Aizmirsi paroli?', au_forgot_h: 'Paroles atjaunošana', au_forgot_p: 'Ieraksti e-pastu, un mēs nosūtīsim saiti jaunas paroles iestatīšanai.', au_forgot_btn: 'Nosūtīt saiti', au_back: '← Atpakaļ',
+  au_sent: 'Ja šāds konts ir, uz {email} nosūtījām saiti. Pārbaudi arī mēstuļu mapi.',
+  au_confirm: 'Gandrīz gatavs! Uz {email} nosūtījām vēstuli: atver saiti tajā, lai apstiprinātu e-pastu.',
+  au_set_h: 'Iestati jauno paroli', au_set_btn: 'Saglabāt paroli', au_set_ok: 'Parole nomainīta.',
+  au_why: 'Ar kontu tavs progress saglabājas un ir pieejams arī citā ierīcē.',
+  au_agree: 'Reģistrējoties tu piekrīti',
+  au_acct_h: 'Mans konts', au_plan_free: 'Bezmaksas versija: tests un demo nodarbības', au_plan_paid: 'Pilnais kurss līdz {date}', au_synced: 'Progress tiek saglabāts kontā.',
+  au_out: 'Iziet', au_chpw: 'Mainīt paroli',
+  au_e_email: 'Pārbaudi e-pasta adresi.', au_e_pw: 'Parolei jābūt vismaz 8 rakstzīmes garai.', au_e_cred: 'Nepareizs e-pasts vai parole.', au_e_exists: 'Šāds konts jau ir. Mēģini ieiet vai atjaunot paroli.',
+  au_e_unconf: 'E-pasts vēl nav apstiprināts. Atver saiti vēstulē, ko nosūtījām.', au_e_rate: 'Pārāk daudz mēģinājumu. Pamēģini pēc dažām minūtēm.', au_e_net: 'Neizdevās savienoties. Pārbaudi internetu un mēģini vēlreiz.', au_e_link: 'Saite vairs nav derīga. Pieprasi jaunu.',
+  au_wait: 'Lūdzu, uzgaidi…',
+});
+Object.assign(I18N.ru, {
+  au_in: 'Войти', au_cab: 'Мой кабинет', au_h_in: 'Вход в кабинет', au_h_up: 'Создать кабинет', au_tab_in: 'Вход', au_tab_up: 'Регистрация',
+  au_email: 'E-mail', au_pw: 'Пароль', au_pw_new: 'Новый пароль', au_pw_hint: 'Не меньше 8 символов.',
+  au_btn_in: 'Войти', au_btn_up: 'Создать кабинет', au_google: 'Продолжить с Google', au_or: 'или',
+  au_forgot: 'Забыл пароль?', au_forgot_h: 'Восстановление пароля', au_forgot_p: 'Впиши e-mail, и мы пришлём ссылку для нового пароля.', au_forgot_btn: 'Прислать ссылку', au_back: '← Назад',
+  au_sent: 'Если такой кабинет есть, мы отправили ссылку на {email}. Проверь и папку «Спам».',
+  au_confirm: 'Почти готово! Мы отправили письмо на {email}: открой ссылку в нём, чтобы подтвердить e-mail.',
+  au_set_h: 'Задай новый пароль', au_set_btn: 'Сохранить пароль', au_set_ok: 'Пароль изменён.',
+  au_why: 'С кабинетом твой прогресс сохраняется и доступен с другого устройства.',
+  au_agree: 'Регистрируясь, ты соглашаешься с документом',
+  au_acct_h: 'Мой кабинет', au_plan_free: 'Бесплатная версия: тест и демо-уроки', au_plan_paid: 'Полный курс до {date}', au_synced: 'Прогресс сохраняется в кабинете.',
+  au_out: 'Выйти', au_chpw: 'Сменить пароль',
+  au_e_email: 'Проверь адрес e-mail.', au_e_pw: 'Пароль должен быть не короче 8 символов.', au_e_cred: 'Неверный e-mail или пароль.', au_e_exists: 'Такой кабинет уже есть. Попробуй войти или восстановить пароль.',
+  au_e_unconf: 'E-mail ещё не подтверждён. Открой ссылку из письма, которое мы отправили.', au_e_rate: 'Слишком много попыток. Попробуй через несколько минут.', au_e_net: 'Не удалось соединиться. Проверь интернет и попробуй ещё раз.', au_e_link: 'Ссылка больше не действует. Запроси новую.',
+  au_wait: 'Подожди…',
+});
+
+const auth = { ses: null, ent: null, mode: 'in', msg: '', err: '', busy: false, pushT: 0 };
+function authLoad() { try { auth.ses = JSON.parse(localStorage.getItem(AUTH_KEY) || 'null'); } catch (e) { auth.ses = null; } }
+function authStore(s) { auth.ses = s; try { s ? localStorage.setItem(AUTH_KEY, JSON.stringify(s)) : localStorage.removeItem(AUTH_KEY); } catch (e) { } }
+const authed = () => !!(auth.ses && auth.ses.user && auth.ses.user.id);
+const siteUrl = () => location.origin + location.pathname;
+
+async function sbCall(path, { method = 'GET', body, token, headers = {} } = {}) {
+  let r;
+  try {
+    r = await fetch(SB.url + path, { method, headers: { apikey: SB.key, Authorization: 'Bearer ' + (token || SB.key), 'Content-Type': 'application/json', ...headers }, body: body == null ? undefined : JSON.stringify(body) });
+  } catch (e) { return { ok: false, status: 0, data: { code: 'network' } }; }
+  let data = null; try { data = await r.json(); } catch (e) { }
+  return { ok: r.ok, status: r.status, data: data || {} };
+}
+function authErr(res) {
+  const d = res.data || {}, c = String(d.error_code || d.code || d.error || ''), m = String(d.msg || d.message || d.error_description || '').toLowerCase();
+  if (res.status === 0) return T('au_e_net');
+  if (res.status === 429 || c.includes('rate_limit')) return T('au_e_rate');
+  if (c === 'email_not_confirmed' || m.includes('not confirmed')) return T('au_e_unconf');
+  if (c === 'user_already_exists' || m.includes('already registered')) return T('au_e_exists');
+  if (c === 'weak_password' || m.includes('password should')) return T('au_e_pw');
+  if (c === 'validation_failed' || c === 'email_address_invalid' || m.includes('invalid format')) return T('au_e_email');
+  if (c === 'otp_expired' || m.includes('expired')) return T('au_e_link');
+  return T('au_e_cred');
+}
+function sesFrom(d) { return { access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Math.floor(Date.now() / 1000) + (Number(d.expires_in) || 3600), user: d.user ? { id: d.user.id, email: d.user.email } : (auth.ses && auth.ses.user) || null }; }
+async function authToken() {
+  if (!auth.ses) return null;
+  if ((auth.ses.expires_at || 0) - 90 > Date.now() / 1000) return auth.ses.access_token;
+  const res = await sbCall('/auth/v1/token?grant_type=refresh_token', { method: 'POST', body: { refresh_token: auth.ses.refresh_token } });
+  if (res.ok && res.data.access_token) { authStore(sesFrom(res.data)); return auth.ses.access_token; }
+  if (res.status && res.status < 500) { authStore(null); auth.ent = null; authPaint(); } // the session is gone: signed out elsewhere or expired
+  return null;
+}
+
+// ---- progress on the server: the newest copy wins, the browser copy stays as the working one ----
+async function syncPull() {
+  const tk = await authToken(); if (!tk) return;
+  const uid = auth.ses.user.id;
+  const res = await sbCall(`/rest/v1/progress?user_id=eq.${uid}&select=data`, { token: tk });
+  const remote = res.ok && Array.isArray(res.data) && res.data[0] ? res.data[0].data : null;
+  const meaningful = s => !!(s && ((s.answers && s.answers.length) || s.done || (s.bySubj && Object.keys(s.bySubj).length)));
+  if (remote && meaningful(remote) && (!meaningful(state) || (remote.ts || 0) > (state.ts || 0))) {
+    const lang = state.lang; Object.assign(state, remote, { lang });
+    try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { }
+    applySubject(); rerender();
+  } else if (meaningful(state)) syncPush(true);
+  const e = await sbCall(`/rest/v1/entitlements?user_id=eq.${uid}&select=plan,subj,valid_until&valid_until=gt.${new Date().toISOString()}`, { token: tk });
+  auth.ent = e.ok && Array.isArray(e.data) ? e.data : [];
+  authPaint();
+}
+function syncPush(now) {
+  if (!authed()) return;
+  clearTimeout(auth.pushT);
+  auth.pushT = setTimeout(async () => {
+    const tk = await authToken(); if (!tk) return;
+    const uid = auth.ses.user.id, data = { ...state }; delete data.pvHidden;
+    sbCall('/rest/v1/progress?on_conflict=user_id', { method: 'POST', token: tk, headers: { Prefer: 'resolution=merge-duplicates,return=minimal' }, body: { user_id: uid, data, updated_at: new Date().toISOString() } });
+    const ld = state.lead || {};
+    sbCall(`/rest/v1/profiles?id=eq.${uid}`, { method: 'PATCH', token: tk, headers: { Prefer: 'return=minimal' }, body: { lang: state.lang, ...(ld.id ? { lead_id: ld.id } : {}), ...(ld.role ? { role: ld.role } : {}), ...(ld.name ? { name: String(ld.name).slice(0, 60) } : {}) } });
+  }, now ? 50 : 2500);
+}
+function authOnSave() { state.ts = Date.now(); syncPush(false); }
+
+// ---- returning from an e-mail link or from Google: tokens arrive in the address after # ----
+async function authConsumeHash() {
+  const h = location.hash.replace(/^#/, '');
+  if (!/(^|&)(access_token|error_description|error_code)=/.test(h)) return;
+  const q = new URLSearchParams(h);
+  try { history.replaceState(null, '', location.pathname + location.search + '#sakums'); } catch (e) { location.hash = 'sakums'; }
+  if (q.get('error_description') || q.get('error_code')) { auth.mode = 'forgot'; auth.err = T('au_e_link'); setTimeout(authOpen, 0); return; }
+  authStore(sesFrom({ access_token: q.get('access_token'), refresh_token: q.get('refresh_token'), expires_in: q.get('expires_in') }));
+  const u = await sbCall('/auth/v1/user', { token: auth.ses.access_token });
+  if (!u.ok || !u.data.id) { authStore(null); return; }
+  authStore({ ...auth.ses, user: { id: u.data.id, email: u.data.email } });
+  if (q.get('type') === 'recovery') { auth.mode = 'setpw'; auth.err = ''; auth.msg = ''; authOpen(); }
+  authPaint();
+}
+
+// ---- interface ----
+function authPaint() {
+  const b = document.getElementById('acct'); if (!b) return;
+  const on = authed(), label = on ? T('au_cab') : T('au_in');
+  b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>${label}</span>`;
+  b.classList.toggle('on', on); b.setAttribute('aria-label', label);
+}
+function authHTML() {
+  const x = `<button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button>`;
+  const note = `${auth.err ? `<p class="au-err" role="alert">${auth.err}</p>` : ''}${auth.msg ? `<p class="au-ok" role="status">${auth.msg}</p>` : ''}`;
+  const email = esc((state.lead && state.lead.email) || '');
+  const dis = auth.busy ? 'disabled' : '';
+  if (authed() && auth.mode !== 'setpw') {
+    const ent = (auth.ent || []).slice().sort((a, b) => (a.valid_until < b.valid_until ? 1 : -1))[0];
+    return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="au-h"><div class="modal-top"><h2 id="au-h">${T('au_acct_h')}</h2>${x}</div>
+      <p class="au-mail">${esc(auth.ses.user.email || '')}</p>
+      <p class="au-plan ${ent ? 'paid' : ''}">${ent ? T('au_plan_paid', { date: dateLong(ent.valid_until.slice(0, 10)) }) : T('au_plan_free')}</p>
+      <p class="muted">${T('au_synced')}</p>${note}
+      <div class="au-row"><button type="button" class="btn btn-secondary" data-act="auMode" data-v="setpw">${T('au_chpw')}</button><button type="button" class="btn btn-ghost" data-act="auOut">${T('au_out')}</button></div></div>`;
+  }
+  if (auth.mode === 'setpw') return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="au-h"><div class="modal-top"><h2 id="au-h">${T('au_set_h')}</h2>${x}</div>
+    <form id="auth-form" class="au-form" novalidate>${note}
+      <div class="field"><label for="au-pw">${T('au_pw_new')}</label><input id="au-pw" type="password" autocomplete="new-password" minlength="8" maxlength="72" required><p class="hint">${T('au_pw_hint')}</p></div>
+      <button class="btn btn-primary btn-lg wide" type="submit" ${dis}>${auth.busy ? T('au_wait') : T('au_set_btn')}</button></form></div>`;
+  if (auth.mode === 'forgot') return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="au-h"><div class="modal-top"><h2 id="au-h">${T('au_forgot_h')}</h2>${x}</div>
+    <form id="auth-form" class="au-form" novalidate><p class="muted">${T('au_forgot_p')}</p>${note}
+      <div class="field"><label for="au-email">${T('au_email')}</label><input id="au-email" type="email" autocomplete="email" maxlength="120" value="${email}" required></div>
+      <button class="btn btn-primary btn-lg wide" type="submit" ${dis}>${auth.busy ? T('au_wait') : T('au_forgot_btn')}</button>
+      <button type="button" class="btn-link" data-act="auMode" data-v="in">${T('au_back')}</button></form></div>`;
+  const up = auth.mode === 'up';
+  return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="au-h"><div class="modal-top"><h2 id="au-h">${T(up ? 'au_h_up' : 'au_h_in')}</h2>${x}</div>
+    <div class="seg au-tabs" role="tablist"><button type="button" role="tab" aria-selected="${!up}" data-act="auMode" data-v="in">${T('au_tab_in')}</button><button type="button" role="tab" aria-selected="${up}" data-act="auMode" data-v="up">${T('au_tab_up')}</button></div>
+    <p class="muted">${T('au_why')}</p>
+    ${SB.google ? `<button type="button" class="btn btn-secondary btn-lg wide au-g" data-act="auGoogle">${T('au_google')}</button><p class="au-or"><span>${T('au_or')}</span></p>` : ''}
+    <form id="auth-form" class="au-form" novalidate>${note}
+      <div class="field"><label for="au-email">${T('au_email')}</label><input id="au-email" type="email" autocomplete="email" maxlength="120" value="${email}" required></div>
+      <div class="field"><label for="au-pw">${T('au_pw')}</label><input id="au-pw" type="password" autocomplete="${up ? 'new-password' : 'current-password'}" minlength="8" maxlength="72" required>${up ? `<p class="hint">${T('au_pw_hint')}</p>` : ''}</div>
+      <button class="btn btn-primary btn-lg wide" type="submit" ${dis}>${auth.busy ? T('au_wait') : T(up ? 'au_btn_up' : 'au_btn_in')}</button>
+      ${up ? `<p class="fine">${T('au_agree')} <button type="button" class="btn-link inline" data-act="privacy">${T('f_privacy')}</button>.</p>` : `<button type="button" class="btn-link" data-act="auMode" data-v="forgot">${T('au_forgot')}</button>`}
+    </form></div>`;
+}
+function authOpen() {
+  const m = document.getElementById('modal'), keep = {}; ['au-email', 'au-pw'].forEach(id => { const el = document.getElementById(id); if (el) keep[id] = el.value; });
+  m.innerHTML = authHTML(); m.hidden = false;
+  Object.entries(keep).forEach(([id, v]) => { const el = document.getElementById(id); if (el && v) el.value = v; });
+  const em = m.querySelector('#au-email'), f = em && !em.value ? em : m.querySelector('#au-pw') || em || m.querySelector('[data-act="close-modal"]'); if (f && !auth.busy) f.focus();
+}
+async function authSubmit(f) {
+  if (auth.busy) return;
+  const email = ((f.querySelector('#au-email') || {}).value || '').trim(), pw = (f.querySelector('#au-pw') || {}).value || '';
+  auth.err = ''; auth.msg = '';
+  if (auth.mode !== 'setpw' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { auth.err = T('au_e_email'); return authOpen(); }
+  if (auth.mode !== 'forgot' && pw.length < 8 && auth.mode !== 'in') { auth.err = T('au_e_pw'); return authOpen(); }
+  if (auth.mode === 'in' && !pw) { auth.err = T('au_e_cred'); return authOpen(); }
+  auth.busy = true; authOpen();
+  const back = '?redirect_to=' + encodeURIComponent(siteUrl());
+  let res;
+  if (auth.mode === 'forgot') {
+    res = await sbCall('/auth/v1/recover' + back, { method: 'POST', body: { email } });
+    auth.busy = false;
+    if (res.ok || res.status === 400) { auth.msg = T('au_sent', { email: esc(email) }); } else auth.err = authErr(res);
+    return authOpen();
+  }
+  if (auth.mode === 'setpw') {
+    const tk = await authToken();
+    res = tk ? await sbCall('/auth/v1/user', { method: 'PUT', token: tk, body: { password: pw } }) : { ok: false, status: 401, data: { code: 'otp_expired' } };
+    auth.busy = false;
+    if (res.ok) { auth.mode = 'in'; auth.msg = T('au_set_ok'); } else auth.err = authErr(res);
+    return authOpen();
+  }
+  if (auth.mode === 'up') {
+    res = await sbCall('/auth/v1/signup' + back, { method: 'POST', body: { email, password: pw, data: { lang: state.lang } } });
+    auth.busy = false;
+    if (!res.ok) { auth.err = authErr(res); return authOpen(); }
+    if (!res.data.access_token) { // e-mail confirmation is on: the account exists, the session comes after the link is opened
+      const taken = res.data.identities && res.data.identities.length === 0;
+      if (taken) auth.err = T('au_e_exists'); else auth.msg = T('au_confirm', { email: esc(email) });
+      auth.mode = 'in'; return authOpen();
+    }
+  } else {
+    res = await sbCall('/auth/v1/token?grant_type=password', { method: 'POST', body: { email, password: pw } });
+    auth.busy = false;
+    if (!res.ok) { auth.err = authErr(res); return authOpen(); }
+  }
+  authStore(sesFrom(res.data)); authPaint(); closeModal(); syncPull();
+}
+const AUTH_ACT = {
+  acct() { auth.err = ''; auth.msg = ''; if (!authed() && auth.mode === 'setpw') auth.mode = 'in'; if (authed()) auth.mode = 'in'; authOpen(); },
+  auMode(b) { auth.mode = b.dataset.v; auth.err = ''; auth.msg = ''; authOpen(); },
+  auGoogle() { location.href = SB.url + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(siteUrl()); },
+  async auOut() { const tk = auth.ses && auth.ses.access_token; authStore(null); auth.ent = null; authPaint(); closeModal(); if (tk) sbCall('/auth/v1/logout?scope=local', { method: 'POST', token: tk }); },
+};
+function authBoot() { authLoad(); authPaint(); authConsumeHash().then(() => { if (authed()) syncPull(); }); }
+
 // ---------- App ----------
 const STORE = 'm9_state_v1';
 const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null, les: {}, days: [], hist: {}, last: null };
 const mem = { resetAsk: false, sendTimer: null };
 
-function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage may be unavailable */ } }
+function save() { if (typeof authOnSave === 'function') authOnSave(); try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* storage may be unavailable */ } }
 function load() { try { const s = JSON.parse(localStorage.getItem(STORE) || 'null'); if (s && typeof s === 'object') Object.assign(state, s); } catch (e) { } }
 
 // ---------- subjects: math (mat) and natural sciences (dab) ----------
@@ -3824,7 +4051,7 @@ function renderHeader(view) {
     st.hidden = false;
     st.innerHTML = T('steps').map((s, i) => `<li class="${i < stepOf ? 'done' : i === stepOf ? 'now' : ''}"><span class="sn">${i < stepOf ? '✓' : i + 1}</span><span class="sl">${s}</span></li>`).join('');
   }
-  $('#tagline').textContent = T('tagline');
+  $('#tagline').textContent = T('tagline'); authPaint();
   renderSide(view);
   const tc = $('#top-cta'); if (tc) { tc.textContent = T('top_cta'); tc.hidden = ['tests'].includes(view); }
   const bg = $('.burger'); if (bg) bg.setAttribute('aria-label', T('nav').menu);
@@ -4521,7 +4748,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -4568,6 +4795,7 @@ function ineqPreview(f) {
 
 document.addEventListener('submit', e => {
   const f = e.target;
+  if (f.id === 'auth-form') { e.preventDefault(); authSubmit(f); return; }
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
   const kind = f.dataset.actForm; if (!kind) return;
@@ -4630,6 +4858,7 @@ function boot() {
     }
   } catch (e) { }
   save();
+  authBoot(); // reads sign-in tokens from the address before the router replaces it
   window.addEventListener('hashchange', () => route());
   route();
   if (!ckGet()) ckShow();
