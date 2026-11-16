@@ -1594,6 +1594,7 @@ const I18N = {
       ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
       ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs. Vietni mitina GitHub Pages (GitHub, Inc.), kas tehniskiem nolūkiem apstrādā apmeklētāja IP adresi.'],
       ['Konts', 'Ja izveido kontu, glabājam tavu e-pastu, paroli šifrētā veidā (to neredzam) un tavu progresu, lai tas būtu pieejams arī citā ierīcē. Kontus un progresu glabā Supabase (apstrādātājs), serveri atrodas Eiropas Savienībā. Ja ieej ar Google, no Google saņemam tikai tavu e-pasta adresi un vārdu. Kontu vari lūgt dzēst, rakstot uz {email}.'],
+      ['Formulu lapa', 'Ja pieprasi bezmaksas formulu lapu, saglabājam tavu e-pastu, lomu (skolēns, vecāks vai skolotājs), valodu un to, no kurienes atnāci, un nosūtām saiti uz PDF. Jaunumus sūtām tikai tad, ja to atzīmēji; no tiem var atteikties, atbildot uz vēstuli. Pamats — tava piekrišana. Datus glabājam, līdz lūdz tos dzēst.'],
       ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos. Ja tu ļauj analītiku sīkdatņu logā, izmantojam Umami Cloud (Umami Software, serveri ES): tas skaita apmeklētās lapas un darbības (piemēram, „tests sākts”, „video atskaņots”), valodu, ierīces veidu un valsti, bez sīkdatnēm, bez IP adreses glabāšanas un bez tavas identitātes. Bez piekrišanas analītika netiek ielādēta. Reklāmas mērīšanu pašlaik neizmantojam. Izvēli var mainīt ar saiti „Sīkdatņu iestatījumi” vietnes apakšā.'],
       ['Tavas tiesības', 'Vari lūgt datus parādīt, labot vai dzēst, rakstot uz {email}. Sūdzību vari iesniegt Datu valsts inspekcijā (dvi.gov.lv).'],
       ['Ja tev nav 13 gadu', 'Lūdz vecākam aizpildīt pieteikumu.'],
@@ -1908,6 +1909,7 @@ const I18N = {
       ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
       ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком. Сайт размещён на GitHub Pages (GitHub, Inc.), который в технических целях обрабатывает IP-адрес посетителя.'],
       ['Кабинет', 'Если ты создаёшь кабинет, мы храним твой e-mail, пароль в зашифрованном виде (мы его не видим) и твой прогресс, чтобы он был доступен с другого устройства. Кабинеты и прогресс хранит Supabase (обработчик), серверы находятся в Европейском союзе. При входе через Google мы получаем от Google только твой e-mail и имя. Кабинет можно попросить удалить, написав на {email}.'],
+      ['Шпаргалка формул', 'Если ты запрашиваешь бесплатную шпаргалку, мы сохраняем твой e-mail, роль (ученик, родитель или учитель), язык и источник перехода и отправляем ссылку на PDF. Новости присылаем, только если ты это отметил; от них можно отписаться, ответив на письмо. Основание — твоё согласие. Данные храним, пока ты не попросишь их удалить.'],
       ['Куки и данные в браузере', 'Сайт не использует куки, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера. Если ты разрешишь аналитику в окне куки, мы используем Umami Cloud (Umami Software, серверы в ЕС): он считает посещённые страницы и действия (например, «тест начат», «видео запущено»), язык, тип устройства и страну — без куки, без хранения IP-адреса и без твоей личности. Без согласия аналитика не загружается. Измерение рекламы сейчас не используем. Выбор можно изменить по ссылке «Настройки куки» внизу сайта.'],
       ['Твои права', 'Можно попросить показать, исправить или удалить данные, написав на {email}. Жалобу можно подать в Государственную инспекцию данных (dvi.gov.lv).'],
       ['Если тебе нет 13 лет', 'Попроси родителя заполнить заявку.'],
@@ -3725,6 +3727,7 @@ function viewTests() {
   return `<section class="wrap pg"><div class="pg-h"><h1>${T('tests_h')}</h1><p>${T('tests_p')}</p></div>
     <div class="mc-grid">${card('mat')}${card('dab')}</div>
     ${mockCardHTML()}
+    <article class="tc"><div class="tc-h"><span class="tc-ic">ƒ</span><div><h2>${T('cheat_h')}</h2><p>${T('cheat_p')}</p></div></div><div class="row"><a class="btn btn-white" href="/formulu-lapa/${state.lang === 'ru' ? '?l=ru' : ''}">${T('cheat_btn')}${ARR}</a></div></article>
     <article class="tc soon">${LOCK}<div><h2>${T('t_soon_h')}</h2><p>${T('t_soon_p')}</p></div><em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em></article>
   </section>`;
 }
@@ -4172,7 +4175,7 @@ const LEGAL = {
     w_name: 'Vārds un uzvārds', w_email: 'E-pasts apstiprinājumam', w_contract: 'Kuru līgumu atsauc', w_contract_ph: 'Piemēram: abi priekšmeti, apmaksāts 20.01.2027., e-pasts maksājumā',
     w_confirm: 'Apstiprināt atteikumu', w_err: 'Lūdzu, aizpildi visus laukus un pārbaudi e-pastu.',
     w_ok_h: 'Atteikums saņemts', w_ok: 'Atteikums iesniegts {when}. Apstiprinājumu nosūtām uz {email}. Naudu atmaksāsim ne vēlāk kā 14 dienu laikā.',
-    f_terms: 'Lietošanas noteikumi', f_about: 'Par mums', f_articles: 'Raksti', terms_agree: 'Rezervējot tu piekrīti',
+    f_terms: 'Lietošanas noteikumi', f_about: 'Par mums', f_articles: 'Raksti', f_cheat: 'Formulu lapa (PDF)', cheat_h: 'Bezmaksas formulu lapa', cheat_p: 'Visas galvenās formulas matemātikā un dabaszinātnēs uz divām A4 lapām. Izdrukā un liec uz galda.', cheat_btn: 'Saņemt PDF', terms_agree: 'Rezervējot tu piekrīti',
   },
   ru: {
     terms_title: 'Условия использования',
@@ -4203,7 +4206,7 @@ const LEGAL = {
     w_name: 'Имя и фамилия', w_email: 'E-mail для подтверждения', w_contract: 'От какого договора отказываешься', w_contract_ph: 'Например: оба предмета, оплачено 20.01.2027, e-mail в платеже',
     w_confirm: 'Подтвердить отказ (Apstiprināt atteikumu)', w_err: 'Пожалуйста, заполни все поля и проверь e-mail.',
     w_ok_h: 'Отказ получен', w_ok: 'Отказ подан {when}. Подтверждение отправляем на {email}. Деньги вернём не позднее чем через 14 дней.',
-    f_terms: 'Условия использования', f_about: 'О нас', f_articles: 'Статьи', terms_agree: 'Бронируя, ты соглашаешься с документом',
+    f_terms: 'Условия использования', f_about: 'О нас', f_articles: 'Статьи', f_cheat: 'Шпаргалка формул (PDF)', cheat_h: 'Бесплатная шпаргалка формул', cheat_p: 'Все главные формулы по математике и естественным наукам на двух листах A4. Распечатай и положи на стол.', cheat_btn: 'Получить PDF', terms_agree: 'Бронируя, ты соглашаешься с документом',
   },
 };
 Object.assign(I18N.lv, LEGAL.lv); Object.assign(I18N.ru, LEGAL.ru);
@@ -4805,7 +4808,7 @@ function renderSide(view) {
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
     <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
-    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button> <a class="btn-link" href="/noteikumi/">${T('f_terms')}</a> <a class="btn-link" href="/par-mums/">${T('f_about')}</a> <a class="btn-link" href="/raksti/">${T('f_articles')}</a> <button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button> <a class="btn-link" href="/noteikumi/">${T('f_terms')}</a> <a class="btn-link" href="/par-mums/">${T('f_about')}</a> <a class="btn-link" href="/raksti/">${T('f_articles')}</a> <a class="btn-link" href="/formulu-lapa/${state.lang === 'ru' ? '?l=ru' : ''}">${T('f_cheat')}</a> <button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button>
     ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
       : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
 }
