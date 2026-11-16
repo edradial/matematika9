@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png"><link rel="apple-touch-icon" href="/icons/apple-touch-icon.png"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#2448C4">
 <title>Eksāmens 9 — matemātika un dabaszinātnes 9. klasei</title>
 <meta name="description" content="Bezmaksas testi 9. klases eksāmeniem matemātikā un dabaszinātnēs: rezultāts pa tēmām, video nodarbības un uzdevumi ar tūlītēju pārbaudi. Latviešu un krievu valodā.">
 <meta property="og:title" content="Uzzini, kuras tēmas tev jāatkārto pirms 9. klases eksāmeniem">
@@ -4171,7 +4172,7 @@ const LEGAL = {
     w_name: 'Vārds un uzvārds', w_email: 'E-pasts apstiprinājumam', w_contract: 'Kuru līgumu atsauc', w_contract_ph: 'Piemēram: abi priekšmeti, apmaksāts 20.01.2027., e-pasts maksājumā',
     w_confirm: 'Apstiprināt atteikumu', w_err: 'Lūdzu, aizpildi visus laukus un pārbaudi e-pastu.',
     w_ok_h: 'Atteikums saņemts', w_ok: 'Atteikums iesniegts {when}. Apstiprinājumu nosūtām uz {email}. Naudu atmaksāsim ne vēlāk kā 14 dienu laikā.',
-    f_terms: 'Lietošanas noteikumi', f_about: 'Par mums', terms_agree: 'Rezervējot tu piekrīti',
+    f_terms: 'Lietošanas noteikumi', f_about: 'Par mums', f_articles: 'Raksti', terms_agree: 'Rezervējot tu piekrīti',
   },
   ru: {
     terms_title: 'Условия использования',
@@ -4202,7 +4203,7 @@ const LEGAL = {
     w_name: 'Имя и фамилия', w_email: 'E-mail для подтверждения', w_contract: 'От какого договора отказываешься', w_contract_ph: 'Например: оба предмета, оплачено 20.01.2027, e-mail в платеже',
     w_confirm: 'Подтвердить отказ (Apstiprināt atteikumu)', w_err: 'Пожалуйста, заполни все поля и проверь e-mail.',
     w_ok_h: 'Отказ получен', w_ok: 'Отказ подан {when}. Подтверждение отправляем на {email}. Деньги вернём не позднее чем через 14 дней.',
-    f_terms: 'Условия использования', f_about: 'О нас', terms_agree: 'Бронируя, ты соглашаешься с документом',
+    f_terms: 'Условия использования', f_about: 'О нас', f_articles: 'Статьи', terms_agree: 'Бронируя, ты соглашаешься с документом',
   },
 };
 Object.assign(I18N.lv, LEGAL.lv); Object.assign(I18N.ru, LEGAL.ru);
@@ -4804,7 +4805,7 @@ function renderSide(view) {
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
     <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
-    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button> <a class="btn-link" href="/noteikumi/">${T('f_terms')}</a> <a class="btn-link" href="/par-mums/">${T('f_about')}</a> <button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button> <a class="btn-link" href="/noteikumi/">${T('f_terms')}</a> <a class="btn-link" href="/par-mums/">${T('f_about')}</a> <a class="btn-link" href="/raksti/">${T('f_articles')}</a> <button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button>
     ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
       : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
 }
