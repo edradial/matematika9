@@ -1282,6 +1282,9 @@ const CONFIG = {
   examDate: '2027-05-25',
   launchDate: '2027-01-15',
   earlyDiscount: 50,          // % off every plan (first month of the monthly one) for reservations made before launchDate
+  umamiId: '',                 // Umami Cloud website ID (analytics); empty = no analytics
+  sellerRegNo: '',             // VID registration number (saimnieciskās darbības veicējs); shown in the terms once filled
+  sellerAddress: '',           // address shown in the terms (not the personal code)
   controller: 'Eduards Krivko', // who collects the data: name, surname or company
   contactEmail: 'ai.skolens@gmail.com', // where people can ask to delete their data
 };
@@ -1524,7 +1527,7 @@ const I18N = {
       ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
       ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs. Vietni mitina GitHub Pages (GitHub, Inc.), kas tehniskiem nolūkiem apstrādā apmeklētāja IP adresi.'],
       ['Konts', 'Ja izveido kontu, glabājam tavu e-pastu, paroli šifrētā veidā (to neredzam) un tavu progresu, lai tas būtu pieejams arī citā ierīcē. Kontus un progresu glabā Supabase (apstrādātājs), serveri atrodas Eiropas Savienībā. Ja ieej ar Google, no Google saņemam tikai tavu e-pasta adresi un vārdu. Kontu vari lūgt dzēst, rakstot uz {email}.'],
-      ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, analītiku vai reklāmas rīkus, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos. Ja nākotnē pievienosim analītiku vai reklāmas mērīšanu, tās ieslēgsies tikai pēc tavas piekrišanas sīkdatņu logā; izvēli var mainīt ar saiti „Sīkdatņu iestatījumi” vietnes apakšā.'],
+      ['Sīkdatnes un dati pārlūkā', 'Vietne neizmanto sīkdatnes, un fonti tiek ielādēti no mūsu servera. Tavs progress (testa atbildes, atrisinātie uzdevumi, pabeigtās nodarbības, valoda) tiek saglabāts tikai tavā pārlūkā (localStorage), jo bez tā vietne nevar darboties. Uz mūsu serveri tas netiek sūtīts. To var izdzēst ar pogu „Sākt no jauna” vietnes apakšā vai pārlūka iestatījumos. Ja tu ļauj analītiku sīkdatņu logā, izmantojam Umami Cloud (Umami Software, serveri ES): tas skaita apmeklētās lapas un darbības (piemēram, „tests sākts”, „video atskaņots”), valodu, ierīces veidu un valsti, bez sīkdatnēm, bez IP adreses glabāšanas un bez tavas identitātes. Bez piekrišanas analītika netiek ielādēta. Reklāmas mērīšanu pašlaik neizmantojam. Izvēli var mainīt ar saiti „Sīkdatņu iestatījumi” vietnes apakšā.'],
       ['Tavas tiesības', 'Vari lūgt datus parādīt, labot vai dzēst, rakstot uz {email}. Sūdzību vari iesniegt Datu valsts inspekcijā (dvi.gov.lv).'],
       ['Ja tev nav 13 gadu', 'Lūdz vecākam aizpildīt pieteikumu.'],
     ],
@@ -1838,7 +1841,7 @@ const I18N = {
       ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
       ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком. Сайт размещён на GitHub Pages (GitHub, Inc.), который в технических целях обрабатывает IP-адрес посетителя.'],
       ['Кабинет', 'Если ты создаёшь кабинет, мы храним твой e-mail, пароль в зашифрованном виде (мы его не видим) и твой прогресс, чтобы он был доступен с другого устройства. Кабинеты и прогресс хранит Supabase (обработчик), серверы находятся в Европейском союзе. При входе через Google мы получаем от Google только твой e-mail и имя. Кабинет можно попросить удалить, написав на {email}.'],
-      ['Куки и данные в браузере', 'Сайт не использует куки, аналитику или рекламные инструменты, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера. Если в будущем мы добавим аналитику или измерение рекламы, они включатся только после твоего согласия в окне куки; выбор можно изменить по ссылке «Настройки куки» внизу сайта.'],
+      ['Куки и данные в браузере', 'Сайт не использует куки, а шрифты загружаются с нашего сервера. Твой прогресс (ответы теста, решённые задачи, пройденные уроки, язык) хранится только в твоём браузере (localStorage), без этого сайт не может работать. На наш сервер он не отправляется. Его можно удалить кнопкой «Начать заново» внизу сайта или в настройках браузера. Если ты разрешишь аналитику в окне куки, мы используем Umami Cloud (Umami Software, серверы в ЕС): он считает посещённые страницы и действия (например, «тест начат», «видео запущено»), язык, тип устройства и страну — без куки, без хранения IP-адреса и без твоей личности. Без согласия аналитика не загружается. Измерение рекламы сейчас не используем. Выбор можно изменить по ссылке «Настройки куки» внизу сайта.'],
       ['Твои права', 'Можно попросить показать, исправить или удалить данные, написав на {email}. Жалобу можно подать в Государственную инспекцию данных (dvi.gov.lv).'],
       ['Если тебе нет 13 лет', 'Попроси родителя заполнить заявку.'],
     ],
@@ -3740,6 +3743,24 @@ const CONSENT_ACT = {
   ckSettings() { ckShow(true); },
 };
 
+// ---------- analytics (Umami Cloud, EU, cookieless) — loaded only after the visitor allows analytics ----------
+const AN = { q: [], ready: false, first: true };
+function anLoad() {
+  if (!CONFIG.umamiId || AN.loading) return; AN.loading = true;
+  const s = document.createElement('script'); s.defer = true; s.src = 'https://cloud.umami.is/script.js';
+  s.setAttribute('data-website-id', CONFIG.umamiId); s.setAttribute('data-auto-track', 'false'); s.setAttribute('data-do-not-track', 'true');
+  s.onload = () => { AN.ready = true; AN.q.splice(0).forEach(f => { try { f(); } catch (e) { } }); };
+  document.head.appendChild(s);
+}
+function anRun(f) { if (!CONFIG.umamiId) return; if (AN.ready && window.umami) { try { f(); } catch (e) { } } else if (AN.q.length < 50) AN.q.push(f); }
+// page view for the hash router: /sakums, /tests, /rezultati…; the first one keeps the query string so utm_* tags are counted
+function anPage(view) {
+  const url = '/' + view + (AN.first ? location.search : ''); AN.first = false;
+  anRun(() => window.umami.track(p => ({ ...p, url, title: view })));
+}
+function track(name, data) { anRun(() => window.umami.track(name, Object.assign({ lang: state.lang, subj: state.subj }, data || {}))); }
+onConsent('analytics', anLoad);
+
 // ---------- accounts: e-mail + password and Google sign-in (Supabase Auth), progress kept on the server ----------
 // The publishable key is meant to be public: every table is protected by row level security.
 const SB = { url: 'https://njpdxjoegzzjgdcsqhim.supabase.co', key: 'sb_publishable_4g80feJhTN0y74jmqZe6MQ_xRsyFiSb', google: true };
@@ -3932,6 +3953,7 @@ async function authSubmit(f) {
     res = await sbCall('/auth/v1/signup' + back, { method: 'POST', body: { email, password: pw, data: { lang: state.lang } } });
     auth.busy = false;
     if (!res.ok) { auth.err = authErr(res); return authOpen(); }
+    track('signup', { method: 'email' });
     if (!res.data.access_token) { // e-mail confirmation is on: the account exists, the session comes after the link is opened
       const taken = res.data.identities && res.data.identities.length === 0;
       if (taken) auth.err = T('au_e_exists'); else auth.msg = T('au_confirm', { email: esc(email) });
@@ -3947,7 +3969,7 @@ async function authSubmit(f) {
 const AUTH_ACT = {
   acct() { auth.err = ''; auth.msg = ''; if (authed()) { location.hash = 'konts'; return; } if (auth.mode === 'setpw') auth.mode = 'in'; authOpen(); },
   auMode(b) { auth.mode = b.dataset.v; auth.err = ''; auth.msg = ''; authOpen(); },
-  auGoogle() { location.href = SB.url + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(siteUrl()); },
+  auGoogle() { track('signup', { method: 'google' }); location.href = SB.url + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(siteUrl()); },
   async auOut() { const tk = auth.ses && auth.ses.access_token; authStore(null); auth.ent = null; authPaint(); closeModal(); if (typeof rerender === 'function') rerender(); if (tk) sbCall('/auth/v1/logout?scope=local', { method: 'POST', token: tk }); },
 };
 function authBoot() { authLoad(); authPaint(); authConsumeHash().then(() => { if (authed()) syncPull(); }); }
@@ -3989,7 +4011,7 @@ function viewAccount() {
   const ld = state.lead || {}, u = auth.ses.user, name = ld.name || '';
   const ent = (auth.ent || []).slice().sort((a, b) => (a.valid_until < b.valid_until ? 1 : -1))[0];
   const res = state.reserve || ['mat', 'dab'].map(s => subjState(s).reserve).find(Boolean);
-  const plan = ent ? `<p class="acct-badge paid">${T('k_plan_paid')}</p><p>${T('k_plan_until', { date: dateLong(ent.valid_until.slice(0, 10)) })}</p>`
+  const plan = ent ? `<p class="acct-badge paid">${T('k_plan_paid')}</p><p>${T('k_plan_until', { date: dateLong(ent.valid_until.slice(0, 10)) })}</p><p><button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button></p>`
     : res ? `<p class="acct-badge res">${T('k_res', { p: `${T('k_plan_names')[res.plan] || ''} · ${eur(res.price)} €` })}</p><p class="muted">${T('k_res_p', { date: dateShort(CONFIG.launchDate), email: esc(u.email || ld.email || ''), d: CONFIG.earlyDiscount })}</p>`
     : `<p class="acct-badge">${T('k_plan_free')}</p><p class="muted">${T('k_plan_free_p')}</p><div class="row"><a class="btn btn-primary" href="#sakums" data-act="go" data-sec="cenas">${T('k_choose')}${ARR}</a><a class="btn-link" href="#sakums" data-act="go" data-sec="atskiriba">${T('k_compare')}</a></div>`;
   const subj = s => {
@@ -4047,6 +4069,100 @@ Object.assign(AUTH_ACT, {
     rerender();
   },
 });
+
+// ---------- terms of use, about page, withdrawal ("Atteikties no līguma") ----------
+// Seller details: fill CONFIG.sellerRegNo and CONFIG.sellerAddress (i18n.js) once registered with VID; empty lines are hidden.
+const LEGAL = {
+  updated: '2026-11-16',
+  lv: {
+    terms_title: 'Lietošanas noteikumi',
+    terms: [
+      ['1. Pakalpojuma sniedzējs', 'Vietni www.eksamens9.lv un kursu “Eksāmens 9” nodrošina {controller}{regno}{address}. Saziņai: {email}.'],
+      ['2. Pakalpojums', 'Eksāmens 9 ir tiešsaistes kurss gatavošanai 9. klases centralizētajiem eksāmeniem matemātikā un dabaszinātnēs latviešu un krievu valodā. Bez maksas pieejams diagnostikas tests un viena demo nodarbība katrā tēmā. Pilnajā kursā ir video nodarbības, uzdevumi ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs. Kurss sākas 2027. gada 15. janvārī; startā katrā tēmā ir 2–3 nodarbības, jaunas tiek pievienotas katru nedēļu, visas nodarbības būs pieejamas līdz 2027. gada martam. Lai lietotu kursu, vajag pārlūku ar interneta pieslēgumu.'],
+      ['3. Konts', 'Kontu var izveidot ar e-pastu un paroli vai ar Google kontu. Konts ir personisks: piekļuvi nedrīkst nodot citiem. Ja skolēnam nav 13 gadu, kontu izveido un pakalpojumu iegādājas vecāks vai likumiskais pārstāvis. Paroli glabā drošībā pats lietotājs.'],
+      ['4. Cenas un apmaksa', 'Cenas norādītas eiro. Pakalpojuma sniedzējs nav PVN maksātājs, tāpēc PVN cenā nav iekļauts. Varianti: pa mēnešiem (viens priekšmets), līdz eksāmenam (viens priekšmets, vienreizējs maksājums) un abi priekšmeti līdz eksāmeniem (vienreizējs maksājums). Aktuālās cenas ir norādītas vietnē pirms apmaksas. Līdz 2027. gada 15. janvārim vietu var rezervēt bez maksas; rezervācija ne pie kā nesaista. Rezervētājiem pirms starta uz e-pastu nosūtām maksājuma saiti ar −50 % atlaidi: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Apmaksa notiek ar maksājuma karti caur drošu maksājumu pakalpojumu; kartes datus mēs neredzam un neglabājam.'],
+      ['5. Ikmēneša abonements', 'Ikmēneša abonements automātiski atjaunojas katru mēnesi, līdz to atceļ. Atcelt var jebkurā brīdī kontā vai rakstot uz {email}; piekļuve saglabājas līdz apmaksātā mēneša beigām, un turpmāki maksājumi netiek iekasēti. Mēnesi skaita no dienas, kad tiek atvērta pirmā apmaksātā tēma.'],
+      ['6. Atteikuma tiesības un naudas atgriešanas garantija', 'Tev ir tiesības 14 dienu laikā no apmaksas dienas atteikties no līguma, nenorādot iemeslu. Papildus likumā noteiktajam mēs atmaksājam visu summu arī tad, ja šajās 14 dienās jau esi sācis lietot kursu. Lai atteiktos, izmanto funkciju “Atteikties no līguma” vietnes apakšā vai savā kontā, vai nosūti paziņojumu uz {email}. Pēc atteikuma uz e-pastu nosūtām apstiprinājumu ar atteikuma saturu, datumu un laiku. Naudu atmaksājam ne vēlāk kā 14 dienu laikā, izmantojot to pašu maksājuma veidu, un piekļuve pilnajam kursam tiek slēgta.'],
+      ['7. Kvalitāte un sūdzības', 'Mēs rūpējamies, lai saturs atbilstu VIAA 9. klases eksāmenu programmām un būtu bez kļūdām. Ja pamani kļūdu vai pakalpojums nedarbojas, kā solīts, raksti, izmantojot pogu “Ziņot par kļūdu” vai uz {email}. Uz sūdzībām atbildam 15 dienu laikā. Uz digitālo saturu attiecas normatīvajos aktos noteiktās tiesības uz atbilstību līgumam.'],
+      ['8. Ko kurss negarantē', 'Kurss palīdz sagatavoties, bet eksāmena rezultāts ir atkarīgs no paša skolēna darba. Testa rezultāts vietnē nav eksāmena vērtējums. Mēs neatbildam par zaudējumiem, kas radušies, ja vietne īslaicīgi nav pieejama tehnisku iemeslu dēļ, bet darām visu, lai šādi pārtraukumi būtu reti un īsi.'],
+      ['9. Autortiesības', 'Video, uzdevumi, skaidrojumi un dizains pieder pakalpojuma sniedzējam vai tiek izmantoti ar atļauju. Tos drīkst izmantot savām mācībām, bet nedrīkst kopēt, publicēt, pārdot vai izplatīt citiem bez rakstiskas atļaujas. Eksāmenu paraugi un oficiālie dati pieder to autoriem (VIAA).'],
+      ['10. Personas dati', 'Kā apstrādājam datus, aprakstīts Privātuma politikā: www.eksamens9.lv/privatums/.'],
+      ['11. Strīdu risināšana', 'Strīdus risinām sarunu ceļā. Ja vienoties neizdodas, patērētājs var vērsties Patērētāju tiesību aizsardzības centrā (www.ptac.gov.lv), tostarp Patērētāju strīdu risināšanas komisijā, vai tiesā Latvijas Republikā. Līgumam piemēro Latvijas Republikas tiesību aktus.'],
+      ['12. Izmaiņas', 'Noteikumus varam mainīt, piemēram, pievienojot jaunas funkcijas. Par būtiskām izmaiņām informējam kontā vai e-pastā vismaz 14 dienas iepriekš. Jau apmaksātam periodam piemēro noteikumus, kas bija spēkā apmaksas brīdī.'],
+    ],
+    terms_upd: 'Spēkā no {date}.',
+    about_title: 'Par mums',
+    about: [
+      ['Kas ir Eksāmens 9', 'Eksāmens 9 ir neliels Latvijas projekts, kas palīdz 9. klases skolēniem sagatavoties centralizētajiem eksāmeniem matemātikā un jaunajam eksāmenam dabaszinātnēs. Kurss ir latviešu un krievu valodā, bet termini vienmēr ir latviešu valodā, kā eksāmenā.'],
+      ['Kāpēc mēs to darām', 'Daudzi skolēni nezina, kuras tēmas viņiem jāatkārto, un privātstundas maksā 15–30 € stundā. Mēs gribam, lai katrs varētu bez maksas uzzināt savus robus un pēc tam mācīties savā tempā par pieejamu cenu.'],
+      ['Kā veidojam saturu', 'Tēmas un uzdevumi balstīti uz VIAA 9. klases eksāmenu programmām, paraugiem un iepriekšējo gadu eksāmenu uzdevumiem. Materiālus sagatavojam ar digitālu rīku, tostarp mākslīgā intelekta, palīdzību, un katru uzdevumu pārbaudām: atbildi, risinājumu un terminus. Ja tomēr pamani kļūdu, nospied “Ziņot par kļūdu” pie uzdevuma, un mēs to izlabosim.'],
+      ['Kas to veido', 'Projektu veido un par to atbild {controller}. Saziņai: {email}.'],
+    ],
+    w_link: 'Atteikties no līguma', w_h: 'Atteikties no līguma',
+    w_p: 'Atteikties no pilnā kursa vari 14 dienu laikā no apmaksas. Aizpildi laukus un nospied “Apstiprināt atteikumu”. Apstiprinājumu nosūtīsim uz norādīto e-pastu, un naudu atmaksāsim 14 dienu laikā.',
+    w_name: 'Vārds un uzvārds', w_email: 'E-pasts apstiprinājumam', w_contract: 'Kuru līgumu atsauc', w_contract_ph: 'Piemēram: abi priekšmeti, apmaksāts 20.01.2027., e-pasts maksājumā',
+    w_confirm: 'Apstiprināt atteikumu', w_err: 'Lūdzu, aizpildi visus laukus un pārbaudi e-pastu.',
+    w_ok_h: 'Atteikums saņemts', w_ok: 'Atteikums iesniegts {when}. Apstiprinājumu nosūtām uz {email}. Naudu atmaksāsim ne vēlāk kā 14 dienu laikā.',
+    f_terms: 'Lietošanas noteikumi', f_about: 'Par mums', terms_agree: 'Rezervējot tu piekrīti',
+  },
+  ru: {
+    terms_title: 'Условия использования',
+    terms: [
+      ['1. Кто оказывает услугу', 'Сайт www.eksamens9.lv и курс «Eksāmens 9» предоставляет {controller}{regno}{address}. Связь: {email}.'],
+      ['2. Услуга', 'Eksāmens 9 — онлайн-курс подготовки к централизованным экзаменам 9 класса по математике и естественным наукам на латышском и русском языках. Бесплатно доступны диагностический тест и один демо-урок в каждой теме. В полный курс входят видеоуроки, задачи с проверкой, задачи как на экзамене и ИИ-помощник. Курс стартует 15 января 2027 года; на старте в каждой теме 2–3 урока, новые добавляются каждую неделю, все уроки будут доступны к марту 2027 года. Для курса нужен браузер с доступом в интернет.'],
+      ['3. Кабинет', 'Кабинет можно создать по e-mail и паролю или через аккаунт Google. Кабинет личный: передавать доступ другим нельзя. Если ученику нет 13 лет, кабинет создаёт и услугу покупает родитель или законный представитель. За сохранность пароля отвечает пользователь.'],
+      ['4. Цены и оплата', 'Цены указаны в евро. Поставщик услуги не является плательщиком НДС, поэтому НДС в цену не входит. Варианты: помесячно (один предмет), до экзамена (один предмет, разовый платёж) и оба предмета до экзаменов (разовый платёж). Актуальные цены указаны на сайте перед оплатой. До 15 января 2027 года место можно забронировать бесплатно; бронь ни к чему не обязывает. Забронировавшим перед стартом присылаем на e-mail ссылку на оплату со скидкой −50 %: для помесячного варианта на первый месяц, для разовых — на всю сумму. Оплата картой через защищённый платёжный сервис; данные карты мы не видим и не храним.'],
+      ['5. Помесячная подписка', 'Помесячная подписка автоматически продлевается каждый месяц, пока её не отменят. Отменить можно в любой момент в кабинете или написав на {email}; доступ сохраняется до конца оплаченного месяца, дальнейшие платежи не списываются. Месяц отсчитывается с того дня, когда откроется первая оплаченная тема.'],
+      ['6. Право отказа и гарантия возврата денег', 'Ты вправе в течение 14 дней со дня оплаты отказаться от договора без объяснения причин. Сверх требований закона мы возвращаем всю сумму, даже если за эти 14 дней ты уже начал пользоваться курсом. Чтобы отказаться, воспользуйся функцией «Atteikties no līguma / Отказаться от договора» внизу сайта или в кабинете, либо напиши на {email}. После отказа мы присылаем на e-mail подтверждение с содержанием отказа, датой и временем. Деньги возвращаем не позднее чем через 14 дней тем же способом оплаты, доступ к полному курсу закрывается.'],
+      ['7. Качество и жалобы', 'Мы следим, чтобы материалы соответствовали программам экзаменов VIAA для 9 класса и не содержали ошибок. Если заметил ошибку или услуга работает не так, как обещано, напиши через кнопку «Сообщить об ошибке» или на {email}. На жалобы отвечаем в течение 15 дней. На цифровой контент распространяются установленные законом права на соответствие договору.'],
+      ['8. Что курс не гарантирует', 'Курс помогает подготовиться, но результат экзамена зависит от работы самого ученика. Результат теста на сайте не является оценкой за экзамен. Мы не отвечаем за убытки из-за временной недоступности сайта по техническим причинам, но делаем всё, чтобы такие перерывы были редкими и короткими.'],
+      ['9. Авторские права', 'Видео, задачи, объяснения и дизайн принадлежат поставщику услуги или используются с разрешения. Их можно использовать для своей учёбы, но нельзя копировать, публиковать, продавать или распространять без письменного разрешения. Образцы экзаменов и официальные данные принадлежат их авторам (VIAA).'],
+      ['10. Персональные данные', 'Как мы обрабатываем данные, описано в Политике конфиденциальности: www.eksamens9.lv/privatums/.'],
+      ['11. Решение споров', 'Споры решаем путём переговоров. Если договориться не удалось, потребитель может обратиться в Центр защиты прав потребителей (www.ptac.gov.lv), в том числе в Комиссию по решению потребительских споров, или в суд Латвийской Республики. К договору применяется право Латвийской Республики.'],
+      ['12. Изменения', 'Мы можем менять условия, например при добавлении новых функций. О существенных изменениях сообщаем в кабинете или по e-mail не менее чем за 14 дней. К уже оплаченному периоду применяются условия, действовавшие в момент оплаты.'],
+    ],
+    terms_upd: 'Действуют с {date}.',
+    about_title: 'О нас',
+    about: [
+      ['Что такое Eksāmens 9', 'Eksāmens 9 — небольшой латвийский проект, который помогает девятиклассникам подготовиться к централизованным экзаменам по математике и к новому экзамену по естественным наукам. Курс на латышском и русском, а термины всегда на латышском, как на экзамене.'],
+      ['Зачем мы это делаем', 'Многие ученики не знают, какие темы им нужно повторить, а репетитор стоит 15–30 € в час. Мы хотим, чтобы каждый мог бесплатно узнать свои пробелы и потом заниматься в своём темпе за доступную цену.'],
+      ['Как мы готовим материалы', 'Темы и задачи основаны на программах экзаменов VIAA для 9 класса, образцах и заданиях экзаменов прошлых лет. Материалы готовим с помощью цифровых инструментов, в том числе искусственного интеллекта, и проверяем каждую задачу: ответ, решение и термины. Если всё же заметишь ошибку, нажми «Сообщить об ошибке» у задачи, и мы её исправим.'],
+      ['Кто это делает', 'Проект делает и отвечает за него {controller}. Связь: {email}.'],
+    ],
+    w_link: 'Отказаться от договора', w_h: 'Отказаться от договора',
+    w_p: 'Отказаться от полного курса можно в течение 14 дней со дня оплаты. Заполни поля и нажми «Подтвердить отказ». Подтверждение пришлём на указанный e-mail, деньги вернём в течение 14 дней.',
+    w_name: 'Имя и фамилия', w_email: 'E-mail для подтверждения', w_contract: 'От какого договора отказываешься', w_contract_ph: 'Например: оба предмета, оплачено 20.01.2027, e-mail в платеже',
+    w_confirm: 'Подтвердить отказ (Apstiprināt atteikumu)', w_err: 'Пожалуйста, заполни все поля и проверь e-mail.',
+    w_ok_h: 'Отказ получен', w_ok: 'Отказ подан {when}. Подтверждение отправляем на {email}. Деньги вернём не позднее чем через 14 дней.',
+    f_terms: 'Условия использования', f_about: 'О нас', terms_agree: 'Бронируя, ты соглашаешься с документом',
+  },
+};
+Object.assign(I18N.lv, LEGAL.lv); Object.assign(I18N.ru, LEGAL.ru);
+
+function withdrawHTML() {
+  const ld = state.lead || {}, email = esc((typeof auth !== 'undefined' && auth.ses && auth.ses.user && auth.ses.user.email) || ld.email || '');
+  return `<div class="modal-card au" role="dialog" aria-modal="true" aria-labelledby="w-h"><div class="modal-top"><h2 id="w-h">${T('w_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div>
+    <form id="withdraw-form" class="au-form" novalidate><p class="muted">${T('w_p')}</p>
+      <div class="field"><label for="w-name">${T('w_name')}</label><input id="w-name" autocomplete="name" maxlength="80" required></div>
+      <div class="field"><label for="w-email">${T('w_email')}</label><input id="w-email" type="email" autocomplete="email" maxlength="120" value="${email}" required></div>
+      <div class="field"><label for="w-contract">${T('w_contract')}</label><textarea id="w-contract" rows="3" maxlength="400" placeholder="${T('w_contract_ph')}" required></textarea></div>
+      <p class="au-err" id="w-err" role="alert" hidden>${T('w_err')}</p>
+      <button class="btn btn-primary btn-lg wide" type="submit">${T('w_confirm')}</button>
+      <p class="fine"><a href="/noteikumi/">${T('f_terms')}</a></p>
+    </form></div>`;
+}
+function submitWithdraw(f) {
+  const name = f.querySelector('#w-name').value.trim(), email = f.querySelector('#w-email').value.trim(), contract = f.querySelector('#w-contract').value.trim();
+  if (name.length < 3 || contract.length < 3 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { f.querySelector('#w-err').hidden = false; return; }
+  track('withdraw');
+  const at = new Date(), when = at.toLocaleString(state.lang === 'ru' ? 'ru-RU' : 'lv-LV', { dateStyle: 'long', timeStyle: 'short' });
+  const payload = { id: uid(), stage: 'withdraw', lang: state.lang, name, email, contract, at: at.toISOString(), user: (typeof auth !== 'undefined' && auth.ses && auth.ses.user && auth.ses.user.id) || '' };
+  if (CONFIG.endpoint) { try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { } }
+  $('#modal .modal-card').innerHTML = `<div class="modal-top"><h2>${T('w_ok_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><p>${T('w_ok', { when: esc(when), email: esc(email) })}</p><button type="button" class="btn btn-primary" data-act="close-modal">${T('close')}</button>`;
+}
+const LEGAL_ACT = {
+  withdraw() { const m = $('#modal'); m.innerHTML = withdrawHTML(); m.hidden = false; const n = $('#w-name'); if (n) n.focus(); },
+};
 
 // ---------- App ----------
 const STORE = 'm9_state_v1';
@@ -4211,7 +4327,7 @@ function renderSide(view) {
 function renderFooter() {
   $('#footer').innerHTML = `<div class="wrap foot-in">
     <p><b>${CONFIG.brand}</b> · ${T('footer_note')} <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
-    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">${T('f_exams')}</a> <button type="button" class="btn-link" data-act="privacy">${T('f_privacy')}</button> <button type="button" class="btn-link" data-act="ckSettings">${T('f_cookies')}</button> <button type="button" class="btn-link" data-act="report">${T('f_report')}</button> <a class="btn-link" href="/noteikumi/">${T('f_terms')}</a> <a class="btn-link" href="/par-mums/">${T('f_about')}</a> <button type="button" class="btn-link" data-act="withdraw">${T('w_link')}</button>
     ${mem.resetAsk ? `<span class="reset-q">${T('reset_q')} <button type="button" class="btn-link danger" data-act="reset-yes">${T('yes')}</button> <button type="button" class="btn-link" data-act="reset-no">${T('no')}</button></span>`
       : `<button type="button" class="btn-link" data-act="reset">${T('footer_reset')}</button>`}</p></div>`;
 }
@@ -4629,7 +4745,7 @@ function viewSub() {
         ${both ? `<p class="deal">${T('plan_both_save', { s: eur(2 * CONFIG.priceExam - CONFIG.priceBoth) })}</p>` : ''}
         <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
         ${link ? `<a class="btn btn-primary btn-lg wide" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p: eur(p) }) : T('sub_pay', { p: eur(p) })}</a>`
-          : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')}</p>`}
+          : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')} ${T('terms_agree')} <a href="/noteikumi/">${T('f_terms')}</a>.</p>`}
       </aside>
     </div>
     <div class="sub-cmp"><h2>${T('cmp_h')}</h2>${compareHTML()}</div>
@@ -4679,6 +4795,7 @@ function route(keepScroll = false) {
   window.scrollTo(0, keepScroll ? y : 0);
   stickyCta();
   motion(keepScroll);
+  if (!keepScroll) anPage(want);
 }
 // phone-only bottom CTA: shown once the hero buttons scroll away, hidden again at the final call to action
 let ctaObs = null;
@@ -4794,9 +4911,10 @@ const ACT = {
   'side-open'() { document.body.classList.add('side-open'); $('#side-scrim').hidden = false; const x = $('.side-x'); if (x) x.focus(); },
   'side-close'() { document.body.classList.remove('side-open'); $('#side-scrim').hidden = true; },
   popTab(b) { mem.pop = b.dataset.v; rerender(); },
-  topic(b) { setSubject(b.dataset.s); location.hash = 'demo-' + b.dataset.v; },
+  topic(b) { setSubject(b.dataset.s); location.hash = 'demo-' + b.dataset.v; track('lesson_open', { topic: b.dataset.v }); },
   toSubj(b, e) { e.preventDefault(); const el = $('#prieksmeti'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
   heroPlay(b) {
+    track('video_play', { where: (b && b.dataset.vid) || 'hero' });
     const vid = $('#' + ((b && b.dataset.vid) || 'hero-video')); if (!vid) return;
     vid.controls = true; vid.closest('.hero2-vid').classList.add('playing'); vid.play().catch(() => {});
     if (window.matchMedia('(max-width: 860px)').matches) vid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -4807,6 +4925,7 @@ const ACT = {
     $('#sample-fb').innerHTML = o.ok ? `<div class="good"><b>${T('right')}</b> ${L(d.explain)}</div>` : `<div class="bad">${L(o.why)}</div>`;
   },
   ans(b) {
+    if (state.idx === 0 && state.answers[0] == null) track('test_start');
     state.answers[state.idx] = +b.dataset.i; save();
     document.querySelectorAll('.qcard [data-act="ans"]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
     const nx = $('[data-act="tnext"]'); if (nx) { nx.disabled = false; nx.focus({ preventScroll: true }); }
@@ -4815,7 +4934,7 @@ const ACT = {
   tnext() {
     if (state.answers[state.idx] == null) return;
     if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
-    state.done = true; save(); pushHist();
+    state.done = true; save(); pushHist(); track('test_finish', { score: results().score });
     if (!state.lead) { location.hash = 'pieteikums'; return; }
     sendResults();
     location.hash = 'rezultati';
@@ -4845,7 +4964,7 @@ const ACT = {
     const topics = plan === 'both' ? [...MAT.TOPICS, ...DAB.TOPICS].map(t => t.id) : TOPICS.map(t => t.id);
     const p = deal(planPrice(plan));
     state.reserve = { topics: topics.slice(), price: p, plan, subj: state.subj, at: new Date().toISOString() }; save();
-    send('reserve', { topics, price: p, plan, subj: state.subj });
+    send('reserve', { topics, price: p, plan, subj: state.subj }); track('reserve', { plan, price: p });
     location.hash = 'paldies';
   },
   checkout() {
@@ -4853,6 +4972,7 @@ const ACT = {
     send('checkout', { subj: state.subj, plan, topics: TOPICS.map(t => t.id), price: deal(planPrice(plan)) });
   },
   playVid(b) {
+    track('video_play', { where: 'tile', topic: b.dataset.t });
     const id = b.dataset.t, v = `video/${id}-${state.lang}`, m = $('#modal');
     m.innerHTML = `<div class="modal-card vmodal" role="dialog" aria-modal="true" aria-label="${esc(L(topicById(id)))}"><div class="modal-top"><h2>${L(topicById(id))}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><video controls autoplay playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video></div>`;
     m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus();
@@ -4860,7 +4980,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -4907,6 +5027,7 @@ function ineqPreview(f) {
 
 document.addEventListener('submit', e => {
   const f = e.target;
+  if (f.id === 'withdraw-form') { e.preventDefault(); submitWithdraw(f); return; }
   if (f.id === 'acct-form') { e.preventDefault(); acctSave(f); return; }
   if (f.id === 'auth-form') { e.preventDefault(); authSubmit(f); return; }
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
@@ -4948,6 +5069,7 @@ function submitLead(f) {
   const sent = $('#f-web').value ? Promise.resolve() : send('contact', { role, name, email, phone, consent: true, news, utm: state.utm || {}, isNew });
   if (!state.done) { location.hash = 'tests'; return; }
   if ($('#f-web').value) { state.sentResults = true; save(); } else (sent || Promise.resolve()).then(sendResults, sendResults); // the result e-mail needs the contact row first
+  track('contact', { role });
   location.hash = 'rezultati';
 }
 
@@ -4972,6 +5094,7 @@ function boot() {
   } catch (e) { }
   save();
   authBoot(); // reads sign-in tokens from the address before the router replaces it
+  if (location.hash === '#atteikums') { try { history.replaceState(null, '', location.pathname + location.search + '#sakums'); } catch (e) { } setTimeout(() => ACT.withdraw(), 0); }
   window.addEventListener('hashchange', () => route());
   route();
   if (!ckGet()) ckShow();
