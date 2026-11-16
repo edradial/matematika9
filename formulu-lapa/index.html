@@ -65,7 +65,7 @@ document.getElementById('cs').addEventListener('submit',function(e){e.preventDef
 if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){document.getElementById('cs-err').hidden=false;return;}
 var role=(document.querySelector('input[name=cs-role]:checked')||{}).value||'student';
 var p={stage:'cheat',email:em,role:role,news:document.getElementById('cs-news').checked,lang:lang,src:(q.get('utm_source')||document.referrer||'').slice(0,120),site:location.href};
-try{fetch("https://script.google.com/macros/s/AKfycbxP-R2ni1pFoBZHcRhKUoUiuor6ta3MoJazvDGF1E3aUUfOW5w4jSLmeSc5TLO5NFjx/exec",{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)}).catch(function(){});}catch(x){}
+try{fetch("https://script.google.com/macros/s/AKfycbzOCU-Za8SJjxKq2PgJ9D96UIFf8tlwBomhQze4nyfgW_1-EoWgr1WveNl-v3zbb24jng/exec",{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)}).catch(function(){});}catch(x){}
 try{if(window.umami)umami.track('cheat_sheet',{lang:lang,role:role});}catch(x){}
 this.hidden=true;document.getElementById('cs-ok').hidden=false;});})();
 </script><script>try{var c=JSON.parse(localStorage.getItem('m9_consent_v1')||'null');if(c&&c.analytics){var s=document.createElement('script');s.defer=true;s.src='https://cloud.umami.is/script.js';s.dataset.websiteId="4dbd178d-d223-4ae1-af47-1dc4d20aae55";document.head.appendChild(s);}}catch(e){}</script></main>
