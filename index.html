@@ -1458,10 +1458,10 @@ const I18N = {
     stats_mat_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.',
     stats_dab_h: 'Dabaszinātnes: vājākā vieta valstī',
     stats_dab_note: 'Vidējais rezultāts 2026. gada diagnosticējošajā darbā (~15 000 skolēnu). Avots: VIAA, LSM.',
-    plan_both: ['Abi priekšmeti', 'Matemātika un dabaszinātnes — visas tēmas līdz {until} vienā maksājumā.'],
+    plan_both: ['Abi priekšmeti', 'Matemātika un dabaszinātnes — visas tēmas līdz eksāmeniem vienā maksājumā.'],
     plan_both_save: 'Par {s} € lētāk nekā divi priekšmeti atsevišķi',
     sub_mode_both: 'Abi priekšmeti',
-    sub_both_note: 'Visas matemātikas un dabaszinātņu tēmas līdz {until}. Viens maksājums, bez atjaunošanas.',
+    sub_both_note: 'Visas matemātikas un dabaszinātņu tēmas līdz eksāmeniem. Viens maksājums, bez atjaunošanas.',
     sub_subj_h: 'Priekšmets: {s}',
     res_dab_btn: 'Izvēlēties kursa variantu',
     res_dab_p: 'Dabaszinātņu video nodarbības gatavojam. Rezervē vietu kursā — tās būs pirmās, ko atvērsim.',
@@ -1773,10 +1773,10 @@ const I18N = {
     stats_mat_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: VIAA.',
     stats_dab_h: 'Естественные науки: самое слабое место в стране',
     stats_dab_note: 'Средний результат диагностической работы 2026 года (~15 000 учеников). Источник: VIAA, LSM.',
-    plan_both: ['Оба предмета', 'Математика и естественные науки — все темы до {until} одним платежом.'],
+    plan_both: ['Оба предмета', 'Математика и естественные науки — все темы до {date} одним платежом.'],
     plan_both_save: 'На {s} € дешевле, чем два предмета по отдельности',
     sub_mode_both: 'Оба предмета',
-    sub_both_note: 'Все темы по математике и естественным наукам до {until}. Один платёж, без продления.',
+    sub_both_note: 'Все темы по математике и естественным наукам до {date}. Один платёж, без продления.',
     sub_subj_h: 'Предмет: {s}',
     res_dab_btn: 'Выбрать тариф курса',
     res_dab_p: 'Видеоуроки по естественным наукам готовим. Забронируй место в курсе — их откроем первыми.',
@@ -4719,9 +4719,15 @@ const L = x => nb(x == null ? '' : typeof x === 'string' ? x : (x[state.lang] ??
 const T = (k, vars) => {
   let s = I18N[state.lang][k] ?? I18N.lv[k] ?? k;
   // {until}: the free-beta end date in the right case (lv "līdz 15. februārim", ru "до 15 февраля")
-  if (typeof s === 'string' && s.includes('{until}')) s = s.split('{until}').join(dateUntil(CONFIG.launchDate));
-  if (vars && typeof s === 'string') for (const [a, b] of Object.entries(vars)) s = s.split('{' + a + '}').join(b);
-  return Array.isArray(s) ? s.map(x => (Array.isArray(x) ? x.map(nb) : nb(x))) : nb(s);
+  // applied to plain strings and to arrays (faq, plan cards) alike, so no placeholder leaks into the page
+  const fill = x => {
+    if (Array.isArray(x)) return x.map(fill);
+    if (typeof x !== 'string') return x;
+    if (x.includes('{until}')) x = x.split('{until}').join(dateUntil(CONFIG.launchDate));
+    if (vars) for (const [a, b] of Object.entries(vars)) x = x.split('{' + a + '}').join(b);
+    return nb(x);
+  };
+  return fill(s);
 };
 // count-dependent text: the key holds [form for 1, 21, 31…, form for other numbers]; fits both lv and ru texts here
 const plIdx = n => (n % 10 === 1 && n % 100 !== 11 ? 0 : 1);
@@ -5014,7 +5020,7 @@ function compareHTML() {
 }
 function plansHTML() {
   const m = examMonths();
-  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(eur(CONFIG.priceAll)).split('{t}').join(eur(m * CONFIG.priceAll)).split('{s}').join(eur(2 * CONFIG.priceExam - CONFIG.priceBoth))}</li>`).join('');
+  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(eur(CONFIG.priceAll)).split('{t}').join(eur(m * CONFIG.priceAll)).split('{s}').join(eur(deal(2 * CONFIG.priceExam) - deal(CONFIG.priceBoth)))}</li>`).join('');
   const card = (k, plan, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(plan === 'both' ? CONFIG.sciDate : CONFIG.examDate))}</p>${priceHTML(plan, 'plan-price')}<ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#prieksmeti" data-act="toSubj">${T('plan_cta')}</a></div>`;
   return `<section class="wrap sec plans-sec" id="cenas">
     <div class="sec-head"><h2>${T('plans_h')}</h2><p>${T('plans_p')}</p></div>
@@ -5274,7 +5280,7 @@ function viewSub() {
       <aside class="sheet price-card">
         ${priceHTML(plan, 'price')}
         <p class="calc">${both ? T('sub_both_note', { date: dateLong(CONFIG.sciDate) }) : exam ? T('sub_exam_note', { date: dateLong(examDateOf(state.subj)) }) : T('sub_month_note')}</p>
-        ${both ? `<p class="deal">${T('plan_both_save', { s: eur(2 * CONFIG.priceExam - CONFIG.priceBoth) })}</p>` : ''}
+        ${both ? `<p class="deal">${T('plan_both_save', { s: eur(deal(2 * CONFIG.priceExam) - deal(CONFIG.priceBoth)) })}</p>` : ''}
         <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
         ${link ? `<a class="btn btn-primary btn-lg wide" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p: eur(p) }) : T('sub_pay', { p: eur(p) })}</a>`
           : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')} ${T('terms_agree')} <a href="/noteikumi/">${T('f_terms')}</a>.</p>`}
