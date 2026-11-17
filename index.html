@@ -1298,7 +1298,7 @@ a.pl-item:hover { border-color: var(--accent); }
 .mk-info { margin-top: 0; }
 .mk-score { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
 .mk-score p { margin: 4px 0; }
-.mk-pts { font: 800 22px var(--f-head, inherit); }
+.mk-pts { font-family: var(--f-display); font-weight: 800; font-size: 22px; }
 .mk-res h3 { margin: 22px 0 10px; }
 .mk-review { padding-left: 0; list-style: none; display: grid; gap: 12px; margin: 0; }
 .mk-mis { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
@@ -1310,6 +1310,20 @@ a.pl-item:hover { border-color: var(--accent); }
 .mk-det summary h3 { display: inline-block; }
 .mk-det summary h3::after { content: ' ▾'; color: var(--muted); }
 .mk-det[open] summary h3::after { content: ' ▴'; }
+
+/* ---------- mission ---------- */
+.mission { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.mission h2 { margin: 6px 0 12px; }
+.mis-stats { list-style: none; padding: 0; margin: 18px 0 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.mis-stats li { background: var(--paper); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+.mis-stats b { display: block; font-family: var(--f-display); font-weight: 800; font-size: 30px; line-height: 1.1; color: var(--accent); }
+.mis-stats span { font-size: 14px; color: var(--muted); line-height: 1.35; display: block; margin-top: 4px; }
+.mis-src { font-size: 12.5px; color: var(--muted); margin: 6px 0 0; }
+.mis-free h3 { margin: 0 0 10px; }
+.mis-free ul { list-style: none; padding: 0; margin: 0 0 12px; display: grid; gap: 8px; }
+.mis-free li { display: flex; gap: 10px; align-items: flex-start; }
+.mis-free li svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--green, #12895A); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+@media (max-width: 860px) { .mission { grid-template-columns: 1fr; } .mis-stats { grid-template-columns: 1fr; } }
 
 </style>
 </head>
@@ -1377,7 +1391,7 @@ const I18N = {
     show_more: 'Kursa tēmas, katrai ir video:',
     show_play: 'Skatīties',
     cmp_h: 'Bez maksas un pilnais kurss: ar ko tie atšķiras',
-    cmp_p: 'Līdz 15. februārim viss ir bez maksas. Pēc tam tests un demo nodarbības paliek bez maksas, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.',
+    cmp_p: 'Līdz 15. februārim viss ir bez maksas. Pēc tam pamats — tests, plāns, pamatnodarbības, formulu lapa un izmēģinājuma eksāmens — paliek bez maksas uz visiem laikiem, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.',
     cmp_yes: 'ir', cmp_no: 'nav', cmp_free: 'Bez maksas', cmp_full: 'Pilnais kurss', cmp_free_s: 'tests + demo', cmp_full_s: 'no {p} €', cmp_price: 'Cena', cmp_free_price: '0 €',
     cmp: [
       ['Tests: 16 eksāmena tipa uzdevumi', true, true],
@@ -1413,7 +1427,7 @@ const I18N = {
     faq_h: 'Biežākie jautājumi',
     faq: [
       ['Kas būs dabaszinātņu eksāmenā?', 'Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.'],
-      ['Vai tas tiešām ir bez maksas?', 'Jā. Līdz {until} platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. No 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz {until}, saņemsi −{d} %.'],
+      ['Vai tas tiešām ir bez maksas?', 'Jā. Līdz {until} platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz {until}, saņemsi −{d} %.'],
       ['Kā notiek maksāšana?', 'Līdz {until} viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz {until}, saņem −{d} % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.'],
       ['Vai var atcelt?', 'Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.'],
       ['Kādā valodā ir nodarbības?', 'Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.'],
@@ -1692,7 +1706,7 @@ const I18N = {
     show_more: 'Темы курса, у каждой есть видео:',
     show_play: 'Смотреть',
     cmp_h: 'Бесплатно и полный курс: в чём разница',
-    cmp_p: 'До 15 февраля всё бесплатно. Потом тест и демо-уроки остаются бесплатными, а платишь за полный курс: все уроки, задачи как на экзамене и помощника.',
+    cmp_p: 'До 15 февраля всё бесплатно. Потом основа — тест, план, базовые уроки, шпаргалка и пробный экзамен — остаётся бесплатной навсегда, а платишь за полный курс: все уроки, задачи как на экзамене и помощника.',
     cmp_yes: 'есть', cmp_no: 'нет', cmp_free: 'Бесплатно', cmp_full: 'Полный курс', cmp_free_s: 'тест + демо', cmp_full_s: 'от {p} €', cmp_price: 'Цена', cmp_free_price: '0 €',
     cmp: [
       ['Тест: 16 задач как на экзамене', true, true],
@@ -1728,7 +1742,7 @@ const I18N = {
     faq_h: 'Частые вопросы',
     faq: [
       ['Что будет на экзамене по естественным наукам?', 'Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс.'],
-      ['Это правда бесплатно?', 'Да. До {until} платформа работает как бесплатная бета: тест, все готовые видеоуроки, задачи, план и пробный экзамен. Новые уроки открываем каждую неделю, все будут к марту. С 15 февраля полный курс станет платным; если забронируешь место до {until}, получишь −{d} %.'],
+      ['Это правда бесплатно?', 'Да. До {until} платформа работает как бесплатная бета: тест, все готовые видеоуроки, задачи, план и пробный экзамен. Новые уроки открываем каждую неделю, все будут к марту. Основа останется бесплатной навсегда, а с 15 февраля полный курс станет платным; если забронируешь место до {until}, получишь −{d} %.'],
       ['Как проходит оплата?', 'До {until} всё бесплатно, платить ничего не нужно. Место в платной версии можно забронировать уже сейчас — перед её стартом пришлём на e-mail ссылку на оплату. При брони до {until} скидка −{d} % на любой тариф: для помесячного на первый месяц, для разовых на всю сумму. Действует гарантия возврата денег 14 дней.'],
       ['Можно ли отменить?', 'Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается.'],
       ['На каком языке уроки?', 'На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски.'],
@@ -4152,7 +4166,7 @@ const LEGAL = {
       ['1. Pakalpojuma sniedzējs', 'Vietni www.eksamens9.lv un kursu “Eksāmens 9” nodrošina {controller}{regno}{address}. Saziņai: {email}.'],
       ['2. Pakalpojums', 'Eksāmens 9 ir tiešsaistes kurss gatavošanai 9. klases centralizētajiem eksāmeniem matemātikā un dabaszinātnēs latviešu un krievu valodā. Bez maksas pieejams diagnostikas tests un viena demo nodarbība katrā tēmā. Pilnajā kursā ir video nodarbības, uzdevumi ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs. Līdz 2027. gada 15. februārim kurss pieejams bez maksas (beta versija); nodarbības tiek pievienotas pakāpeniski, jaunas — katru nedēļu, visas nodarbības būs pieejamas līdz 2027. gada martam. Lai lietotu kursu, vajag pārlūku ar interneta pieslēgumu.'],
       ['3. Konts', 'Kontu var izveidot ar e-pastu un paroli vai ar Google kontu. Konts ir personisks: piekļuvi nedrīkst nodot citiem. Ja skolēnam nav 13 gadu, kontu izveido un pakalpojumu iegādājas vecāks vai likumiskais pārstāvis. Paroli glabā drošībā pats lietotājs.'],
-      ['4. Cenas un apmaksa', 'Cenas norādītas eiro. Pakalpojuma sniedzējs nav PVN maksātājs, tāpēc PVN cenā nav iekļauts. Varianti: pa mēnešiem (viens priekšmets), līdz eksāmenam (viens priekšmets, vienreizējs maksājums) un abi priekšmeti līdz eksāmeniem (vienreizējs maksājums). Aktuālās cenas ir norādītas vietnē pirms apmaksas. Līdz 2027. gada 15. februārim platforma darbojas kā bezmaksas beta versija: visas pieejamās funkcijas un nodarbības ir bez maksas, un maksājumi netiek pieņemti. Līdz šim datumam vietu var rezervēt bez maksas; rezervācija ne pie kā nesaista. Rezervētājiem pirms maksas versijas starta uz e-pastu nosūtām maksājuma saiti ar −50 % atlaidi: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Apmaksa notiek ar maksājuma karti caur drošu maksājumu pakalpojumu; kartes datus mēs neredzam un neglabājam.'],
+      ['4. Cenas un apmaksa', 'Cenas norādītas eiro. Pakalpojuma sniedzējs nav PVN maksātājs, tāpēc PVN cenā nav iekļauts. Varianti: pa mēnešiem (viens priekšmets), līdz eksāmenam (viens priekšmets, vienreizējs maksājums) un abi priekšmeti līdz eksāmeniem (vienreizējs maksājums). Aktuālās cenas ir norādītas vietnē pirms apmaksas. Pamata funkcijas — diagnostikas tests, personīgais plāns, pamatnodarbības katrā tēmā, formulu lapa un viens izmēģinājuma eksāmens — ir un paliks bez maksas. Līdz 2027. gada 15. februārim platforma darbojas kā bezmaksas beta versija: visas pieejamās funkcijas un nodarbības ir bez maksas, un maksājumi netiek pieņemti. Līdz šim datumam vietu var rezervēt bez maksas; rezervācija ne pie kā nesaista. Rezervētājiem pirms maksas versijas starta uz e-pastu nosūtām maksājuma saiti ar −50 % atlaidi: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Apmaksa notiek ar maksājuma karti caur drošu maksājumu pakalpojumu; kartes datus mēs neredzam un neglabājam.'],
       ['5. Ikmēneša abonements', 'Ikmēneša abonements automātiski atjaunojas katru mēnesi, līdz to atceļ. Atcelt var jebkurā brīdī kontā vai rakstot uz {email}; piekļuve saglabājas līdz apmaksātā mēneša beigām, un turpmāki maksājumi netiek iekasēti. Mēnesi skaita no dienas, kad tiek atvērta pirmā apmaksātā tēma.'],
       ['6. Atteikuma tiesības un naudas atgriešanas garantija', 'Tev ir tiesības 14 dienu laikā no apmaksas dienas atteikties no līguma, nenorādot iemeslu. Papildus likumā noteiktajam mēs atmaksājam visu summu arī tad, ja šajās 14 dienās jau esi sācis lietot kursu. Lai atteiktos, izmanto funkciju “Atteikties no līguma” vietnes apakšā vai savā kontā, vai nosūti paziņojumu uz {email}. Pēc atteikuma uz e-pastu nosūtām apstiprinājumu ar atteikuma saturu, datumu un laiku. Naudu atmaksājam ne vēlāk kā 14 dienu laikā, izmantojot to pašu maksājuma veidu, un piekļuve pilnajam kursam tiek slēgta.'],
       ['7. Kvalitāte un sūdzības', 'Mēs rūpējamies, lai saturs atbilstu VIAA 9. klases eksāmenu programmām un būtu bez kļūdām. Ja pamani kļūdu vai pakalpojums nedarbojas, kā solīts, raksti, izmantojot pogu “Ziņot par kļūdu” vai uz {email}. Uz sūdzībām atbildam 15 dienu laikā. Uz digitālo saturu attiecas normatīvajos aktos noteiktās tiesības uz atbilstību līgumam.'],
@@ -4166,7 +4180,7 @@ const LEGAL = {
     about_title: 'Par mums',
     about: [
       ['Kas ir Eksāmens 9', 'Eksāmens 9 ir neliels Latvijas projekts, kas palīdz 9. klases skolēniem sagatavoties centralizētajiem eksāmeniem matemātikā un jaunajam eksāmenam dabaszinātnēs. Kurss ir latviešu un krievu valodā, bet termini vienmēr ir latviešu valodā, kā eksāmenā.'],
-      ['Kāpēc mēs to darām', 'Daudzi skolēni nezina, kuras tēmas viņiem jāatkārto, un privātstundas maksā 15–30 € stundā. Mēs gribam, lai katrs varētu bez maksas uzzināt savus robus un pēc tam mācīties savā tempā par pieejamu cenu.'],
+      ['Kāpēc mēs to darām', 'Daudzi skolēni nezina, kuras tēmas viņiem jāatkārto, un privātstundas maksā 15–30 € stundā. No 2027. gada matemātikas eksāmenā jāiegūst vismaz 20 %, un daudziem bērniem, kuri mācās latviski, bet mājās runā krieviski, grūtības rada arī termini. Mūsu mērķis — lai neviens skolēns neizkrīt eksāmenā tikai valodas dēļ. Tāpēc pamats — tests, plāns, pamatnodarbības katrā tēmā, formulu lapa un izmēģinājuma eksāmens — ir bez maksas visiem un tāds paliks. Pilnais kurss tiem, kas vēlas vairāk, būs par pieejamu cenu.'],
       ['Kā veidojam saturu', 'Tēmas un uzdevumi balstīti uz VIAA 9. klases eksāmenu programmām, paraugiem un iepriekšējo gadu eksāmenu uzdevumiem. Materiālus sagatavojam ar digitālu rīku, tostarp mākslīgā intelekta, palīdzību, un katru uzdevumu pārbaudām: atbildi, risinājumu un terminus. Ja tomēr pamani kļūdu, nospied “Ziņot par kļūdu” pie uzdevuma, un mēs to izlabosim.'],
       ['Kas to veido', 'Projektu veido un par to atbild {controller}. Saziņai: {email}.'],
     ],
@@ -4183,7 +4197,7 @@ const LEGAL = {
       ['1. Кто оказывает услугу', 'Сайт www.eksamens9.lv и курс «Eksāmens 9» предоставляет {controller}{regno}{address}. Связь: {email}.'],
       ['2. Услуга', 'Eksāmens 9 — онлайн-курс подготовки к централизованным экзаменам 9 класса по математике и естественным наукам на латышском и русском языках. Бесплатно доступны диагностический тест и один демо-урок в каждой теме. В полный курс входят видеоуроки, задачи с проверкой, задачи как на экзамене и ИИ-помощник. До 15 февраля 2027 года курс доступен бесплатно (бета-версия); уроки добавляются постепенно, новые — каждую неделю, все уроки будут доступны к марту 2027 года. Для курса нужен браузер с доступом в интернет.'],
       ['3. Кабинет', 'Кабинет можно создать по e-mail и паролю или через аккаунт Google. Кабинет личный: передавать доступ другим нельзя. Если ученику нет 13 лет, кабинет создаёт и услугу покупает родитель или законный представитель. За сохранность пароля отвечает пользователь.'],
-      ['4. Цены и оплата', 'Цены указаны в евро. Поставщик услуги не является плательщиком НДС, поэтому НДС в цену не входит. Варианты: помесячно (один предмет), до экзамена (один предмет, разовый платёж) и оба предмета до экзаменов (разовый платёж). Актуальные цены указаны на сайте перед оплатой. До 15 февраля 2027 года платформа работает как бесплатная бета-версия: все доступные функции и уроки бесплатны, платежи не принимаются. До этой даты место можно забронировать бесплатно; бронь ни к чему не обязывает. Забронировавшим перед стартом платной версии присылаем на e-mail ссылку на оплату со скидкой −50 %: для помесячного варианта на первый месяц, для разовых — на всю сумму. Оплата картой через защищённый платёжный сервис; данные карты мы не видим и не храним.'],
+      ['4. Цены и оплата', 'Цены указаны в евро. Поставщик услуги не является плательщиком НДС, поэтому НДС в цену не входит. Варианты: помесячно (один предмет), до экзамена (один предмет, разовый платёж) и оба предмета до экзаменов (разовый платёж). Актуальные цены указаны на сайте перед оплатой. Базовые функции — диагностический тест, личный план, базовые уроки по каждой теме, шпаргалка и один пробный экзамен — бесплатны и останутся бесплатными. До 15 февраля 2027 года платформа работает как бесплатная бета-версия: все доступные функции и уроки бесплатны, платежи не принимаются. До этой даты место можно забронировать бесплатно; бронь ни к чему не обязывает. Забронировавшим перед стартом платной версии присылаем на e-mail ссылку на оплату со скидкой −50 %: для помесячного варианта на первый месяц, для разовых — на всю сумму. Оплата картой через защищённый платёжный сервис; данные карты мы не видим и не храним.'],
       ['5. Помесячная подписка', 'Помесячная подписка автоматически продлевается каждый месяц, пока её не отменят. Отменить можно в любой момент в кабинете или написав на {email}; доступ сохраняется до конца оплаченного месяца, дальнейшие платежи не списываются. Месяц отсчитывается с того дня, когда откроется первая оплаченная тема.'],
       ['6. Право отказа и гарантия возврата денег', 'Ты вправе в течение 14 дней со дня оплаты отказаться от договора без объяснения причин. Сверх требований закона мы возвращаем всю сумму, даже если за эти 14 дней ты уже начал пользоваться курсом. Чтобы отказаться, воспользуйся функцией «Atteikties no līguma / Отказаться от договора» внизу сайта или в кабинете, либо напиши на {email}. После отказа мы присылаем на e-mail подтверждение с содержанием отказа, датой и временем. Деньги возвращаем не позднее чем через 14 дней тем же способом оплаты, доступ к полному курсу закрывается.'],
       ['7. Качество и жалобы', 'Мы следим, чтобы материалы соответствовали программам экзаменов VIAA для 9 класса и не содержали ошибок. Если заметил ошибку или услуга работает не так, как обещано, напиши через кнопку «Сообщить об ошибке» или на {email}. На жалобы отвечаем в течение 15 дней. На цифровой контент распространяются установленные законом права на соответствие договору.'],
@@ -4197,7 +4211,7 @@ const LEGAL = {
     about_title: 'О нас',
     about: [
       ['Что такое Eksāmens 9', 'Eksāmens 9 — небольшой латвийский проект, который помогает девятиклассникам подготовиться к централизованным экзаменам по математике и к новому экзамену по естественным наукам. Курс на латышском и русском, а термины всегда на латышском, как на экзамене.'],
-      ['Зачем мы это делаем', 'Многие ученики не знают, какие темы им нужно повторить, а репетитор стоит 15–30 € в час. Мы хотим, чтобы каждый мог бесплатно узнать свои пробелы и потом заниматься в своём темпе за доступную цену.'],
+      ['Зачем мы это делаем', 'Многие ученики не знают, какие темы им нужно повторить, а репетитор стоит 15–30 € в час. С 2027 года на экзамене по математике нужно набрать минимум 20 %, а многим детям, которые учатся на латышском, но дома говорят по-русски, трудно ещё и из-за терминов. Наша цель — чтобы ни один ученик не провалил экзамен только из-за языка. Поэтому основа — тест, план, базовые уроки по каждой теме, шпаргалка и пробный экзамен — бесплатна для всех и такой останется. Полный курс для тех, кто хочет больше, будет по доступной цене.'],
       ['Как мы готовим материалы', 'Темы и задачи основаны на программах экзаменов VIAA для 9 класса, образцах и заданиях экзаменов прошлых лет. Материалы готовим с помощью цифровых инструментов, в том числе искусственного интеллекта, и проверяем каждую задачу: ответ, решение и термины. Если всё же заметишь ошибку, нажми «Сообщить об ошибке» у задачи, и мы её исправим.'],
       ['Кто это делает', 'Проект делает и отвечает за него {controller}. Связь: {email}.'],
     ],
@@ -4235,6 +4249,36 @@ function submitWithdraw(f) {
 const LEGAL_ACT = {
   withdraw() { const m = $('#modal'); m.innerHTML = withdrawHTML(); m.hidden = false; const n = $('#w-name'); if (n) n.focus(); },
 };
+
+// ---------- mission block on the home page: why the core stays free ----------
+Object.assign(I18N.lv, {
+  mis_eyebrow: 'Mūsu mērķis',
+  mis_h: 'Lai neviens skolēns neizkrīt eksāmenā tikai valodas dēļ',
+  mis_p: 'No 2027. gada 9. klases matemātikas eksāmenā jāiegūst vismaz 20 %. Daudziem bērniem, kuri mācās latviski, bet mājās runā krieviski, grūtības rada ne tikai matemātika, bet arī termini. Tāpēc Eksāmens 9 pamats ir bez maksas visiem — uz visiem laikiem.',
+  mis_stats: [['20 %', 'minimālais slieksnis matemātikā 2027. gadā'], ['1563', 'skolēni nenokārtotu matemātiku jau pie 15 % sliekšņa (valdības aprēķins, 2025)'], ['44,8 %', 'vidējais rezultāts pirmajā dabaszinātņu darbā 2026. gadā']],
+  mis_free_h: 'Bez maksas uz visiem laikiem',
+  mis_free: ['Diagnostikas tests un rezultāts pa tēmām', 'Personīgais plāns līdz eksāmenam', 'Pamatnodarbības katrā tēmā latviski un krieviski', 'Formulu lapa un izmēģinājuma eksāmens'],
+  mis_paid: 'Pilnais kurss ar visām nodarbībām, palīgu un papildu eksāmena variantiem būs par maksu no 15. februāra — tiem, kas vēlas vairāk.',
+  mis_src: 'Avoti: LV portāls, MK (2025), LSM (2026)',
+});
+Object.assign(I18N.ru, {
+  mis_eyebrow: 'Наша цель',
+  mis_h: 'Чтобы ни один ученик не провалил экзамен только из-за языка',
+  mis_p: 'С 2027 года на экзамене по математике в 9 классе нужно набрать минимум 20 %. Многим детям, которые учатся на латышском, а дома говорят по-русски, трудно не только с математикой, но и с терминами. Поэтому основа Eksāmens 9 бесплатна для всех — навсегда.',
+  mis_stats: [['20 %', 'минимальный порог по математике в 2027 году'], ['1563', 'ученика не сдали бы математику уже при пороге 15 % (оценка правительства, 2025)'], ['44,8 %', 'средний результат первой работы по естественным наукам в 2026 году']],
+  mis_free_h: 'Бесплатно навсегда',
+  mis_free: ['Диагностический тест и результат по темам', 'Личный план до экзамена', 'Базовые уроки по каждой теме на русском и латышском', 'Шпаргалка формул и пробный экзамен'],
+  mis_paid: 'Полный курс со всеми уроками, помощником и дополнительными вариантами экзамена станет платным с 15 февраля — для тех, кто хочет больше.',
+  mis_src: 'Источники: LV portāls, MK (2025), LSM (2026)',
+});
+function missionHTML() {
+  return `<section class="wrap sec2 mission" id="misija">
+    <div class="mis-txt"><p class="sci-eyebrow">${T('mis_eyebrow')}</p><h2>${T('mis_h')}</h2><p>${T('mis_p')}</p>
+      <ul class="mis-stats">${T('mis_stats').map(([n, t]) => `<li><b>${n}</b><span>${t}</span></li>`).join('')}</ul><p class="mis-src">${T('mis_src')}</p></div>
+    <div class="dcard mis-free"><h3>${T('mis_free_h')}</h3><ul>${T('mis_free').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul><p class="muted">${T('mis_paid')}</p>
+      <button type="button" class="btn btn-primary" data-act="subj" data-v="mat">${T('subj_mat_cta')}${ARR}</button></div>
+  </section>`;
+}
 
 // ---------- personal study plan to the exam: week by week, built from the test result and finished lessons ----------
 // Stored in state.plan = { subj: 'both'|'mat'|'dab', days: 2..6, from: 'YYYY-MM-DD' } so it syncs with the account.
@@ -4886,6 +4930,7 @@ function viewLanding() {
       <div class="dcard"><h2 class="dch">${ico('prog', 'hic')}${T('next_h')}</h2>${next}<ul class="ev">${ev(CONFIG.launchDate, T('ev_launch', { d: CONFIG.earlyDiscount }), 'lessons')}</ul></div>
     </aside>
   </section>
+  ${missionHTML()}
   <section class="wrap sec2" id="prieksmeti">
     <div class="sec-row"><h2>${T('subj_pick_h')}</h2><p>${T('subj_pick_p')}</p></div>
     <div class="sc-grid">${sCard('mat')}${sCard('dab')}</div>
