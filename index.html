@@ -9,6 +9,9 @@
 <meta property="og:title" content="Uzzini, kuras tēmas tev jāatkārto pirms 9. klases eksāmeniem">
 <meta property="og:description" content="Bezmaksas testi matemātikā un dabaszinātnēs: 16 eksāmena tipa uzdevumi, ~15 minūtes. Rezultāts pa tēmām.">
 <link rel="canonical" href="https://www.eksamens9.lv/">
+<link rel="alternate" hreflang="lv" href="https://www.eksamens9.lv/">
+<link rel="alternate" hreflang="ru" href="https://www.eksamens9.lv/ru/">
+<link rel="alternate" hreflang="x-default" href="https://www.eksamens9.lv/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.eksamens9.lv/">
 <meta property="og:site_name" content="Eksāmens 9">
@@ -16,29 +19,19 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="fonts/onest-latin-ext-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/onest-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/manrope-latin-700-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/manrope-latin-ext-700-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/manrope-cyrillic-700-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:800;src:url(fonts/manrope-latin-800-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:800;src:url(fonts/manrope-latin-ext-800-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:800;src:url(fonts/manrope-cyrillic-800-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:400;src:url(fonts/onest-latin-400-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:400;src:url(fonts/onest-latin-ext-400-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:400;src:url(fonts/onest-cyrillic-400-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:500;src:url(fonts/onest-latin-500-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:500;src:url(fonts/onest-latin-ext-500-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:500;src:url(fonts/onest-cyrillic-500-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/onest-latin-600-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/onest-latin-ext-600-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/onest-cyrillic-600-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/onest-latin-700-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/onest-latin-ext-700-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:700;src:url(fonts/onest-cyrillic-700-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
-@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/caveat-latin-600-normal.woff2) format('woff2');unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
-@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/caveat-latin-ext-600-normal.woff2) format('woff2');unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
-@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(fonts/caveat-cyrillic-600-normal.woff2) format('woff2');unicode-range: U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+/* variable fonts: one file per alphabet instead of one per weight */
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/manrope-latin-wght-normal.woff2) format('woff2-variations'),url(/fonts/manrope-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/manrope-latin-ext-wght-normal.woff2) format('woff2-variations'),url(/fonts/manrope-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Manrope';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/manrope-cyrillic-wght-normal.woff2) format('woff2-variations'),url(/fonts/manrope-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/onest-latin-wght-normal.woff2) format('woff2-variations'),url(/fonts/onest-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/onest-latin-ext-wght-normal.woff2) format('woff2-variations'),url(/fonts/onest-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Onest';font-style:normal;font-display:swap;font-weight:100 900;src:url(/fonts/onest-cyrillic-wght-normal.woff2) format('woff2-variations'),url(/fonts/onest-cyrillic-wght-normal.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
+@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(/fonts/caveat-latin-600-sub.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(/fonts/caveat-latin-ext-600-sub.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Caveat';font-style:normal;font-display:swap;font-weight:600;src:url(/fonts/caveat-cyrillic-600-sub.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;}
 :root {
   /* Layout: a math notebook. Squared-paper page, white "sheets" for the work, a red margin rule on task sheets. One column; a sidebar only in the demo course. */
   --bg: #F2F5FA;
@@ -1325,27 +1318,203 @@ a.pl-item:hover { border-color: var(--accent); }
 .mis-free li svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--green, #12895A); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
 @media (max-width: 860px) { .mission { grid-template-columns: 1fr; } .mis-stats { grid-template-columns: 1fr; } }
 
+/* e-mail capture under the test score */
+.mailcap { display: grid; gap: 12px; border: 2px solid var(--accent-soft); }
+.mailcap h2 { margin: 0 0 4px; }
+.mailcap .mc-t .muted { margin: 0; font-size: 15px; }
+.mc-row { display: flex; gap: 10px; }
+.mc-row input { flex: 1; min-width: 0; border: 2px solid var(--line); background: var(--paper); border-radius: 12px; padding: 12px 14px; font-size: 17px; }
+.mc-row input:focus { outline: none; border-color: var(--accent); }
+.mc-row input[aria-invalid="true"] { border-color: var(--bad); }
+.mc-row .btn { flex: none; }
+.mc-who { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14.5px; }
+.mc-who legend { float: left; margin-right: 4px; padding: 0; color: var(--muted); }
+.mc-who label { position: relative; }
+.mc-who input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.mc-who span { display: inline-block; border: 1.5px solid var(--line); border-radius: 999px; padding: 5px 12px; font-weight: 600; cursor: pointer; }
+.mc-who input:checked + span { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.mc-who input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.mc-fine { margin: 0; font-size: 13px; color: var(--muted); }
+@media (max-width: 520px) { .mc-row { flex-direction: column; } .mc-row .btn { width: 100%; } }
+
 </style>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","inLanguage":"lv"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"lv","mainEntity":[{"@type":"Question","name":"Kas būs dabaszinātņu eksāmenā?","acceptedAnswer":{"@type":"Answer","text":"Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē."}},{"@type":"Question","name":"Vai tas tiešām ir bez maksas?","acceptedAnswer":{"@type":"Answer","text":"Jā. Līdz 15. februārim platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz 15. februārim, saņemsi −50 %."}},{"@type":"Question","name":"Kā notiek maksāšana?","acceptedAnswer":{"@type":"Answer","text":"Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija."}},{"@type":"Question","name":"Vai var atcelt?","acceptedAnswer":{"@type":"Answer","text":"Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas."}},{"@type":"Question","name":"Kādā valodā ir nodarbības?","acceptedAnswer":{"@type":"Answer","text":"Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski."}},{"@type":"Question","name":"Vai vajag skolotāju vai privātstundas?","acceptedAnswer":{"@type":"Answer","text":"Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā."}},{"@type":"Question","name":"Kāpēc vispirms tests?","acceptedAnswer":{"@type":"Answer","text":"Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko."}}]}]</script>
 </head>
 <body>
 <div class="app">
-<aside class="appnav" id="side" aria-label="Navigācija"></aside>
-<div class="side-scrim" id="side-scrim" data-act="side-close" hidden></div>
+<aside class="appnav" id="side" aria-label="Navigācija"><a class="side-logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small>matemātika · dabaszinātnes</small></span></a>
+    <button type="button" class="side-x" data-act="side-close" aria-label="Aizvērt izvēlni">×</button>
+    <p class="side-h">Mācības</p>
+    <nav class="side-nav">
+      <a class="nav-i on" href="#sakums" data-act="go" data-sec="top" aria-current="page"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"></path><path d="M10 20v-6h4v6"></path></svg><span>Sākums</span></a>
+      <a class="nav-i" href="#kursi"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4z"></path><path d="M20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z"></path></svg><span>Mani kursi</span></a>
+      <a class="nav-i" href="#kurss-mat"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg><span>Video nodarbības</span></a>
+      <a class="nav-i" href="#testi"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M8 9h8M8 13h5"></path></svg><span>Testi</span></a>
+      <a class="nav-i" href="#progress"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span>Mans progress</span></a>
+      <a class="nav-i" href="#izmegin"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M8 9h8M8 13h5"></path></svg><span>Izmēģinājuma eksāmens</span></a>
+      <a class="nav-i" href="#plans"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg><span>Mans plāns</span></a>
+      
+    </nav>
+    <p class="side-h">Informācija</p>
+    <nav class="side-nav">
+      <a class="nav-i" href="#eksameni"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg><span>Eksāmeni 2027</span></a>
+      <a class="nav-i" href="#sakums" data-act="go" data-sec="cenas"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"></path><circle cx="7.5" cy="8.5" r="1.5"></circle></svg><span>Cenas</span></a>
+    </nav>
+    <div class="side-foot"><p>Matemātika · <b>25. maijā</b><br>Dabaszinātnes · <b>2. jūnijā</b></p><p class="sf-note">Progress tiek saglabāts šajā ierīcē. Pēc starta to varēs pārnest uz kontu.</p></div></aside>
+<div class="side-scrim" id="side-scrim" data-act="side-close" hidden=""></div>
 <div class="app-main">
 <header class="top">
   <div class="wrap top-in">
-    <button type="button" class="burger" data-act="side-open" aria-label="Izvēlne"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <button type="button" class="burger" data-act="side-open" aria-label="Izvēlne"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
     <a class="logo" href="#sakums"><span class="logo-mark" aria-hidden="true">9</span><span class="logo-txt">Eksāmens 9<small id="tagline">matemātika · dabaszinātnes</small></span></a>
-    <span class="subj-pill" id="subj-pill" hidden></span>
-    <ol class="stepper" id="stepper" hidden></ol>
+    <span class="subj-pill subj-pill-mat" id="subj-pill" hidden="">Matemātika</span>
+    <ol class="stepper" id="stepper" hidden=""></ol>
     <div class="lang" id="lang-group" role="group" aria-label="Valoda"><button type="button" data-act="lang" data-v="lv" aria-pressed="true">LV</button><button type="button" data-act="lang" data-v="ru" aria-pressed="false">RU</button></div>
-    <button type="button" class="acct" id="acct" data-act="acct"></button>
-    <a class="btn btn-primary top-cta" id="top-cta" href="#sakums" data-act="go" data-sec="cenas"></a>
+    <button type="button" class="acct" id="acct" data-act="acct" aria-label="Ieiet"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg><span>Ieiet</span></button>
+    <a class="btn btn-primary top-cta" id="top-cta" href="#sakums" data-act="go" data-sec="cenas">Rezervēt vietu</a>
   </div>
 </header>
-<div class="preview-bar" id="preview-bar" hidden><div class="wrap"><span id="preview-text"></span><button type="button" id="pv-close" data-act="pv-close" aria-label="Aizvērt">×</button></div></div>
-<main id="view"></main>
-<footer id="footer"></footer>
+<div class="preview-bar" id="preview-bar" hidden=""><div class="wrap"><span id="preview-text">Priekšskatījums: pieteikumi netiek saglabāti, jo nav pieslēgta Google tabula.</span><button type="button" id="pv-close" data-act="pv-close" aria-label="Aizvērt">×</button></div></div>
+<main id="view" data-view="sakums"><section class="wrap dash" id="top">
+    <div class="dash-hero">
+      <div class="dh-txt">
+        <span class="dh-badge">Bezmaksas līdz 15. februārim · 9. klases eksāmeni 2027</span>
+        <h1>9. klases eksāmeni bez <mark>robiem</mark></h1>
+        <p class="dh-lead">Matemātika (slieksnis jau 20&nbsp;%) un jaunais dabaszinātņu eksāmens. Bezmaksas tests 15&nbsp;minūtēs parādīs, kuras tēmas jāatkārto, bet īsas video nodarbības un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt. Skaidrojumi latviski vai krieviski.</p>
+        <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">Dabaszinātņu tests</button></div>
+        <a class="hero-promo" href="#cenas" data-act="go" data-sec="cenas"><b>−50 %</b><span>visiem variantiem, rezervējot līdz 15. februārim</span></a>
+        <ul class="hero2-trust"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez maksas līdz 15. februārim</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Skaidrojumi latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Rezultāts arī e-pastā</li></ul>
+      </div>
+      <figure class="hero2-vid dh-vid">
+        <div class="vid-frame">
+          <video id="hero-video" preload="none" playsinline="" poster="/video/nev-lv-clip-p.jpg"><source src="/video/nev-lv-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="lv" src="/video/nev-lv-clip.vtt"></video>
+          <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="Skatīt nodarbību"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
+        </div>
+        <figcaption><span class="vid-tag">Matemātika · Nevienādības · 0:51</span></figcaption>
+      </figure>
+    </div>
+    <aside class="dash-side">
+      <div class="dcard cd">
+        <h2>Līdz eksāmeniem</h2>
+        <div class="ring" style="--p:0.711"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"></circle><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"></circle></svg><span><b>189</b>līdz matemātikai</span></div>
+        <ul class="cd-rows">
+          <li><i class="dot-b"></i>Matemātika<b>189 dienas</b></li>
+          <li><i class="dot-g"></i>Dabaszinātnes<b>197 dienas</b></li>
+        </ul>
+      </div>
+      <div class="dcard"><h2 class="dch"><svg class="hic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>Tavs nākamais solis</h2><button type="button" class="next-card" data-act="subj" data-v="mat"><span><b>Bezmaksas tests: Matemātika</b><small>16 uzdevumi, ~15&nbsp;minūtes</small></span><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><ul class="ev"><li><span class="ev-ic"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg></span><span><b>2027. gada 15. februārī</b>Maksas versijas starts · −50&nbsp;% rezervētājiem</span></li></ul></div>
+    </aside>
+  </section>
+  <section class="wrap sec2 mission" id="misija">
+    <div class="mis-txt"><p class="sci-eyebrow">Mūsu mērķis</p><h2>Lai neviens skolēns neizkrīt eksāmenā tikai valodas dēļ</h2><p>No 2027. gada 9. klases matemātikas eksāmenā jāiegūst vismaz 20&nbsp;%. Daudziem bērniem, kuri mācās latviski, bet mājās runā krieviski, grūtības rada ne tikai matemātika, bet arī termini. Tāpēc Eksāmens 9 pamats ir bez maksas visiem — uz visiem laikiem.</p>
+      <ul class="mis-stats"><li><b>20&nbsp;%</b><span>minimālais slieksnis matemātikā 2027. gadā</span></li><li><b>1563</b><span>skolēni nenokārtotu matemātiku jau pie 15&nbsp;% sliekšņa (valdības aprēķins, 2025)</span></li><li><b>44,8&nbsp;%</b><span>vidējais rezultāts pirmajā dabaszinātņu darbā 2026. gadā</span></li></ul><p class="mis-src">Avoti: LV portāls, MK (2025), LSM (2026)</p></div>
+    <div class="dcard mis-free"><h3>Bez maksas uz visiem laikiem</h3><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Diagnostikas tests un rezultāts pa tēmām</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Personīgais plāns līdz eksāmenam</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Pamatnodarbības katrā tēmā latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Formulu lapa un izmēģinājuma eksāmens</li></ul><p class="muted">Pilnais kurss ar visām nodarbībām, palīgu un papildu eksāmena variantiem būs par maksu no 15. februāra — tiem, kas vēlas vairāk.</p>
+      <button type="button" class="btn btn-primary" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+  </section>
+  <section class="wrap sec2" id="prieksmeti">
+    <div class="sec-row"><h2>Izvēlies priekšmetu</h2><p>Katram priekšmetam ir savs bezmaksas tests un savs rezultāts pa tēmām. Var kārtot abus.</p></div>
+    <div class="sc-grid"><article class="sc sc-mat">
+      <div class="sc-art" aria-hidden="true"><span>x²</span><span>%</span><span>∟</span></div>
+      <h3>Matemātika</h3>
+      <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 8 video nodarbības</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>189 dienas</b> · 2027. gada 25. maijā</p>
+      <p class="sc-d">Algebra, ģeometrija, statistika: 16 uzdevumi no 8 tēmām.</p>
+      <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </article><article class="sc sc-dab">
+      <div class="sc-art" aria-hidden="true"><span>B</span><span>F</span><span>Ķ</span></div>
+      <h3>Dabaszinātnes</h3>
+      <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 8 video nodarbības</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>197 dienas</b> · 2027. gada 2. jūnijā</p>
+      <p class="sc-d">Bioloģija, fizika, ķīmija un pētnieciskās prasmes: 16 uzdevumi no 8 tēmām.</p>
+      <button type="button" class="btn btn-green btn-lg" data-act="subj" data-v="dab">Dabaszinātņu tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </article></div>
+  </section>
+  <section class="wrap sec2" id="temas">
+    <div class="sec-row"><h2>Tēmas ar video nodarbībām</h2><div class="seg" role="tablist"><button type="button" role="tab" data-act="popTab" data-v="mat" aria-selected="true">Matemātika</button><button type="button" role="tab" data-act="popTab" data-v="dab" aria-selected="false">Dabaszinātnes</button></div></div>
+    <div class="tiles"><button type="button" class="tile tile-0" data-act="topic" data-s="mat" data-v="izt">
+      <span class="tile-img"><img src="/video/izt-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Pakāpes, saknes un izteiksmes</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-1" data-act="topic" data-s="mat" data-v="proc">
+      <span class="tile-img"><img src="/video/proc-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Procenti un teksta uzdevumi</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-2" data-act="topic" data-s="mat" data-v="vien">
+      <span class="tile-img"><img src="/video/vien-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Vienādojumi</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-3" data-act="topic" data-s="mat" data-v="nev">
+      <span class="tile-img"><img src="/video/nev-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Nevienādības</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-0" data-act="topic" data-s="mat" data-v="fun">
+      <span class="tile-img"><img src="/video/fun-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Funkcijas un grafiki</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-1" data-act="topic" data-s="mat" data-v="tri">
+      <span class="tile-img"><img src="/video/tri-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Taisnleņķa trijstūris</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-2" data-act="topic" data-s="mat" data-v="lauk">
+      <span class="tile-img"><img src="/video/lauk-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Laukumi, tilpumi un līdzība</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button><button type="button" class="tile tile-3" data-act="topic" data-s="mat" data-v="stat">
+      <span class="tile-img"><img src="/video/stat-lv-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
+      <b>Statistika un varbūtība</b><small><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>Video + uzdevumi</small></button></div>
+  </section>
+  <section class="wrap sec sci-clip" id="dab-video">
+    <figure class="hero2-vid sci-vid">
+      <div class="vid-frame">
+        <video id="sci-video" preload="none" playsinline="" poster="/video/eko-lv-clip-p.jpg"><source src="/video/eko-lv-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="lv" src="/video/eko-lv-clip.vtt"></video>
+        <button type="button" class="vid-play" data-act="heroPlay" data-vid="sci-video" tabindex="-1" aria-label="Skatīt nodarbību"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg></button>
+      </div>
+      <figcaption><span class="vid-tag">Dabaszinātnes · Organismi, vairošanās un ekosistēmas · 0:55</span></figcaption>
+    </figure>
+    <div class="sci-txt">
+      <p class="sci-eyebrow">Dabaszinātnes · 2. jūnijā</p>
+      <h2>Dabaszinātņu nodarbības piemērs</h2>
+      <p>Minūte no nodarbības «Ekosistēmas»: barošanās ķēde, 10&nbsp;% enerģijas un barošanās tīkls. Katrai tēmai ir šāds video un uzdevumi ar tūlītēju pārbaudi.</p>
+      <ul class="show-chips sci-chips"><li><span class="ic">B</span>Cilvēka organisms un veselība</li><li><span class="ic">B</span>Organismi, vairošanās un ekosistēmas</li><li><span class="ic">F</span>Spēki, svira un enerģija</li><li><span class="ic">F</span>Siltums un vielas agregātstāvokļi</li><li><span class="ic">F</span>Elektrība</li><li><span class="ic">Ķ</span>Vielas, formulas un periodiskā tabula</li><li><span class="ic">Ķ</span>Ķīmiskās reakcijas un aprēķini</li><li><span class="ic">P</span>Pētījums un dati</li></ul>
+      <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="dab">Dabaszinātņu tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+  </section>
+  <section class="band-dark" id="urok">
+    <div class="wrap show">
+      <div class="show-txt">
+        <h2>Tā izskatās nodarbība</h2>
+        <p>Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.</p>
+      </div>
+      <div class="show-side">
+        <p class="show-more">Kursa tēmas, katrai ir video:</p>
+        <ul class="show-chips"><li><span class="ic">x²</span>Pakāpes, saknes un izteiksmes</li><li><span class="ic">%</span>Procenti un teksta uzdevumi</li><li><span class="ic">=</span>Vienādojumi</li><li><span class="ic">≤</span>Nevienādības</li><li><span class="ic">y</span>Funkcijas un grafiki</li><li><span class="ic">∟</span>Taisnleņķa trijstūris</li><li><span class="ic">S</span>Laukumi, tilpumi un līdzība</li><li><span class="ic">P</span>Statistika un varbūtība</li></ul>
+      </div>
+    </div>
+  </section>
+  <section class="wrap sec">
+    <div class="sec-head"><h2>Kur skolēni zaudē punktus</h2></div>
+    <div class="stats-block"><div class="sec-head sm"><h3>Dabaszinātnes: vājākā vieta valstī</h3><p class="src">Vidējais rezultāts 2026. gada diagnosticējošajā darbā (~15 000 skolēnu). Avots: VIAA, LSM.</p></div><div class="stats2"><div class="stat2"><b>29,2<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:29.2%"></i></span><p>Analītiskā spriešana (vājākā prasme)</p></div><div class="stat2"><b>42,3<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:42.3%"></i></span><p>Ķīmija</p></div><div class="stat2"><b>43,6<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:43.6%"></i></span><p>Fizika</p></div><div class="stat2"><b>49,5<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:49.5%"></i></span><p>Bioloģija</p></div></div></div>
+    <div class="stats-block"><div class="sec-head sm"><h3>Matemātika: kur zaudē punktus</h3><p class="src">Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.</p></div><div class="stats2"><div class="stat2"><b>33<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:33%"></i></span><p>Nevienādību sistēmas atrisinājums ar intervālu</p></div><div class="stat2"><b>34<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:34%"></i></span><p>Līdzīga trijstūra laukums</p></div><div class="stat2"><b>32<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:32%"></i></span><p>Pilnā pārlase (kombinatorika)</p></div><div class="stat2"><b>18<small>%</small></b><span class="meter" aria-hidden="true"><i style="width:18%"></i></span><p>Procenti jaunā situācijā (2. daļa)</p></div></div></div>
+  </section>
+  <section class="wrap sec">
+    <div class="sec-head"><h2>Kā tas notiek</h2></div>
+    <ol class="how2"><li><span class="hn">1</span><b>Tests</b><p>16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.</p></li><li><span class="hn">2</span><b>Kontakti</b><p>Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.</p></li><li><span class="hn">3</span><b>Rezultāts</b><p>Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.</p></li><li><span class="hn">4</span><b>Demo kurss</b><p>Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.</p></li></ol>
+  </section>
+  <section class="wrap sec inc" id="atskiriba">
+    <div class="sec-head"><h2>Bez maksas un pilnais kurss: ar ko tie atšķiras</h2><p>Līdz 15. februārim viss ir bez maksas. Pēc tam pamats — tests, plāns, pamatnodarbības, formulu lapa un izmēģinājuma eksāmens — paliek bez maksas uz visiem laikiem, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.</p></div>
+    <div class="cmp-wrap"><table class="cmp">
+    <thead><tr><th scope="col"><span class="sr">Bez maksas un pilnais kurss: ar ko tie atšķiras</span></th><th scope="col" class="cmp-free"><b>Bez maksas</b><small>tests + demo</small></th><th scope="col" class="cmp-full"><b>Pilnais kurss</b><small>no 4,95&nbsp;€</small></th></tr></thead>
+    <tbody><tr><th scope="row">Tests: 16 eksāmena tipa uzdevumi</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Rezultāts pa tēmām un kopija e-pastā</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Video nodarbības</th><td class="cmp-free">1 demo nodarbība katrā tēmā</td><td class="cmp-full">Startā 2–3 nodarbības katrā tēmā, jaunas katru nedēļu; visas 6–8 līdz martam</td></tr><tr><th scope="row">Uzdevumi ar tūlītēju pārbaudi</th><td class="cmp-free">3 uzdevumi katrā tēmā</td><td class="cmp-full">Uzdevumi katrai atvērtajai nodarbībai</td></tr><tr><th scope="row">Eksāmena tipa uzdevumi ar risinājumiem</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">MI palīgs: jautā rakstot</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">MI palīgs balsī</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><span class="soon">drīzumā</span></td></tr><tr><th scope="row">Progresa pārskats vecākiem e-pastā</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><span class="soon">drīzumā</span></td></tr></tbody>
+  </table></div>
+  </section>
+  <section class="wrap sec plans-sec" id="cenas">
+    <div class="sec-head"><h2>Izvēlies savu variantu</h2><p>Vispirms — bezmaksas tests. Pēc tam izvēlies, kā maksāt: pa mēnešiem vai vienreiz līdz eksāmenam.</p></div>
+    <div class="promo "><b class="promo-pct">−50 %</b><span><strong>−50&nbsp;% visiem variantiem, ja rezervē līdz 15. februārim</strong><small>Līdz 15. februārim viss ir bez maksas. Rezervē vietu tagad — bez maksas un bez saistībām —, un pēc tam pilnais kurss tev maksās uz pusi mazāk.</small></span></div>
+    <div class="plans">
+      <div class="plan"><h3>Pa mēnešiem</h3><p class="plan-d">Viss viena priekšmeta kurss, atcelt var jebkurā brīdī.</p><p class="plan-price"><s>9,90 €</s><b>4,95 €</b><span>pirmajā mēnesī</span></p><p class="then">pēc tam 9,90&nbsp;€ mēnesī</p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Viss kurss: 8 tēmas</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>MI palīgs: jautā rakstot</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Atcelt var jebkurā brīdī</li></ul><a class="btn btn-secondary btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
+      <div class="plan plan-hi"><span class="plan-badge">Izdevīgākais</span><h3>Abi priekšmeti</h3><p class="plan-d">Matemātika un dabaszinātnes — visas tēmas līdz eksāmeniem vienā maksājumā.</p><p class="plan-price"><s>59 €</s><b>29,50 €</b><span>vienreiz</span></p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Matemātika un dabaszinātnes: 16 tēmas</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez ikmēneša maksājumiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Par 9,50 € lētāk nekā divi atsevišķi</li></ul><a class="btn btn-mark btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
+      <div class="plan"><h3>Līdz eksāmenam</h3><p class="plan-d">Visas viena priekšmeta tēmas līdz eksāmenam vienā maksājumā.</p><p class="plan-price"><s>39 €</s><b>19,50 €</b><span>vienreiz</span></p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Viss kurss līdz eksāmenam</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez ikmēneša maksājumiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Lētāk nekā 4 mēn. × 9,90 € = 39,60 €</li></ul><a class="btn btn-secondary btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
+    </div>
+    <p class="plans-early"><span class="dot" aria-hidden="true"></span>14 dienu naudas atgriešanas garantija.</p>
+  </section>
+  <section class="wrap sec faq">
+    <div class="sec-head"><h2>Biežākie jautājumi</h2><p class="ex-link"><a href="#eksameni">Eksāmenu atgādne vecākiem →</a></p></div>
+    <div class="faq-list"><details><summary>Kas būs dabaszinātņu eksāmenā?</summary><p>Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.</p></details><details><summary>Vai tas tiešām ir bez maksas?</summary><p>Jā. Līdz 15. februārim platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz 15. februārim, saņemsi −50 %.</p></details><details><summary>Kā notiek maksāšana?</summary><p>Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.</p></details><details><summary>Vai var atcelt?</summary><p>Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.</p></details><details><summary>Kādā valodā ir nodarbības?</summary><p>Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.</p></details><details><summary>Vai vajag skolotāju vai privātstundas?</summary><p>Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā.</p></details><details><summary>Kāpēc vispirms tests?</summary><p>Tests 15&nbsp;minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko.</p></details></div>
+  </section>
+  <section class="band-dark final">
+    <div class="wrap final-in"><div><h2>Sāc ar 15&nbsp;minūtēm</h2><p>Bezmaksas tests parādīs, kur ir robi. Pēc tam izlem, vai turpināt.</p></div><div class="final-btns"><button type="button" class="btn btn-mark btn-xl" data-act="subj" data-v="mat">Matemātikas tests</button><button type="button" class="btn btn-ghost-d btn-xl" data-act="subj" data-v="dab">Dabaszinātņu tests</button></div></div>
+  </section>
+  </main>
+<footer id="footer"><div class="wrap foot-in">
+    <p><b>Eksāmens 9</b> · Testi veidoti pēc VIAA 9. klases eksāmenu programmu un paraugu tēmām. <a href="https://www.viaa.gov.lv/lv/valsts-parbaudes-darbu-uzdevumi" rel="noopener">VIAA</a></p>
+    <p class="foot-act"><a class="btn-link" href="#eksameni">Eksāmeni 2027: atgādne</a> <button type="button" class="btn-link" data-act="privacy">Privātuma politika</button> <button type="button" class="btn-link" data-act="ckSettings">Sīkdatņu iestatījumi</button> <button type="button" class="btn-link" data-act="report">Ziņot par kļūdu</button> <a class="btn-link" href="/noteikumi/">Lietošanas noteikumi</a> <a class="btn-link" href="/par-mums/">Par mums</a> <a class="btn-link" href="/raksti/">Raksti</a> <a class="btn-link" href="/formulu-lapa/">Formulu lapa (PDF)</a> <button type="button" class="btn-link" data-act="withdraw">Atteikties no līguma</button>
+    <button type="button" class="btn-link" data-act="reset">Sākt no jauna</button></p></div></footer>
 </div>
 </div>
 <div id="modal" hidden></div>
@@ -1373,7 +1542,7 @@ const CONFIG = {
 const I18N = {
   lv: {
     tagline: 'matemātika · dabaszinātnes',
-    steps: ['Tests', 'Kontakti', 'Rezultāts', 'Demo kurss'],
+    steps: ['Tests', 'Rezultāts', 'Demo kurss'],
     lang_label: 'Valoda',
     eyebrow: 'Matemātikas eksāmens 9. klasei · {date}',
     days_left: 'līdz eksāmenam {n} {w}',
@@ -1488,6 +1657,9 @@ const I18N = {
     parents_p: 'Bērns mācās savā tempā, bez grafika un bez skolotāja. Katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Testa rezultātu saņemsiet e-pastā un redzēsiet, ar ko sākt.',
 
     contact_h: 'Tests pabeigts! Kam nosūtīt rezultātus?',
+    meta_desc: 'Bezmaksas testi 9. klases eksāmeniem matemātikā un dabaszinātnēs: rezultāts pa tēmām, video nodarbības un uzdevumi ar tūlītēju pārbaudi. Latviešu un krievu valodā.',
+    contact_h_res: 'Kur nosūtīt rezervācijas apstiprinājumu?', contact_p_res: 'Pirms maksas versijas starta uz šo e-pastu nosūtīsim maksājuma saiti ar atlaidi. Tagad nekas nav jāmaksā.',
+    mc_h: 'Saņem rezultātu un plānu e-pastā', mc_p: 'Nosūtīsim šī testa rezultātu, tēmas, ar kurām sākt, un saiti, lai pie plāna atgrieztos no jebkuras ierīces.', mc_btn: 'Nosūtīt', mc_fine: 'Adresi izmantosim tikai rezultātam un šim kursam, bez reklāmas. Sīkāk —',
     contact_p: 'Rezultātu parādīsim uzreiz, bet uz e-pastu nosūtīsim tā kopiju un demo kursa saiti.',
     who: 'Kas aizpilda?',
     who_student: 'Es esmu skolēns',
@@ -1688,7 +1860,7 @@ const I18N = {
 
   ru: {
     tagline: 'математика · естественные науки',
-    steps: ['Тест', 'Контакты', 'Результат', 'Демо-курс'],
+    steps: ['Тест', 'Результат', 'Демо-курс'],
     lang_label: 'Язык',
     eyebrow: 'Экзамен по математике, 9 класс · {date}',
     days_left: 'до экзамена {n} {w}',
@@ -1803,6 +1975,9 @@ const I18N = {
     parents_p: 'Ребёнок занимается в своём темпе, без расписания и без репетитора. Каждая задача проверяется сразу, а ошибка объясняется. Результат теста придёт вам на e-mail, и будет видно, с чего начать.',
 
     contact_h: 'Тест пройден! Куда прислать результат?',
+    meta_desc: 'Подготовка к экзаменам 9 класса по математике и естественным наукам на русском: бесплатный тест по темам, видеоуроки, задачи с проверкой, план и пробный экзамен.',
+    contact_h_res: 'Куда прислать подтверждение брони?', contact_p_res: 'Перед стартом платной версии пришлём на этот e-mail ссылку на оплату со скидкой. Сейчас платить ничего не нужно.',
+    mc_h: 'Получить результат и план на e-mail', mc_p: 'Пришлём результат теста, темы, с которых начать, и ссылку, чтобы вернуться к плану с любого устройства.', mc_btn: 'Отправить', mc_fine: 'Адрес используем только для результата и этого курса, без рекламы. Подробнее —',
     contact_p: 'Результат покажем сразу, а на e-mail пришлём его копию и ссылку на демо-курс.',
     who: 'Кто заполняет?',
     who_student: 'Я ученик',
@@ -4151,7 +4326,7 @@ Object.assign(AUTH_ACT, {
   acctDelYes() {
     acctMem.delAsk = false; acctMem.delSent = true;
     const payload = { id: uid(), stage: 'report', lang: state.lang, msg: 'Lūgums dzēst kontu / Запрос на удаление кабинета: ' + (auth.ses.user.email || '') + ' (user ' + auth.ses.user.id + ')', email: auth.ses.user.email || '', ctx: 'delete-account', url: location.href, ua: navigator.userAgent };
-    if (CONFIG.endpoint) try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { }
+    postLead(payload);
     rerender();
   },
 });
@@ -4243,7 +4418,7 @@ function submitWithdraw(f) {
   track('withdraw');
   const at = new Date(), when = at.toLocaleString(state.lang === 'ru' ? 'ru-RU' : 'lv-LV', { dateStyle: 'long', timeStyle: 'short' });
   const payload = { id: uid(), stage: 'withdraw', lang: state.lang, name, email, contract, at: at.toISOString(), user: (typeof auth !== 'undefined' && auth.ses && auth.ses.user && auth.ses.user.id) || '' };
-  if (CONFIG.endpoint) { try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { } }
+  postLead(payload);
   $('#modal .modal-card').innerHTML = `<div class="modal-top"><h2>${T('w_ok_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><p>${T('w_ok', { when: esc(when), email: esc(email) })}</p><button type="button" class="btn btn-primary" data-act="close-modal">${T('close')}</button>`;
 }
 const LEGAL_ACT = {
@@ -4769,13 +4944,41 @@ function uid() {
 }
 function send(stage, extra = {}) {
   const payload = { id: state.lead && state.lead.id, stage, lang: state.lang, site: location.origin + location.pathname, ...extra };
-  if (!CONFIG.endpoint || !payload.id) { console.info('[preview] not sent:', payload); return Promise.resolve(); }
-  try {
-    return fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { });
-  } catch (e) { return Promise.resolve(); }
+  if (!payload.id) { console.info('[preview] not sent:', payload); return Promise.resolve(false); }
+  return postLead(payload);
 }
-function sendResults() {
-  if (state.sentResults) return;
+// Every request to the sheet goes through a small queue kept in localStorage.
+// A no-cors request rejects only when the network failed, so a rejected item stays queued and is sent again
+// (on the next visit, when the browser is back online, or every 30 s), in the original order:
+// "contact" always reaches the sheet before the "results" that need its e-mail.
+const OUTBOX = 'e9_outbox';
+function obRead() { try { const a = JSON.parse(localStorage.getItem(OUTBOX) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+function obWrite(a) { try { if (a.length) localStorage.setItem(OUTBOX, JSON.stringify(a.slice(-40))); else localStorage.removeItem(OUTBOX); } catch (e) { } }
+function postLead(payload) {
+  if (!CONFIG.endpoint) { console.info('[preview] not sent:', payload); return Promise.resolve(true); }
+  const q = obRead(); q.push({ k: uid(), p: payload, n: 0, t: Date.now() }); obWrite(q);
+  if (q.length > 40) console.warn('[outbox] full');
+  return obFlush();
+}
+let obChain = Promise.resolve(true);
+function obFlush() {
+  obChain = obChain.then(async () => {
+    for (;;) {
+      const it = obRead()[0];
+      if (!it) return true;
+      let ok = false;
+      try { await fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(it.p) }); ok = true; } catch (e) { }
+      let q = obRead();
+      if (ok) { obWrite(q.filter(x => x.k !== it.k)); continue; }
+      q = q.map(x => (x.k === it.k ? { ...x, n: (x.n || 0) + 1 } : x)).filter(x => x.n < 40 && Date.now() - x.t < 14 * 864e5);
+      obWrite(q);
+      return false;
+    }
+  }, () => false);
+  return obChain;
+}
+function sendResults(force) {
+  if (state.sentResults && !force) return;
   const R = results();
   send('results', { subj: state.subj, code: (state.subj === 'dab' && !CONFIG.sciScoring ? 'D' : '') + answersCode(), score: R.score, gaps: R.order.filter(id => R.status(id) === 'gap'), review: R.order.filter(id => R.status(id) === 'mid') });
   state.sentResults = true; save();
@@ -4806,7 +5009,7 @@ function optHTML(o, i, extra = '', unit = '') {
   return `<button type="button" class="opt" ${extra}><span class="key">${'ABCD'[i]}</span><span class="ot">${L(o.t)}${unit}</span></button>`;
 }
 function renderHeader(view) {
-  const stepOf = { tests: 0, pieteikums: 1, rezultati: 2, abonements: 3, paldies: 3 }[view];
+  const stepOf = { tests: 0, rezultati: 1, pieteikums: 2, abonements: 2, paldies: 2 }[view];
   const st = $('#stepper');
   if (stepOf == null) { st.hidden = true; } else {
     st.hidden = false;
@@ -4872,7 +5075,7 @@ function renderFooter() {
 // ---------- views ----------
 function viewLanding() {
   const n = daysTo(CONFIG.examDate);
-  const v = `video/nev-${state.lang}`;
+  const v = `/video/nev-${state.lang}`;
   const subjCard = (k, d) => {
     const dl = daysTo(examDateOf(k)), done = subjDone(k), D = k === 'dab' ? DAB : MAT, vids = Object.keys(D.VIDEOS).length;
     return `<article class="subj subj-${k}">
@@ -4904,7 +5107,7 @@ function viewLanding() {
     </article>`;
   };
   const tile = (D, k, t, i) => `<button type="button" class="tile tile-${i % 4}" data-act="topic" data-s="${k}" data-v="${t.id}">
-      <span class="tile-img"><img src="video/${t.id}-${state.lang}.jpg" alt="" loading="lazy" width="320" height="180"></span>
+      <span class="tile-img"><img src="/video/${t.id}-${state.lang}-t.jpg" alt="" loading="lazy" decoding="async" width="320" height="180"></span>
       <b>${L(t)}</b><small>${ico('lessons', 'sic')}${T('pop_tag')}</small></button>`;
   return `<section class="wrap dash" id="top">
     <div class="dash-hero">
@@ -4918,7 +5121,7 @@ function viewLanding() {
       </div>
       <figure class="hero2-vid dh-vid">
         <div class="vid-frame">
-          <video id="hero-video" preload="none" playsinline poster="${v}-clip.jpg"><source src="${v}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}-clip.vtt"></video>
+          <video id="hero-video" preload="none" playsinline poster="${v}-clip-p.jpg"><source src="${v}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}-clip.vtt"></video>
           <button type="button" class="vid-play" data-act="heroPlay" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
         </div>
         <figcaption><span class="vid-tag">${T('subj_mat')} · ${L(MAT.TOPICS.find(t => t.id === 'nev'))} · ${state.lang === 'ru' ? '0:48' : '0:51'}</span></figcaption>
@@ -4948,7 +5151,7 @@ function viewLanding() {
   <section class="wrap sec sci-clip" id="dab-video">
     <figure class="hero2-vid sci-vid">
       <div class="vid-frame">
-        <video id="sci-video" preload="none" playsinline poster="video/eko-${state.lang}-clip.jpg"><source src="video/eko-${state.lang}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="video/eko-${state.lang}-clip.vtt"></video>
+        <video id="sci-video" preload="none" playsinline poster="/video/eko-${state.lang}-clip-p.jpg"><source src="/video/eko-${state.lang}-clip.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="/video/eko-${state.lang}-clip.vtt"></video>
         <button type="button" class="vid-play" data-act="heroPlay" data-vid="sci-video" tabindex="-1" aria-label="${T('hero2_watch')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
       </div>
       <figcaption><span class="vid-tag">${T('subj_dab')} · ${L(DAB.TOPICS.find(t => t.id === 'eko'))} · ${state.lang === 'ru' ? '0:53' : '0:55'}</span></figcaption>
@@ -5034,13 +5237,57 @@ function plansHTML() {
   </section>`;
 }
 
+// Russian lives at /ru/, Latvian at /: same page, so the address is swapped in place (no reload)
+const ON_RU = /^\/ru(\/|\/index\.html)?$/.test(location.pathname);
+function syncLangUrl() {
+  try {
+    if (!/^\/(ru\/?)?(index\.html)?$/.test(location.pathname)) return; // only the app page itself
+    const q = new URLSearchParams(location.search); q.delete('l');
+    const qs = q.toString(), want = (state.lang === 'ru' ? '/ru/' : '/') + (qs ? '?' + qs : '') + location.hash;
+    if (want !== location.pathname + location.search + location.hash) history.replaceState(null, '', want);
+    const set = (sel, attr, v) => { const el = document.querySelector(sel); if (el) el.setAttribute(attr, v); };
+    const url = 'https://www.eksamens9.lv' + (state.lang === 'ru' ? '/ru/' : '/');
+    set('link[rel="canonical"]', 'href', url); set('meta[property="og:url"]', 'content', url);
+    set('meta[name="description"]', 'content', T('meta_desc'));
+  } catch (e) { }
+}
+function ensureLead() { if (!state.lead || !state.lead.id) state.lead = { ...(state.lead || {}), id: uid() }; }
+// one e-mail field under the score: the result is already on screen, the e-mail only brings a copy and the way back
+function mailCapHTML() {
+  if (!CONFIG.endpoint) return '';
+  const ld = state.lead || {};
+  if (ld.email) return '';
+  return `<form class="sheet mailcap" id="mailcap-form" novalidate>
+    <div class="mc-t"><h2>${T('mc_h')}</h2><p class="muted">${T('mc_p')}</p></div>
+    <div class="mc-row"><label class="sr" for="mc-email">${T('f_email')}</label><input id="mc-email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="${T('f_email_ph')}" aria-describedby="e-mc"><button class="btn btn-primary" type="submit">${T('mc_btn')}</button></div>
+    <p class="err" id="e-mc" aria-live="polite"></p>
+    <fieldset class="mc-who"><legend>${T('who')}</legend><label><input type="radio" name="mc-role" value="student"><span>${T('who_student')}</span></label><label><input type="radio" name="mc-role" value="parent"><span>${T('who_parent')}</span></label></fieldset>
+    <div class="hp" aria-hidden="true"><label for="mc-web">Website</label><input id="mc-web" tabindex="-1" autocomplete="off"></div>
+    <p class="mc-fine">${T('mc_fine')} <button type="button" class="btn-link inline" data-act="privacy">${T('f_privacy')}</button>.</p>
+  </form>`;
+}
+function submitMailcap(f) {
+  const inp = f.querySelector('#mc-email'), email = inp.value.trim(), err = f.querySelector('#e-mc');
+  const role = (f.querySelector('input[name="mc-role"]:checked') || {}).value || (state.lead && state.lead.role) || 'student';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = T('err_email'); inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; }
+  ensureLead();
+  state.lead = { ...state.lead, email, role, consent: true };
+  save();
+  if (!f.querySelector('#mc-web').value) {
+    send('contact', { role, name: state.lead.name || '', email, phone: state.lead.phone || '', consent: true, news: !!state.lead.news, utm: state.utm || {}, isNew: false });
+    sendResults(true);
+  }
+  track('contact', { role, where: 'results' });
+  f.outerHTML = `<div class="sheet mailcap"><div class="good" role="status"><b>✓</b> ${T('res_sent', { email: esc(email) })}</div></div>`;
+}
+
 function viewContact() {
   const ld = state.lead || {};
-  const role = ld.role || 'student';
+  const role = ld.role || 'student', res = mem.afterLead === 'reserve';
   return `<section class="wrap narrow">
     <form class="sheet form" id="lead-form" novalidate>
-      <h1>${T('contact_h')}</h1>
-      <p class="muted">${T('contact_p')}</p>
+      <h1>${T(res ? 'contact_h_res' : 'contact_h')}</h1>
+      <p class="muted">${T(res ? 'contact_p_res' : 'contact_p')}</p>
       <fieldset class="seg"><legend>${T('who')}</legend>
         <label><input type="radio" name="role" value="student" ${role === 'student' ? 'checked' : ''}><span>${T('who_student')}</span></label>
         <label><input type="radio" name="role" value="parent" ${role === 'parent' ? 'checked' : ''}><span>${T('who_parent')}</span></label>
@@ -5053,7 +5300,7 @@ function viewContact() {
       <label class="check"><input type="checkbox" id="f-consent" ${ld.consent ? 'checked' : ''}><span>${T('f_consent')} <button type="button" class="btn-link inline" data-act="privacy">${T('f_privacy')}</button></span></label>
       <p class="err" id="e-consent"></p>
       <label class="check"><input type="checkbox" id="f-news" ${ld.news ? 'checked' : ''}><span>${T('f_news')}</span></label>
-      <button class="btn btn-primary btn-lg wide" type="submit">${T('f_submit')}</button>
+      <button class="btn btn-primary btn-lg wide" type="submit">${T(res ? 'sub_reserve' : 'f_submit')}</button>
     </form>
   </section>`;
 }
@@ -5103,13 +5350,14 @@ function viewResults() {
       <div class="score"><b>${R.score}</b><span>/ ${n}</span></div>
       <div><h1>${T('res_h', { s: R.score, n })}</h1><p class="lead">${T('band')[band]}</p><p class="muted">${T('res_p')}</p></div>
     </div>
+    ${mailCapHTML()}
     <div class="res-grid">
       <div class="sheet"><h2>${T('res_topics_h')}</h2><ul class="trows">${rows}</ul></div>
       <div class="sheet cta-card">
         <h2>${T('res_demo_h')}</h2>
         ${weak.length ? `<p>${T('res_demo_p')}</p><ul class="chips">${weak.slice(0, 4).map(id => `<li><a class="chip link" href="#demo-${id}">${L(topicById(id))}</a></li>`).join('')}</ul>` : `<p>${T('res_demo_all')}</p>`}
         <a class="btn btn-primary btn-lg wide" href="#demo">${T('res_demo_btn')}</a>
-        <p class="muted small">${state.subj === 'dab' && !CONFIG.sciScoring ? T('res_dab_sent') : CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : T('res_preview')}</p>
+        <p class="muted small">${state.subj === 'dab' && !CONFIG.sciScoring ? T('res_dab_sent') : CONFIG.endpoint && state.lead && state.lead.email ? T('res_sent', { email: esc(state.lead.email) }) : CONFIG.endpoint ? '' : T('res_preview')}</p>
         ${subjDone(state.subj === 'dab' ? 'mat' : 'dab') ? '' : `<p class="other-test">${T('res_other')} <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>`}
       </div>
     </div>
@@ -5258,7 +5506,7 @@ function viewDemo(topic) {
 
 function videoHTML(tid) {
   if (!VIDEOS[tid]) return '';
-  const v = `video/${tid}-${state.lang}`;
+  const v = `/video/${tid}-${state.lang}`;
   return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')} ${reportBtn('video ' + tid)}</figcaption></figure>`;
 }
 
@@ -5320,7 +5568,8 @@ function route(keepScroll = false) {
   if (!VIEWS[want]) want = 'sakums';
   if (want === 'pieteikums' && !state.done) want = 'tests'; // test first, contacts before the result
   const preview = /[?&]preview\b/.test(location.search); // owner's look at the demo lessons without the test
-  if (['rezultati', 'demo', 'abonements'].includes(want) && !(state.done && state.lead) && !(preview && want === 'demo')) want = state.done ? 'pieteikums' : 'tests';
+  if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done && !(preview && want === 'demo')) want = 'tests';
+  if (state.done && !state.lead) { ensureLead(); save(); sendResults(); } // finished the test before results stopped waiting for a form
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
   const y = window.scrollY;
@@ -5405,7 +5654,7 @@ function wrongTry(t, msg) {
 
 // ---------- events ----------
 const ACT = {
-  lang(b) { state.lang = b.dataset.v; save(); rerender(); if (document.getElementById('ck')) ckShow(document.getElementById('ck').classList.contains('open')); },
+  lang(b) { state.lang = b.dataset.v; save(); syncLangUrl(); rerender(); if (document.getElementById('ck')) ckShow(document.getElementById('ck').classList.contains('open')); },
   report(b) {
     const m = $('#modal'); m.dataset.ctx = (b && b.dataset.ctx) || 'footer';
     m.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="rp-h"><div class="modal-top"><h2 id="rp-h">${T('rep_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div>
@@ -5438,7 +5687,7 @@ const ACT = {
   'share-native'() { try { navigator.share({ title: T('ex_h'), text: T('ex_share_text'), url: shareUrl('native') }).catch(() => { }); } catch (e) { } },
   subj(b) {
     setSubject(b.dataset.v);
-    location.hash = !state.done ? 'tests' : state.lead ? 'rezultati' : 'pieteikums';
+    location.hash = !state.done ? 'tests' : 'rezultati';
     if (location.hash === '#' + current) rerender();
   },
   go(b, e) {
@@ -5473,8 +5722,7 @@ const ACT = {
     if (state.answers[state.idx] == null) return;
     if (state.idx < DIAG.length - 1) { state.idx++; save(); route(); return; }
     state.done = true; save(); pushHist(); track('test_finish', { score: results().score });
-    if (!state.lead) { location.hash = 'pieteikums'; return; }
-    sendResults();
+    ensureLead(); sendResults(); // the result is shown right away; the e-mail is asked for on the results page
     location.hash = 'rezultati';
   },
   slide(b) {
@@ -5498,6 +5746,7 @@ const ACT = {
   'sel-all'() { state.sel = TOPICS.map(t => t.id); save(); rerender(); },
   plan(b) { state.plan = ['exam', 'both'].includes(b.dataset.v) ? b.dataset.v : 'month'; save(); rerender(); },
   reserve() {
+    if (!state.lead || !state.lead.email) { mem.afterLead = 'reserve'; location.hash = 'pieteikums'; return; }
     const plan = state.plan === 'both' ? 'both' : state.plan === 'exam' ? 'exam' : 'month';
     const topics = plan === 'both' ? [...MAT.TOPICS, ...DAB.TOPICS].map(t => t.id) : TOPICS.map(t => t.id);
     const p = deal(planPrice(plan));
@@ -5511,7 +5760,7 @@ const ACT = {
   },
   playVid(b) {
     track('video_play', { where: 'tile', topic: b.dataset.t });
-    const id = b.dataset.t, v = `video/${id}-${state.lang}`, m = $('#modal');
+    const id = b.dataset.t, v = `/video/${id}-${state.lang}`, m = $('#modal');
     m.innerHTML = `<div class="modal-card vmodal" role="dialog" aria-modal="true" aria-label="${esc(L(topicById(id)))}"><div class="modal-top"><h2>${L(topicById(id))}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><video controls autoplay playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt"></video></div>`;
     m.hidden = false; const c = m.querySelector('[data-act="close-modal"]'); if (c) c.focus();
   },
@@ -5570,6 +5819,7 @@ document.addEventListener('submit', e => {
   if (f.id === 'auth-form') { e.preventDefault(); authSubmit(f); return; }
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
+  if (f.id === 'mailcap-form') { e.preventDefault(); submitMailcap(f); return; }
   const kind = f.dataset.actForm; if (!kind) return;
   e.preventDefault();
   const { t, tid } = lessonTask(f.dataset.task);
@@ -5590,7 +5840,7 @@ function submitReport(f) {
   const msg = f.querySelector('#rp-msg').value.trim(), mail = f.querySelector('#rp-mail').value.trim();
   if (msg.length < 3) { f.querySelector('#rp-err').hidden = false; f.querySelector('#rp-msg').focus(); return; }
   const payload = { id: uid(), stage: 'report', lang: state.lang, msg, email: mail, ctx: $('#modal').dataset.ctx || '', url: location.origin + location.pathname + location.hash, ua: navigator.userAgent };
-  if (CONFIG.endpoint) { try { fetch(CONFIG.endpoint, { method: 'POST', mode: 'no-cors', keepalive: true, headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(() => { }); } catch (e) { } } else console.info('[preview] not sent:', payload);
+  postLead(payload);
   $('#modal .modal-card').innerHTML = `<div class="modal-top"><h2>${T('rep_ok_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}" title="${T('close')}">×</button></div><p>${T('rep_ok')}</p><button type="button" class="btn btn-primary" data-act="close-modal">${T('close')}</button>`;
 }
 function submitLead(f) {
@@ -5604,10 +5854,12 @@ function submitLead(f) {
   const isNew = !state.lead || !state.lead.id;
   state.lead = { ...(state.lead || {}), id: (state.lead && state.lead.id) || uid(), role, name, email, phone, consent: true, news };
   save();
-  const sent = $('#f-web').value ? Promise.resolve() : send('contact', { role, name, email, phone, consent: true, news, utm: state.utm || {}, isNew });
+  const bot = !!$('#f-web').value;
+  if (!bot) send('contact', { role, name, email, phone, consent: true, news, utm: state.utm || {}, isNew });
   if (!state.done) { location.hash = 'tests'; return; }
-  if ($('#f-web').value) { state.sentResults = true; save(); } else (sent || Promise.resolve()).then(sendResults, sendResults); // the result e-mail needs the contact row first
-  track('contact', { role });
+  if (!bot) sendResults(true); // queued after "contact", so the sheet already has the e-mail and mails the result
+  track('contact', { role, where: mem.afterLead || 'form' });
+  if (mem.afterLead === 'reserve') { mem.afterLead = ''; ACT.reserve(); return; }
   location.hash = 'rezultati';
 }
 
@@ -5620,6 +5872,7 @@ function boot() {
   try {
     const q = new URLSearchParams(location.search);
     const l = q.get('l'); if (l === 'lv' || l === 'ru') state.lang = l;
+    else if (ON_RU) state.lang = 'ru';
     else if (!localStorage.getItem(STORE) && /^ru/i.test(navigator.language || '')) state.lang = 'ru';
     const sj = q.get('s'); if (sj === 'mat' || sj === 'dab') setSubject(sj);
     const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { const v = q.get(k); if (v) utm[k] = v.slice(0, 60); });
@@ -5632,9 +5885,13 @@ function boot() {
     }
   } catch (e) { }
   save();
+  syncLangUrl();
   authBoot(); // reads sign-in tokens from the address before the router replaces it
   if (location.hash === '#atteikums') { try { history.replaceState(null, '', location.pathname + location.search + '#sakums'); } catch (e) { } setTimeout(() => ACT.withdraw(), 0); }
   window.addEventListener('hashchange', () => route());
+  window.addEventListener('online', () => obFlush());
+  setInterval(() => { if (obRead().length) obFlush(); }, 30000);
+  if (obRead().length) obFlush();
   route();
   if (!ckGet()) ckShow();
 }
