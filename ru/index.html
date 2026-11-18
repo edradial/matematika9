@@ -1338,6 +1338,10 @@ a.pl-item:hover { border-color: var(--accent); }
 .mc-who input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
 .mc-fine { margin: 0; font-size: 13px; color: var(--muted); }
 @media (max-width: 520px) { .mc-row { flex-direction: column; } .mc-row .btn { width: 100%; } }
+.gate { display: flex; gap: 18px; align-items: flex-start; margin: 18px 0; padding: 24px 26px; border-radius: 20px; background: var(--accent-soft); border: 1px solid rgba(47, 87, 217, .18); }
+.gate-ic svg { width: 34px; height: 34px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
+.gate h2 { margin: 0 0 6px; font-size: 22px; }
+.gate p { margin: 0 0 14px; color: var(--muted); max-width: 640px; }
 
 </style>
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/ru/","inLanguage":"ru"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Что будет на экзамене по естественным наукам?","acceptedAnswer":{"@type":"Answer","text":"Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс."}},{"@type":"Question","name":"Это правда бесплатно?","acceptedAnswer":{"@type":"Answer","text":"Да. До 15 февраля платформа работает как бесплатная бета: тест, все готовые видеоуроки, задачи, план и пробный экзамен. Новые уроки открываем каждую неделю, все будут к марту. Основа останется бесплатной навсегда, а с 15 февраля полный курс станет платным; если забронируешь место до 15 февраля, получишь −50 %."}},{"@type":"Question","name":"Как проходит оплата?","acceptedAnswer":{"@type":"Answer","text":"До 15 февраля всё бесплатно, платить ничего не нужно. Место в платной версии можно забронировать уже сейчас — перед её стартом пришлём на e-mail ссылку на оплату. При брони до 15 февраля скидка −50 % на любой тариф: для помесячного на первый месяц, для разовых на всю сумму. Действует гарантия возврата денег 14 дней."}},{"@type":"Question","name":"Можно ли отменить?","acceptedAnswer":{"@type":"Answer","text":"Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается."}},{"@type":"Question","name":"На каком языке уроки?","acceptedAnswer":{"@type":"Answer","text":"На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски."}},{"@type":"Question","name":"Нужен ли репетитор?","acceptedAnswer":{"@type":"Answer","text":"Нет. Ребёнок занимается в своём темпе: каждый ответ проверяется сразу, а ошибки объясняются. Отчёт о прогрессе для родителей на e-mail появится скоро."}},{"@type":"Question","name":"Зачем сначала тест?","acceptedAnswer":{"@type":"Answer","text":"Тест за 15 минут показывает, какие из 8 тем слабые. Так ты не платишь за то, что уже знаешь, и начинаешь с главного."}}]}]</script>
@@ -3674,16 +3678,16 @@ Object.assign(I18N.lv, {
   dev_note: 'Progress tiek saglabāts šajā ierīcē. Pēc starta to varēs pārnest uz kontu.',
   crumbs_courses: 'Mani kursi',
   course_h: '{s}: pilnais kurss',
-  course_p: '8 moduļi pēc eksāmena programmas. Gatavās nodarbības ir bez maksas līdz {until}, jaunas atveram katru nedēļu.',
+  course_p: '8 moduļi pēc eksāmena programmas. Visas nodarbības ir bez maksas, jaunas atveram katru nedēļu.',
   course_done: 'Pabeigts {k} no {n} nodarbībām',
   course_avail: 'Pieejams tagad: {a} · pēc starta: visas {n}',
   course_cont: 'Turpināt',
   course_start: 'Sākt kursu',
   mod: 'Modulis {n}',
-  les_demo: 'Demo', les_video: 'Video',
+  les_demo: 'Demo', les_video: 'Video', les_reg: 'Pēc testa un reģistrācijas',
   les_done: 'Pabeigts',
   les_lock: 'Drīz',
-  les_after_test: 'Atveras pēc bezmaksas testa',
+  les_after_test: 'Atveras pēc bezmaksas testa un reģistrācijas', gate_test_h: 'Vispirms — bezmaksas tests', gate_test_p: 'Nodarbības atveras pēc testa un reģistrācijas. Tests aizņem ~15 minūtes un parāda, ar kurām tēmām sākt.', gate_reg_h: 'Izveido kontu, lai atvērtu nodarbības', gate_reg_p: 'Tests ir izpildīts. Reģistrējies — visas nodarbības atvērsies uzreiz, bez maksas, un progress saglabāsies kontā.',
   mod_progress: '{k}/{n} uzdevumi',
   tab_notes: 'Konspekts',
   tab_example: 'Piemērs',
@@ -3729,16 +3733,16 @@ Object.assign(I18N.ru, {
   dev_note: 'Прогресс сохраняется на этом устройстве. После старта его можно будет перенести в аккаунт.',
   crumbs_courses: 'Мои курсы',
   course_h: '{s}: полный курс',
-  course_p: '8 модулей по программе экзамена. Готовые уроки бесплатны до {until}, новые открываем каждую неделю.',
+  course_p: '8 модулей по программе экзамена. Все уроки бесплатны, новые открываем каждую неделю.',
   course_done: 'Пройдено {k} из {n} уроков',
   course_avail: 'Доступно сейчас: {a} · после старта: все {n}',
   course_cont: 'Продолжить',
   course_start: 'Начать курс',
   mod: 'Модуль {n}',
-  les_demo: 'Демо', les_video: 'Видео',
+  les_demo: 'Демо', les_video: 'Видео', les_reg: 'После теста и регистрации',
   les_done: 'Пройден',
   les_lock: 'Скоро',
-  les_after_test: 'Откроется после бесплатного теста',
+  les_after_test: 'Откроется после бесплатного теста и регистрации', gate_test_h: 'Сначала — бесплатный тест', gate_test_p: 'Уроки открываются после теста и регистрации. Тест занимает ~15 минут и показывает, с каких тем начать.', gate_reg_h: 'Создай кабинет, чтобы открыть уроки', gate_reg_p: 'Тест пройден. Зарегистрируйся — все уроки откроются сразу и бесплатно, а прогресс сохранится в кабинете.',
   mod_progress: '{k}/{n} задач',
   tab_notes: 'Конспект',
   tab_example: 'Пример',
@@ -3819,6 +3823,14 @@ const PLAY = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx=
 const CHECK = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>';
 const crumbs = arr => `<nav class="crumbs" aria-label="breadcrumb">${arr.map(([t, h]) => h ? `<a href="${h}">${t}</a>` : `<span>${t}</span>`).join('<i>›</i>')}</nav>`;
 
+// lessons open after the free test in that subject and a registered account (?preview lets the owner look without both)
+const PREVIEW = /[?&]preview\b/.test(location.search);
+const lessonsOpen = s => PREVIEW || (!!subjState(s).done && typeof authed === 'function' && authed());
+function gateHTML(s) {
+  const done = !!subjState(s).done;
+  return `<div class="gate"><span class="gate-ic">${LOCK}</span><div><h2>${T(done ? 'gate_reg_h' : 'gate_test_h')}</h2><p>${T(done ? 'gate_reg_p' : 'gate_test_p')}</p>
+    <div class="row">${done ? `<button type="button" class="btn btn-primary btn-lg" data-act="auOpen" data-v="up">${T('au_btn_up')}</button><button type="button" class="btn btn-white btn-lg" data-act="auOpen" data-v="in">${T('au_btn_in')}</button>` : `<button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="${s}">${T(s === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}</button>`}</div></div></div>`;
+}
 // a course row is open when it is part of the topic lesson page or has its own full-course video
 const kvOf = (tid, i) => KVID.includes(tid + (i + 1)) ? tid + (i + 1) : null;
 const rowOpen = (l, tid, i) => l.demo.includes(i) || !!kvOf(tid, i);
@@ -3826,14 +3838,14 @@ const rowHref = (l, tid, i) => kvOf(tid, i) && !l.demo.includes(i) ? `#demo-${ti
 // ---------- course page ----------
 function viewCourse(s) {
   s = s === 'dab' ? 'dab' : 'mat';
-  const D = SUBJ_D(s), C = courseStats(s), done = !!subjState(s).done, L2 = D.LESSONS || {};
+  const D = SUBJ_D(s), C = courseStats(s), done = !!subjState(s).done, L2 = D.LESSONS || {}, openAll = lessonsOpen(s);
   const ll = lastLesson(), cont = ll && ll.s === s ? ll.tid : (D.TOPICS.find(t => L2[t.id] && !lessonDone(t.id)) || D.TOPICS[0]).id;
   const mods = D.TOPICS.map((t, mi) => {
     const l = L2[t.id], items = l ? (l.course[state.lang] || l.course.lv) : [], ld = lessonDone(t.id), k = l ? tasksSolved(s, t.id) : 0, n = l ? tasksTotal(s, t.id) : 0;
     const rows = items.map((c, i) => {
-      const open = rowOpen(l, t.id, i), kv = kvOf(t.id, i);
+      const open = openAll && rowOpen(l, t.id, i), kv = kvOf(t.id, i);
       const st = open ? (ld && l.demo.includes(i) ? 'done' : 'demo') : 'lock';
-      const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? (kv ? `<em class="tg dm">${T('les_video')}</em>` : '') : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`;
+      const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? (kv ? `<em class="tg dm">${T('les_video')}</em>` : '') : (!openAll && rowOpen(l, t.id, i) ? `<em class="tg lk">${T('les_reg')}</em>` : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`);
       const icon = st === 'done' ? CHECK : st === 'demo' ? PLAY : LOCK;
       return open ? `<li><a class="lrow ${st}" href="${rowHref(l, t.id, i)}" data-act="openLes" data-s="${s}" data-v="${rowHref(l, t.id, i).slice(6)}">${icon}<span>${c}</span>${tag}</a></li>` : `<li><span class="lrow lock">${icon}<span>${c}</span>${tag}</span></li>`;
     }).join('');
@@ -3848,6 +3860,7 @@ function viewCourse(s) {
       </div>
       ${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}
     </div>
+    ${openAll ? '' : gateHTML(s)}
     <div class="mods">${mods}</div>
   </section>`;
 }
@@ -3859,6 +3872,7 @@ function viewLesson(topic) {
   if (part) topic = m[1];
   const tid = topic && LESSONS[topic] ? topic : (R.weak[0] || TOPICS[0].id);
   const kv = part && KVID.includes(tid + part) ? tid + part : null;
+  if (!lessonsOpen(state.subj)) return `<section class="wrap pg">${crumbs([[T('crumbs_courses'), '#kursi'], [subjName(state.subj), '#kurss-' + state.subj], [L(topicById(tid))]])}<h1>${kv ? (LESSONS[tid].course[state.lang] || LESSONS[tid].course.lv)[part - 1] : L(LESSONS[tid].title)}</h1>${gateHTML(state.subj)}</section>`;
   const les = LESSONS[tid], t = topicById(tid), st = R.status(tid), s = state.subj;
   if (state.last !== tid) { state.last = tid; save(); }
   touchDay();
@@ -5576,7 +5590,7 @@ function route(keepScroll = false) {
   let want = h;
   if (!VIEWS[want]) want = 'sakums';
   if (want === 'pieteikums' && !state.done) want = 'tests'; // test first, contacts before the result
-  if (['rezultati', 'abonements'].includes(want) && !state.done) want = 'tests'; // lessons are open to everyone
+  if (['rezultati', 'abonements'].includes(want) && !state.done) want = 'tests'; // lessons show their own gate: test + account
   if (state.done && !state.lead) { ensureLead(); save(); sendResults(); } // finished the test before results stopped waiting for a form
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
