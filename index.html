@@ -1041,6 +1041,7 @@ body { background-image: none; display: block; }
 .lrow { display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 12px; color: var(--ink); text-decoration: none; font-size: 15.5px; }
 .lrow > span { flex: 1; min-width: 0; }
 a.lrow:hover { background: var(--soft); }
+.lrow.on { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); }
 .lrow.demo .li { color: var(--accent); } .lrow.done .li { color: var(--good); } .lrow.lock { color: var(--muted); }
 .lrows.sm { padding: 0; margin: 6px 0 14px; } .lrows.sm .lrow { padding: 8px 6px; font-size: 14.5px; }
 
@@ -1396,10 +1397,10 @@ a.pl-item:hover { border-color: var(--accent); }
     <aside class="dash-side">
       <div class="dcard cd">
         <h2>Līdz eksāmeniem</h2>
-        <div class="ring" style="--p:0.711"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"></circle><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"></circle></svg><span><b>189</b>līdz matemātikai</span></div>
+        <div class="ring" style="--p:0.707"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"></circle><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"></circle></svg><span><b>188</b>līdz matemātikai</span></div>
         <ul class="cd-rows">
-          <li><i class="dot-b"></i>Matemātika<b>189 dienas</b></li>
-          <li><i class="dot-g"></i>Dabaszinātnes<b>197 dienas</b></li>
+          <li><i class="dot-b"></i>Matemātika<b>188 dienas</b></li>
+          <li><i class="dot-g"></i>Dabaszinātnes<b>196 dienas</b></li>
         </ul>
       </div>
       <div class="dcard"><h2 class="dch"><svg class="hic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>Tavs nākamais solis</h2><button type="button" class="next-card" data-act="subj" data-v="mat"><span><b>Bezmaksas tests: Matemātika</b><small>16 uzdevumi, ~15&nbsp;minūtes</small></span><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><ul class="ev"><li><span class="ev-ic"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg></span><span><b>2027. gada 15. februārī</b>Maksas versijas starts · −50&nbsp;% rezervētājiem</span></li></ul></div>
@@ -1417,14 +1418,14 @@ a.pl-item:hover { border-color: var(--accent); }
       <div class="sc-art" aria-hidden="true"><span>x²</span><span>%</span><span>∟</span></div>
       <h3>Matemātika</h3>
       <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 8 video nodarbības</p>
-      <p class="sc-date">Līdz eksāmeniem: <b>189 dienas</b> · 2027. gada 25. maijā</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>188 dienas</b> · 2027. gada 25. maijā</p>
       <p class="sc-d">Algebra, ģeometrija, statistika: 16 uzdevumi no 8 tēmām.</p>
       <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </article><article class="sc sc-dab">
       <div class="sc-art" aria-hidden="true"><span>B</span><span>F</span><span>Ķ</span></div>
       <h3>Dabaszinātnes</h3>
       <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 8 video nodarbības</p>
-      <p class="sc-date">Līdz eksāmeniem: <b>197 dienas</b> · 2027. gada 2. jūnijā</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>196 dienas</b> · 2027. gada 2. jūnijā</p>
       <p class="sc-d">Bioloģija, fizika, ķīmija un pētnieciskās prasmes: 16 uzdevumi no 8 tēmām.</p>
       <button type="button" class="btn btn-green btn-lg" data-act="subj" data-v="dab">Dabaszinātņu tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </article></div>
@@ -1484,7 +1485,7 @@ a.pl-item:hover { border-color: var(--accent); }
   </section>
   <section class="wrap sec">
     <div class="sec-head"><h2>Kā tas notiek</h2></div>
-    <ol class="how2"><li><span class="hn">1</span><b>Tests</b><p>16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.</p></li><li><span class="hn">2</span><b>Kontakti</b><p>Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.</p></li><li><span class="hn">3</span><b>Rezultāts</b><p>Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.</p></li><li><span class="hn">4</span><b>Demo kurss</b><p>Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.</p></li></ol>
+    <ol class="how2"><li><span class="hn">1</span><b>Tests</b><p>16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.</p></li><li><span class="hn">2</span><b>Kontakti</b><p>Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.</p></li><li><span class="hn">3</span><b>Rezultāts</b><p>Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.</p></li><li><span class="hn">4</span><b>Kurss</b><p>Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.</p></li></ol>
   </section>
   <section class="wrap sec inc" id="atskiriba">
     <div class="sec-head"><h2>Bez maksas un pilnais kurss: ar ko tie atšķiras</h2><p>Līdz 15. februārim viss ir bez maksas. Pēc tam pamats — tests, plāns, pamatnodarbības, formulu lapa un izmēģinājuma eksāmens — paliek bez maksas uz visiem laikiem, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.</p></div>
@@ -1519,6 +1520,7 @@ a.pl-item:hover { border-color: var(--accent); }
 </div>
 <div id="modal" hidden></div>
 <script>
+const KVID = ["izt1", "izt2", "nev1", "nev2", "nev3", "proc1"];
 // ---------- Settings: fill these in before going live ----------
 const CONFIG = {
   brand: 'Eksāmens 9',
@@ -1542,7 +1544,7 @@ const CONFIG = {
 const I18N = {
   lv: {
     tagline: 'matemātika · dabaszinātnes',
-    steps: ['Tests', 'Rezultāts', 'Demo kurss'],
+    steps: ['Tests', 'Rezultāts', 'Kurss'],
     lang_label: 'Valoda',
     eyebrow: 'Matemātikas eksāmens 9. klasei · {date}',
     days_left: 'līdz eksāmenam {n} {w}',
@@ -1622,7 +1624,7 @@ const I18N = {
     subj_switch: 'Mainīt priekšmetu',
     subj_lessons: 'video nodarbības',
     subj_soon: 'nodarbības drīzumā',
-    subj_demos: 'demo nodarbības ar uzdevumiem',
+    subj_demos: 'nodarbības ar uzdevumiem',
     stats_mat_h: 'Matemātika: kur zaudē punktus',
     stats_mat_note: 'Vidējā uzdevuma izpilde 2025. gada eksāmenā. Avots: VIAA.',
     stats_dab_h: 'Dabaszinātnes: vājākā vieta valstī',
@@ -1637,7 +1639,7 @@ const I18N = {
     res_dab_sent: 'Rezultāts saglabāts šajā pārlūkā.',
     res_other: 'Pamēģini arī otru testu:',
     hero_h: 'Uzzini, kuras tēmas tev jāatkārto pirms eksāmena',
-    hero_p: 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes. Uzreiz redzēsi, kur ir robi, un saņemsi demo nodarbības tieši šīm tēmām.',
+    hero_p: 'Bezmaksas tests: 16 eksāmena tipa uzdevumi no 8 tēmām, apmēram 15 minūtes. Uzreiz redzēsi, kur ir robi, un saņemsi nodarbības tieši šīm tēmām.',
     hero_cta: 'Sākt bezmaksas testu',
     hero_note: 'Bez maksas. Rezultātus nosūtīsim arī uz e-pastu.',
     facts: [['16', 'uzdevumi'], ['8', 'tēmas'], ['~15', 'minūtes']],
@@ -1650,7 +1652,7 @@ const I18N = {
       ['Tests', '16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.'],
       ['Kontakti', 'Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.'],
       ['Rezultāts', 'Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.'],
-      ['Demo kurss', 'Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.'],
+      ['Kurss', 'Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.'],
     ],
     topics_h: '8 tēmas, ko pārbauda tests',
     parents_h: 'Vecākiem',
@@ -1660,7 +1662,7 @@ const I18N = {
     meta_desc: 'Bezmaksas testi 9. klases eksāmeniem matemātikā un dabaszinātnēs: rezultāts pa tēmām, video nodarbības un uzdevumi ar tūlītēju pārbaudi. Latviešu un krievu valodā.',
     contact_h_res: 'Kur nosūtīt rezervācijas apstiprinājumu?', contact_p_res: 'Pirms maksas versijas starta uz šo e-pastu nosūtīsim maksājuma saiti ar atlaidi. Tagad nekas nav jāmaksā.',
     mc_h: 'Saņem rezultātu un plānu e-pastā', mc_p: 'Nosūtīsim šī testa rezultātu, tēmas, ar kurām sākt, un saiti, lai pie plāna atgrieztos no jebkuras ierīces.', mc_btn: 'Nosūtīt', mc_fine: 'Adresi izmantosim tikai rezultātam un šim kursam, bez reklāmas. Sīkāk —',
-    contact_p: 'Rezultātu parādīsim uzreiz, bet uz e-pastu nosūtīsim tā kopiju un demo kursa saiti.',
+    contact_p: 'Rezultātu parādīsim uzreiz, bet uz e-pastu nosūtīsim tā kopiju un kursa saiti.',
     who: 'Kas aizpilda?',
     who_student: 'Es esmu skolēns',
     who_parent: 'Es esmu vecāks',
@@ -1668,7 +1670,7 @@ const I18N = {
     f_name: 'Vārds', f_name_ph: 'Piemēram, Anna',
     f_email: 'E-pasts', f_email_ph: 'vards@epasts.lv',
     f_phone: 'Tālrunis', f_phone_opt: 'neobligāts', f_phone_ph: '+371 2…',
-    f_consent: 'Piekrītu, ka mani dati tiek izmantoti, lai nosūtītu testa rezultātus un demo nodarbības.',
+    f_consent: 'Piekrītu, ka mani dati tiek izmantoti, lai nosūtītu testa rezultātus un nodarbības.',
     f_privacy: 'Privātuma politika',
     f_report: 'Ziņot par kļūdu',
     from_price: 'no {p} €',
@@ -1700,18 +1702,18 @@ const I18N = {
       'Daudzas tēmas jāsāk no pamatiem, un tas ir normāli. Sāc ar vienu tēmu un ej pa soļiem.',
       'Pamati ir, bet vairākās tēmās ir robi. Tieši tur var iegūt visvairāk punktu.',
       'Labs rezultāts! Atliek aizlāpīt dažus robus.',
-      'Izcili! Robu gandrīz nav. Pamēģini eksāmena līmeņa uzdevumus demo kursā.',
+      'Izcili! Robu gandrīz nav. Pamēģini eksāmena līmeņa uzdevumus kursā.',
     ],
     res_topics_h: 'Tēmas',
     st: { gap: 'Robs', mid: 'Jāatkārto', ok: 'Labi' },
     res_exam: '2025. gada eksāmenā: {t}, vidējā izpilde {p} %',
     res_mistakes_h: 'Tavas kļūdas un kā tās labot',
     res_none: 'Kļūdainu atbilžu nav.',
-    res_dk: ['Uz {n} uzdevumu atbildēji „Nezinu“. Tas ir iekļauts demo kursā.', 'Uz {n} uzdevumiem atbildēji „Nezinu“. Tie ir iekļauti demo kursā.'],
-    res_demo_h: 'Tavs demo kurss ir gatavs',
+    res_dk: ['Uz {n} uzdevumu atbildēji „Nezinu“. Tas ir iekļauts kursā.', 'Uz {n} uzdevumiem atbildēji „Nezinu“. Tie ir iekļauti kursā.'],
+    res_demo_h: 'Tavs kurss ir gatavs',
     res_demo_p: 'Sāksim ar tēmām, kurās var iegūt visvairāk punktu:',
-    res_demo_all: 'Robu nav, tāpēc demo kursā ir visas tēmas.',
-    res_demo_btn: 'Atvērt demo kursu',
+    res_demo_all: 'Robu nav, tāpēc kursā ir visas tēmas.',
+    res_demo_btn: 'Atvērt kursu',
     res_sent: 'Rezultāta kopiju nosūtījām uz {email}.',
     res_preview: 'Priekšskatījumā e-pasts netiek sūtīts.',
     res_review: 'Visi uzdevumi un pareizās atbildes',
@@ -1720,7 +1722,7 @@ const I18N = {
 
     demo_yours: 'Tavas tēmas',
     demo_other: 'Citas tēmas',
-    demo_lesson: 'Demo nodarbība · ~{m} min',
+    demo_lesson: 'Nodarbība · ~{m} min', full_lesson: 'Video nodarbība {n}',
     sec_idea: 'Galvenā doma',
     sec_example: 'Piemērs soli pa solim',
     sec_tasks: 'Pamēģini pats',
@@ -1735,7 +1737,7 @@ const I18N = {
     not_number: 'Ieraksti skaitli, piemēram, −4 vai 0,5.',
     answer_ph: 'Atbilde',
     solved: ['Atrisināts {k} no {n}', 'Atrisināti {k} no {n}'],
-    in_demo: 'demo kursā',
+    in_demo: 'pieejams',
     locked: 'pilnajā kursā',
     cta_full_h: 'Patika? Pilnajā kursā ir viss pārējais',
     cta_full_p: 'Katrā tēmā 6–8 nodarbības ar video skaidrojumiem: jaunas atveram katru nedēļu, visas — līdz martam. Uzdevumi ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs.',
@@ -1763,7 +1765,7 @@ const I18N = {
     thanks_p: 'Līdz {until} viss ir bez maksas. Pirms maksas versijas starta uz {email} nosūtīsim maksājuma saiti ar −{d} % atlaidi.',
     thanks_p_exam: 'Līdz {until} viss ir bez maksas. Pirms maksas versijas starta uz {email} nosūtīsim maksājuma saiti. Piekļuve visām tēmām — līdz pat eksāmenam.',
     thanks_topics: 'Tavas tēmas',
-    thanks_back: 'Turpināt demo kursu',
+    thanks_back: 'Turpināt kursu',
 
     preview_bar: 'Priekšskatījums: pieteikumi netiek saglabāti, jo nav pieslēgta Google tabula.',
     close: 'Aizvērt',
@@ -1774,8 +1776,8 @@ const I18N = {
     privacy_h: 'Privātuma politika',
     privacy: [
       ['Kas apstrādā datus', '{controller}. Saziņai: {email}.'],
-      ['Kādus datus', 'Vārds, e-pasts, tālrunis (ja to norādi), vai aizpilda skolēns vai vecāks, testa atbildes un rezultāts, demo nodarbībās atrisinātie uzdevumi, izvēlētās tēmas un atbilde uz jautājumu „Kas vēl noderētu?“, ja to sniedz.'],
-      ['Kāpēc', 'Lai nosūtītu testa rezultātu un demo nodarbības, lai saprastu, kādus kursus gatavot, un, ja piekriti, lai paziņotu par pilnā kursa sākumu.'],
+      ['Kādus datus', 'Vārds, e-pasts, tālrunis (ja to norādi), vai aizpilda skolēns vai vecāks, testa atbildes un rezultāts, nodarbībās atrisinātie uzdevumi, izvēlētās tēmas un atbilde uz jautājumu „Kas vēl noderētu?“, ja to sniedz.'],
+      ['Kāpēc', 'Lai nosūtītu testa rezultātu un nodarbības, lai saprastu, kādus kursus gatavot, un, ja piekriti, lai paziņotu par pilnā kursa sākumu.'],
       ['Tiesiskais pamats', 'Tava piekrišana (VDAR 6. panta 1. punkta a) apakšpunkts). To var atsaukt jebkurā brīdī.'],
       ['Cik ilgi', 'Līdz 2027. gada 30. jūnijam vai līdz brīdim, kad lūdz datus dzēst.'],
       ['Kas vēl tos redz', 'Datus glabājam Google tabulā, un e-pastus sūtām ar Google Gmail. Google darbojas kā apstrādātājs. Vietni mitina GitHub Pages (GitHub, Inc.), kas tehniskiem nolūkiem apstrādā apmeklētāja IP adresi.'],
@@ -1837,7 +1839,7 @@ const I18N = {
     ],
     ex_cta_h: 'Sāciet ar bezmaksas testu',
     ex_cta_done_h: 'Tests jau izpildīts',
-    ex_cta_p: '16 uzdevumi, apmēram 15 minūtes. Rezultāts pa tēmām un demo nodarbības vājākajām tēmām, kopija — e-pastā.',
+    ex_cta_p: '16 uzdevumi, apmēram 15 minūtes. Rezultāts pa tēmām un nodarbības vājākajām tēmām, kopija — e-pastā.',
     ex_cta_done: 'Atvērt rezultātu',
     ex_share_h: 'Nosūtiet atgādni citiem klases vecākiem',
     ex_share_text: '9. klases eksāmeni 2027: datumi, 20 % slieksnis un ko darīt tagad',
@@ -1860,7 +1862,7 @@ const I18N = {
 
   ru: {
     tagline: 'математика · естественные науки',
-    steps: ['Тест', 'Результат', 'Демо-курс'],
+    steps: ['Тест', 'Результат', 'Курс'],
     lang_label: 'Язык',
     eyebrow: 'Экзамен по математике, 9 класс · {date}',
     days_left: 'до экзамена {n} {w}',
@@ -1940,7 +1942,7 @@ const I18N = {
     subj_switch: 'Сменить предмет',
     subj_lessons: 'видеоуроки',
     subj_soon: 'уроки скоро',
-    subj_demos: 'демо-уроков с задачами',
+    subj_demos: 'уроков с задачами',
     stats_mat_h: 'Математика: где теряют баллы',
     stats_mat_note: 'Среднее выполнение задачи на экзамене 2025 года. Источник: VIAA.',
     stats_dab_h: 'Естественные науки: самое слабое место в стране',
@@ -1955,7 +1957,7 @@ const I18N = {
     res_dab_sent: 'Результат сохранён в этом браузере.',
     res_other: 'Попробуй и второй тест:',
     hero_h: 'Узнай, какие темы нужно повторить перед экзаменом',
-    hero_p: 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут. Сразу увидишь, где пробелы, и получишь демо-уроки именно по этим темам.',
+    hero_p: 'Бесплатный тест: 16 задач как на экзамене по 8 темам, около 15 минут. Сразу увидишь, где пробелы, и получишь уроки именно по этим темам.',
     hero_cta: 'Пройти бесплатный тест',
     hero_note: 'Бесплатно. Результат пришлём и на e-mail.',
     facts: [['16', 'задач'], ['8', 'тем'], ['~15', 'минут']],
@@ -1968,7 +1970,7 @@ const I18N = {
       ['Тест', '16 задач как на экзамене по выбранному предмету, без регистрации. Если не знаешь, жми «Не знаю».'],
       ['Контакты', 'После теста впиши имя и e-mail, куда прислать результат.'],
       ['Результат', 'Видно состояние каждой темы и твои типичные ошибки с объяснением.'],
-      ['Демо-курс', 'Короткие уроки по слабым темам: объяснение, пример и задачи с мгновенной проверкой.'],
+      ['Курс', 'Короткие уроки по слабым темам: объяснение, пример и задачи с мгновенной проверкой.'],
     ],
     topics_h: '8 тем, которые проверяет тест',
     parents_h: 'Родителям',
@@ -1978,7 +1980,7 @@ const I18N = {
     meta_desc: 'Подготовка к экзаменам 9 класса по математике и естественным наукам на русском: бесплатный тест по темам, видеоуроки, задачи с проверкой, план и пробный экзамен.',
     contact_h_res: 'Куда прислать подтверждение брони?', contact_p_res: 'Перед стартом платной версии пришлём на этот e-mail ссылку на оплату со скидкой. Сейчас платить ничего не нужно.',
     mc_h: 'Получить результат и план на e-mail', mc_p: 'Пришлём результат теста, темы, с которых начать, и ссылку, чтобы вернуться к плану с любого устройства.', mc_btn: 'Отправить', mc_fine: 'Адрес используем только для результата и этого курса, без рекламы. Подробнее —',
-    contact_p: 'Результат покажем сразу, а на e-mail пришлём его копию и ссылку на демо-курс.',
+    contact_p: 'Результат покажем сразу, а на e-mail пришлём его копию и ссылку на курс.',
     who: 'Кто заполняет?',
     who_student: 'Я ученик',
     who_parent: 'Я родитель',
@@ -1986,7 +1988,7 @@ const I18N = {
     f_name: 'Имя', f_name_ph: 'Например, Анна',
     f_email: 'E-mail', f_email_ph: 'imja@pochta.lv',
     f_phone: 'Телефон', f_phone_opt: 'необязательно', f_phone_ph: '+371 2…',
-    f_consent: 'Согласен(-на), что мои данные используются, чтобы прислать результат теста и демо-уроки.',
+    f_consent: 'Согласен(-на), что мои данные используются, чтобы прислать результат теста и уроки.',
     f_privacy: 'Политика конфиденциальности',
     f_report: 'Сообщить об ошибке',
     from_price: 'от {p} €',
@@ -2018,18 +2020,18 @@ const I18N = {
       'Многие темы придётся начать с основ, и это нормально. Начни с одной темы и иди по шагам.',
       'Основа есть, но в нескольких темах пробелы. Именно там можно набрать больше всего баллов.',
       'Хороший результат! Осталось закрыть несколько пробелов.',
-      'Отлично! Пробелов почти нет. Попробуй задачи уровня экзамена в демо-курсе.',
+      'Отлично! Пробелов почти нет. Попробуй задачи уровня экзамена в курсе.',
     ],
     res_topics_h: 'Темы',
     st: { gap: 'Пробел', mid: 'Повторить', ok: 'Хорошо' },
     res_exam: 'На экзамене 2025 года: {t}, среднее выполнение {p} %',
     res_mistakes_h: 'Твои ошибки и как их исправить',
     res_none: 'Неверных ответов нет.',
-    res_dk: ['«Не знаю» — в {n} задаче. Она есть в демо-курсе.', '«Не знаю» — в {n} задачах. Они есть в демо-курсе.'],
-    res_demo_h: 'Твой демо-курс готов',
+    res_dk: ['«Не знаю» — в {n} задаче. Она есть в курсе.', '«Не знаю» — в {n} задачах. Они есть в курсе.'],
+    res_demo_h: 'Твой курс готов',
     res_demo_p: 'Начнём с тем, где можно набрать больше всего баллов:',
-    res_demo_all: 'Пробелов нет, поэтому в демо-курсе все темы.',
-    res_demo_btn: 'Открыть демо-курс',
+    res_demo_all: 'Пробелов нет, поэтому в курсе все темы.',
+    res_demo_btn: 'Открыть курс',
     res_sent: 'Копию результата отправили на {email}.',
     res_preview: 'В предпросмотре письмо не отправляется.',
     res_review: 'Все задачи и правильные ответы',
@@ -2038,7 +2040,7 @@ const I18N = {
 
     demo_yours: 'Твои темы',
     demo_other: 'Другие темы',
-    demo_lesson: 'Демо-урок · ~{m} мин',
+    demo_lesson: 'Урок · ~{m} мин', full_lesson: 'Видеоурок {n}',
     sec_idea: 'Главная мысль',
     sec_example: 'Пример по шагам',
     sec_tasks: 'Попробуй сам',
@@ -2053,7 +2055,7 @@ const I18N = {
     not_number: 'Впиши число, например −4 или 0,5.',
     answer_ph: 'Ответ',
     solved: ['Решено {k} из {n}', 'Решено {k} из {n}'],
-    in_demo: 'в демо',
+    in_demo: 'доступно',
     locked: 'в полном курсе',
     cta_full_h: 'Понравилось? В полном курсе всё остальное',
     cta_full_p: 'В каждой теме 6–8 уроков с видеообъяснениями: новые открываем каждую неделю, все — до марта. Задачи с проверкой, задачи как на экзамене и ИИ-помощник.',
@@ -2081,7 +2083,7 @@ const I18N = {
     thanks_p: 'До {until} всё бесплатно. Перед стартом платной версии пришлём на {email} ссылку на оплату со скидкой −{d} %.',
     thanks_p_exam: 'До {until} всё бесплатно. Перед стартом платной версии пришлём на {email} ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
     thanks_topics: 'Твои темы',
-    thanks_back: 'Продолжить демо-курс',
+    thanks_back: 'Продолжить курс',
 
     preview_bar: 'Предпросмотр: заявки не сохраняются, Google-таблица не подключена.',
     close: 'Закрыть',
@@ -2092,8 +2094,8 @@ const I18N = {
     privacy_h: 'Политика конфиденциальности',
     privacy: [
       ['Кто обрабатывает данные', '{controller}. Для связи: {email}.'],
-      ['Какие данные', 'Имя, e-mail, телефон (если укажешь), кто заполняет — ученик или родитель, ответы и результат теста, решённые задачи в демо-уроках, выбранные темы и ответ на вопрос «Что ещё нужно?», если ты его дашь.'],
-      ['Зачем', 'Чтобы прислать результат теста и демо-уроки, понять, какие курсы готовить дальше, а если ты согласен(-на) — сообщить о старте полного курса.'],
+      ['Какие данные', 'Имя, e-mail, телефон (если укажешь), кто заполняет — ученик или родитель, ответы и результат теста, решённые задачи в уроках, выбранные темы и ответ на вопрос «Что ещё нужно?», если ты его дашь.'],
+      ['Зачем', 'Чтобы прислать результат теста и уроки, понять, какие курсы готовить дальше, а если ты согласен(-на) — сообщить о старте полного курса.'],
       ['Правовое основание', 'Твоё согласие (статья 6, пункт 1, подпункт a) GDPR). Его можно отозвать в любой момент.'],
       ['Как долго', 'До 30 июня 2027 года или до момента, когда попросишь удалить данные.'],
       ['Кто ещё их видит', 'Данные хранятся в Google-таблице, письма отправляются через Gmail. Google выступает обработчиком. Сайт размещён на GitHub Pages (GitHub, Inc.), который в технических целях обрабатывает IP-адрес посетителя.'],
@@ -2156,7 +2158,7 @@ const I18N = {
     ],
     ex_cta_h: 'Начните с бесплатного теста',
     ex_cta_done_h: 'Тест уже пройден',
-    ex_cta_p: '16 задач, около 15 минут. Результат по темам и демо-уроки по слабым темам, копия — на e-mail.',
+    ex_cta_p: '16 задач, около 15 минут. Результат по темам и уроки по слабым темам, копия — на e-mail.',
     ex_cta_done: 'Открыть результат',
     ex_share_h: 'Отправьте шпаргалку другим родителям класса',
     ex_share_text: 'Экзамены 9 класса 2027: даты, порог 20 % и что делать сейчас',
@@ -3677,7 +3679,7 @@ Object.assign(I18N.lv, {
   course_cont: 'Turpināt',
   course_start: 'Sākt kursu',
   mod: 'Modulis {n}',
-  les_demo: 'Demo',
+  les_demo: 'Demo', les_video: 'Video',
   les_done: 'Pabeigts',
   les_lock: 'Drīz',
   les_after_test: 'Atveras pēc bezmaksas testa',
@@ -3732,7 +3734,7 @@ Object.assign(I18N.ru, {
   course_cont: 'Продолжить',
   course_start: 'Начать курс',
   mod: 'Модуль {n}',
-  les_demo: 'Демо',
+  les_demo: 'Демо', les_video: 'Видео',
   les_done: 'Пройден',
   les_lock: 'Скоро',
   les_after_test: 'Откроется после бесплатного теста',
@@ -3798,7 +3800,7 @@ function tasksSolved(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ?
 function tasksTotal(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ? [tid] : Object.keys(L2)).reduce((k, id) => k + L2[id].tasks.length, 0); }
 function courseStats(s) {
   const L2 = SUBJ_D(s).LESSONS || {}; let n = 0, a = 0, k = 0;
-  SUBJ_D(s).TOPICS.forEach(t => { const l = L2[t.id]; if (!l) { n += 8; return; } const c = (l.course.lv || []).length; n += c; a += l.demo.length; if (state.les[t.id] && state.les[t.id].done) k += l.demo.length; });
+  SUBJ_D(s).TOPICS.forEach(t => { const l = L2[t.id]; if (!l) { n += 8; return; } const c = (l.course.lv || []).length; n += c; a += l.course.lv.filter((_, i) => l.demo.includes(i) || KVID.includes(t.id + (i + 1))).length; if (state.les[t.id] && state.les[t.id].done) k += l.demo.length; });
   return { n, a, k, pct: n ? Math.round(k / n * 100) : 0 };
 }
 function lessonDone(tid) { return !!(state.les[tid] && state.les[tid].done); }
@@ -3816,6 +3818,10 @@ const PLAY = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx=
 const CHECK = '<svg class="li" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9.5"/></svg>';
 const crumbs = arr => `<nav class="crumbs" aria-label="breadcrumb">${arr.map(([t, h]) => h ? `<a href="${h}">${t}</a>` : `<span>${t}</span>`).join('<i>›</i>')}</nav>`;
 
+// a course row is open when it is part of the topic lesson page or has its own full-course video
+const kvOf = (tid, i) => KVID.includes(tid + (i + 1)) ? tid + (i + 1) : null;
+const rowOpen = (l, tid, i) => l.demo.includes(i) || !!kvOf(tid, i);
+const rowHref = (l, tid, i) => kvOf(tid, i) && !l.demo.includes(i) ? `#demo-${tid}-${i + 1}` : `#demo-${tid}`;
 // ---------- course page ----------
 function viewCourse(s) {
   s = s === 'dab' ? 'dab' : 'mat';
@@ -3824,11 +3830,11 @@ function viewCourse(s) {
   const mods = D.TOPICS.map((t, mi) => {
     const l = L2[t.id], items = l ? (l.course[state.lang] || l.course.lv) : [], ld = lessonDone(t.id), k = l ? tasksSolved(s, t.id) : 0, n = l ? tasksTotal(s, t.id) : 0;
     const rows = items.map((c, i) => {
-      const demo = l.demo.includes(i);
-      const st = demo ? (ld ? 'done' : 'demo') : 'lock';
-      const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? `<em class="tg dm">${T('les_demo')}</em>` : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`;
+      const open = rowOpen(l, t.id, i), kv = kvOf(t.id, i);
+      const st = open ? (ld && l.demo.includes(i) ? 'done' : 'demo') : 'lock';
+      const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? (kv ? `<em class="tg dm">${T('les_video')}</em>` : '') : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`;
       const icon = st === 'done' ? CHECK : st === 'demo' ? PLAY : LOCK;
-      return demo ? `<li><a class="lrow ${st}" href="#demo-${t.id}" data-act="openLes" data-s="${s}" data-v="${t.id}">${icon}<span>${c}</span>${tag}</a></li>` : `<li><span class="lrow lock">${icon}<span>${c}</span>${tag}</span></li>`;
+      return open ? `<li><a class="lrow ${st}" href="${rowHref(l, t.id, i)}" data-act="openLes" data-s="${s}" data-v="${rowHref(l, t.id, i).slice(6)}">${icon}<span>${c}</span>${tag}</a></li>` : `<li><span class="lrow lock">${icon}<span>${c}</span>${tag}</span></li>`;
     }).join('');
     return `<details class="mod"${t.id === cont ? ' open' : ''}><summary><span class="mod-n">${mi + 1}</span><span class="mod-t"><small>${T('mod', { n: mi + 1 })}</small><b>${L(t)}</b></span>${l ? `<span class="mod-p">${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small></span>` : ''}</summary><ol class="lrows">${rows}</ol></details>`;
   }).join('');
@@ -3838,7 +3844,6 @@ function viewCourse(s) {
       <div><h1>${T('course_h', { s: subjName(s) })}</h1><p>${T('course_p', { date: dateLong(CONFIG.launchDate) })}</p>
         <div class="ch-stats"><span>${T('course_done', { k: C.k, n: C.n })}</span>${bar(C.n ? C.k / C.n : 0, 'lg')}<small>${T('course_avail', { a: C.a, n: C.n })}</small></div>
         <div class="row"><button type="button" class="btn ${s === 'dab' ? 'btn-green' : 'btn-primary'} btn-lg" data-act="openLes" data-s="${s}" data-v="${cont}">${C.k || ll ? T('course_cont') : T('course_start')}${ARR}</button>${done ? '' : `<button type="button" class="btn btn-white btn-lg" data-act="subj" data-v="${s}">${T(s === 'dab' ? 'subj_dab_cta' : 'subj_mat_cta')}</button>`}</div>
-        ${done ? '' : `<p class="ch-note">${LOCK}${T('les_after_test')}</p>`}
       </div>
       ${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}
     </div>
@@ -3849,7 +3854,10 @@ function viewCourse(s) {
 // ---------- lesson player (replaces the old demo page) ----------
 function viewLesson(topic) {
   const R = results();
+  const m = /^(.*)-(\d+)$/.exec(topic || ''), part = m && LESSONS[m[1]] ? +m[2] : 0;
+  if (part) topic = m[1];
   const tid = topic && LESSONS[topic] ? topic : (R.weak[0] || TOPICS[0].id);
+  const kv = part && KVID.includes(tid + part) ? tid + part : null;
   const les = LESSONS[tid], t = topicById(tid), st = R.status(tid), s = state.subj;
   if (state.last !== tid) { state.last = tid; save(); }
   touchDay();
@@ -3862,8 +3870,8 @@ function viewLesson(topic) {
   return `<section class="wrap pg player2">
     <div class="pl-main">
       ${crumbs([[T('crumbs_courses'), '#kursi'], [subjName(s), '#kurss-' + s], [L(t)]])}
-      <header class="pl-h"><h1>${L(les.title)}</h1><p class="pl-meta"><span class="chip-ic">${t.ic}</span>${L(t)} · ${T('demo_lesson', { m: les.min })} ${pill(st)}${ld ? ` <em class="tg ok">${T('les_done')}</em>` : ''}</p></header>
-      ${videoHTML(tid)}
+      <header class="pl-h"><h1>${kv ? course[part - 1] : L(les.title)}</h1><p class="pl-meta"><span class="chip-ic">${t.ic}</span>${L(t)} · ${kv ? T('full_lesson', { n: part }) : T('demo_lesson', { m: les.min })} ${pill(st)}${ld && !kv ? ` <em class="tg ok">${T('les_done')}</em>` : ''}</p></header>
+      ${kv ? videoHTML(tid, 'k/' + kv) : videoHTML(tid)}
       <div class="ltabs" role="tablist">${tabBtn('notes', T('tab_notes'))}${tabBtn('example', T('tab_example'))}${tabBtn('tasks', T('tab_tasks'), ` <span class="cnt" id="solved-c2">${k}/${n}</span>`)}</div>
       <div class="lpanel" data-panel="notes"${tab === 'notes' ? '' : ' hidden'}>${slidesHTML(tid)}</div>
       <div class="lpanel" data-panel="example"${tab === 'example' ? '' : ' hidden'}>${exampleHTML(tid)}</div>
@@ -3876,7 +3884,7 @@ function viewLesson(topic) {
     <aside class="pl-side">
       <div class="dcard"><h2>${T('module_list')}</h2>
         <div class="mp">${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small></div>
-        <ol class="lrows sm">${course.map((c, i) => { const demo = les.demo.includes(i); return `<li><span class="lrow ${demo ? (ld ? 'done' : 'demo') : 'lock'}">${demo ? (ld ? CHECK : PLAY) : LOCK}<span>${c}</span></span></li>`; }).join('')}</ol>
+        <ol class="lrows sm">${course.map((c, i) => { const open = rowOpen(les, tid, i), cur = kv ? part === i + 1 : !part && les.demo.includes(i), icon = open ? (ld && les.demo.includes(i) ? CHECK : PLAY) : LOCK; return `<li>${open ? `<a class="lrow ${ld && les.demo.includes(i) ? 'done' : 'demo'}${cur ? ' on' : ''}" href="${rowHref(les, tid, i)}">${icon}<span>${c}</span></a>` : `<span class="lrow lock">${icon}<span>${c}</span></span>`}</li>`; }).join('')}</ol>
         <a class="btn btn-mark wide" href="#abonements">${T('cta_full_btn')}</a>
       </div>
       <div class="dcard"><h2>${T('other_topics')}</h2><ul class="orows">${other}</ul></div>
@@ -5504,9 +5512,9 @@ function viewDemo(topic) {
   </section>`;
 }
 
-function videoHTML(tid) {
-  if (!VIDEOS[tid]) return '';
-  const v = `/video/${tid}-${state.lang}`;
+function videoHTML(tid, file) {
+  if (!VIDEOS[tid] && !file) return '';
+  const v = `/video/${file || tid}-${state.lang}`;
   return `<figure class="vid"><video controls preload="none" playsinline poster="${v}.jpg"><source src="${v}.mp4" type="video/mp4"><track kind="subtitles" srclang="${state.lang}" src="${v}.vtt" label="${state.lang === 'ru' ? 'Русский' : 'Latviešu'}"></video><figcaption>${T('video_note')} ${reportBtn('video ' + tid)}</figcaption></figure>`;
 }
 
@@ -5563,12 +5571,11 @@ function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
   if (h.startsWith('demo-')) { topic = h.slice(5); h = 'demo'; }
   if (h.startsWith('kurss-')) { topic = h.slice(6); h = 'kurss'; }
-  if (topic) { const s = DAB.LESSONS && DAB.LESSONS[topic] ? 'dab' : MAT.LESSONS && MAT.LESSONS[topic] ? 'mat' : null; if (s && s !== state.subj) setSubject(s); }
+  if (topic) { const tk = topic.replace(/-\d+$/, ''); const s = DAB.LESSONS && DAB.LESSONS[tk] ? 'dab' : MAT.LESSONS && MAT.LESSONS[tk] ? 'mat' : null; if (s && s !== state.subj) setSubject(s); }
   let want = h;
   if (!VIEWS[want]) want = 'sakums';
   if (want === 'pieteikums' && !state.done) want = 'tests'; // test first, contacts before the result
-  const preview = /[?&]preview\b/.test(location.search); // owner's look at the demo lessons without the test
-  if (['rezultati', 'demo', 'abonements'].includes(want) && !state.done && !(preview && want === 'demo')) want = 'tests';
+  if (['rezultati', 'abonements'].includes(want) && !state.done) want = 'tests'; // lessons are open to everyone
   if (state.done && !state.lead) { ensureLead(); save(); sendResults(); } // finished the test before results stopped waiting for a form
   if (want === 'paldies' && !state.reserve) want = state.done ? 'abonements' : 'sakums';
   if (want !== h) { try { location.replace('#' + want); } catch (e) { location.hash = want; } return; }
