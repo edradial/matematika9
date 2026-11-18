@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00.250 --> 00:04.863
+Šī ir pirmā nodarbība par funkcijām: funkcija un tās grafiks.
+
+00:05.363 --> 00:10.392
+Funkcija ir likums, kas katram iks piekārto tieši vienu igrek vērtību.
+
+00:11.639 --> 00:16.017
+Iedomāsimies mašīnu: ieliekam iks, un tā izdod igrek.
+
+00:16.517 --> 00:23.143
+Piemēram, likums «reizini ar diviem un pieskaiti vienu»: ja iks ir trīs, igrek ir septiņi.
+
+00:24.387 --> 00:26.738
+Vērtības ērti pierakstīt tabulā.
+
+00:27.238 --> 00:34.765
+Iks ir mīnus viens, nulle, viens, divi — igrek ir mīnus viens, viens, trīs, pieci.
+
+00:36.012 --> 00:39.783
+Katrs pāris iks un igrek ir punkts koordinātu plaknē.
+
+00:40.283 --> 00:43.535
+Savienojot punktus, iegūstam funkcijas grafiku.
+
+00:44.763 --> 00:47.233
+No grafika var nolasīt vērtības.
+
+00:47.733 --> 00:55.521
+Lai atrastu igrek, ja iks ir divi, ejam no iks ass uz augšu līdz grafikam, tad pa kreisi līdz igrek asij.
+
+00:56.753 --> 01:01.266
+Svarīgi: katram iks drīkst būt tikai viena igrek vērtība.
+
+01:01.766 --> 01:07.022
+Ja vertikāla līnija grafiku krusto divās vietās, tas nav funkcijas grafiks.
+
+01:08.273 --> 01:11.977
+Tagad pamēģini pats: uzdevumi ir zemāk zem video.
