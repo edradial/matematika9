@@ -685,7 +685,7 @@ footer { border-top: 1px solid var(--line); background: var(--paper); font-size:
 .inc-ic svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ---- pricing ---- */
-.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
+.plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: stretch; }
 .plan { position: relative; display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: 24px; padding: 30px 28px 28px; }
 .plan h3 { font: 800 22px/1.2 var(--f-display); }
 .plan-d { margin: 6px 0 0; color: var(--muted); font-size: 15px; min-height: 2.8em; }
@@ -1193,7 +1193,7 @@ body.ck-on .sticky-cta { display: none !important; }
 @keyframes promo { 0%, 100% { transform: rotate(-3deg) scale(1); } 50% { transform: rotate(-3deg) scale(1.06); } }
 .hero-promo { display: inline-flex; align-items: center; gap: 10px; margin: 16px 0 0; padding: 6px 14px 6px 6px; border-radius: 999px; background: var(--mark); color: #14213A; font-weight: 700; font-size: 14.5px; text-decoration: none; }
 .hero-promo b { white-space: nowrap; flex: 0 0 auto; font: 800 15px/1 var(--f-display); background: #14213A; color: var(--mark); padding: 7px 10px; border-radius: 999px; }
-.plans { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.plans { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; margin-inline: auto; }
 @media (max-width: 717px) { .promo { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 8px; } .promo-pct { font-size: 34px; } .promo strong { font-size: 18px; } }
 
 /* free vs full course */
@@ -1341,9 +1341,11 @@ a.pl-item:hover { border-color: var(--accent); }
 .gate-ic svg { width: 34px; height: 34px; stroke: var(--accent); fill: none; stroke-width: 1.8; }
 .gate h2 { margin: 0 0 6px; font-size: 22px; }
 .gate p { margin: 0 0 14px; color: var(--muted); max-width: 640px; }
+.plus-h { margin: 0 0 10px; font-size: 22px; }
+.plus-incl li { font-size: 16.5px; }
 
 </style>
-<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","inLanguage":"lv"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"lv","mainEntity":[{"@type":"Question","name":"Kas būs dabaszinātņu eksāmenā?","acceptedAnswer":{"@type":"Answer","text":"Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē."}},{"@type":"Question","name":"Vai tas tiešām ir bez maksas?","acceptedAnswer":{"@type":"Answer","text":"Jā. Līdz 15. februārim platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz 15. februārim, saņemsi −50 %."}},{"@type":"Question","name":"Kā notiek maksāšana?","acceptedAnswer":{"@type":"Answer","text":"Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija."}},{"@type":"Question","name":"Vai var atcelt?","acceptedAnswer":{"@type":"Answer","text":"Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas."}},{"@type":"Question","name":"Kādā valodā ir nodarbības?","acceptedAnswer":{"@type":"Answer","text":"Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski."}},{"@type":"Question","name":"Vai vajag skolotāju vai privātstundas?","acceptedAnswer":{"@type":"Answer","text":"Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā."}},{"@type":"Question","name":"Kāpēc vispirms tests?","acceptedAnswer":{"@type":"Answer","text":"Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko."}}]}]</script>
+<script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","inLanguage":"lv"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"lv","mainEntity":[{"@type":"Question","name":"Kas būs dabaszinātņu eksāmenā?","acceptedAnswer":{"@type":"Answer","text":"Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē."}},{"@type":"Question","name":"Vai tas tiešām ir bez maksas?","acceptedAnswer":{"@type":"Answer","text":"Jā. Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas — vajag tikai izpildīt testu un izveidot kontu. Jaunas nodarbības atveram katru nedēļu. Par maksu būs tikai Plus: MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem; tas sāksies 15. februārī, un, rezervējot līdz 15. februārim, saņemsi −50 %."}},{"@type":"Question","name":"Kā notiek maksāšana?","acceptedAnswer":{"@type":"Answer","text":"Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija."}},{"@type":"Question","name":"Vai var atcelt?","acceptedAnswer":{"@type":"Answer","text":"Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas."}},{"@type":"Question","name":"Kādā valodā ir nodarbības?","acceptedAnswer":{"@type":"Answer","text":"Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski."}},{"@type":"Question","name":"Vai vajag skolotāju vai privātstundas?","acceptedAnswer":{"@type":"Answer","text":"Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā."}},{"@type":"Question","name":"Kāpēc vispirms tests?","acceptedAnswer":{"@type":"Answer","text":"Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko."}}]}]</script>
 </head>
 <body>
 <div class="app">
@@ -1387,7 +1389,7 @@ a.pl-item:hover { border-color: var(--accent); }
         <h1>9. klases eksāmeni bez <mark>robiem</mark></h1>
         <p class="dh-lead">Matemātika (slieksnis jau 20&nbsp;%) un jaunais dabaszinātņu eksāmens. Bezmaksas tests 15&nbsp;minūtēs parādīs, kuras tēmas jāatkārto, bet īsas video nodarbības un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt. Skaidrojumi latviski vai krieviski.</p>
         <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">Dabaszinātņu tests</button></div>
-        <a class="hero-promo" href="#cenas" data-act="go" data-sec="cenas"><b>−50 %</b><span>visiem variantiem, rezervējot līdz 15. februārim</span></a>
+        <a class="hero-promo" href="#cenas" data-act="go" data-sec="cenas"><b>−50 %</b><span>Plus abonementam, rezervējot līdz 15. februārim</span></a>
         <ul class="hero2-trust"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez maksas līdz 15. februārim</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Skaidrojumi latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Rezultāts arī e-pastā</li></ul>
       </div>
       <figure class="hero2-vid dh-vid">
@@ -1413,7 +1415,7 @@ a.pl-item:hover { border-color: var(--accent); }
   <section class="wrap sec2 mission" id="misija">
     <div class="mis-txt"><p class="sci-eyebrow">Mūsu mērķis</p><h2>Lai neviens skolēns neizkrīt eksāmenā tikai valodas dēļ</h2><p>No 2027. gada 9. klases matemātikas eksāmenā jāiegūst vismaz 20&nbsp;%. Daudziem bērniem, kuri mācās latviski, bet mājās runā krieviski, grūtības rada ne tikai matemātika, bet arī termini. Tāpēc Eksāmens 9 pamats ir bez maksas visiem — uz visiem laikiem.</p>
       <ul class="mis-stats"><li><b>20&nbsp;%</b><span>minimālais slieksnis matemātikā 2027. gadā</span></li><li><b>1563</b><span>skolēni nenokārtotu matemātiku jau pie 15&nbsp;% sliekšņa (valdības aprēķins, 2025)</span></li><li><b>44,8&nbsp;%</b><span>vidējais rezultāts pirmajā dabaszinātņu darbā 2026. gadā</span></li></ul><p class="mis-src">Avoti: LV portāls, MK (2025), LSM (2026)</p></div>
-    <div class="dcard mis-free"><h3>Bez maksas uz visiem laikiem</h3><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Diagnostikas tests un rezultāts pa tēmām</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Personīgais plāns līdz eksāmenam</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Pamatnodarbības katrā tēmā latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Formulu lapa un izmēģinājuma eksāmens</li></ul><p class="muted">Pilnais kurss ar visām nodarbībām, palīgu un papildu eksāmena variantiem būs par maksu no 15. februāra — tiem, kas vēlas vairāk.</p>
+    <div class="dcard mis-free"><h3>Bez maksas uz visiem laikiem</h3><ul><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Diagnostikas tests un rezultāts pa tēmām</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Personīgais plāns līdz eksāmenam</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Pamatnodarbības katrā tēmā latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Formulu lapa un izmēģinājuma eksāmens</li></ul><p class="muted">Nodarbības ir bez maksas. Par maksu būs tikai Plus — MI palīgs, personīgais plāns un citi papildu rīki — no 15. februāra, tiem, kas vēlas vairāk.</p>
       <button type="button" class="btn btn-primary" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
   </section>
   <section class="wrap sec2" id="prieksmeti">
@@ -1492,25 +1494,24 @@ a.pl-item:hover { border-color: var(--accent); }
     <ol class="how2"><li><span class="hn">1</span><b>Tests</b><p>16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.</p></li><li><span class="hn">2</span><b>Kontakti</b><p>Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.</p></li><li><span class="hn">3</span><b>Rezultāts</b><p>Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.</p></li><li><span class="hn">4</span><b>Kurss</b><p>Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.</p></li></ol>
   </section>
   <section class="wrap sec inc" id="atskiriba">
-    <div class="sec-head"><h2>Bez maksas un pilnais kurss: ar ko tie atšķiras</h2><p>Līdz 15. februārim viss ir bez maksas. Pēc tam pamats — tests, plāns, pamatnodarbības, formulu lapa un izmēģinājuma eksāmens — paliek bez maksas uz visiem laikiem, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.</p></div>
+    <div class="sec-head"><h2>Bez maksas un Plus: ar ko tie atšķiras</h2><p>Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas pēc reģistrācijas. Plus pievieno palīgus, ar kuriem gatavoties ātrāk; tas sāksies 15. februārī.</p></div>
     <div class="cmp-wrap"><table class="cmp">
-    <thead><tr><th scope="col"><span class="sr">Bez maksas un pilnais kurss: ar ko tie atšķiras</span></th><th scope="col" class="cmp-free"><b>Bez maksas</b><small>tests + demo</small></th><th scope="col" class="cmp-full"><b>Pilnais kurss</b><small>no 4,95&nbsp;€</small></th></tr></thead>
-    <tbody><tr><th scope="row">Tests: 16 eksāmena tipa uzdevumi</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Rezultāts pa tēmām un kopija e-pastā</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Video nodarbības</th><td class="cmp-free">1 demo nodarbība katrā tēmā</td><td class="cmp-full">Startā 2–3 nodarbības katrā tēmā, jaunas katru nedēļu; visas 6–8 līdz martam</td></tr><tr><th scope="row">Uzdevumi ar tūlītēju pārbaudi</th><td class="cmp-free">3 uzdevumi katrā tēmā</td><td class="cmp-full">Uzdevumi katrai atvērtajai nodarbībai</td></tr><tr><th scope="row">Eksāmena tipa uzdevumi ar risinājumiem</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">MI palīgs: jautā rakstot</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">MI palīgs balsī</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><span class="soon">drīzumā</span></td></tr><tr><th scope="row">Progresa pārskats vecākiem e-pastā</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><span class="soon">drīzumā</span></td></tr></tbody>
+    <thead><tr><th scope="col"><span class="sr">Bez maksas un Plus: ar ko tie atšķiras</span></th><th scope="col" class="cmp-free"><b>Bez maksas</b><small>tests un visas nodarbības</small></th><th scope="col" class="cmp-full"><b>Plus</b><small>no 2&nbsp;€ mēnesī</small></th></tr></thead>
+    <tbody><tr><th scope="row">Tests: 16 eksāmena tipa uzdevumi</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Visas video nodarbības</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Uzdevumi ar tūlītēju pārbaudi</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Izmēģinājuma eksāmens</th><td class="cmp-free"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">MI palīgs: jautā par jebkuru uzdevumu</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Personīgais plāns ar iknedēļas progresa pārbaudi</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Izmēģinājuma eksāmena detalizēti risinājumi</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Konspekti PDF formātā</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr><tr><th scope="row">Progresa pārskats vecākiem e-pastā</th><td class="cmp-free"><span class="cmp-n" aria-hidden="true">—</span><span class="sr">nav</span></td><td class="cmp-full"><svg class="cmp-y" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span class="sr">ir</span></td></tr></tbody>
   </table></div>
   </section>
   <section class="wrap sec plans-sec" id="cenas">
-    <div class="sec-head"><h2>Izvēlies savu variantu</h2><p>Vispirms — bezmaksas tests. Pēc tam izvēlies, kā maksāt: pa mēnešiem vai vienreiz līdz eksāmenam.</p></div>
-    <div class="promo "><b class="promo-pct">−50 %</b><span><strong>−50&nbsp;% visiem variantiem, ja rezervē līdz 15. februārim</strong><small>Līdz 15. februārim viss ir bez maksas. Rezervē vietu tagad — bez maksas un bez saistībām —, un pēc tam pilnais kurss tev maksās uz pusi mazāk.</small></span></div>
+    <div class="sec-head"><h2>Eksāmens 9 Plus</h2><p>Nodarbības ir bez maksas. Plus — MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem. Abi priekšmeti vienā abonementā.</p></div>
+    <div class="promo "><b class="promo-pct">−50 %</b><span><strong>−50&nbsp;% Plus abonementam, ja rezervē līdz 15. februārim</strong><small>Plus sāksies 15. februārī. Rezervē vietu tagad — bez maksas un bez saistībām —, un tas tev maksās uz pusi mazāk.</small></span></div>
     <div class="plans">
-      <div class="plan"><h3>Pa mēnešiem</h3><p class="plan-d">Viss viena priekšmeta kurss, atcelt var jebkurā brīdī.</p><p class="plan-price"><s>9,90 €</s><b>4,95 €</b><span>pirmajā mēnesī</span></p><p class="then">pēc tam 9,90&nbsp;€ mēnesī</p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Viss kurss: 8 tēmas</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>MI palīgs: jautā rakstot</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Atcelt var jebkurā brīdī</li></ul><a class="btn btn-secondary btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
-      <div class="plan plan-hi"><span class="plan-badge">Izdevīgākais</span><h3>Abi priekšmeti</h3><p class="plan-d">Matemātika un dabaszinātnes — visas tēmas līdz eksāmeniem vienā maksājumā.</p><p class="plan-price"><s>59 €</s><b>29,50 €</b><span>vienreiz</span></p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Matemātika un dabaszinātnes: 16 tēmas</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez ikmēneša maksājumiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Par 9,50 € lētāk nekā divi atsevišķi</li></ul><a class="btn btn-mark btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
-      <div class="plan"><h3>Līdz eksāmenam</h3><p class="plan-d">Visas viena priekšmeta tēmas līdz eksāmenam vienā maksājumā.</p><p class="plan-price"><s>39 €</s><b>19,50 €</b><span>vienreiz</span></p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Viss kurss līdz eksāmenam</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez ikmēneša maksājumiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Lētāk nekā 4 mēn. × 9,90 € = 39,60 €</li></ul><a class="btn btn-secondary btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
+      <div class="plan"><h3>Pa mēnešiem</h3><p class="plan-d">Plus abiem priekšmetiem, atcelt var jebkurā brīdī.</p><p class="plan-price"><s>3,99 €</s><b>2 €</b><span>pirmajā mēnesī</span></p><p class="then">pēc tam 3,99&nbsp;€ mēnesī</p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>MI palīgs un personīgais plāns</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Risinājumi, PDF konspekti, pārskati vecākiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Atcelt var jebkurā brīdī</li></ul><a class="btn btn-secondary btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
+      <div class="plan plan-hi"><span class="plan-badge">Izdevīgākais</span><h3>Gadam</h3><p class="plan-d">Plus abiem priekšmetiem visu gadu vienā maksājumā.</p><p class="plan-price"><s>24 €</s><b>12 €</b><span>gadā</span></p><ul class="plan-f"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Viss Plus uz 12 mēnešiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Bez ikmēneša maksājumiem</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Lētāk nekā 12 × 3,99 € = 47,88 €</li></ul><a class="btn btn-mark btn-lg wide" href="#prieksmeti" data-act="toSubj">Sākt ar bezmaksas testu</a></div>
     </div>
     <p class="plans-early"><span class="dot" aria-hidden="true"></span>14 dienu naudas atgriešanas garantija.</p>
   </section>
   <section class="wrap sec faq">
     <div class="sec-head"><h2>Biežākie jautājumi</h2><p class="ex-link"><a href="#eksameni">Eksāmenu atgādne vecākiem →</a></p></div>
-    <div class="faq-list"><details><summary>Kas būs dabaszinātņu eksāmenā?</summary><p>Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.</p></details><details><summary>Vai tas tiešām ir bez maksas?</summary><p>Jā. Līdz 15. februārim platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz 15. februārim, saņemsi −50 %.</p></details><details><summary>Kā notiek maksāšana?</summary><p>Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.</p></details><details><summary>Vai var atcelt?</summary><p>Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.</p></details><details><summary>Kādā valodā ir nodarbības?</summary><p>Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.</p></details><details><summary>Vai vajag skolotāju vai privātstundas?</summary><p>Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā.</p></details><details><summary>Kāpēc vispirms tests?</summary><p>Tests 15&nbsp;minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko.</p></details></div>
+    <div class="faq-list"><details><summary>Kas būs dabaszinātņu eksāmenā?</summary><p>Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.</p></details><details><summary>Vai tas tiešām ir bez maksas?</summary><p>Jā. Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas — vajag tikai izpildīt testu un izveidot kontu. Jaunas nodarbības atveram katru nedēļu. Par maksu būs tikai Plus: MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem; tas sāksies 15. februārī, un, rezervējot līdz 15. februārim, saņemsi −50 %.</p></details><details><summary>Kā notiek maksāšana?</summary><p>Līdz 15. februārim viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz 15. februārim, saņem −50 % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.</p></details><details><summary>Vai var atcelt?</summary><p>Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.</p></details><details><summary>Kādā valodā ir nodarbības?</summary><p>Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.</p></details><details><summary>Vai vajag skolotāju vai privātstundas?</summary><p>Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā būs pieejams drīzumā.</p></details><details><summary>Kāpēc vispirms tests?</summary><p>Tests 15&nbsp;minūtēs parāda, kuras no 8 tēmām ir vājās. Tā tu nemaksā par to, ko jau zini, un sāc ar svarīgāko.</p></details></div>
   </section>
   <section class="band-dark final">
     <div class="wrap final-in"><div><h2>Sāc ar 15&nbsp;minūtēm</h2><p>Bezmaksas tests parādīs, kur ir robi. Pēc tam izlem, vai turpināt.</p></div><div class="final-btns"><button type="button" class="btn btn-mark btn-xl" data-act="subj" data-v="mat">Matemātikas tests</button><button type="button" class="btn btn-ghost-d btn-xl" data-act="subj" data-v="dab">Dabaszinātņu tests</button></div></div>
@@ -1530,8 +1531,8 @@ const CONFIG = {
   brand: 'Eksāmens 9',
   endpoint: 'https://script.google.com/macros/s/AKfycbzOCU-Za8SJjxKq2PgJ9D96UIFf8tlwBomhQze4nyfgW_1-EoWgr1WveNl-v3zbb24jng/exec', // Google Apps Script web app URL (…/exec). Empty = preview mode, nothing is sent.
   payLinks: null,             // Stripe/Payhip links by topic count, e.g. { 1: 'https://…', 2: '…', 3: '…', all: '…' }. Empty = free reservation.
-  priceAll: 9.9,              // € per month: all topics of one subject
-  priceExam: 39,              // € once: all topics of one subject until the exam
+  priceAll: 3.99,             // € per month: Plus (AI helper, plan, solutions, PDFs, parent reports), both subjects
+  priceExam: 24,              // € per year: Plus, both subjects
   priceBoth: 59,              // € once: both subjects until the exams
   sciDate: '2027-06-02',      // centralised exam in natural sciences
   sciScoring: true,          // true once the Apps Script with the science answer key is deployed
@@ -1565,44 +1566,35 @@ const I18N = {
     show_p: 'Īss video ar balsi un animācijām: formula parādās tieši tad, kad par to stāsta. Pēc video seko uzdevumi ar tūlītēju pārbaudi.',
     show_more: 'Kursa tēmas, katrai ir video:',
     show_play: 'Skatīties',
-    cmp_h: 'Bez maksas un pilnais kurss: ar ko tie atšķiras',
-    cmp_p: 'Līdz 15. februārim viss ir bez maksas. Pēc tam pamats — tests, plāns, pamatnodarbības, formulu lapa un izmēģinājuma eksāmens — paliek bez maksas uz visiem laikiem, bet maksā par pilno kursu: visām nodarbībām, eksāmena uzdevumiem un palīgu.',
-    cmp_yes: 'ir', cmp_no: 'nav', cmp_free: 'Bez maksas', cmp_full: 'Pilnais kurss', cmp_free_s: 'tests + demo', cmp_full_s: 'no {p} €', cmp_price: 'Cena', cmp_free_price: '0 €',
-    cmp: [
-      ['Tests: 16 eksāmena tipa uzdevumi', true, true],
-      ['Rezultāts pa tēmām un kopija e-pastā', true, true],
-      ['Video nodarbības', '1 demo nodarbība katrā tēmā', 'Startā 2–3 nodarbības katrā tēmā, jaunas katru nedēļu; visas 6–8 līdz martam'],
-      ['Uzdevumi ar tūlītēju pārbaudi', '3 uzdevumi katrā tēmā', 'Uzdevumi katrai atvērtajai nodarbībai'],
-      ['Eksāmena tipa uzdevumi ar risinājumiem', false, true],
-      ['MI palīgs: jautā rakstot', false, true],
-      ['MI palīgs balsī', false, '<span class="soon">drīzumā</span>'],
-      ['Progresa pārskats vecākiem e-pastā', false, '<span class="soon">drīzumā</span>'],
-    ],
-    inc_h: 'Kas ir abonementā',
+    cmp_h: 'Bez maksas un Plus: ar ko tie atšķiras',
+    cmp_p: 'Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas pēc reģistrācijas. Plus pievieno palīgus, ar kuriem gatavoties ātrāk; tas sāksies 15. februārī.',
+    cmp_yes: 'ir', cmp_no: 'nav', cmp_free: 'Bez maksas', cmp_full: 'Plus', cmp_free_s: 'tests un visas nodarbības', cmp_full_s: 'no {p} € mēnesī', cmp_price: 'Cena', cmp_free_price: '0 €',
+    cmp: [['Tests: 16 eksāmena tipa uzdevumi', true, true], ['Visas video nodarbības', true, true], ['Uzdevumi ar tūlītēju pārbaudi', true, true], ['Izmēģinājuma eksāmens', true, true], ['MI palīgs: jautā par jebkuru uzdevumu', false, true], ['Personīgais plāns ar iknedēļas progresa pārbaudi', false, true], ['Izmēģinājuma eksāmena detalizēti risinājumi', false, true], ['Konspekti PDF formātā', false, true], ['Progresa pārskats vecākiem e-pastā', false, true]],
+    inc_h: 'Kas ir Plus',
     inc_p: 'Viss, lai pats sagatavotos eksāmenam savā tempā — bez grafika un bez braukāšanas.',
-    plans_h: 'Izvēlies savu variantu',
-    plans_p: 'Vispirms — bezmaksas tests. Pēc tam izvēlies, kā maksāt: pa mēnešiem vai vienreiz līdz eksāmenam.',
+    plans_h: 'Eksāmens 9 Plus',
+    plans_p: 'Nodarbības ir bez maksas. Plus — MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem. Abi priekšmeti vienā abonementā.',
     plan_badge_both: 'Izdevīgākais',
     plan_feat_both: ['Matemātika un dabaszinātnes: 16 tēmas', 'Bez ikmēneša maksājumiem', 'Par {s} € lētāk nekā divi atsevišķi'],
     plan_guarantee: '14 dienu naudas atgriešanas garantija.',
     first_month: 'pirmajā mēnesī', then_month: 'pēc tam {p} € mēnesī',
-    promo_h: '−50 % visiem variantiem, ja rezervē līdz {until}', promo_p: 'Līdz 15. februārim viss ir bez maksas. Rezervē vietu tagad — bez maksas un bez saistībām —, un pēc tam pilnais kurss tev maksās uz pusi mazāk.', promo_hero: 'visiem variantiem, rezervējot līdz {until}',
-    sub_month_note: 'Visas 8 priekšmeta tēmas. Atcelt var jebkurā brīdī.', 
-    plan_all: ['Pa mēnešiem', 'Viss viena priekšmeta kurss, atcelt var jebkurā brīdī.'],
-    plan_exam: ['Līdz eksāmenam', 'Visas viena priekšmeta tēmas līdz eksāmenam vienā maksājumā.'],
+    promo_h: '−50 % Plus abonementam, ja rezervē līdz {until}', promo_p: 'Plus sāksies 15. februārī. Rezervē vietu tagad — bez maksas un bez saistībām —, un tas tev maksās uz pusi mazāk.', promo_hero: 'Plus abonementam, rezervējot līdz {until}',
+    sub_month_note: 'Plus abiem priekšmetiem. Atcelt var jebkurā brīdī.', 
+    plan_all: ['Pa mēnešiem', 'Plus abiem priekšmetiem, atcelt var jebkurā brīdī.'],
+    plan_exam: ['Gadam', 'Plus abiem priekšmetiem visu gadu vienā maksājumā.'],
     plan_badge_all: 'Izdevīgāk no 4 tēmām',
     plan_badge_exam: 'Ietaupi {s} €',
-    plan_once: 'vienreiz',
+    plan_once: 'gadā',
     plan_per_topic: 'par tēmu mēnesī',
     plan_feat_topic: ['Video un uzdevumi izvēlētajām tēmām', 'Atcelt var jebkurā brīdī'],
-    plan_feat_all: ['Viss kurss: 8 tēmas', 'MI palīgs: jautā rakstot', 'Atcelt var jebkurā brīdī'],
-    plan_feat_exam: ['Viss kurss līdz eksāmenam', 'Bez ikmēneša maksājumiem', 'Lētāk nekā {n} mēn. × {pa} € = {t} €'],
+    plan_feat_all: ['MI palīgs un personīgais plāns', 'Risinājumi, PDF konspekti, pārskati vecākiem', 'Atcelt var jebkurā brīdī'],
+    plan_feat_exam: ['Viss Plus uz 12 mēnešiem', 'Bez ikmēneša maksājumiem', 'Lētāk nekā 12 × {pa} € = {t} €'],
     plan_cta: 'Sākt ar bezmaksas testu',
     plan_early: 'Rezervē līdz {until} un saņem −{d} % jebkuram variantam.',
     faq_h: 'Biežākie jautājumi',
     faq: [
       ['Kas būs dabaszinātņu eksāmenā?', 'Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē.'],
-      ['Vai tas tiešām ir bez maksas?', 'Jā. Līdz {until} platforma ir bezmaksas beta: tests, visas gatavās video nodarbības, uzdevumi, plāns un izmēģinājuma eksāmens. Jaunas nodarbības atveram katru nedēļu, visas būs līdz martam. Pamats paliks bez maksas uz visiem laikiem, bet no 15. februāra pilnais kurss būs par maksu; ja rezervē vietu līdz {until}, saņemsi −{d} %.'],
+      ['Vai tas tiešām ir bez maksas?', 'Jā. Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas — vajag tikai izpildīt testu un izveidot kontu. Jaunas nodarbības atveram katru nedēļu. Par maksu būs tikai Plus: MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem; tas sāksies 15. februārī, un, rezervējot līdz {until}, saņemsi −{d} %.'],
       ['Kā notiek maksāšana?', 'Līdz {until} viss ir bez maksas, un nekas nav jāmaksā. Vietu maksas versijai var rezervēt jau tagad — pirms tās starta nosūtīsim uz e-pastu maksājuma saiti. Rezervējot līdz {until}, saņem −{d} % jebkuram variantam: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Ir 14 dienu naudas atgriešanas garantija.'],
       ['Vai var atcelt?', 'Ikmēneša abonementu var atcelt jebkurā brīdī. Variants «Līdz eksāmenam» automātiski neatjaunojas.'],
       ['Kādā valodā ir nodarbības?', 'Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski.'],
@@ -1612,8 +1604,8 @@ const I18N = {
     final_h: 'Sāc ar 15 minūtēm',
     final_p: 'Bezmaksas tests parādīs, kur ir robi. Pēc tam izlem, vai turpināt.',
     sub_mode_month: 'Pa mēnešiem',
-    sub_mode_exam: 'Līdz eksāmenam',
-    sub_exam_note: 'Visas 8 tēmas līdz pat eksāmenam {date}. Viens maksājums, bez atjaunošanas.',
+    sub_mode_exam: 'Gadam',
+    sub_exam_note: 'Plus abiem priekšmetiem uz 12 mēnešiem. Viens maksājums, bez atjaunošanas.',
     sub_exam_save: 'Salīdzinot ar {n} mēn. × {pa} € ietaupi {s} €.',
     subj_mat: 'Matemātika',
     subj_dab: 'Dabaszinātnes',
@@ -1686,7 +1678,7 @@ const I18N = {
     rep_send: 'Nosūtīt',
     rep_ok_h: 'Paldies!',
     rep_ok: 'Ziņojums nosūtīts. Mēs to izskatīsim un izlabosim kļūdu.',
-    f_news: 'Paziņot man, kad sāksies pilnais kurss',
+    f_news: 'Paziņot man, kad sāksies Plus',
     f_submit: 'Rādīt rezultātu',
     err_name: 'Ieraksti vārdu.',
     err_email: 'Pārbaudi e-pasta adresi, piemēram, vards@epasts.lv.',
@@ -1745,21 +1737,21 @@ const I18N = {
     locked: 'pilnajā kursā',
     cta_full_h: 'Patika? Pilnajā kursā ir viss pārējais',
     cta_full_p: 'Katrā tēmā 6–8 nodarbības ar video skaidrojumiem: jaunas atveram katru nedēļu, visas — līdz martam. Uzdevumi ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs.',
-    cta_full_btn: 'Izvēlēties variantu',
+    cta_full_btn: 'Uzzināt par Plus',
     your_answer_line: 'Tava atbilde uz skaitļu ass',
 
-    sub_h: 'Pilnais kurss',
-    sub_p: 'Izvēlies, kā maksāt. Tēmas ar robiem no testa ir atzīmētas sarakstā.',
+    sub_h: 'Eksāmens 9 Plus',
+    sub_p: 'Nodarbības paliek bez maksas. Plus pievieno palīgus, ar kuriem gatavoties ātrāk — abiem priekšmetiem.',
     sub_all: 'Atzīmēt visas',
     per_month: 'mēnesī',
     sub_calc: '{n} × {pp} €',
     sub_capped: 'Visas tēmas par {pa} € — vairāk nebūs jāmaksā',
     sub_all_deal: 'Visas 8 tēmas — {pa} € mēnesī',
-    sub_incl_h: 'Abonementā',
-    sub_incl: ['Video skaidrojumi ar latviešu terminiem', 'Uzdevumi ar tūlītēju pārbaudi un kļūdu skaidrojumu', 'Eksāmena tipa uzdevumi ar risinājumiem', 'Jaunas nodarbības katru nedēļu, visas līdz martam', 'MI palīgs: jautā rakstot (balsī <span class="soon">drīzumā</span>)', 'Progresa pārskats vecākiem e-pastā <span class="soon">drīzumā</span>', 'Atcelt var jebkurā brīdī'],
-    sub_launch: 'Līdz {until} viss ir bez maksas. Pēc tam sāksies maksas versija: rezervē vietu bez maksas, un pirms tam nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim.',
-    sub_launch_once: 'Līdz {until} viss ir bez maksas. Pēc tam sāksies maksas versija: rezervē vietu bez maksas, un pirms tam nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi. Piekļuve visām tēmām — līdz pat eksāmenam.',
-    sub_launch_exam: 'Līdz {until} viss ir bez maksas. Pēc tam sāksies maksas versija; pirms tam nosūtīsim uz e-pastu maksājuma saiti. Piekļuve visām tēmām — līdz pat eksāmenam.',
+    sub_incl_h: 'Plus abonementā',
+    sub_incl: ['MI palīgs: jautā par jebkuru uzdevumu', 'Personīgais plāns ar iknedēļas progresa pārbaudi', 'Izmēģinājuma eksāmena detalizēti risinājumi', 'Konspekti PDF formātā', 'Progresa pārskats vecākiem e-pastā', 'Atcelt var jebkurā brīdī'],
+    sub_launch: 'Plus sāksies {until}. Rezervē vietu bez maksas, un pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi pirmajam mēnesim.',
+    sub_launch_once: 'Plus sāksies {until}. Rezervē vietu bez maksas, un pirms starta nosūtīsim uz e-pastu maksājuma saiti ar −{d} % atlaidi gada abonementam.',
+    sub_launch_exam: 'Plus sāksies {until}; pirms tam nosūtīsim uz e-pastu maksājuma saiti.',
     sub_reserve: 'Rezervēt vietu bez maksas',
     sub_pay: 'Abonēt par {p} € mēnesī',
     sub_pay_exam: 'Apmaksāt {p} €',
@@ -1883,44 +1875,35 @@ const I18N = {
     show_p: 'Короткое видео с голосом и анимацией: формула появляется ровно тогда, когда о ней говорят. После видео — задачи с мгновенной проверкой.',
     show_more: 'Темы курса, у каждой есть видео:',
     show_play: 'Смотреть',
-    cmp_h: 'Бесплатно и полный курс: в чём разница',
-    cmp_p: 'До 15 февраля всё бесплатно. Потом основа — тест, план, базовые уроки, шпаргалка и пробный экзамен — остаётся бесплатной навсегда, а платишь за полный курс: все уроки, задачи как на экзамене и помощника.',
-    cmp_yes: 'есть', cmp_no: 'нет', cmp_free: 'Бесплатно', cmp_full: 'Полный курс', cmp_free_s: 'тест + демо', cmp_full_s: 'от {p} €', cmp_price: 'Цена', cmp_free_price: '0 €',
-    cmp: [
-      ['Тест: 16 задач как на экзамене', true, true],
-      ['Результат по темам и копия на e-mail', true, true],
-      ['Видеоуроки', '1 демо-урок в каждой теме', 'На старте 2–3 урока в каждой теме, новые каждую неделю; все 6–8 к марту'],
-      ['Задачи с мгновенной проверкой', '3 задачи в каждой теме', 'Задачи к каждому открытому уроку'],
-      ['Задачи как на экзамене с решениями', false, true],
-      ['ИИ-помощник: спрашивай текстом', false, true],
-      ['ИИ-помощник голосом', false, '<span class="soon">скоро</span>'],
-      ['Отчёт о прогрессе для родителей на e-mail', false, '<span class="soon">скоро</span>'],
-    ],
-    inc_h: 'Что входит в подписку',
+    cmp_h: 'Бесплатно и Plus: в чём разница',
+    cmp_p: 'Тест, все видеоуроки, задачи и пробный экзамен бесплатны после регистрации. Plus добавляет помощников, с которыми готовиться быстрее; он стартует 15 февраля.',
+    cmp_yes: 'есть', cmp_no: 'нет', cmp_free: 'Бесплатно', cmp_full: 'Plus', cmp_free_s: 'тест и все уроки', cmp_full_s: 'от {p} € в месяц', cmp_price: 'Цена', cmp_free_price: '0 €',
+    cmp: [['Тест: 16 задач как на экзамене', true, true], ['Все видеоуроки', true, true], ['Задачи с мгновенной проверкой', true, true], ['Пробный экзамен', true, true], ['ИИ-помощник: спроси про любую задачу', false, true], ['Личный план с еженедельной проверкой прогресса', false, true], ['Подробные решения пробного экзамена', false, true], ['Конспекты в PDF', false, true], ['Отчёт о прогрессе для родителей на e-mail', false, true]],
+    inc_h: 'Что входит в Plus',
     inc_p: 'Всё, чтобы подготовиться к экзамену самому и в своём темпе — без расписания и поездок.',
-    plans_h: 'Выбери свой вариант',
-    plans_p: 'Сначала — бесплатный тест. Потом выбери, как платить: помесячно или один раз до экзамена.',
+    plans_h: 'Eksāmens 9 Plus',
+    plans_p: 'Уроки бесплатны. Plus — ИИ-помощник, личный план, решения, конспекты в PDF и отчёты для родителей. Оба предмета в одной подписке.',
     plan_badge_both: 'Самый выгодный',
     plan_feat_both: ['Математика и естественные науки: 16 тем', 'Без ежемесячных платежей', 'На {s} € дешевле, чем два по отдельности'],
     plan_guarantee: 'Гарантия возврата денег 14 дней.',
     first_month: 'в первый месяц', then_month: 'далее {p} € в месяц',
-    promo_h: '−50 % на все тарифы при брони до {until}', promo_p: 'До 15 февраля всё бесплатно. Забронируй место сейчас — бесплатно и без обязательств, — и потом полный курс обойдётся тебе вдвое дешевле.', promo_hero: 'на все тарифы при брони до {until}',
-    sub_month_note: 'Все 8 тем предмета. Отменить можно в любой момент.', 
-    plan_all: ['Помесячно', 'Весь курс по одному предмету, отменить можно в любой момент.'],
-    plan_exam: ['До экзамена', 'Все темы одного предмета до экзамена одним платежом.'],
+    promo_h: '−50 % на Plus при брони до {until}', promo_p: 'Plus стартует 15 февраля. Забронируй место сейчас — бесплатно и без обязательств, — и он обойдётся тебе вдвое дешевле.', promo_hero: 'на Plus при брони до {until}',
+    sub_month_note: 'Plus для обоих предметов. Отменить можно в любой момент.', 
+    plan_all: ['Помесячно', 'Plus для обоих предметов, отменить можно в любой момент.'],
+    plan_exam: ['На год', 'Plus для обоих предметов на весь год одним платежом.'],
     plan_badge_all: 'Выгоднее с 4 тем',
     plan_badge_exam: 'Экономия {s} €',
-    plan_once: 'один раз',
+    plan_once: 'в год',
     plan_per_topic: 'за тему в месяц',
     plan_feat_topic: ['Видео и задачи по выбранным темам', 'Отменить можно в любой момент'],
-    plan_feat_all: ['Весь курс: 8 тем', 'ИИ-помощник: спрашивай текстом', 'Отменить можно в любой момент'],
-    plan_feat_exam: ['Весь курс до экзамена', 'Без ежемесячных платежей', 'Дешевле, чем {n} мес. × {pa} € = {t} €'],
+    plan_feat_all: ['ИИ-помощник и личный план', 'Решения, конспекты в PDF, отчёты родителям', 'Отменить можно в любой момент'],
+    plan_feat_exam: ['Весь Plus на 12 месяцев', 'Без ежемесячных платежей', 'Дешевле, чем 12 × {pa} € = {t} €'],
     plan_cta: 'Начать с бесплатного теста',
     plan_early: 'Забронируй до {until} и получи −{d} % на любой тариф.',
     faq_h: 'Частые вопросы',
     faq: [
       ['Что будет на экзамене по естественным наукам?', 'Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс.'],
-      ['Это правда бесплатно?', 'Да. До {until} платформа работает как бесплатная бета: тест, все готовые видеоуроки, задачи, план и пробный экзамен. Новые уроки открываем каждую неделю, все будут к марту. Основа останется бесплатной навсегда, а с 15 февраля полный курс станет платным; если забронируешь место до {until}, получишь −{d} %.'],
+      ['Это правда бесплатно?', 'Да. Тест, все видеоуроки, задачи и пробный экзамен бесплатны — нужно только пройти тест и создать кабинет. Новые уроки открываем каждую неделю. Платным будет только Plus: ИИ-помощник, личный план, решения, конспекты в PDF и отчёты для родителей; он стартует 15 февраля, а при брони до {until} — со скидкой −{d} %.'],
       ['Как проходит оплата?', 'До {until} всё бесплатно, платить ничего не нужно. Место в платной версии можно забронировать уже сейчас — перед её стартом пришлём на e-mail ссылку на оплату. При брони до {until} скидка −{d} % на любой тариф: для помесячного на первый месяц, для разовых на всю сумму. Действует гарантия возврата денег 14 дней.'],
       ['Можно ли отменить?', 'Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается.'],
       ['На каком языке уроки?', 'На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски.'],
@@ -1930,8 +1913,8 @@ const I18N = {
     final_h: 'Начни с 15 минут',
     final_p: 'Бесплатный тест покажет, где пробелы. Потом решишь, продолжать ли.',
     sub_mode_month: 'Помесячно',
-    sub_mode_exam: 'До экзамена',
-    sub_exam_note: 'Все 8 тем до {date}. Один платёж, без продления.',
+    sub_mode_exam: 'На год',
+    sub_exam_note: 'Plus для обоих предметов на 12 месяцев. Один платёж, без продления.',
     sub_exam_save: 'По сравнению с {n} мес. × {pa} € экономия {s} €.',
     subj_mat: 'Математика',
     subj_dab: 'Естественные науки',
@@ -2004,7 +1987,7 @@ const I18N = {
     rep_send: 'Отправить',
     rep_ok_h: 'Спасибо!',
     rep_ok: 'Сообщение отправлено. Мы посмотрим и исправим ошибку.',
-    f_news: 'Сообщить мне, когда начнётся полный курс',
+    f_news: 'Сообщить мне, когда стартует Plus',
     f_submit: 'Показать результат',
     err_name: 'Впиши имя.',
     err_email: 'Проверь адрес e-mail, например imja@pochta.lv.',
@@ -2063,21 +2046,21 @@ const I18N = {
     locked: 'в полном курсе',
     cta_full_h: 'Понравилось? В полном курсе всё остальное',
     cta_full_p: 'В каждой теме 6–8 уроков с видеообъяснениями: новые открываем каждую неделю, все — до марта. Задачи с проверкой, задачи как на экзамене и ИИ-помощник.',
-    cta_full_btn: 'Выбрать тариф',
+    cta_full_btn: 'Узнать о Plus',
     your_answer_line: 'Твой ответ на числовой прямой',
 
-    sub_h: 'Полный курс',
-    sub_p: 'Выбери, как платить. Темы с пробелами из теста отмечены в списке.',
+    sub_h: 'Eksāmens 9 Plus',
+    sub_p: 'Уроки остаются бесплатными. Plus добавляет помощников, с которыми готовиться быстрее, — для обоих предметов.',
     sub_all: 'Отметить все',
     per_month: 'в месяц',
     sub_calc: '{n} × {pp} €',
     sub_capped: 'Все темы за {pa} €, больше платить не придётся',
     sub_all_deal: 'Все 8 тем — {pa} € в месяц',
-    sub_incl_h: 'В подписке',
-    sub_incl: ['Видеообъяснения с латышскими терминами', 'Задачи с мгновенной проверкой и разбором ошибок', 'Задачи как на экзамене с решениями', 'Новые уроки каждую неделю, все к марту', 'ИИ-помощник: спрашивай текстом (голосом <span class="soon">скоро</span>)', 'Отчёт о прогрессе для родителей на e-mail <span class="soon">скоро</span>', 'Отменить можно в любой момент'],
-    sub_launch: 'До {until} всё бесплатно. Потом начнётся платная версия: забронируй место бесплатно, и перед этим мы пришлём на e-mail ссылку на оплату со скидкой −{d} % на первый месяц.',
-    sub_launch_once: 'До {until} всё бесплатно. Потом начнётся платная версия: забронируй место бесплатно, и перед этим мы пришлём на e-mail ссылку на оплату со скидкой −{d} %. Доступ ко всем темам — до самого экзамена.',
-    sub_launch_exam: 'До {until} всё бесплатно. Потом начнётся платная версия; перед этим пришлём на e-mail ссылку на оплату. Доступ ко всем темам — до самого экзамена.',
+    sub_incl_h: 'В подписке Plus',
+    sub_incl: ['ИИ-помощник: спроси про любую задачу', 'Личный план с еженедельной проверкой прогресса', 'Подробные решения пробного экзамена', 'Конспекты в PDF', 'Отчёт о прогрессе для родителей на e-mail', 'Отменить можно в любой момент'],
+    sub_launch: 'Plus стартует {until}. Забронируй место бесплатно, и перед стартом мы пришлём на e-mail ссылку на оплату со скидкой −{d} % на первый месяц.',
+    sub_launch_once: 'Plus стартует {until}. Забронируй место бесплатно, и перед стартом мы пришлём на e-mail ссылку на оплату со скидкой −{d} % на годовую подписку.',
+    sub_launch_exam: 'Plus стартует {until}; перед этим пришлём на e-mail ссылку на оплату.',
     sub_reserve: 'Забронировать бесплатно',
     sub_pay: 'Подписаться за {p} € в месяц',
     sub_pay_exam: 'Оплатить {p} €',
@@ -4058,7 +4041,7 @@ Object.assign(I18N.lv, {
   au_set_h: 'Iestati jauno paroli', au_set_btn: 'Saglabāt paroli', au_set_ok: 'Parole nomainīta.',
   au_why: 'Ar kontu tavs progress saglabājas un ir pieejams arī citā ierīcē.',
   au_agree: 'Reģistrējoties tu piekrīti',
-  au_acct_h: 'Mans konts', au_plan_free: 'Bezmaksas versija: tests un demo nodarbības', au_plan_paid: 'Pilnais kurss · beidzas {date}', au_synced: 'Progress tiek saglabāts kontā.',
+  au_acct_h: 'Mans konts', au_plan_free: 'Bezmaksas versija: tests un visas nodarbības', au_plan_paid: 'Plus · beidzas {date}', au_synced: 'Progress tiek saglabāts kontā.',
   au_out: 'Iziet', au_chpw: 'Mainīt paroli',
   au_e_email: 'Pārbaudi e-pasta adresi.', au_e_pw: 'Parolei jābūt vismaz 8 rakstzīmes garai.', au_e_cred: 'Nepareizs e-pasts vai parole.', au_e_exists: 'Šāds konts jau ir. Mēģini ieiet vai atjaunot paroli.',
   au_e_unconf: 'E-pasts vēl nav apstiprināts. Atver saiti vēstulē, ko nosūtījām.', au_e_rate: 'Pārāk daudz mēģinājumu. Pamēģini pēc dažām minūtēm.', au_e_net: 'Neizdevās savienoties. Pārbaudi internetu un mēģini vēlreiz.', au_e_link: 'Saite vairs nav derīga. Pieprasi jaunu.',
@@ -4074,7 +4057,7 @@ Object.assign(I18N.ru, {
   au_set_h: 'Задай новый пароль', au_set_btn: 'Сохранить пароль', au_set_ok: 'Пароль изменён.',
   au_why: 'С кабинетом твой прогресс сохраняется и доступен с другого устройства.',
   au_agree: 'Регистрируясь, ты соглашаешься с документом',
-  au_acct_h: 'Мой кабинет', au_plan_free: 'Бесплатная версия: тест и демо-уроки', au_plan_paid: 'Полный курс до {date}', au_synced: 'Прогресс сохраняется в кабинете.',
+  au_acct_h: 'Мой кабинет', au_plan_free: 'Бесплатная версия: тест и все уроки', au_plan_paid: 'Plus до {date}', au_synced: 'Прогресс сохраняется в кабинете.',
   au_out: 'Выйти', au_chpw: 'Сменить пароль',
   au_e_email: 'Проверь адрес e-mail.', au_e_pw: 'Пароль должен быть не короче 8 символов.', au_e_cred: 'Неверный e-mail или пароль.', au_e_exists: 'Такой кабинет уже есть. Попробуй войти или восстановить пароль.',
   au_e_unconf: 'E-mail ещё не подтверждён. Открой ссылку из письма, которое мы отправили.', au_e_rate: 'Слишком много попыток. Попробуй через несколько минут.', au_e_net: 'Не удалось соединиться. Проверь интернет и попробуй ещё раз.', au_e_link: 'Ссылка больше не действует. Запроси новую.',
@@ -4261,9 +4244,9 @@ Object.assign(I18N.lv, {
   k_h: 'Mans konts', k_hi: 'Sveiki, {n}!', k_hi0: 'Sveiki!', k_out_h: 'Tavs konts Eksāmens 9',
   k_out_p: 'Konts saglabā tavu progresu, testu rezultātus un kursa piekļuvi. Tad vari mācīties gan telefonā, gan datorā.',
   k_out_list: ['Progress un rezultāti saglabājas arī citā ierīcē', 'Piekļuve pilnajam kursam pēc apmaksas', 'Ieiet var ar e-pastu vai Google'],
-  k_plan_h: 'Mans plāns', k_plan_free: 'Bezmaksas versija', k_plan_free_p: 'Tests un demo nodarbības katrā tēmā.',
-  k_plan_paid: 'Pilnais kurss', k_plan_until: 'Piekļuve beidzas {date}', k_res: 'Rezervēts: {p}', k_res_p: 'Līdz {until} viss ir bez maksas. Pirms maksas versijas starta uz {email} nosūtīsim maksājuma saiti ar −{d} % atlaidi.',
-  k_plan_names: { month: 'pa mēnešiem', exam: 'līdz eksāmenam', both: 'abi priekšmeti' }, k_choose: 'Izvēlēties plānu', k_compare: 'Ar ko atšķiras pilnais kurss',
+  k_plan_h: 'Mans plāns', k_plan_free: 'Bezmaksas versija', k_plan_free_p: 'Tests, visas nodarbības un uzdevumi.',
+  k_plan_paid: 'Plus', k_plan_until: 'Piekļuve beidzas {date}', k_res: 'Rezervēts: {p}', k_res_p: 'Līdz {until} viss ir bez maksas. Pirms Plus starta uz {email} nosūtīsim maksājuma saiti ar −{d} % atlaidi.',
+  k_plan_names: { month: 'pa mēnešiem', exam: 'gadam', both: 'gadam' }, k_choose: 'Uzzināt par Plus', k_compare: 'Ar ko atšķiras Plus',
   k_study_h: 'Mācības', k_test: 'Tests', k_test_none: 'vēl nav kārtots', k_course: 'Kurss', k_tasks: 'Uzdevumi',
   k_profile_h: 'Profils', k_name: 'Vārds', k_role: 'Kas izmanto kontu?', k_lang: 'Valoda', k_news: 'Gribu saņemt ziņas par kursa sākumu un jaunām nodarbībām',
   k_save: 'Saglabāt', k_saved: 'Saglabāts.', k_sec_h: 'Drošība', k_via_google: 'Tu ieej ar Google, parole nav vajadzīga.',
@@ -4274,9 +4257,9 @@ Object.assign(I18N.ru, {
   k_h: 'Мой кабинет', k_hi: 'Привет, {n}!', k_hi0: 'Привет!', k_out_h: 'Твой кабинет Eksāmens 9',
   k_out_p: 'Кабинет хранит твой прогресс, результаты тестов и доступ к курсу. Заниматься можно и с телефона, и с компьютера.',
   k_out_list: ['Прогресс и результаты доступны с любого устройства', 'Доступ к полному курсу после оплаты', 'Войти можно по e-mail или через Google'],
-  k_plan_h: 'Мой тариф', k_plan_free: 'Бесплатная версия', k_plan_free_p: 'Тест и демо-урок в каждой теме.',
-  k_plan_paid: 'Полный курс', k_plan_until: 'Доступ до {date}', k_res: 'Забронировано: {p}', k_res_p: 'До {until} всё бесплатно. Перед стартом платной версии пришлём на {email} ссылку на оплату со скидкой −{d} %.',
-  k_plan_names: { month: 'помесячно', exam: 'до экзамена', both: 'оба предмета' }, k_choose: 'Выбрать тариф', k_compare: 'Чем отличается полный курс',
+  k_plan_h: 'Мой тариф', k_plan_free: 'Бесплатная версия', k_plan_free_p: 'Тест, все уроки и задачи.',
+  k_plan_paid: 'Plus', k_plan_until: 'Доступ до {date}', k_res: 'Забронировано: {p}', k_res_p: 'До {until} всё бесплатно. Перед стартом Plus пришлём на {email} ссылку на оплату со скидкой −{d} %.',
+  k_plan_names: { month: 'помесячно', exam: 'на год', both: 'на год' }, k_choose: 'Узнать о Plus', k_compare: 'Чем отличается Plus',
   k_study_h: 'Учёба', k_test: 'Тест', k_test_none: 'ещё не пройден', k_course: 'Курс', k_tasks: 'Задачи',
   k_profile_h: 'Профиль', k_name: 'Имя', k_role: 'Кто пользуется кабинетом?', k_lang: 'Язык', k_news: 'Хочу получать новости о старте курса и новых уроках',
   k_save: 'Сохранить', k_saved: 'Сохранено.', k_sec_h: 'Безопасность', k_via_google: 'Ты входишь через Google, пароль не нужен.',
@@ -4361,7 +4344,7 @@ const LEGAL = {
     terms_title: 'Lietošanas noteikumi',
     terms: [
       ['1. Pakalpojuma sniedzējs', 'Vietni www.eksamens9.lv un kursu “Eksāmens 9” nodrošina {controller}{regno}{address}. Saziņai: {email}.'],
-      ['2. Pakalpojums', 'Eksāmens 9 ir tiešsaistes kurss gatavošanai 9. klases centralizētajiem eksāmeniem matemātikā un dabaszinātnēs latviešu un krievu valodā. Bez maksas pieejams diagnostikas tests un viena demo nodarbība katrā tēmā. Pilnajā kursā ir video nodarbības, uzdevumi ar pārbaudi, eksāmena tipa uzdevumi un MI palīgs. Līdz 2027. gada 15. februārim kurss pieejams bez maksas (beta versija); nodarbības tiek pievienotas pakāpeniski, jaunas — katru nedēļu, visas nodarbības būs pieejamas līdz 2027. gada martam. Lai lietotu kursu, vajag pārlūku ar interneta pieslēgumu.'],
+      ['2. Pakalpojums', 'Eksāmens 9 ir tiešsaistes kurss gatavošanai 9. klases centralizētajiem eksāmeniem matemātikā un dabaszinātnēs latviešu un krievu valodā. Bez maksas pieejams diagnostikas tests, un pēc testa un reģistrācijas — visas video nodarbības, uzdevumi ar pārbaudi un izmēģinājuma eksāmens; nodarbības tiek pievienotas pakāpeniski, jaunas — katru nedēļu. Par maksu ir abonements Plus: MI palīgs, personīgais plāns ar progresa pārbaudi, izmēģinājuma eksāmena detalizēti risinājumi, konspekti PDF formātā un progresa pārskati vecākiem. Plus sāksies 2027. gada 15. februārī. Lai lietotu kursu, vajag pārlūku ar interneta pieslēgumu.'],
       ['3. Konts', 'Kontu var izveidot ar e-pastu un paroli vai ar Google kontu. Konts ir personisks: piekļuvi nedrīkst nodot citiem. Ja skolēnam nav 13 gadu, kontu izveido un pakalpojumu iegādājas vecāks vai likumiskais pārstāvis. Paroli glabā drošībā pats lietotājs.'],
       ['4. Cenas un apmaksa', 'Cenas norādītas eiro. Pakalpojuma sniedzējs nav PVN maksātājs, tāpēc PVN cenā nav iekļauts. Varianti: pa mēnešiem (viens priekšmets), līdz eksāmenam (viens priekšmets, vienreizējs maksājums) un abi priekšmeti līdz eksāmeniem (vienreizējs maksājums). Aktuālās cenas ir norādītas vietnē pirms apmaksas. Pamata funkcijas — diagnostikas tests, personīgais plāns, pamatnodarbības katrā tēmā, formulu lapa un viens izmēģinājuma eksāmens — ir un paliks bez maksas. Līdz 2027. gada 15. februārim platforma darbojas kā bezmaksas beta versija: visas pieejamās funkcijas un nodarbības ir bez maksas, un maksājumi netiek pieņemti. Līdz šim datumam vietu var rezervēt bez maksas; rezervācija ne pie kā nesaista. Rezervētājiem pirms maksas versijas starta uz e-pastu nosūtām maksājuma saiti ar −50 % atlaidi: ikmēneša variantam pirmajam mēnesim, vienreizējiem variantiem visai summai. Apmaksa notiek ar maksājuma karti caur drošu maksājumu pakalpojumu; kartes datus mēs neredzam un neglabājam.'],
       ['5. Ikmēneša abonements', 'Ikmēneša abonements automātiski atjaunojas katru mēnesi, līdz to atceļ. Atcelt var jebkurā brīdī kontā vai rakstot uz {email}; piekļuve saglabājas līdz apmaksātā mēneša beigām, un turpmāki maksājumi netiek iekasēti. Mēnesi skaita no dienas, kad tiek atvērta pirmā apmaksātā tēma.'],
@@ -4392,7 +4375,7 @@ const LEGAL = {
     terms_title: 'Условия использования',
     terms: [
       ['1. Кто оказывает услугу', 'Сайт www.eksamens9.lv и курс «Eksāmens 9» предоставляет {controller}{regno}{address}. Связь: {email}.'],
-      ['2. Услуга', 'Eksāmens 9 — онлайн-курс подготовки к централизованным экзаменам 9 класса по математике и естественным наукам на латышском и русском языках. Бесплатно доступны диагностический тест и один демо-урок в каждой теме. В полный курс входят видеоуроки, задачи с проверкой, задачи как на экзамене и ИИ-помощник. До 15 февраля 2027 года курс доступен бесплатно (бета-версия); уроки добавляются постепенно, новые — каждую неделю, все уроки будут доступны к марту 2027 года. Для курса нужен браузер с доступом в интернет.'],
+      ['2. Услуга', 'Eksāmens 9 — онлайн-курс подготовки к централизованным экзаменам 9 класса по математике и естественным наукам на латышском и русском языках. Бесплатно доступны диагностический тест, а после теста и регистрации — все видеоуроки, задачи с проверкой и пробный экзамен; уроки добавляются постепенно, новые — каждую неделю. Платно — подписка Plus: ИИ-помощник, личный план с проверкой прогресса, подробные решения пробного экзамена, конспекты в PDF и отчёты о прогрессе для родителей. Plus стартует 15 февраля 2027 года. Для курса нужен браузер с доступом в интернет.'],
       ['3. Кабинет', 'Кабинет можно создать по e-mail и паролю или через аккаунт Google. Кабинет личный: передавать доступ другим нельзя. Если ученику нет 13 лет, кабинет создаёт и услугу покупает родитель или законный представитель. За сохранность пароля отвечает пользователь.'],
       ['4. Цены и оплата', 'Цены указаны в евро. Поставщик услуги не является плательщиком НДС, поэтому НДС в цену не входит. Варианты: помесячно (один предмет), до экзамена (один предмет, разовый платёж) и оба предмета до экзаменов (разовый платёж). Актуальные цены указаны на сайте перед оплатой. Базовые функции — диагностический тест, личный план, базовые уроки по каждой теме, шпаргалка и один пробный экзамен — бесплатны и останутся бесплатными. До 15 февраля 2027 года платформа работает как бесплатная бета-версия: все доступные функции и уроки бесплатны, платежи не принимаются. До этой даты место можно забронировать бесплатно; бронь ни к чему не обязывает. Забронировавшим перед стартом платной версии присылаем на e-mail ссылку на оплату со скидкой −50 %: для помесячного варианта на первый месяц, для разовых — на всю сумму. Оплата картой через защищённый платёжный сервис; данные карты мы не видим и не храним.'],
       ['5. Помесячная подписка', 'Помесячная подписка автоматически продлевается каждый месяц, пока её не отменят. Отменить можно в любой момент в кабинете или написав на {email}; доступ сохраняется до конца оплаченного месяца, дальнейшие платежи не списываются. Месяц отсчитывается с того дня, когда откроется первая оплаченная тема.'],
@@ -4455,7 +4438,7 @@ Object.assign(I18N.lv, {
   mis_stats: [['20 %', 'minimālais slieksnis matemātikā 2027. gadā'], ['1563', 'skolēni nenokārtotu matemātiku jau pie 15 % sliekšņa (valdības aprēķins, 2025)'], ['44,8 %', 'vidējais rezultāts pirmajā dabaszinātņu darbā 2026. gadā']],
   mis_free_h: 'Bez maksas uz visiem laikiem',
   mis_free: ['Diagnostikas tests un rezultāts pa tēmām', 'Personīgais plāns līdz eksāmenam', 'Pamatnodarbības katrā tēmā latviski un krieviski', 'Formulu lapa un izmēģinājuma eksāmens'],
-  mis_paid: 'Pilnais kurss ar visām nodarbībām, palīgu un papildu eksāmena variantiem būs par maksu no 15. februāra — tiem, kas vēlas vairāk.',
+  mis_paid: 'Nodarbības ir bez maksas. Par maksu būs tikai Plus — MI palīgs, personīgais plāns un citi papildu rīki — no 15. februāra, tiem, kas vēlas vairāk.',
   mis_src: 'Avoti: LV portāls, MK (2025), LSM (2026)',
 });
 Object.assign(I18N.ru, {
@@ -4465,7 +4448,7 @@ Object.assign(I18N.ru, {
   mis_stats: [['20 %', 'минимальный порог по математике в 2027 году'], ['1563', 'ученика не сдали бы математику уже при пороге 15 % (оценка правительства, 2025)'], ['44,8 %', 'средний результат первой работы по естественным наукам в 2026 году']],
   mis_free_h: 'Бесплатно навсегда',
   mis_free: ['Диагностический тест и результат по темам', 'Личный план до экзамена', 'Базовые уроки по каждой теме на русском и латышском', 'Шпаргалка формул и пробный экзамен'],
-  mis_paid: 'Полный курс со всеми уроками, помощником и дополнительными вариантами экзамена станет платным с 15 февраля — для тех, кто хочет больше.',
+  mis_paid: 'Уроки бесплатны. Платным будет только Plus — ИИ-помощник, личный план и другие дополнительные инструменты — с 15 февраля, для тех, кто хочет больше.',
   mis_src: 'Источники: LV portāls, MK (2025), LSM (2026)',
 });
 function missionHTML() {
@@ -5245,15 +5228,14 @@ function compareHTML() {
 }
 function plansHTML() {
   const m = examMonths();
-  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(eur(CONFIG.priceAll)).split('{t}').join(eur(m * CONFIG.priceAll)).split('{s}').join(eur(deal(2 * CONFIG.priceExam) - deal(CONFIG.priceBoth)))}</li>`).join('');
+  const feat = k => T(k).map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x.split('{n}').join(m).split('{pa}').join(eur(CONFIG.priceAll)).split('{t}').join(eur(Math.round(12 * CONFIG.priceAll * 100) / 100)).split('{s}').join(eur(deal(2 * CONFIG.priceExam) - deal(CONFIG.priceBoth)))}</li>`).join('');
   const card = (k, plan, feats, badge, hi) => `<div class="plan${hi ? ' plan-hi' : ''}">${badge ? `<span class="plan-badge">${badge}</span>` : ''}<h3>${T(k)[0]}</h3><p class="plan-d">${T(k)[1].split('{date}').join(dateLong(plan === 'both' ? CONFIG.sciDate : CONFIG.examDate))}</p>${priceHTML(plan, 'plan-price')}<ul class="plan-f">${feat(feats)}</ul><a class="btn ${hi ? 'btn-mark' : 'btn-secondary'} btn-lg wide" href="#prieksmeti" data-act="toSubj">${T('plan_cta')}</a></div>`;
   return `<section class="wrap sec plans-sec" id="cenas">
     <div class="sec-head"><h2>${T('plans_h')}</h2><p>${T('plans_p')}</p></div>
     ${promoHTML()}
     <div class="plans">
       ${card('plan_all', 'month', 'plan_feat_all', '', false)}
-      ${card('plan_both', 'both', 'plan_feat_both', T('plan_badge_both'), true)}
-      ${card('plan_exam', 'exam', 'plan_feat_exam', '', false)}
+      ${card('plan_exam', 'exam', 'plan_feat_exam', T('plan_badge_both'), true)}
     </div>
     <p class="plans-early"><span class="dot" aria-hidden="true"></span>${T('plan_guarantee')}</p>
   </section>`;
@@ -5534,24 +5516,22 @@ function videoHTML(tid, file) {
 
 function viewSub() {
   const R = results();
-  const both = state.plan === 'both', exam = state.plan === 'exam' || both, plan = both ? 'both' : exam ? 'exam' : 'month';
+  const both = false, exam = state.plan === 'exam' || state.plan === 'both', plan = exam ? 'exam' : 'month';
   const n = TOPICS.length, p = deal(planPrice(plan));
   const link = CONFIG.payLinks ? (both ? CONFIG.payLinks.both : exam ? CONFIG.payLinks.exam : CONFIG.payLinks.all) : null;
   const href = link && state.lead ? `${link}${link.includes('?') ? '&' : '?'}client_reference_id=${encodeURIComponent(state.lead.id)}${state.lead.email ? '&prefilled_email=' + encodeURIComponent(state.lead.email) : ''}` : link;
   return `<section class="wrap mid sub">
-    <p class="eyebrow">${T('sub_subj_h', { s: subjName(state.subj) })} · <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>
     <h1>${T('sub_h')}</h1><p class="lead">${T('sub_p')}</p>
-    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceAll))} €</span></button><button type="button" role="radio" aria-checked="${exam && !both}" data-act="plan" data-v="exam">${T('sub_mode_exam')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceExam))} €</span></button><button type="button" role="radio" aria-checked="${both}" data-act="plan" data-v="both">${T('sub_mode_both')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceBoth))} €</span></button></div>
+    <div class="seg" role="radiogroup" aria-label="${T('plans_h')}"><button type="button" role="radio" aria-checked="${!exam}" data-act="plan" data-v="month">${T('sub_mode_month')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceAll))} €</span></button><button type="button" role="radio" aria-checked="${exam && !both}" data-act="plan" data-v="exam">${T('sub_mode_exam')} <span class="seg-save seg-price">${eur(deal(CONFIG.priceExam))} €</span></button></div>
     ${promoHTML('promo-sm')}
     <div class="sub-grid">
       <div class="sheet">
-        <ul class="pick">${R.order.map(id => `<li><label class="pick-i"><input type="checkbox" checked disabled><span class="ic">${topicById(id).ic}</span><span class="pick-t">${L(topicById(id))}</span>${pill(R.status(id))}</label></li>`).join('')}</ul>
+        <h2 class="plus-h">${T('sub_incl_h')}</h2><ul class="incl plus-incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
       </div>
       <aside class="sheet price-card">
         ${priceHTML(plan, 'price')}
         <p class="calc">${both ? T('sub_both_note', { date: dateLong(CONFIG.sciDate) }) : exam ? T('sub_exam_note', { date: dateLong(examDateOf(state.subj)) }) : T('sub_month_note')}</p>
         ${both ? `<p class="deal">${T('plan_both_save', { s: eur(deal(2 * CONFIG.priceExam) - deal(CONFIG.priceBoth)) })}</p>` : ''}
-        <h3>${T('sub_incl_h')}</h3><ul class="incl">${T('sub_incl').map(x => `<li>${x}</li>`).join('')}</ul>
         ${link ? `<a class="btn btn-primary btn-lg wide" href="${esc(href)}" rel="noopener" data-act="checkout">${exam ? T('sub_pay_exam', { p: eur(p) }) : T('sub_pay', { p: eur(p) })}</a>`
           : `<p class="launch">${T(!earlyOn() ? 'sub_launch_exam' : exam ? 'sub_launch_once' : 'sub_launch', { date: dateShort(CONFIG.launchDate), d: CONFIG.earlyDiscount })}</p><button type="button" class="btn btn-primary btn-lg wide" data-act="reserve">${T('sub_reserve')}</button><p class="fine">${T('sub_fine')} ${T('plan_guarantee')} ${T('terms_agree')} <a href="/noteikumi/">${T('f_terms')}</a>.</p>`}
       </aside>
