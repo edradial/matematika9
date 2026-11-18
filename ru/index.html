@@ -1344,6 +1344,43 @@ a.pl-item:hover { border-color: var(--accent); }
 .gate p { margin: 0 0 14px; color: var(--muted); max-width: 640px; }
 .plus-h { margin: 0 0 10px; font-size: 22px; }
 .plus-incl li { font-size: 16.5px; }
+/* AI helper */
+#ai-fab { position: fixed; right: 22px; bottom: 22px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; padding: 13px 18px; border: 0; border-radius: 999px; background: linear-gradient(135deg, #2F57D9, #6A3FD8); color: #fff; font: 700 15.5px var(--f-display, inherit); box-shadow: 0 14px 30px -12px rgba(47, 87, 217, .8); cursor: pointer; }
+#ai-fab svg { width: 20px; height: 20px; fill: currentColor; }
+#ai-fab:hover { transform: translateY(-1px); }
+#ai-pan { position: fixed; right: 22px; bottom: 22px; z-index: 61; width: min(400px, calc(100vw - 24px)); height: min(600px, calc(100vh - 44px)); display: flex; flex-direction: column; background: var(--paper, #fff); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 60px -20px rgba(20, 33, 58, .45); overflow: hidden; }
+.ai-top { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: linear-gradient(135deg, #2F57D9, #6A3FD8); color: #fff; }
+.ai-top div { flex: 1; display: flex; flex-direction: column; } .ai-top small { opacity: .85; font-size: 12.5px; }
+.ai-top .ai-new { color: #fff; font-size: 13px; } .ai-x { background: none; border: 0; color: #fff; font-size: 26px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.ai-log { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: var(--soft, #F3F6FC); }
+.ai-m { max-width: 88%; padding: 10px 13px; border-radius: 16px; font-size: 15px; line-height: 1.45; white-space: normal; }
+.ai-m p { margin: 0 0 6px; } .ai-m p:last-child { margin: 0; }
+.ai-m.bot { background: #fff; border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 6px; }
+.ai-m.me { background: var(--accent, #2F57D9); color: #fff; align-self: flex-end; border-bottom-right-radius: 6px; }
+.ai-m.wait { color: var(--muted); font-style: italic; } .ai-m.err { background: #FDECEC; color: #B42318; align-self: stretch; max-width: none; }
+.ai-sugg { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px 0; } .ai-sugg button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 6px 11px; font-size: 13px; cursor: pointer; color: var(--ink); }
+.ai-form { display: flex; gap: 8px; padding: 10px 12px 4px; } .ai-form textarea { flex: 1; resize: none; border: 1px solid var(--line); border-radius: 14px; padding: 9px 11px; font: inherit; font-size: 15px; }
+.ai-foot { margin: 0; padding: 2px 14px 10px; font-size: 11.5px; color: var(--muted); }
+.ai-gate { padding: 16px; } .ai-gate p { margin: 0 0 12px; }
+.tools .ai-ask { color: #5B3FD0; font-weight: 700; }
+@media (max-width: 600px) { #ai-pan { right: 0; bottom: 0; width: 100vw; height: 100dvh; border-radius: 0; } #ai-fab { right: 14px; bottom: 14px; } }
+/* Plus */
+.px-tag { display: inline-block; vertical-align: middle; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: linear-gradient(135deg, #2F57D9, #6A3FD8); color: #fff; font: 800 11px/1.4 var(--f-display, inherit); letter-spacing: .02em; }
+.px-lock { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 18px; background: linear-gradient(135deg, rgba(47, 87, 217, .08), rgba(106, 63, 216, .1)); border: 1px solid rgba(106, 63, 216, .2); }
+.px-lock.sm { padding: 14px 16px; } .px-lock b { display: block; margin-bottom: 4px; } .px-lock p { margin: 0 0 12px; color: var(--muted); }
+.px-ic svg { width: 28px; height: 28px; fill: #6A3FD8; }
+.pl-tools { display: flex; gap: 10px; flex-wrap: wrap; margin: 10px 0 4px; } .px-pdf { font-size: 14.5px; }
+.wk .wk-qt { font-size: 18px; font-weight: 600; margin: 6px 0 12px; } .wk-chip { margin: 6px 0 0; } .wk-fb { margin: 12px 0; }
+.wk-opts .opt.right { border-color: var(--good); background: #E8F7EE; } .wk-opts .opt.wrong { border-color: var(--bad); background: #FDECEC; }
+.wk-res { margin: 8px 0 12px; } .wk-hist { display: flex; gap: 10px; align-items: flex-end; height: 96px; margin-top: 6px; }
+.wk-hist div { display: flex; flex-direction: column; align-items: center; gap: 4px; } .wk-hist i { display: block; width: 26px; border-radius: 6px 6px 2px 2px; background: linear-gradient(#6A3FD8, #2F57D9); } .wk-hist small { font-size: 11px; color: var(--muted); }
+.rp { padding: 28px 30px; } .rp-h { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 8px; }
+.rp-h h1 { margin: 0 0 4px; } .rp-meta { display: flex; flex-direction: column; gap: 4px; font-size: 14px; } .rp-s { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.rp-s h2 { font-size: 20px; margin: 0 0 10px; } .rp-s h2 small { font-weight: 500; color: var(--muted); font-size: 14px; }
+.rp-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 10px; } .rp-grid div { padding: 10px 12px; border-radius: 12px; background: var(--soft); display: flex; flex-direction: column; } .rp-grid small { color: var(--muted); font-size: 12.5px; } .rp-grid b { font-size: 20px; }
+.rp-s p { margin: 6px 0; } .rp-f { margin-top: 14px; color: var(--muted); font-size: 12px; text-align: right; } .rp-set { margin-bottom: 16px; }
+@media print { body.print-rp * { visibility: hidden; } body.print-rp .rp, body.print-rp .rp * { visibility: visible; } body.print-rp .rp { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: 0; } body.print-rp .no-print, body.print-rp #ai-fab { display: none !important; } }
+@media (max-width: 640px) { .rp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 </style>
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/ru/","inLanguage":"ru"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"ru","mainEntity":[{"@type":"Question","name":"Что будет на экзамене по естественным наукам?","acceptedAnswer":{"@type":"Answer","text":"Впервые 2 июня 2027 года. По образцу VIAA: в 1-й части 30 тестовых задач (биология, физика, химия), во 2-й — 4 задания на навыки: данные, графики, расчёты и планирование эксперимента. Порога в этом году нет, но результат идёт в сертификат и может пригодиться при поступлении в 10 класс."}},{"@type":"Question","name":"Это правда бесплатно?","acceptedAnswer":{"@type":"Answer","text":"Да. Тест, все видеоуроки, задачи и пробный экзамен бесплатны — нужно только пройти тест и создать кабинет. Новые уроки открываем каждую неделю. Платным будет только Plus: ИИ-помощник, личный план, решения, конспекты в PDF и отчёты для родителей; он стартует 15 февраля, а при брони до 15 февраля — со скидкой −50 %."}},{"@type":"Question","name":"Как проходит оплата?","acceptedAnswer":{"@type":"Answer","text":"До 15 февраля всё бесплатно, платить ничего не нужно. Место в платной версии можно забронировать уже сейчас — перед её стартом пришлём на e-mail ссылку на оплату. При брони до 15 февраля скидка −50 % на любой тариф: для помесячного на первый месяц, для разовых на всю сумму. Действует гарантия возврата денег 14 дней."}},{"@type":"Question","name":"Можно ли отменить?","acceptedAnswer":{"@type":"Answer","text":"Помесячную подписку можно отменить в любой момент. Вариант «До экзамена» автоматически не продлевается."}},{"@type":"Question","name":"На каком языке уроки?","acceptedAnswer":{"@type":"Answer","text":"На латышском и русском. Экзамен проходит на латышском, поэтому и в русской версии все термины даны по-латышски."}},{"@type":"Question","name":"Нужен ли репетитор?","acceptedAnswer":{"@type":"Answer","text":"Нет. Ребёнок занимается в своём темпе: каждый ответ проверяется сразу, а ошибки объясняются. Отчёт о прогрессе для родителей на e-mail появится скоро."}},{"@type":"Question","name":"Зачем сначала тест?","acceptedAnswer":{"@type":"Answer","text":"Тест за 15 минут показывает, какие из 8 тем слабые. Так ты не платишь за то, что уже знаешь, и начинаешь с главного."}}]}]</script>
@@ -1544,6 +1581,7 @@ const CONFIG = {
   sellerRegNo: '',             // VID registration number (saimnieciskās darbības veicējs); shown in the terms once filled
   sellerAddress: '',           // address shown in the terms (not the personal code)
   controller: 'Eduards Krivko', // who collects the data: name, surname or company
+  ai: false,                   // true once the Supabase function "tutor" is deployed with its API key
   contactEmail: 'ai.skolens@gmail.com', // where people can ask to delete their data
 };
 
@@ -3870,6 +3908,7 @@ function viewLesson(topic) {
       ${crumbs([[T('crumbs_courses'), '#kursi'], [subjName(s), '#kurss-' + s], [L(t)]])}
       <header class="pl-h"><h1>${kv ? course[part - 1] : L(les.title)}</h1><p class="pl-meta"><span class="chip-ic">${t.ic}</span>${L(t)} · ${kv ? T('full_lesson', { n: part }) : T('demo_lesson', { m: les.min })} ${pill(st)}${ld && !kv ? ` <em class="tg ok">${T('les_done')}</em>` : ''}</p></header>
       ${kv ? videoHTML(tid, 'k/' + kv) : videoHTML(tid)}
+      <div class="pl-tools">${pdfBtnHTML(tid)}</div>
       <div class="ltabs" role="tablist">${tabBtn('notes', T('tab_notes'))}${tabBtn('example', T('tab_example'))}${tabBtn('tasks', T('tab_tasks'), ` <span class="cnt" id="solved-c2">${k}/${n}</span>`)}</div>
       <div class="lpanel" data-panel="notes"${tab === 'notes' ? '' : ' hidden'}>${slidesHTML(tid)}</div>
       <div class="lpanel" data-panel="example"${tab === 'example' ? '' : ' hidden'}>${exampleHTML(tid)}</div>
@@ -4296,6 +4335,7 @@ function viewAccount() {
       <div class="acct-main">
         <div class="dcard"><h2>${T('k_plan_h')}</h2>${plan}</div>
         ${planCardHTML()}
+        ${reportCardHTML()}
         <div class="dcard"><h2>${T('k_study_h')}</h2>
           ${ll ? `<button type="button" class="cont" data-act="openLes" data-s="${ll.s}" data-v="${ll.tid}">${PLAY}<span><small>${T('cont_h')}</small><b>${L(ll.topic)}</b></span>${ARR}</button>` : ''}
           <ul class="acct-subjs">${subj('mat')}${subj('dab')}</ul>
@@ -4600,6 +4640,7 @@ function viewPlan() {
     <div class="pg-cols">
       <div>
         ${notTested.length ? `<div class="dcard pl-note"><p>${T('pl_notest')}</p><button type="button" class="btn btn-primary" data-act="subj" data-v="${notTested[0]}">${T('pl_test')}${ARR}</button></div>` : ''}
+        ${typeof weeklyHTML === 'function' ? weeklyHTML(P) : ''}
         <p class="pl-pace ${P.tight ? 'tight' : ''}">${P.tight ? T('pl_tight', { n: P.need, w: plW(P.need) }) : T('pl_pace', { n: P.pace, w: plW(P.pace), d: dateShort(isoD(addDays(P.endContent, 6))) })}</p>
         <ol class="pl-weeks">${list.map(w => planWeekHTML(w)).join('')}
           ${!showAll && P.weeks.length > 4 ? '' : reviews}</ol>
@@ -4835,11 +4876,11 @@ function viewMock() {
     const wrong = X.map((x, i) => ({ x, i })).filter(({ x, i }) => m.ans[i] !== x.a);
     const review = wrong.length ? wrong.map(({ x, i }) => `<li class="mk-mis"><p class="mk-mn">${i + 1}. ${L(x.q)}${x.math ? ` <span class="m">${x.math}</span>` : ''}</p>
         <p><span class="pl-tag gap">${T('mk_your')}</span> ${m.ans[i] != null ? L(x.opts[m.ans[i]]) : T('mk_none')}</p>
-        <p><span class="pl-tag ok">${T('mk_right')}</span> <b>${L(x.opts[x.a])}</b></p><p class="muted">${L(x.ex)}</p></li>`).join('') : `<li class="muted">${T('mk_all_ok')}</li>`;
+        <p><span class="pl-tag ok">${T('mk_right')}</span> <b>${L(x.opts[x.a])}</b></p>${isPlus() ? `<p class="muted">${L(x.ex)}</p>` : ''}</li>`).join('') : `<li class="muted">${T('mk_all_ok')}</li>`;
     res = `<div class="dcard mk-res"><h2>${T('mk_res_h')}</h2>
         <div class="mk-score">${ring2(pct, Math.round(pct * 100) + '%', '', s === 'dab' ? 'var(--green)' : 'var(--accent)')}<div><p class="mk-pts">${T('mk_pts', { c: R.c, n: R.n })}</p><p class="muted">${T('mk_time', { t: used, m: M.min })}</p><p>${T('mk_bands')[band]}</p><a class="btn-link" href="#plans">${T('mk_plan')} →</a></div></div>
         <h3>${T('mk_by_topic')}</h3><ul class="prows">${topics}</ul>
-        <details class="mk-det"${wrong.length <= 5 ? ' open' : ''}><summary><h3>${T('mk_review')} (${wrong.length})</h3></summary><ol class="mk-review">${review}</ol></details></div>`;
+        <details class="mk-det"${wrong.length <= 5 ? ' open' : ''}><summary><h3>${T('mk_review')} (${wrong.length})</h3></summary><ol class="mk-review">${review}</ol>${wrong.length && !isPlus() ? plusLockHTML('mock', true) : ''}</details></div>`;
   }
   return `<section class="wrap pg mkpg">
     <div class="pg-h row-sb"><div><h1>${T('mk_h')}</h1><p>${T('mk_p')}</p></div>${tabs}</div>
@@ -4866,6 +4907,213 @@ const MOCK_ACT = {
   mkSubmit() { mkMem.ask = true; rerender(true); },
   mkSubmitNo() { mkMem.ask = false; rerender(true); },
   mkSubmitYes() { mkFinish(mkSubj()); rerender(); scrollTo(0, 0); },
+};
+
+// ---------- Plus: paid extras — AI helper (ai.js), weekly progress check, PDF notes, detailed mock solutions, parent report ----------
+Object.assign(I18N.lv, {
+  px_badge: 'Plus', px_lock_h: 'Tā ir Plus funkcija', px_lock_btn: 'Uzzināt par Plus',
+  px_lock: {
+    ai: 'MI palīgs atbild uz jautājumiem par jebkuru uzdevumu un skaidro soli pa solim.',
+    week: 'Katru nedēļu īsa pārbaude par plāna tēmām: redzi, kas ir apgūts un kas jāatkārto.',
+    pdf: 'Nodarbības konspekts PDF formātā — izdrukāt vai lasīt bez interneta.',
+    mock: 'Detalizēts risinājums katram izmēģinājuma eksāmena uzdevumam.',
+    report: 'Progresa pārskats vecākiem: tests, nodarbības, uzdevumi un plāns vienā lapā.',
+  },
+  px_pdf: 'Konspekts PDF',
+  wk_h: 'Nedēļas progresa pārbaude', wk_p: '{n} jautājumi par šīs nedēļas plāna tēmām, apmēram 5 minūtes.',
+  wk_start: 'Sākt pārbaudi', wk_again: 'Pildīt vēlreiz', wk_q: '{i}. jautājums no {n}', wk_next: 'Tālāk', wk_finish: 'Pabeigt',
+  wk_done: 'Šīs nedēļas rezultāts: {c} no {n}', wk_hist: 'Pēdējās nedēļas', wk_none: 'Šonedēļ plānā nav tēmu — pārbaude pēc visām tēmām.',
+  wk_good: 'Lieliski — šīs tēmas ir apgūtas.', wk_redo: 'Atkārto: {t}.', wk_right: 'Pareizi!', wk_wrong: 'Nepareizi. Pareizā atbilde: {a}',
+  rp_nav: 'Pārskats vecākiem', rp_h: 'Progresa pārskats', rp_p: 'Pārskats par mācībām Eksāmens 9: tests, nodarbības, uzdevumi un izmēģinājuma eksāmens.',
+  rp_for: 'Skolēns', rp_date: 'Sagatavots', rp_test: 'Tests', rp_course: 'Kurss', rp_tasks: 'Uzdevumi', rp_mock: 'Izmēģinājuma eksāmens', rp_week: 'Nedēļas pārbaude',
+  rp_gaps: 'Tēmas, kas jāatkārto', rp_strong: 'Labi apgūtās tēmas', rp_none: '—', rp_print: 'Izdrukāt / saglabāt PDF',
+  rp_parent: 'Vecāka e-pasts', rp_weekly: 'Sūtīt pārskatu katru nedēļu', rp_save: 'Saglabāt', rp_saved: 'Saglabāts. Iknedēļas e-pasti sāksies, tiklīdz tiks ieslēgta sūtīšana.',
+  rp_open: 'Atvērt pārskatu', rp_card_p: 'Vienā lapā: testa rezultāti, kursa progress, uzdevumi un nedēļas pārbaudes. Var izdrukāt vai nosūtīt vecākiem.',
+});
+Object.assign(I18N.ru, {
+  px_badge: 'Plus', px_lock_h: 'Это функция Plus', px_lock_btn: 'Узнать о Plus',
+  px_lock: {
+    ai: 'ИИ-помощник отвечает на вопросы по любой задаче и объясняет шаг за шагом.',
+    week: 'Каждую неделю короткая проверка по темам плана: видно, что усвоено, а что повторить.',
+    pdf: 'Конспект урока в PDF — распечатать или читать без интернета.',
+    mock: 'Подробное решение каждого задания пробного экзамена.',
+    report: 'Отчёт о прогрессе для родителей: тест, уроки, задачи и план на одной странице.',
+  },
+  px_pdf: 'Конспект PDF',
+  wk_h: 'Еженедельная проверка прогресса', wk_p: '{n} вопросов по темам плана этой недели, около 5 минут.',
+  wk_start: 'Начать проверку', wk_again: 'Пройти ещё раз', wk_q: 'Вопрос {i} из {n}', wk_next: 'Дальше', wk_finish: 'Завершить',
+  wk_done: 'Результат этой недели: {c} из {n}', wk_hist: 'Последние недели', wk_none: 'На этой неделе в плане нет тем — проверка по всем темам.',
+  wk_good: 'Отлично — эти темы усвоены.', wk_redo: 'Повтори: {t}.', wk_right: 'Верно!', wk_wrong: 'Неверно. Правильный ответ: {a}',
+  rp_nav: 'Отчёт для родителей', rp_h: 'Отчёт о прогрессе', rp_p: 'Отчёт об учёбе на Eksāmens 9: тест, уроки, задачи и пробный экзамен.',
+  rp_for: 'Ученик', rp_date: 'Составлен', rp_test: 'Тест', rp_course: 'Курс', rp_tasks: 'Задачи', rp_mock: 'Пробный экзамен', rp_week: 'Еженедельная проверка',
+  rp_gaps: 'Темы, которые нужно повторить', rp_strong: 'Хорошо усвоенные темы', rp_none: '—', rp_print: 'Распечатать / сохранить PDF',
+  rp_parent: 'E-mail родителя', rp_weekly: 'Присылать отчёт каждую неделю', rp_save: 'Сохранить', rp_saved: 'Сохранено. Еженедельные письма начнут приходить, как только включим рассылку.',
+  rp_open: 'Открыть отчёт', rp_card_p: 'На одной странице: результаты теста, прогресс курса, задачи и еженедельные проверки. Можно распечатать или отправить родителям.',
+});
+
+// Plus = an active entitlement on the signed-in account; ?plus in the address lets the owner try the Plus view
+const PLUS_PREVIEW = /[?&]plus\b/.test(location.search);
+function isPlus() { if (PLUS_PREVIEW) return true; if (typeof authed !== 'function' || !authed()) return false; const now = new Date().toISOString(); return (auth.ent || []).some(e => e.valid_until > now); }
+const PLUS_IC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg>';
+function plusLockHTML(kind, small) {
+  return `<div class="px-lock${small ? ' sm' : ''}"><span class="px-ic">${PLUS_IC}</span><div><b>${T('px_lock_h')}</b><p>${T('px_lock')[kind]}</p><a class="btn btn-mark" href="#abonements">${T('px_lock_btn')}</a></div></div>`;
+}
+function plusModal(kind) { const m = $('#modal'); m.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true"><div class="modal-top"><h2>${T('px_lock_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}">×</button></div>${plusLockHTML(kind)}</div>`; m.hidden = false; }
+
+// ---- PDF notes: /pdf/<topic>-<lang>.pdf (made by pdfnotes.js at build time) ----
+function pdfBtnHTML(tid) { return `<button type="button" class="btn btn-white px-pdf" data-act="pxPdf" data-v="${tid}">⬇ ${T('px_pdf')} <span class="px-tag">Plus</span></button>`; }
+
+// ---- weekly progress check: questions from the test and the mock exam for this week's plan topics ----
+function weekKey(d = new Date()) { const x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())); const day = x.getUTCDay() || 7; x.setUTCDate(x.getUTCDate() + 4 - day); const y = new Date(Date.UTC(x.getUTCFullYear(), 0, 1)); return x.getUTCFullYear() + '-W' + String(Math.ceil(((x - y) / 864e5 + 1) / 7)).padStart(2, '0'); }
+function wkPool(topics) {
+  const out = [];
+  [['mat', MAT], ['dab', DAB]].forEach(([s, D]) => {
+    (D.DIAG || []).forEach(q => out.push({ s, topic: q.topic, q: q.q, math: q.math, opts: q.opts.map(o => o.t), a: q.opts.findIndex(o => o.ok), ex: q.explain }));
+    ((typeof MOCK !== 'undefined' && MOCK[s] && MOCK[s].items) || []).forEach(x => out.push({ s, topic: x.topic, q: x.q, math: x.math, opts: x.opts, a: x.a, ex: x.ex }));
+  });
+  return topics && topics.length ? out.filter(x => topics.includes(x.topic)) : out;
+}
+function wkBuild(P) {
+  const ws = (P && P.weeks || []).slice(0, 2), topics = [...new Set(ws.flatMap(w => w.items.map(i => i.t && i.t.id)).filter(Boolean))];
+  let pool = wkPool(topics); if (pool.length < 4) pool = wkPool(null);
+  const seed = [...weekKey() + (state.wkTry || 0)].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7), rnd = () => ((seed * 9301 + 49297 * (rnd.n = (rnd.n || 0) + 1)) % 233280) / 233280;
+  const pick = pool.map(x => [rnd(), x]).sort((a, b) => a[0] - b[0]).map(x => x[1]);
+  const byT = {}; const chosen = [];
+  const per = Math.max(2, Math.ceil(6 / Math.max(1, new Set(pick.map(x => x.topic)).size)));
+  pick.forEach(x => { if (chosen.length < 6 && (byT[x.topic] || 0) < per) { byT[x.topic] = (byT[x.topic] || 0) + 1; chosen.push(x); } });
+  return { items: chosen, ans: [], i: 0, topics };
+}
+const wkMem = { run: null };
+function topicAny(id) { return [...MAT.TOPICS, ...DAB.TOPICS].find(t => t.id === id); }
+function weeklyHTML(P) {
+  if (!isPlus()) return `<div class="dcard wk">${plusLockHTML('week', true)}</div>`;
+  const k = weekKey(), rec = (state.wk || {})[k], run = wkMem.run;
+  if (run) {
+    const x = run.items[run.i], a = run.ans[run.i];
+    const opts = x.opts.map((o, j) => `<button type="button" class="opt${a != null ? (j === x.a ? ' right' : j === a ? ' wrong' : '') : ''}" data-act="wkAns" data-i="${j}" ${a != null ? 'disabled' : ''}><span class="lt">${'ABCD'[j]}</span><span>${L(o)}</span></button>`).join('');
+    return `<div class="dcard wk"><div class="row-sb"><h2>${T('wk_h')}</h2><small class="muted">${T('wk_q', { i: run.i + 1, n: run.items.length })}</small></div>
+      <p class="wk-chip"><span class="chip">${L(topicAny(x.topic))}</span></p><p class="wk-qt">${L(x.q)}${x.math ? ` <span class="m">${x.math}</span>` : ''}</p>
+      <div class="opts opts-2 wk-opts">${opts}</div>
+      ${a != null ? `<p class="${a === x.a ? 'good' : 'bad'} wk-fb">${a === x.a ? T('wk_right') : T('wk_wrong', { a: L(x.opts[x.a]) })} ${x.ex ? `<span class="muted">${L(x.ex)}</span>` : ''}</p><button type="button" class="btn btn-primary" data-act="wkNext">${run.i < run.items.length - 1 ? T('wk_next') : T('wk_finish')}</button>` : ''}</div>`;
+  }
+  const hist = Object.entries(state.wk || {}).sort().slice(-6);
+  const histHTML = hist.length ? `<p class="pl-lbl">${T('wk_hist')}</p><div class="wk-hist">${hist.map(([w, r]) => `<div title="${w}"><i style="height:${Math.round(8 + 64 * r.c / r.n)}px"></i><small>${w.slice(-3)}</small></div>`).join('')}</div>` : '';
+  let resHTML = '';
+  if (rec) { const bad = Object.entries(rec.t).filter(([, v]) => v.c < v.n).map(([id]) => L(topicAny(id))); resHTML = `<p class="wk-res"><b>${T('wk_done', { c: rec.c, n: rec.n })}</b> ${bad.length ? T('wk_redo', { t: bad.join(', ') }) : T('wk_good')}</p>`; }
+  const n = wkBuild(P).items.length;
+  return `<div class="dcard wk"><div class="row-sb"><h2>${T('wk_h')} <span class="px-tag">Plus</span></h2></div><p class="muted">${T('wk_p', { n })}</p>${resHTML}
+    <button type="button" class="btn ${rec ? 'btn-white' : 'btn-primary'}" data-act="wkStart">${rec ? T('wk_again') : T('wk_start')}${ARR}</button>${histHTML}</div>`;
+}
+
+// ---- parent report: one printable page; weekly e-mail goes out once sending is switched on (CONFIG.reportFn) ----
+function reportHTML() {
+  const ld = state.lead || {}, rows = ['mat', 'dab'].map(s => {
+    const st = subjState(s), R = resultsFor(s), C = courseStats(s), mk = state.mock && state.mock[s] && state.mock[s].done ? mkScore(s, state.mock[s]) : null;
+    const tp = SUBJ_D(s).TOPICS, gaps = st.done ? tp.filter(t => R.status(t.id) === 'gap').map(t => L(t)) : [], ok = st.done ? tp.filter(t => R.status(t.id) === 'ok').map(t => L(t)) : [];
+    return `<section class="rp-s"><h2>${subjName(s)} <small>· ${dateLong(examDateOf(s))}</small></h2>
+      <div class="rp-grid"><div><small>${T('rp_test')}</small><b>${st.done ? `${R.score}/${R.n}` : T('k_test_none')}</b></div><div><small>${T('rp_course')}</small><b>${C.pct}%</b></div><div><small>${T('rp_tasks')}</small><b>${tasksSolved(s)}/${tasksTotal(s)}</b></div><div><small>${T('rp_mock')}</small><b>${mk ? `${mk.c}/${mk.n}` : T('rp_none')}</b></div></div>
+      <p><b>${T('rp_gaps')}:</b> ${gaps.join(', ') || T('rp_none')}</p><p><b>${T('rp_strong')}:</b> ${ok.join(', ') || T('rp_none')}</p></section>`;
+  }).join('');
+  const wk = Object.entries(state.wk || {}).sort().slice(-4).map(([w, r]) => `${w}: ${r.c}/${r.n}`).join(' · ');
+  return `<article class="rp sheet"><header class="rp-h"><div><h1>${T('rp_h')}</h1><p class="muted">${T('rp_p')}</p></div><div class="rp-meta"><span>${T('rp_for')}: <b>${esc(ld.name || (auth.ses && auth.ses.user && auth.ses.user.email) || '—')}</b></span><span>${T('rp_date')}: <b>${dateLong(new Date().toISOString().slice(0, 10))}</b></span></div></header>
+    ${rows}${wk ? `<p><b>${T('rp_week')}:</b> ${wk}</p>` : ''}<footer class="rp-f">eksamens9.lv</footer></article>`;
+}
+function viewReport() {
+  if (!isPlus()) return `<section class="wrap pg"><div class="pg-h"><h1>${T('rp_h')}</h1></div>${plusLockHTML('report')}</section>`;
+  const p = state.parent || {};
+  return `<section class="wrap pg rppg">
+    <div class="pg-h row-sb no-print"><div><h1>${T('rp_nav')}</h1></div><button type="button" class="btn btn-primary" data-act="rpPrint">${T('rp_print')}</button></div>
+    <form class="dcard rp-set no-print" id="rp-form"><div class="field"><label for="rp-mail">${T('rp_parent')}</label><input id="rp-mail" type="email" maxlength="120" value="${esc(p.email || '')}" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="rp-weekly" ${p.weekly ? 'checked' : ''}><span>${T('rp_weekly')}</span></label><button class="btn btn-secondary" type="submit">${T('rp_save')}</button>${wkMem.rpSaved ? `<p class="au-ok">${T('rp_saved')}</p>` : ''}</form>
+    ${reportHTML()}
+  </section>`;
+}
+function reportCardHTML() { return `<div class="dcard"><h2>${T('rp_nav')} <span class="px-tag">Plus</span></h2><p class="muted">${T('rp_card_p')}</p><a class="btn btn-white" href="#atskaite">${T('rp_open')}${ARR}</a></div>`; }
+
+const PLUS_ACT = {
+  pxPdf(b) { if (!isPlus()) return plusModal('pdf'); track('pdf_notes', { topic: b.dataset.v }); window.open(`/pdf/${b.dataset.v}-${state.lang}.pdf`, '_blank', 'noopener'); },
+  wkStart() { const P = buildPlan(); state.wkTry = (state.wkTry || 0) + 1; wkMem.run = wkBuild(P); track('week_check', {}); rerender(); },
+  wkAns(b) { const r = wkMem.run; if (!r || r.ans[r.i] != null) return; r.ans[r.i] = +b.dataset.i; rerender(); },
+  wkNext() {
+    const r = wkMem.run; if (!r) return;
+    if (r.i < r.items.length - 1) { r.i++; return rerender(); }
+    const t = {}; let c = 0; r.items.forEach((x, i) => { const ok = r.ans[i] === x.a; c += ok; t[x.topic] = t[x.topic] || { c: 0, n: 0 }; t[x.topic].n++; t[x.topic].c += ok; });
+    state.wk = state.wk || {}; state.wk[weekKey()] = { c, n: r.items.length, t, at: new Date().toISOString() }; wkMem.run = null; save(); rerender();
+  },
+  rpPrint() { document.body.classList.add('print-rp'); window.print(); setTimeout(() => document.body.classList.remove('print-rp'), 500); },
+};
+function rpSave(f) { state.parent = { email: (f.querySelector('#rp-mail').value || '').trim(), weekly: f.querySelector('#rp-weekly').checked }; save(); wkMem.rpSaved = true; rerender(); }
+
+// ---------- AI helper ("MI palīgs"): chat panel on lesson pages, answers come from the Supabase function "tutor" ----------
+Object.assign(I18N.lv, {
+  ai_btn: 'MI palīgs', ai_h: 'MI palīgs', ai_sub: 'Jautā par nodarbību vai uzdevumu',
+  ai_ph: 'Uzraksti jautājumu…', ai_send: 'Sūtīt', ai_ask_task: 'Jautāt MI palīgam',
+  ai_hello: 'Sveiks! Esmu tavs palīgs eksāmenam. Jautā par šo tēmu vai kādu uzdevumu — palīdzēšu soli pa solim.',
+  ai_sugg: ['Paskaidro šo tēmu vienkārši', 'Dod man līdzīgu uzdevumu', 'Kādas kļūdas te pieļauj visbiežāk?'],
+  ai_task_q: 'Palīdzi ar šo uzdevumu: {t}',
+  ai_need: 'MI palīgs ir pieejams Plus abonentiem. Vispirms ieej kontā.', ai_left: 'Šodien atlikuši jautājumi: {n}',
+  ai_limit: 'Šodienas jautājumu limits ir izsmelts. Rīt varēsi jautāt atkal{p}.', ai_limit_plus: '',
+  ai_err: 'Neizdevās saņemt atbildi. Pamēģini vēlreiz pēc brīža.', ai_wait: 'Domāju…', ai_note: 'MI var kļūdīties — pārbaudi svarīgas atbildes.', ai_clear: 'Jauna saruna',
+});
+Object.assign(I18N.ru, {
+  ai_btn: 'ИИ-помощник', ai_h: 'ИИ-помощник', ai_sub: 'Спроси про урок или задачу',
+  ai_ph: 'Напиши вопрос…', ai_send: 'Отправить', ai_ask_task: 'Спросить ИИ-помощника',
+  ai_hello: 'Привет! Я твой помощник к экзамену. Спроси про эту тему или любую задачу — помогу шаг за шагом.',
+  ai_sugg: ['Объясни эту тему просто', 'Дай похожую задачу', 'Какие ошибки здесь делают чаще всего?'],
+  ai_task_q: 'Помоги с этой задачей: {t}',
+  ai_need: 'ИИ-помощник доступен подписчикам Plus. Сначала войди в кабинет.', ai_left: 'Вопросов на сегодня осталось: {n}',
+  ai_limit: 'Лимит вопросов на сегодня исчерпан. Завтра можно спросить снова{p}.', ai_limit_plus: '',
+  ai_err: 'Не удалось получить ответ. Попробуй ещё раз чуть позже.', ai_wait: 'Думаю…', ai_note: 'ИИ может ошибаться — проверяй важные ответы.', ai_clear: 'Новый разговор',
+});
+
+const ai = { open: false, msgs: [], busy: false, left: null, task: '', key: '' };
+const aiOn = () => !!CONFIG.ai && current === 'demo';
+function aiCtx() {
+  const h = location.hash.replace('#demo-', ''), tid = h.replace(/-\d+$/, ''), les = LESSONS[tid];
+  return { subj: state.subj, topic: les ? L(topicById(tid)) : '', lesson: les ? L(les.title) : '', task: ai.task };
+}
+function aiText(s) { // tiny safe formatter: escape, then paragraphs, numbered lines and **bold**
+  return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').split(/\n{2,}/).map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+}
+function aiPaint() {
+  let fab = document.getElementById('ai-fab'), pan = document.getElementById('ai-pan');
+  if (!aiOn()) { if (fab) fab.remove(); if (pan) pan.remove(); return; }
+  if (!fab) { fab = document.createElement('button'); fab.id = 'ai-fab'; fab.type = 'button'; fab.dataset.act = 'aiToggle'; document.body.appendChild(fab); }
+  fab.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span>${T('ai_btn')}</span>`;
+  fab.hidden = ai.open;
+  if (!ai.open) { if (pan) pan.remove(); return; }
+  if (!pan) { pan = document.createElement('section'); pan.id = 'ai-pan'; pan.setAttribute('aria-label', T('ai_h')); document.body.appendChild(pan); }
+  const signed = typeof authed === 'function' && authed(), plus = isPlus();
+  const log = ai.msgs.map(m => `<div class="ai-m ${m.role === 'user' ? 'me' : 'bot'}">${m.role === 'user' ? esc(m.content).replace(/\n/g, '<br>') : aiText(m.content)}</div>`).join('');
+  pan.innerHTML = `<header class="ai-top"><div><b>${T('ai_h')}</b><small>${T('ai_sub')}</small></div>${ai.msgs.length ? `<button type="button" class="btn-link ai-new" data-act="aiClear">${T('ai_clear')}</button>` : ''}<button type="button" class="ai-x" data-act="aiToggle" aria-label="${T('close')}">×</button></header>
+    <div class="ai-log" id="ai-log" aria-live="polite"><div class="ai-m bot"><p>${T('ai_hello')}</p></div>${log}${ai.busy ? `<div class="ai-m bot wait">${T('ai_wait')}</div>` : ''}${ai.err ? `<div class="ai-m err">${ai.err}</div>` : ''}</div>
+    ${signed && !plus ? `<div class="ai-gate">${plusLockHTML('ai', true)}</div>` : signed ? `${!ai.msgs.length ? `<div class="ai-sugg">${T('ai_sugg').map(s => `<button type="button" data-act="aiSugg" data-v="${esc(s)}">${s}</button>`).join('')}</div>` : ''}
+    <form class="ai-form" data-act-form="aiSend"><textarea id="ai-in" rows="2" maxlength="1500" placeholder="${T('ai_ph')}" ${ai.busy ? 'disabled' : ''}></textarea><button class="btn btn-primary" type="submit" ${ai.busy ? 'disabled' : ''}>${T('ai_send')}</button></form>
+    <p class="ai-foot">${ai.left != null ? T('ai_left', { n: ai.left }) + ' · ' : ''}${T('ai_note')}</p>`
+    : `<div class="ai-gate"><p>${T('ai_need')}</p><div class="row"><button type="button" class="btn btn-primary" data-act="auOpen" data-v="up">${T('au_btn_up')}</button><button type="button" class="btn btn-white" data-act="auOpen" data-v="in">${T('au_btn_in')}</button></div></div>`}`;
+  const lg = pan.querySelector('#ai-log'); if (lg) lg.scrollTop = lg.scrollHeight;
+  const inp = pan.querySelector('#ai-in'); if (inp && !ai.busy) { inp.value = ai.draft || ''; inp.focus(); inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); inp.form.requestSubmit(); } }); }
+}
+async function aiAsk(text) {
+  text = (text || '').trim(); if (!text || ai.busy) return;
+  ai.msgs.push({ role: 'user', content: text }); ai.draft = ''; ai.busy = true; ai.err = ''; aiPaint();
+  track('ai_ask', { topic: aiCtx().topic });
+  try {
+    const tk = await authToken();
+    const r = await fetch(SB.url + '/functions/v1/tutor', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + tk, apikey: SB.key }, body: JSON.stringify({ messages: ai.msgs, lang: state.lang, ctx: aiCtx() }) });
+    const d = await r.json().catch(() => ({}));
+    if (r.status === 402) { ai.err = T('px_lock').ai; ai.msgs.pop(); }
+    else if (r.status === 429) { ai.err = T('ai_limit', { p: d.plus ? '' : T('ai_limit_plus') }); ai.left = 0; ai.msgs.pop(); }
+    else if (!r.ok || !d.reply) { ai.err = T('ai_err'); ai.msgs.pop(); ai.draft = text; }
+    else { ai.msgs.push({ role: 'assistant', content: d.reply }); ai.left = d.left; }
+  } catch (e) { ai.err = T('ai_err'); ai.msgs.pop(); ai.draft = text; }
+  ai.busy = false; aiPaint();
+}
+const AI_ACT = {
+  aiToggle() { ai.open = !ai.open; if (ai.open) track('ai_open', {}); aiPaint(); },
+  aiClear() { ai.msgs = []; ai.task = ''; ai.err = ''; aiPaint(); },
+  aiSugg(b) { aiAsk(b.dataset.v); },
+  aiTask(b) { const { t } = lessonTask(b.dataset.task); if (!t) return; ai.task = (L(t.q) + ' ' + (t.math || '')).trim(); ai.open = true; ai.draft = T('ai_task_q', { t: ai.task }); aiPaint(); },
 };
 
 // ---------- App ----------
@@ -5469,7 +5717,7 @@ function taskHTML(t, k) {
       <div class="ineq-prev"><p class="cap">${T('your_answer_line')}</p><div id="pv-${t.id}">${ineqLine(rel, typeof v === 'number' ? v : parseNum(v))}</div></div>`;
   }
   const solvedBox = st.solved ? `<div class="good"><b>${T('right')}</b> ${L(t.explain || t.sol)}</div>` : '';
-  const tools = st.solved ? '' : `<div class="tools">${t.hint ? `<button type="button" class="btn-link" data-act="hint" data-task="${t.id}">${T('hint')}</button>` : ''}${(st.tries || 0) >= 2 ? `<button type="button" class="btn-link" data-act="sol" data-task="${t.id}">${T('show_solution')}</button>` : ''}</div>`;
+  const tools = st.solved ? '' : `<div class="tools">${CONFIG.ai ? `<button type="button" class="btn-link ai-ask" data-act="aiTask" data-task="${t.id}">✦ ${T('ai_ask_task')}</button>` : ''}${t.hint ? `<button type="button" class="btn-link" data-act="hint" data-task="${t.id}">${T('hint')}</button>` : ''}${(st.tries || 0) >= 2 ? `<button type="button" class="btn-link" data-act="sol" data-task="${t.id}">${T('show_solution')}</button>` : ''}</div>`;
   return `<article class="sheet task ${st.solved ? 'solved' : ''}" id="task-${t.id}">
     <div class="task-top"><span class="tnum">${k + 1}</span><div class="tq">${qHTML(t)}</div></div>
     ${t.fig ? `<div class="figbox">${t.fig()}</div>` : ''}
@@ -5560,7 +5808,7 @@ function privacyHTML() {
 }
 
 // ---------- router ----------
-const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, plans: viewPlan, izmegin: viewMock, abonements: viewSub, paldies: viewThanks };
+const VIEWS = { sakums: viewLanding, eksameni: viewExams, pieteikums: viewContact, tests: viewTest, rezultati: viewResults, demo: viewLesson, ...PLATFORM_VIEWS, konts: viewAccount, plans: viewPlan, atskaite: viewReport, izmegin: viewMock, abonements: viewSub, paldies: viewThanks };
 let current = '';
 function route(keepScroll = false) {
   let h = (location.hash || '').replace('#', '') || 'sakums', topic = null;
@@ -5579,6 +5827,7 @@ function route(keepScroll = false) {
   renderHeader(want);
   document.title = want === 'eksameni' ? T('ex_doc_title') : T('doc_title');
   $('#view').innerHTML = VIEWS[want](topic);
+  if (typeof aiPaint === 'function') { if (want !== 'demo') ai.open = false; aiPaint(); }
   $('#view').dataset.view = want;
   renderFooter();
   window.scrollTo(0, keepScroll ? y : 0);
@@ -5769,7 +6018,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT, MOCK_ACT);
+Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT, MOCK_ACT, AI_ACT, PLUS_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -5822,6 +6071,8 @@ document.addEventListener('submit', e => {
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
   if (f.id === 'mailcap-form') { e.preventDefault(); submitMailcap(f); return; }
+  if (f.id === 'rp-form') { e.preventDefault(); rpSave(f); return; }
+  if (f.dataset.actForm === 'aiSend') { e.preventDefault(); const i = f.querySelector('#ai-in'); aiAsk(i ? i.value : ''); return; }
   const kind = f.dataset.actForm; if (!kind) return;
   e.preventDefault();
   const { t, tid } = lessonTask(f.dataset.task);
