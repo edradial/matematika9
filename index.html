@@ -1460,7 +1460,7 @@ a.pl-item:hover { border-color: var(--accent); }
     <div class="sc-grid"><article class="sc sc-mat">
       <div class="sc-art" aria-hidden="true"><span>x²</span><span>%</span><span>∟</span></div>
       <h3>Matemātika</h3>
-      <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 25 video nodarbības</p>
+      <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 31 video nodarbības</p>
       <p class="sc-date">Līdz eksāmeniem: <b>188 dienas</b> · 2027. gada 25. maijā</p>
       <p class="sc-d">Algebra, ģeometrija, statistika: 16 uzdevumi no 8 tēmām.</p>
       <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
@@ -1562,7 +1562,7 @@ a.pl-item:hover { border-color: var(--accent); }
 </div>
 <div id="modal" hidden></div>
 <script>
-const KVID = ["cilv1", "cilv2", "eko1", "eko2", "elek1", "elek2", "fun1", "fun2", "izt1", "izt2", "lauk1", "lauk2", "nev1", "nev2", "nev3", "pet1", "pet2", "proc1", "proc2", "reak1", "reak2", "silt1", "silt2", "spek1", "spek2", "stat1", "stat2", "tri1", "tri2", "viel1", "viel2", "vien1", "vien2"];
+const KVID = ["cilv1", "cilv2", "eko1", "eko2", "elek1", "elek2", "fun1", "fun2", "fun3", "izt1", "izt2", "lauk1", "lauk2", "lauk3", "nev1", "nev2", "nev3", "pet1", "pet2", "proc1", "proc2", "proc3", "reak1", "reak2", "silt1", "silt2", "spek1", "spek2", "stat1", "stat2", "stat3", "tri1", "tri2", "tri3", "viel1", "viel2", "vien1", "vien2", "vien3"];
 // ---------- Settings: fill these in before going live ----------
 const CONFIG = {
   brand: 'Eksāmens 9',
@@ -3825,11 +3825,16 @@ function tasksSolved(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ?
 function tasksTotal(s, tid) { const L2 = SUBJ_D(s).LESSONS || {}; return (tid ? [tid] : Object.keys(L2)).reduce((k, id) => k + L2[id].tasks.length, 0); }
 function courseStats(s) {
   const L2 = SUBJ_D(s).LESSONS || {}; let n = 0, a = 0, k = 0;
-  SUBJ_D(s).TOPICS.forEach(t => { const l = L2[t.id]; if (!l) { n += 8; return; } const c = (l.course.lv || []).length; n += c; a += l.course.lv.filter((_, i) => l.demo.includes(i) || KVID.includes(t.id + (i + 1))).length; if (state.les[t.id] && state.les[t.id].done) k += l.demo.length; });
+  SUBJ_D(s).TOPICS.forEach(t => { const l = L2[t.id]; if (!l) { n += 8; return; } const c = (l.course.lv || []).length; n += c; a += l.course.lv.filter((_, i) => l.demo.includes(i) || KVID.includes(t.id + (i + 1))).length; k += rowsDone(t.id, l); });
   return { n, a, k, pct: n ? Math.round(k / n * 100) : 0 };
 }
 function lessonDone(tid) { return !!(state.les[tid] && state.les[tid].done); }
 function setLessonDone(tid) { state.les[tid] = Object.assign(state.les[tid] || {}, { done: true, at: today() }); touchDay(); save(); }
+function partDone(tid, p) { return !!(state.les[tid] && (state.les[tid].parts || []).includes(p)); }
+function setPartDone(tid, p) { const x = (state.les[tid] = state.les[tid] || {}); x.parts = [...new Set([...(x.parts || []), p])]; touchDay(); save(); }
+// finished rows of the topic's course list: main lesson rows when the lesson is done, video rows marked one by one
+function rowDone(tid, l, i) { return partDone(tid, i + 1) || (lessonDone(tid) && l.demo.includes(i) && !KVID.includes(tid + (i + 1))); }
+function rowsDone(tid, l) { return (l.course.lv || []).filter((_, i) => rowDone(tid, l, i)).length; }
 function lastLesson() {
   const t = state.last && (MAT.LESSONS[state.last] ? 'mat' : DAB.LESSONS && DAB.LESSONS[state.last] ? 'dab' : null);
   return t ? { s: t, tid: state.last, topic: SUBJ_D(t).TOPICS.find(x => x.id === state.last) } : null;
@@ -3864,7 +3869,7 @@ function viewCourse(s) {
     const l = L2[t.id], items = l ? (l.course[state.lang] || l.course.lv) : [], ld = lessonDone(t.id), k = l ? tasksSolved(s, t.id) : 0, n = l ? tasksTotal(s, t.id) : 0;
     const rows = items.map((c, i) => {
       const open = openAll && rowOpen(l, t.id, i), kv = kvOf(t.id, i);
-      const st = open ? (ld && l.demo.includes(i) ? 'done' : 'demo') : 'lock';
+      const st = open ? (rowDone(t.id, l, i) ? 'done' : 'demo') : 'lock';
       const tag = st === 'done' ? `<em class="tg ok">${T('les_done')}</em>` : st === 'demo' ? (kv ? `<em class="tg dm">${T('les_video')}</em>` : '') : (!openAll && rowOpen(l, t.id, i) ? `<em class="tg lk">${T('les_reg')}</em>` : `<em class="tg lk">${T('les_lock', { date: dateShort(CONFIG.launchDate) })}</em>`);
       const icon = st === 'done' ? CHECK : st === 'demo' ? PLAY : LOCK;
       return open ? `<li><a class="lrow ${st}" href="${rowHref(l, t.id, i)}" data-act="openLes" data-s="${s}" data-v="${rowHref(l, t.id, i).slice(6)}">${icon}<span>${c}</span>${tag}</a></li>` : `<li><span class="lrow lock">${icon}<span>${c}</span>${tag}</span></li>`;
@@ -3897,7 +3902,7 @@ function viewLesson(topic) {
   if (state.last !== tid) { state.last = tid; save(); }
   touchDay();
   const tab = mem.ltab || (VIDEOS[tid] ? 'notes' : 'notes');
-  const course = les.course[state.lang] || les.course.lv, ld = lessonDone(tid);
+  const course = les.course[state.lang] || les.course.lv, ld = kv ? partDone(tid, part) : lessonDone(tid);
   const ids = TOPICS.map(x => x.id).filter(id => LESSONS[id]), nextId = ids[(ids.indexOf(tid) + 1) % ids.length];
   const k = solvedCount(tid), n = les.tasks.length;
   const tabBtn = (id, label, extra = '') => `<button type="button" role="tab" class="ltab" data-act="ltab" data-v="${id}" aria-selected="${tab === id}">${label}${extra}</button>`;
@@ -3913,14 +3918,14 @@ function viewLesson(topic) {
       <div class="lpanel" data-panel="example"${tab === 'example' ? '' : ' hidden'}>${exampleHTML(tid)}</div>
       <div class="lpanel" data-panel="tasks"${tab === 'tasks' ? '' : ' hidden'}><p class="solved-line" id="solved-c">${TN('solved', k, { k, n })}</p>${les.tasks.map(taskHTML).join('')}</div>
       <div class="pl-foot">
-        ${ld ? `<span class="done-badge">${CHECK}${T('marked_done')}</span>` : `<button type="button" class="btn btn-secondary btn-lg" data-act="lesDone" data-v="${tid}">${CHECK}${T('mark_done')}</button>`}
+        ${ld ? `<span class="done-badge">${CHECK}${T('marked_done')}</span>` : `<button type="button" class="btn btn-secondary btn-lg" data-act="lesDone" data-v="${kv ? tid + '-' + part : tid}">${CHECK}${T('mark_done')}</button>`}
         <a class="btn btn-primary btn-lg" href="#demo-${nextId}" data-act="nextLes">${T('next_les')}: ${L(topicById(nextId))}${ARR}</a>
       </div>
     </div>
     <aside class="pl-side">
       <div class="dcard"><h2>${T('module_list')}</h2>
         <div class="mp">${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small></div>
-        <ol class="lrows sm">${course.map((c, i) => { const open = rowOpen(les, tid, i), cur = kv ? part === i + 1 : !part && les.demo.includes(i), icon = open ? (ld && les.demo.includes(i) ? CHECK : PLAY) : LOCK; return `<li>${open ? `<a class="lrow ${ld && les.demo.includes(i) ? 'done' : 'demo'}${cur ? ' on' : ''}" href="${rowHref(les, tid, i)}">${icon}<span>${c}</span></a>` : `<span class="lrow lock">${icon}<span>${c}</span></span>`}</li>`; }).join('')}</ol>
+        <ol class="lrows sm">${course.map((c, i) => { const open = rowOpen(les, tid, i), cur = kv ? part === i + 1 : !part && les.demo.includes(i), rd = rowDone(tid, les, i), icon = open ? (rd ? CHECK : PLAY) : LOCK; return `<li>${open ? `<a class="lrow ${rd ? 'done' : 'demo'}${cur ? ' on' : ''}" href="${rowHref(les, tid, i)}">${icon}<span>${c}</span></a>` : `<span class="lrow lock">${icon}<span>${c}</span></span>`}</li>`; }).join('')}</ol>
         <a class="btn btn-mark wide" href="#abonements">${T('cta_full_btn')}</a>
       </div>
       <div class="dcard"><h2>${T('other_topics')}</h2><ul class="orows">${other}</ul></div>
@@ -3972,7 +3977,7 @@ function badges() {
 }
 function viewProgress() {
   const s = mem.psubj || state.subj, R = resultsFor(s), st = subjState(s), D = SUBJ_D(s), C = courseStats(s);
-  const B = T('badges'), lessonsDone = Object.keys(D.LESSONS || {}).filter(lessonDone).length;
+  const B = T('badges'), lessonsDone = C.k;
   const kpi = (v, l, ic) => `<div class="kpi"><span class="kpi-ic">${ico(ic)}</span><b>${v}</b><small>${l}</small></div>`;
   const rows = st.done ? D.TOPICS.map(t => { const p = R.per[t.id], ss = R.status(t.id); return `<li class="prow"><span class="chip-ic">${t.ic}</span><span class="pr-t">${L(t)}</span>${bar(p.n ? p.c / p.n : 0, ss)}<span class="pr-n">${p.c}/${p.n}</span>${pill(ss)}</li>`; }).join('') : `<li class="p-none">${T('p_topics_none')} <button type="button" class="btn btn-primary" data-act="subj" data-v="${s}">${T('t_start')}${ARR}</button></li>`;
   return `<section class="wrap pg">
@@ -3980,7 +3985,7 @@ function viewProgress() {
     <div class="kpis">
       <div class="kpi kpi-ring">${ring2(C.n ? C.k / C.n : 0, C.pct + '%', T('p_course'), s === 'dab' ? 'var(--green)' : 'var(--accent)')}</div>
       ${kpi(`${tasksSolved(s)}<small>/${tasksTotal(s)}</small>`, T('p_tasks'), 'my')}
-      ${kpi(`${lessonsDone}<small>/${Object.keys(D.LESSONS || {}).length}</small>`, T('p_lessons'), 'lessons')}
+      ${kpi(`${lessonsDone}<small>/${C.n}</small>`, T('p_lessons'), 'lessons')}
       ${kpi(streak(), T('p_streak'), 'prog')}
     </div>
     <div class="pg-cols">
@@ -3996,7 +4001,7 @@ const PLATFORM_ACT = {
   ltab(b) { mem.ltab = b.dataset.v; document.querySelectorAll('.ltab').forEach(x => x.setAttribute('aria-selected', String(x === b))); document.querySelectorAll('.lpanel').forEach(p => (p.hidden = p.dataset.panel !== mem.ltab)); },
   openLes(b, e) { if (e) e.preventDefault(); setSubject(b.dataset.s); mem.ltab = 'notes'; location.hash = 'demo-' + b.dataset.v; },
   nextLes() { mem.ltab = 'notes'; },
-  lesDone(b) { setLessonDone(b.dataset.v); rerender(); },
+  lesDone(b) { const [tid, p] = b.dataset.v.split('-'); if (p) setPartDone(tid, +p); else setLessonDone(tid); rerender(); },
   psubj(b) { mem.psubj = b.dataset.v; rerender(); },
   retake(b) { mem.retake = b.dataset.v; rerender(); },
   retakeNo() { mem.retake = null; rerender(); },
@@ -4954,10 +4959,10 @@ Object.assign(I18N.ru, {
 const PLUS_PREVIEW = /[?&]plus\b/.test(location.search);
 function isPlus() { if (PLUS_PREVIEW) return true; if (typeof authed !== 'function' || !authed()) return false; const now = new Date().toISOString(); return (auth.ent || []).some(e => e.valid_until > now); }
 const PLUS_IC = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/></svg>';
-function plusLockHTML(kind, small) {
-  return `<div class="px-lock${small ? ' sm' : ''}"><span class="px-ic">${PLUS_IC}</span><div><b>${T('px_lock_h')}</b><p>${T('px_lock')[kind]}</p><a class="btn btn-mark" href="#abonements">${T('px_lock_btn')}</a></div></div>`;
+function plusLockHTML(kind, small, noTitle) {
+  return `<div class="px-lock${small ? ' sm' : ''}"><span class="px-ic">${PLUS_IC}</span><div>${noTitle ? '' : `<b>${T('px_lock_h')}</b>`}<p>${T('px_lock')[kind]}</p><a class="btn btn-mark" href="#abonements">${T('px_lock_btn')}</a></div></div>`;
 }
-function plusModal(kind) { const m = $('#modal'); m.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true"><div class="modal-top"><h2>${T('px_lock_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}">×</button></div>${plusLockHTML(kind)}</div>`; m.hidden = false; }
+function plusModal(kind) { const m = $('#modal'); m.innerHTML = `<div class="modal-card" role="dialog" aria-modal="true"><div class="modal-top"><h2>${T('px_lock_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}">×</button></div>${plusLockHTML(kind, false, true)}</div>`; m.hidden = false; }
 
 // ---- PDF notes: /pdf/<topic>-<lang>.pdf (made by pdfnotes.js at build time) ----
 function pdfBtnHTML(tid) { return `<button type="button" class="btn btn-white px-pdf" data-act="pxPdf" data-v="${tid}">⬇ ${T('px_pdf')} <span class="px-tag">Plus</span></button>`; }
@@ -5889,6 +5894,7 @@ function markSolved(t, tid) {
   const el = $('#task-' + t.id); if (el) el.outerHTML = taskHTML(t, LESSONS[tid].tasks.indexOf(t));
   const c = $('#solved-c'); if (c) c.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length });
   const c2 = $('#solved-c2'); if (c2) c2.textContent = solvedCount(tid) + '/' + LESSONS[tid].tasks.length;
+  const mp = $('.pl-side .mp'); if (mp) { const k = solvedCount(tid), n = LESSONS[tid].tasks.length; mp.innerHTML = `${bar(n ? k / n : 0)}<small>${T('mod_progress', { k, n })}</small>`; }
   touchDay(); if (solvedCount(tid) === LESSONS[tid].tasks.length && !lessonDone(tid)) setLessonDone(tid);
   document.querySelectorAll(`.side-item[href="#demo-${tid}"] small`).forEach(s => (s.textContent = TN('solved', solvedCount(tid), { k: solvedCount(tid), n: LESSONS[tid].tasks.length })));
   clearTimeout(mem.sendTimer);

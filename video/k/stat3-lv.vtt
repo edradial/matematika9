@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00.250 --> 00:05.460
+Šī ir trešā nodarbība par statistiku: pilnā pārlase un kombinatorika.
+
+00:05.960 --> 00:08.778
+Mēs mācīsimies saskaitīt visas iespējas.
+
+00:10.020 --> 00:14.720
+Ir divi krekli un trīs bikses. Cik dažādos veidos var saģērbties?
+
+00:15.220 --> 00:19.550
+Kokā katram kreklam ir trīs zari — kopā seši varianti.
+
+00:20.782 --> 00:29.609
+Reizināšanas likums: ja pirmo izvēli var izdarīt a veidos, bet otro bē veidos, kopā ir a reiz bē iespējas.
+
+00:30.109 --> 00:32.276
+Divi reiz trīs ir seši.
+
+00:33.504 --> 00:37.465
+Piemērs: trīsciparu kods no cipariem nulle līdz deviņi.
+
+00:37.965 --> 00:43.907
+Katram ciparam ir desmit iespējas: desmit reiz desmit reiz desmit ir tūkstotis.
+
+00:45.154 --> 00:49.128
+Ja atkārtoties nedrīkst, iespēju katru reizi kļūst mazāk.
+
+00:49.628 --> 00:55.668
+Trīs cilvēkus rindā var nostādīt trīs reiz divi reiz viens, tas ir sešos veidos.
+
+00:56.910 --> 01:00.300
+Pārlasi variantus sistemātiski, lai neko neizlaistu.
+
+01:00.800 --> 01:03.653
+Un lai neskaitītu vienu variantu divreiz.
+
+01:04.903 --> 01:08.663
+Tagad pamēģini pats: uzdevumi ir zemāk zem video.
