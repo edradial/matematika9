@@ -1403,6 +1403,7 @@ a.pl-item:hover { border-color: var(--accent); }
 .pr-got p { margin: 0; font-weight: 600; }
 .ex-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; }
 @media (min-width: 761px) { .pr-card .how2 { grid-template-columns: repeat(3, 1fr); } }
+.mc-unlock { margin-top: 14px; border: 2px dashed var(--accent); background: var(--accent-soft); }
 
 </style>
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","inLanguage":"lv"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"lv","mainEntity":[{"@type":"Question","name":"Kas būs dabaszinātņu eksāmenā?","acceptedAnswer":{"@type":"Answer","text":"Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē."}},{"@type":"Question","name":"Vai tas tiešām ir bez maksas?","acceptedAnswer":{"@type":"Answer","text":"Jā. Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas — vajag tikai izpildīt testu un izveidot kontu. Jaunas nodarbības atveram katru nedēļu. Par maksu būs tikai Plus: MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem; sīkāk — sadaļā „Cenas”."}},{"@type":"Question","name":"Kā notiek maksāšana?","acceptedAnswer":{"@type":"Answer","text":"Nodarbībām nekas nav jāmaksā. Maksāt vajag tikai par Plus, ja gribi papildu rīkus; Plus sāksies 15. februārī, un to var atcelt jebkurā brīdī. Ir 14 dienu naudas atgriešanas garantija."}},{"@type":"Question","name":"Vai var atcelt?","acceptedAnswer":{"@type":"Answer","text":"Ikmēneša abonementu var atcelt jebkurā brīdī. Gada abonements tiek apmaksāts vienā maksājumā un automātiski neatjaunojas."}},{"@type":"Question","name":"Kādā valodā ir nodarbības?","acceptedAnswer":{"@type":"Answer","text":"Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski."}},{"@type":"Question","name":"Vai vajag skolotāju vai privātstundas?","acceptedAnswer":{"@type":"Answer","text":"Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā ir daļa no Plus."}},{"@type":"Question","name":"Kāpēc vispirms tests?","acceptedAnswer":{"@type":"Answer","text":"Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā netērē laiku tam, ko jau zini, un sāc ar svarīgāko."}}]}]</script>
@@ -1723,7 +1724,7 @@ const I18N = {
     contact_h: 'Tests pabeigts! Kam nosūtīt rezultātus?',
     meta_desc: 'Bezmaksas testi 9. klases eksāmeniem matemātikā un dabaszinātnēs: rezultāts pa tēmām, video nodarbības un uzdevumi ar tūlītēju pārbaudi. Latviešu un krievu valodā.',
     contact_h_res: 'Kur nosūtīt rezervācijas apstiprinājumu?', contact_p_res: 'Pirms maksas versijas starta uz šo e-pastu nosūtīsim maksājuma saiti ar atlaidi. Tagad nekas nav jāmaksā.',
-    mc_h: 'Saņem rezultātu un plānu e-pastā', mc_p: 'Nosūtīsim šī testa rezultātu, tēmas, ar kurām sākt, un saiti, lai pie plāna atgrieztos no jebkuras ierīces.', mc_btn: 'Nosūtīt', mc_fine: 'Adresi izmantosim tikai rezultātam un šim kursam, bez reklāmas. Sīkāk —',
+    mc_h: 'Saņem plānu un formulu lapu e-pastā — bez maksas', mc_p: 'Nosūtīsim rezultātu pa tēmām, visus kļūdu skaidrojumus, tēmas, ar kurām sākt, formulu lapu PDF (2 lpp. A4) un saiti, lai pie plāna atgrieztos no jebkuras ierīces.', mc_btn: 'Saņemt bez maksas', mc_h_par: 'Saņemiet bērna rezultātu un formulu lapu e-pastā', mc_p_par: 'Rezultāts pa tēmām, kļūdu skaidrojumi un formulu lapa PDF — lai varat palīdzēt bērnam gatavoties.', mc_un_h: 'Vēl kļūdas ar skaidrojumu: {n}', mc_un_p: 'Ievadi e-pastu — skaidrojumi atvērsies uzreiz, un rezultātu ar formulu lapu PDF nosūtīsim arī uz e-pastu.', mc_un_btn: 'Atvērt skaidrojumus', mc_fine: 'Adresi izmantosim tikai rezultātam un šim kursam, bez reklāmas. Sīkāk —',
     contact_p: 'Rezultātu parādīsim uzreiz, bet uz e-pastu nosūtīsim tā kopiju un kursa saiti.',
     who: 'Kas aizpilda?',
     who_student: 'Es esmu skolēns',
@@ -2032,7 +2033,7 @@ const I18N = {
     contact_h: 'Тест пройден! Куда прислать результат?',
     meta_desc: 'Подготовка к экзаменам 9 класса по математике и естественным наукам на русском: бесплатный тест по темам, видеоуроки, задачи с проверкой, план и пробный экзамен.',
     contact_h_res: 'Куда прислать подтверждение брони?', contact_p_res: 'Перед стартом платной версии пришлём на этот e-mail ссылку на оплату со скидкой. Сейчас платить ничего не нужно.',
-    mc_h: 'Получить результат и план на e-mail', mc_p: 'Пришлём результат теста, темы, с которых начать, и ссылку, чтобы вернуться к плану с любого устройства.', mc_btn: 'Отправить', mc_fine: 'Адрес используем только для результата и этого курса, без рекламы. Подробнее —',
+    mc_h: 'Получи план и шпаргалку формул на e-mail — бесплатно', mc_p: 'Пришлём результат по темам, все объяснения ошибок, темы, с которых начать, шпаргалку формул PDF (2 стр. A4) и ссылку, чтобы вернуться к плану с любого устройства.', mc_btn: 'Получить бесплатно', mc_h_par: 'Получите результат ребёнка и шпаргалку формул на e-mail', mc_p_par: 'Результат по темам, объяснения ошибок и шпаргалка формул PDF — чтобы вы могли помочь ребёнку готовиться.', mc_un_h: 'Ещё ошибок с объяснением: {n}', mc_un_p: 'Введи e-mail — объяснения откроются сразу, а результат со шпаргалкой формул PDF пришлём и на почту.', mc_un_btn: 'Открыть объяснения', mc_fine: 'Адрес используем только для результата и этого курса, без рекламы. Подробнее —',
     contact_p: 'Результат покажем сразу, а на e-mail пришлём его копию и ссылку на курс.',
     who: 'Кто заполняет?',
     who_student: 'Я ученик',
@@ -5659,32 +5660,39 @@ function syncLangUrl() {
 }
 function ensureLead() { if (!state.lead || !state.lead.id) state.lead = { ...(state.lead || {}), id: uid() }; }
 // one e-mail field under the score: the result is already on screen, the e-mail only brings a copy and the way back
-function mailCapHTML() {
+function mailCapHTML(kind = 'top') {
   if (!CONFIG.endpoint) return '';
   const ld = state.lead || {};
-  if (ld.email) return '';
-  return `<form class="sheet mailcap" id="mailcap-form" novalidate>
-    <div class="mc-t"><h2>${T('mc_h')}</h2><p class="muted">${T('mc_p')}</p></div>
-    <div class="mc-row"><label class="sr" for="mc-email">${T('f_email')}</label><input id="mc-email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="${T('f_email_ph')}" aria-describedby="e-mc"><button class="btn btn-primary" type="submit">${T('mc_btn')}</button></div>
-    <p class="err" id="e-mc" aria-live="polite"></p>
-    <fieldset class="mc-who"><legend>${T('who')}</legend><label><input type="radio" name="mc-role" value="student"><span>${T('who_student')}</span></label><label><input type="radio" name="mc-role" value="parent"><span>${T('who_parent')}</span></label></fieldset>
-    <div class="hp" aria-hidden="true"><label for="mc-web">Website</label><input id="mc-web" tabindex="-1" autocomplete="off"></div>
+  if (ld.email) return kind === 'top' && mem.mcSent === ld.email ? `<div class="sheet mailcap"><div class="good" role="status"><b>✓</b> ${T('res_sent', { email: esc(ld.email) })}</div></div>` : '';
+  const k = kind === 'unlock' ? 'un' : 'top', par = state.gotResult, h = kind === 'unlock' ? T('mc_un_h', { n: results().mistakes.length - MIS_FREE }) : par ? T('mc_h_par') : T('mc_h');
+  const p = kind === 'unlock' ? T('mc_un_p') : par ? T('mc_p_par') : T('mc_p'), role = ld.role || (par ? 'parent' : '');
+  return `<form class="sheet mailcap${kind === 'unlock' ? ' mc-unlock' : ''}" id="mailcap-${k}" data-kind="${kind}" novalidate>
+    <div class="mc-t"><h2>${h}</h2><p class="muted">${p}</p></div>
+    <div class="mc-row"><label class="sr" for="mc-email-${k}">${T('f_email')}</label><input id="mc-email-${k}" class="mc-email" type="email" autocomplete="email" inputmode="email" maxlength="120" placeholder="${T('f_email_ph')}" aria-describedby="e-mc-${k}"><button class="btn btn-primary" type="submit">${kind === 'unlock' ? T('mc_un_btn') : T('mc_btn')}</button></div>
+    <p class="err" id="e-mc-${k}" aria-live="polite"></p>
+    <fieldset class="mc-who"><legend>${T('who')}</legend><label><input type="radio" name="mc-role-${k}" value="student"${role === 'student' ? ' checked' : ''}><span>${T('who_student')}</span></label><label><input type="radio" name="mc-role-${k}" value="parent"${role === 'parent' ? ' checked' : ''}><span>${T('who_parent')}</span></label></fieldset>
+    <div class="hp" aria-hidden="true"><label for="mc-web-${k}">Website</label><input id="mc-web-${k}" class="mc-web" tabindex="-1" autocomplete="off"></div>
     <p class="mc-fine">${T('mc_fine')} <button type="button" class="btn-link inline" data-act="privacy">${T('f_privacy')}</button>.</p>
   </form>`;
 }
+// explanations shown before an e-mail is given; the rest open after it (or with an account)
+const MIS_FREE = 2;
+const misLocked = () => !!CONFIG.endpoint && !(state.lead && state.lead.email) && !authed();
 function submitMailcap(f) {
-  const inp = f.querySelector('#mc-email'), email = inp.value.trim(), err = f.querySelector('#e-mc');
-  const role = (f.querySelector('input[name="mc-role"]:checked') || {}).value || (state.lead && state.lead.role) || 'student';
+  const inp = f.querySelector('.mc-email'), email = inp.value.trim(), err = f.querySelector('.err');
+  const role = (f.querySelector('.mc-who input:checked') || {}).value || (state.lead && state.lead.role) || (state.gotResult ? 'parent' : 'student');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = T('err_email'); inp.setAttribute('aria-invalid', 'true'); inp.focus(); return; }
   ensureLead();
   state.lead = { ...state.lead, email, role, consent: true };
   save();
-  if (!f.querySelector('#mc-web').value) {
+  if (!f.querySelector('.mc-web').value) {
     send('contact', { role, name: state.lead.name || '', email, phone: state.lead.phone || '', consent: true, news: !!state.lead.news, utm: state.utm || {}, isNew: false });
     sendResults(true);
+    postLead({ id: uid(), stage: 'cheat', lang: state.lang, email, role, news: false, src: 'results' });
   }
-  track('contact', { role, where: 'results' });
-  f.outerHTML = `<div class="sheet mailcap"><div class="good" role="status"><b>✓</b> ${T('res_sent', { email: esc(email) })}</div></div>`;
+  track('contact', { role, where: f.dataset.kind === 'unlock' ? 'results_unlock' : 'results' });
+  mem.mcSent = email;
+  rerender();
 }
 
 function viewContact() {
@@ -5742,7 +5750,8 @@ function viewResults() {
       <span class="dots" aria-label="${p.c}/${p.n}">${Array.from({ length: p.n }, (_, k) => `<i class="${k < p.c ? 'on' : ''}"></i>`).join('')}</span>${pill(st)}</li>`;
   }).join('');
   const weak = R.weak;
-  const mistakes = R.mistakes.length ? R.mistakes.map(m => `<li class="mis"><div class="mis-h"><span class="chip">${L(topicById(m.d.topic))}</span><span class="mis-n">${m.i + 1}.</span></div>
+  const lockMis = misLocked() && R.mistakes.length > MIS_FREE;
+  const mistakes = R.mistakes.length ? (lockMis ? R.mistakes.slice(0, MIS_FREE) : R.mistakes).map(m => `<li class="mis"><div class="mis-h"><span class="chip">${L(topicById(m.d.topic))}</span><span class="mis-n">${m.i + 1}.</span></div>
       <div class="mis-q">${L(m.d.q)} ${m.d.math ? `<span class="m">${m.d.math}</span>` : ''}</div>
       <p class="mis-a"><span class="lbl">${T('your_answer')}:</span> <s>${L(m.d.opts[m.a].t)}${L(m.d.u)}</s> · <span class="lbl">${T('correct_answer')}:</span> <b>${L(m.d.opts.find(o => o.ok).t)}${L(m.d.u)}</b></p>
       <p class="mis-why">${L(m.d.opts[m.a].why)}</p></li>`).join('') : `<li class="mis none">${T('res_none')}</li>`;
@@ -5771,7 +5780,7 @@ function viewResults() {
     </div>
     ${state.fromParent || state.gotResult ? '' : resultShareHTML()}
     ${surveyHTML()}
-    <div class="sheet"><h2>${T('res_mistakes_h')}</h2><ul class="mis-list">${mistakes}</ul>${R.dk ? `<p class="muted">${TN('res_dk', R.dk, { n: R.dk })}</p>` : ''}</div>
+    <div class="sheet"><h2>${T('res_mistakes_h')}</h2><ul class="mis-list">${mistakes}</ul>${lockMis ? mailCapHTML('unlock') : ''}${R.dk ? `<p class="muted">${TN('res_dk', R.dk, { n: R.dk })}</p>` : ''}</div>
     <details class="sheet review"><summary>${T('res_review')}</summary><ol class="rev">${review}</ol></details>
   </section>`;
 }
@@ -6226,7 +6235,7 @@ document.addEventListener('submit', e => {
   if (f.id === 'auth-form') { e.preventDefault(); authSubmit(f); return; }
   if (f.id === 'report-form') { e.preventDefault(); submitReport(f); return; }
   if (f.id === 'lead-form') { e.preventDefault(); submitLead(f); return; }
-  if (f.id === 'mailcap-form') { e.preventDefault(); submitMailcap(f); return; }
+  if (f.classList.contains('mailcap')) { e.preventDefault(); submitMailcap(f); return; }
   if (f.id === 'rp-form') { e.preventDefault(); rpSave(f); return; }
   if (f.dataset.actForm === 'aiSend') { e.preventDefault(); const i = f.querySelector('#ai-in'); aiAsk(i ? i.value : ''); return; }
   const kind = f.dataset.actForm; if (!kind) return;
