@@ -4216,7 +4216,17 @@ async function authConsumeHash() {
 }
 
 // ---- interface ----
+// a new or returning account sends its e-mail to the leads sheet once, so registrations show up with a contact
+function leadFromAccount() {
+  const u = authed() && auth.ses.user; if (!u || !u.email) return;
+  if (state.lead && state.lead.account === u.email) return;
+  ensureLead();
+  state.lead = { ...state.lead, email: state.lead.email || u.email, account: u.email, consent: true };
+  save();
+  send('contact', { role: state.lead.role || 'student', name: state.lead.name || '', email: u.email, phone: state.lead.phone || '', consent: true, news: !!state.lead.news, utm: state.utm || {}, isNew: true, account: true });
+}
 function authPaint() {
+  try { leadFromAccount(); } catch (e) { }
   const b = document.getElementById('acct'); if (!b) return;
   const on = authed(), label = on ? T('au_cab') : T('au_in');
   b.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>${label}</span>`;
