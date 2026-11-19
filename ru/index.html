@@ -1557,7 +1557,7 @@ a.pl-item:hover { border-color: var(--accent); }
   </section>
   <section class="wrap sec pr-band" id="vecakiem"><div class="sheet pr-card">
     <div class="sec-head"><h2>Родителям: 3 шага</h2></div>
-    <ol class="how2"><li><span class="hn">1</span><b>Отправьте ссылку</b><p>В WhatsApp, Telegram, Viber или по e-mail — ребёнку ничего не нужно устанавливать.</p></li><li><span class="hn">2</span><b>Ребёнок проходит тест</b><p>16 заданий как на экзамене, ~15 минут, без регистрации.</p></li><li><span class="hn">3</span><b>Результат у вас</b><p>Ребёнок одной кнопкой отправляет вам результат: какие темы повторить.</p></li></ol>
+    <ol class="how2"><li><span class="hn">1</span><b>Отправьте ссылку</b><p>В WhatsApp, Telegram или по e-mail — ребёнку ничего не нужно устанавливать.</p></li><li><span class="hn">2</span><b>Ребёнок проходит тест</b><p>16 заданий как на экзамене, ~15 минут, без регистрации.</p></li><li><span class="hn">3</span><b>Результат у вас</b><p>Ребёнок одной кнопкой отправляет вам результат: какие темы повторить.</p></li></ol>
     <button type="button" class="btn btn-primary btn-lg" data-act="prOpen">Отправить тест ребёнку →</button></div></section>
   <section class="wrap sec inc" id="atskiriba">
     <div class="sec-head"><h2>Бесплатно и Plus: в чём разница</h2><p>Тест, все видеоуроки, задачи и пробный экзамен бесплатны после регистрации. Plus добавляет помощников, с которыми готовиться быстрее; он стартует 15 февраля.</p></div>
@@ -5160,7 +5160,7 @@ const PT = {
     send: 'Nosūtīt', copy: 'Kopēt saiti', copied: 'Saite nokopēta', email: 'E-pasts', sms: 'SMS',
     msg: { mat: 'Sveiks! Lūdzu, izpildi šo matemātikas testu (15 minūtes). Tas parādīs, kuras tēmas jāatkārto 9. klases eksāmenam. Beigās nosūti man rezultātu:', dab: 'Sveiks! Lūdzu, izpildi šo dabaszinātņu testu (15 minūtes). Tas parādīs, kuras tēmas jāatkārto 9. klases eksāmenam. Beigās nosūti man rezultātu:' },
     mail_s: 'Tests 9. klases eksāmenam',
-    steps: [['Nosūtiet saiti', 'WhatsApp, Telegram, Viber vai e-pastā — bērnam nekas nav jāinstalē.'], ['Bērns izpilda testu', '16 eksāmena tipa uzdevumi, ~15 minūtes, bez reģistrācijas.'], ['Rezultāts pie jums', 'Bērns ar vienu pogu nosūta jums rezultātu: kuras tēmas jāatkārto.']],
+    steps: [['Nosūtiet saiti', 'WhatsApp, Telegram vai e-pastā — bērnam nekas nav jāinstalē.'], ['Bērns izpilda testu', '16 eksāmena tipa uzdevumi, ~15 minūtes, bez reģistrācijas.'], ['Rezultāts pie jums', 'Bērns ar vienu pogu nosūta jums rezultātu: kuras tēmas jāatkārto.']],
     band_h: 'Vecākiem: 3 soļi', band_btn: 'Nosūtīt testu bērnam',
     kid: 'Šo testu tev nosūtīja vecāki. Beigās varēsi ar vienu pogu nosūtīt viņiem rezultātu.',
     rs_h: 'Nosūti rezultātu vecākiem', rs_h_kid: 'Nosūti rezultātu vecākiem — viņi to gaida',
@@ -5179,7 +5179,7 @@ const PT = {
     send: 'Отправить', copy: 'Копировать ссылку', copied: 'Ссылка скопирована', email: 'E-mail', sms: 'SMS',
     msg: { mat: 'Привет! Пройди, пожалуйста, этот тест по математике (15 минут). Он покажет, какие темы повторить к экзамену 9 класса. В конце отправь мне результат:', dab: 'Привет! Пройди, пожалуйста, этот тест по естественным наукам (15 минут). Он покажет, какие темы повторить к экзамену 9 класса. В конце отправь мне результат:' },
     mail_s: 'Тест к экзамену 9 класса',
-    steps: [['Отправьте ссылку', 'В WhatsApp, Telegram, Viber или по e-mail — ребёнку ничего не нужно устанавливать.'], ['Ребёнок проходит тест', '16 заданий как на экзамене, ~15 минут, без регистрации.'], ['Результат у вас', 'Ребёнок одной кнопкой отправляет вам результат: какие темы повторить.']],
+    steps: [['Отправьте ссылку', 'В WhatsApp, Telegram или по e-mail — ребёнку ничего не нужно устанавливать.'], ['Ребёнок проходит тест', '16 заданий как на экзамене, ~15 минут, без регистрации.'], ['Результат у вас', 'Ребёнок одной кнопкой отправляет вам результат: какие темы повторить.']],
     band_h: 'Родителям: 3 шага', band_btn: 'Отправить тест ребёнку',
     kid: 'Этот тест тебе отправили родители. В конце сможешь одной кнопкой отправить им результат.',
     rs_h: 'Отправь результат родителям', rs_h_kid: 'Отправь результат родителям — они его ждут',
@@ -5205,7 +5205,6 @@ function shareRowHTML(text, url, subject, act) {
     ${navigator.share ? `<button type="button" class="btn btn-primary" data-act="${act}">${PTX('send')}</button>` : ''}
     <a class="btn btn-wa" href="https://wa.me/?text=${e(full)}" target="_blank" rel="noopener">WhatsApp</a>
     <a class="btn btn-ghost" href="https://t.me/share/url?url=${e(url)}&amp;text=${e(text)}" target="_blank" rel="noopener">Telegram</a>
-    <a class="btn btn-ghost" href="viber://forward?text=${e(full)}">Viber</a>
     <a class="btn btn-ghost" href="sms:?&amp;body=${e(full)}">${PTX('sms')}</a>
     <a class="btn btn-ghost" href="mailto:?subject=${e(subject)}&amp;body=${e(full)}">${PTX('email')}</a>
     <button type="button" class="btn btn-ghost" data-act="prCopy" data-v="${esc(url)}">${PTX('copy')}</button>
@@ -5806,7 +5805,6 @@ function viewExams() {
         ${navigator.share ? `<button type="button" class="btn btn-primary" data-act="share-native">${T('ex_share_btn')}</button>` : ''}
         <a class="btn btn-ghost" href="https://wa.me/?text=${enc(text + '\n' + shareUrl('whatsapp'))}" target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn btn-ghost" href="https://t.me/share/url?url=${enc(shareUrl('telegram'))}&amp;text=${enc(text)}" target="_blank" rel="noopener">Telegram</a>
-        <a class="btn btn-ghost" href="viber://forward?text=${enc(text + ' ' + shareUrl('viber'))}">Viber</a>
         <button type="button" class="btn btn-ghost" data-act="copy-link">${T('ex_copy')}</button>
         <span class="copied" id="copied" aria-live="polite"></span>
       </div>
