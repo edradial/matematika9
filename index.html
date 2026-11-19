@@ -1381,6 +1381,29 @@ a.pl-item:hover { border-color: var(--accent); }
 @media print { body.print-rp * { visibility: hidden; } body.print-rp .rp, body.print-rp .rp * { visibility: visible; } body.print-rp .rp { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: 0; } body.print-rp .no-print, body.print-rp #ai-fab { display: none !important; } }
 @media (max-width: 640px) { .rp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
+/* ---- parent flow ---- */
+.pr-hero { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 10px 16px; border-radius: 999px; border: 1.5px dashed var(--accent); background: var(--accent-soft); color: var(--accent); font: 700 15.5px/1.3 var(--f-body); cursor: pointer; text-align: left; }
+.pr-hero:hover { border-style: solid; }
+.pr-hero:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.pr-card { padding: 26px 28px; }
+.pr-card .how2 { margin-bottom: 20px; }
+.pr-opts { display: flex; flex-wrap: wrap; gap: 14px 24px; margin: 16px 0 12px; }
+.pr-opts .lbl { display: block; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin-bottom: 6px; }
+.pr-seg { display: inline-flex; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.pr-seg button { border: 0; background: transparent; padding: 9px 14px; font: 600 15px/1.2 inherit; color: inherit; cursor: pointer; min-height: 40px; }
+.pr-seg button + button { border-left: 1px solid var(--line); }
+.pr-seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+.pr-msg { margin: 0 0 16px; padding: 12px 14px; border-left: 4px solid var(--accent); background: var(--soft); border-radius: 8px; font-size: 15px; line-height: 1.45; }
+.pr-msg span { color: var(--accent); word-break: break-all; font-size: 13.5px; }
+.pr-share .btn { min-height: 44px; }
+.btn-wa { background: #1fa855; color: #fff; border-color: #1fa855; }
+.btn-wa:hover { background: #178c46; }
+.pr-kid { margin: 0 0 14px; padding: 12px 14px; border-radius: 12px; background: var(--soft); font-weight: 600; }
+.pr-res.kid { border: 2px solid var(--accent); }
+.pr-got p { margin: 0; font-weight: 600; }
+.ex-cta-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (min-width: 761px) { .pr-card .how2 { grid-template-columns: repeat(3, 1fr); } }
+
 </style>
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":"WebSite","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","inLanguage":"lv"},{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Eksāmens 9","url":"https://www.eksamens9.lv/","areaServed":"LV"},{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"lv","mainEntity":[{"@type":"Question","name":"Kas būs dabaszinātņu eksāmenā?","acceptedAnswer":{"@type":"Answer","text":"Pirmo reizi 2027. gada 2. jūnijā. Pēc VIAA parauga: 1. daļā 30 testa uzdevumi (bioloģija, fizika, ķīmija), 2. daļā 4 uzdevumi par prasmēm — dati, grafiki, aprēķini un eksperimenta plānošana. Šogad minimālā sliekšņa nav, bet rezultāts ir sertifikātā un var noderēt, iestājoties 10. klasē."}},{"@type":"Question","name":"Vai tas tiešām ir bez maksas?","acceptedAnswer":{"@type":"Answer","text":"Jā. Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas — vajag tikai izpildīt testu un izveidot kontu. Jaunas nodarbības atveram katru nedēļu. Par maksu būs tikai Plus: MI palīgs, personīgais plāns, risinājumi, PDF konspekti un pārskati vecākiem; sīkāk — sadaļā „Cenas”."}},{"@type":"Question","name":"Kā notiek maksāšana?","acceptedAnswer":{"@type":"Answer","text":"Nodarbībām nekas nav jāmaksā. Maksāt vajag tikai par Plus, ja gribi papildu rīkus; Plus sāksies 15. februārī, un to var atcelt jebkurā brīdī. Ir 14 dienu naudas atgriešanas garantija."}},{"@type":"Question","name":"Vai var atcelt?","acceptedAnswer":{"@type":"Answer","text":"Ikmēneša abonementu var atcelt jebkurā brīdī. Gada abonements tiek apmaksāts vienā maksājumā un automātiski neatjaunojas."}},{"@type":"Question","name":"Kādā valodā ir nodarbības?","acceptedAnswer":{"@type":"Answer","text":"Latviski un krieviski. Eksāmens ir latviešu valodā, tāpēc arī krievu versijā visi termini ir latviski."}},{"@type":"Question","name":"Vai vajag skolotāju vai privātstundas?","acceptedAnswer":{"@type":"Answer","text":"Nē. Bērns mācās savā tempā: katru atbildi pārbauda uzreiz, un kļūdas tiek izskaidrotas. Progresa pārskats vecākiem e-pastā ir daļa no Plus."}},{"@type":"Question","name":"Kāpēc vispirms tests?","acceptedAnswer":{"@type":"Answer","text":"Tests 15 minūtēs parāda, kuras no 8 tēmām ir vājās. Tā netērē laiku tam, ko jau zini, un sāc ar svarīgāko."}}]}]</script>
 </head>
@@ -1426,6 +1449,7 @@ a.pl-item:hover { border-color: var(--accent); }
         <h1>9. klases eksāmeni bez <mark>robiem</mark></h1>
         <p class="dh-lead">Matemātika (slieksnis jau 20&nbsp;%) un jaunais dabaszinātņu eksāmens. Bezmaksas tests 15&nbsp;minūtēs parādīs, kuras tēmas jāatkārto, bet īsas video nodarbības un uzdevumi ar tūlītēju pārbaudi palīdzēs tās apgūt. Skaidrojumi latviski vai krieviski.</p>
         <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">Dabaszinātņu tests</button></div>
+        <button type="button" class="pr-hero" data-act="prOpen"><span aria-hidden="true">👪</span> Esat vecāks? Nosūtiet testu bērnam →</button>
         
         <ul class="hero2-trust"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Nodarbības bez maksas</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Skaidrojumi latviski un krieviski</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Rezultāts arī e-pastā</li></ul>
       </div>
@@ -1440,10 +1464,10 @@ a.pl-item:hover { border-color: var(--accent); }
     <aside class="dash-side">
       <div class="dcard cd">
         <h2>Līdz eksāmeniem</h2>
-        <div class="ring" style="--p:0.707"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"></circle><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"></circle></svg><span><b>188</b>līdz matemātikai</span></div>
+        <div class="ring" style="--p:0.703"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50"></circle><circle class="ring-v" cx="60" cy="60" r="50" pathLength="1"></circle></svg><span><b>187</b>līdz matemātikai</span></div>
         <ul class="cd-rows">
-          <li><i class="dot-b"></i>Matemātika<b>188 dienas</b></li>
-          <li><i class="dot-g"></i>Dabaszinātnes<b>196 dienas</b></li>
+          <li><i class="dot-b"></i>Matemātika<b>187 dienas</b></li>
+          <li><i class="dot-g"></i>Dabaszinātnes<b>195 dienas</b></li>
         </ul>
       </div>
       <div class="dcard"><h2 class="dch"><svg class="hic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>Tavs nākamais solis</h2><button type="button" class="next-card" data-act="subj" data-v="mat"><span><b>Bezmaksas tests: Matemātika</b><small>16 uzdevumi, ~15&nbsp;minūtes</small></span><svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button><ul class="ev"><li><span class="ev-ic"><svg class="nic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg></span><span><b>2027. gada 15. februārī</b>Plus starts</span></li></ul></div>
@@ -1461,14 +1485,14 @@ a.pl-item:hover { border-color: var(--accent); }
       <div class="sc-art" aria-hidden="true"><span>x²</span><span>%</span><span>∟</span></div>
       <h3>Matemātika</h3>
       <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 31 video nodarbības</p>
-      <p class="sc-date">Līdz eksāmeniem: <b>188 dienas</b> · 2027. gada 25. maijā</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>187 dienas</b> · 2027. gada 25. maijā</p>
       <p class="sc-d">Algebra, ģeometrija, statistika: 16 uzdevumi no 8 tēmām.</p>
       <button type="button" class="btn btn-primary btn-lg" data-act="subj" data-v="mat">Matemātikas tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </article><article class="sc sc-dab">
       <div class="sc-art" aria-hidden="true"><span>B</span><span>F</span><span>Ķ</span></div>
       <h3>Dabaszinātnes</h3>
       <p class="sc-meta"><svg class="sic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="3"></rect><path d="M16 10l5-3v10l-5-3"></path></svg>8 tēmas · 24 video nodarbības</p>
-      <p class="sc-date">Līdz eksāmeniem: <b>196 dienas</b> · 2027. gada 2. jūnijā</p>
+      <p class="sc-date">Līdz eksāmeniem: <b>195 dienas</b> · 2027. gada 2. jūnijā</p>
       <p class="sc-d">Bioloģija, fizika, ķīmija un pētnieciskās prasmes: 16 uzdevumi no 8 tēmām.</p>
       <button type="button" class="btn btn-green btn-lg" data-act="subj" data-v="dab">Dabaszinātņu tests<svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
     </article></div>
@@ -1530,6 +1554,10 @@ a.pl-item:hover { border-color: var(--accent); }
     <div class="sec-head"><h2>Kā tas notiek</h2></div>
     <ol class="how2"><li><span class="hn">1</span><b>Tests</b><p>16 eksāmena tipa uzdevumi izvēlētajā priekšmetā, bez reģistrācijas. Ja nezini, spied „Nezinu“.</p></li><li><span class="hn">2</span><b>Kontakti</b><p>Pēc testa ieraksti vārdu un e-pastu, uz kuru nosūtīt rezultātus.</p></li><li><span class="hn">3</span><b>Rezultāts</b><p>Redzēsi katras tēmas stāvokli un savas tipiskās kļūdas ar skaidrojumu.</p></li><li><span class="hn">4</span><b>Kurss</b><p>Īsas nodarbības vājākajām tēmām: skaidrojums, piemērs un uzdevumi ar tūlītēju pārbaudi.</p></li></ol>
   </section>
+  <section class="wrap sec pr-band" id="vecakiem"><div class="sheet pr-card">
+    <div class="sec-head"><h2>Vecākiem: 3 soļi</h2></div>
+    <ol class="how2"><li><span class="hn">1</span><b>Nosūtiet saiti</b><p>WhatsApp, Telegram, Viber vai e-pastā — bērnam nekas nav jāinstalē.</p></li><li><span class="hn">2</span><b>Bērns izpilda testu</b><p>16 eksāmena tipa uzdevumi, ~15 minūtes, bez reģistrācijas.</p></li><li><span class="hn">3</span><b>Rezultāts pie jums</b><p>Bērns ar vienu pogu nosūta jums rezultātu: kuras tēmas jāatkārto.</p></li></ol>
+    <button type="button" class="btn btn-primary btn-lg" data-act="prOpen">Nosūtīt testu bērnam →</button></div></section>
   <section class="wrap sec inc" id="atskiriba">
     <div class="sec-head"><h2>Bez maksas un Plus: ar ko tie atšķiras</h2><p>Tests, visas video nodarbības, uzdevumi un izmēģinājuma eksāmens ir bez maksas pēc reģistrācijas. Plus pievieno palīgus, ar kuriem gatavoties ātrāk; tas sāksies 15. februārī.</p></div>
     <div class="cmp-wrap"><table class="cmp">
@@ -4007,7 +4035,7 @@ const PLATFORM_ACT = {
   retakeNo() { mem.retake = null; rerender(); },
   retakeYes(b) {
     const s = b.dataset.v; mem.retake = null; setSubject(s);
-    Object.assign(state, { answers: [], idx: 0, done: false, sel: null, plan: undefined, sentResults: false }); save();
+    Object.assign(state, { answers: [], idx: 0, done: false, sel: null, plan: undefined, sentResults: false, gotResult: false }); save();
     location.hash = 'tests';
   },
 };
@@ -5120,6 +5148,116 @@ const AI_ACT = {
   aiTask(b) { const { t } = lessonTask(b.dataset.task); if (!t) return; ai.task = (L(t.q) + ' ' + (t.math || '')).trim(); ai.open = true; ai.draft = T('ai_task_q', { t: ai.task }); aiPaint(); },
 };
 
+// ---------- Parent flow: send the test to a child, and the child sends the result back ----------
+// Links: /?l=<lang>&s=<subj>&no=v#tests (test sent by a parent), /?l=<lang>&s=<subj>&r=<answers>&no=r#rezultati (result sent to a parent).
+const PT = {
+  lv: {
+    hero: 'Esat vecāks? Nosūtiet testu bērnam',
+    m_h: 'Nosūtiet testu bērnam',
+    m_p: 'Bērns atvērs saiti savā telefonā vai datorā, izpildīs testu 15 minūtēs un beigās ar vienu pogu nosūtīs rezultātu jums.',
+    subj: 'Priekšmets', lang: 'Bērna valoda', lv: 'Latviski', ru: 'Krieviski',
+    send: 'Nosūtīt', copy: 'Kopēt saiti', copied: 'Saite nokopēta', email: 'E-pasts', sms: 'SMS',
+    msg: { mat: 'Sveiks! Lūdzu, izpildi šo matemātikas testu (15 minūtes). Tas parādīs, kuras tēmas jāatkārto 9. klases eksāmenam. Beigās nosūti man rezultātu:', dab: 'Sveiks! Lūdzu, izpildi šo dabaszinātņu testu (15 minūtes). Tas parādīs, kuras tēmas jāatkārto 9. klases eksāmenam. Beigās nosūti man rezultātu:' },
+    mail_s: 'Tests 9. klases eksāmenam',
+    steps: [['Nosūtiet saiti', 'WhatsApp, Telegram, Viber vai e-pastā — bērnam nekas nav jāinstalē.'], ['Bērns izpilda testu', '16 eksāmena tipa uzdevumi, ~15 minūtes, bez reģistrācijas.'], ['Rezultāts pie jums', 'Bērns ar vienu pogu nosūta jums rezultātu: kuras tēmas jāatkārto.']],
+    band_h: 'Vecākiem: 3 soļi', band_btn: 'Nosūtīt testu bērnam',
+    kid: 'Šo testu tev nosūtīja vecāki. Beigās varēsi ar vienu pogu nosūtīt viņiem rezultātu.',
+    rs_h: 'Nosūti rezultātu vecākiem', rs_h_kid: 'Nosūti rezultātu vecākiem — viņi to gaida',
+    rs_p: 'Viņi redzēs tavu rezultātu pa tēmām un kļūdas ar skaidrojumu. Bez reģistrācijas.',
+    rs_lang: 'Vecāku valoda',
+    rs_msg: { mat: 'Mans matemātikas testa rezultāts: {s} no {n}. Te redzams, kuras tēmas jāatkārto:', dab: 'Mans dabaszinātņu testa rezultāts: {s} no {n}. Te redzams, kuras tēmas jāatkārto:' },
+    rs_mail_s: 'Mans testa rezultāts',
+    got: 'Šo rezultātu jums nosūtīja bērns. Lai bērns atvērtu bezmaksas nodarbības, viņam savā ierīcē jāizveido konts.',
+    res_h: 'Bērna rezultāts: {s} no {n}',
+  },
+  ru: {
+    hero: 'Вы родитель? Отправьте тест ребёнку',
+    m_h: 'Отправьте тест ребёнку',
+    m_p: 'Ребёнок откроет ссылку на телефоне или компьютере, пройдёт тест за 15 минут и в конце одной кнопкой отправит результат вам.',
+    subj: 'Предмет', lang: 'Язык ребёнка', lv: 'Латышский', ru: 'Русский',
+    send: 'Отправить', copy: 'Копировать ссылку', copied: 'Ссылка скопирована', email: 'E-mail', sms: 'SMS',
+    msg: { mat: 'Привет! Пройди, пожалуйста, этот тест по математике (15 минут). Он покажет, какие темы повторить к экзамену 9 класса. В конце отправь мне результат:', dab: 'Привет! Пройди, пожалуйста, этот тест по естественным наукам (15 минут). Он покажет, какие темы повторить к экзамену 9 класса. В конце отправь мне результат:' },
+    mail_s: 'Тест к экзамену 9 класса',
+    steps: [['Отправьте ссылку', 'В WhatsApp, Telegram, Viber или по e-mail — ребёнку ничего не нужно устанавливать.'], ['Ребёнок проходит тест', '16 заданий как на экзамене, ~15 минут, без регистрации.'], ['Результат у вас', 'Ребёнок одной кнопкой отправляет вам результат: какие темы повторить.']],
+    band_h: 'Родителям: 3 шага', band_btn: 'Отправить тест ребёнку',
+    kid: 'Этот тест тебе отправили родители. В конце сможешь одной кнопкой отправить им результат.',
+    rs_h: 'Отправь результат родителям', rs_h_kid: 'Отправь результат родителям — они его ждут',
+    rs_p: 'Они увидят твой результат по темам и ошибки с объяснениями. Без регистрации.',
+    rs_lang: 'Язык родителей',
+    rs_msg: { mat: 'Мой результат теста по математике: {s} из {n}. Здесь видно, какие темы повторить:', dab: 'Мой результат теста по естественным наукам: {s} из {n}. Здесь видно, какие темы повторить:' },
+    rs_mail_s: 'Мой результат теста',
+    got: 'Этот результат вам отправил ребёнок. Чтобы открыть бесплатные уроки, ребёнку нужно создать кабинет на своём устройстве.',
+    res_h: 'Результат ребёнка: {s} из {n}',
+  },
+};
+const PTX = k => PT[state.lang][k];
+const SITE = 'https://www.eksamens9.lv/';
+const pm = { subj: 'mat', lang: null, rlang: null };
+
+function childLink(s, l) { return `${SITE}?l=${l}&s=${s}&no=v#tests`; }
+function resultLink(l) { return `${SITE}?l=${l}&s=${state.subj}&r=${state.answers.map(a => a == null ? 4 : a).join('')}&no=r#rezultati`; }
+
+// one row of share buttons for a text + link
+function shareRowHTML(text, url, subject, act) {
+  const e = encodeURIComponent, full = text + '\n' + url;
+  return `<div class="share-row pr-share">
+    ${navigator.share ? `<button type="button" class="btn btn-primary" data-act="${act}">${PTX('send')}</button>` : ''}
+    <a class="btn btn-wa" href="https://wa.me/?text=${e(full)}" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn btn-ghost" href="https://t.me/share/url?url=${e(url)}&amp;text=${e(text)}" target="_blank" rel="noopener">Telegram</a>
+    <a class="btn btn-ghost" href="viber://forward?text=${e(full)}">Viber</a>
+    <a class="btn btn-ghost" href="sms:?&amp;body=${e(full)}">${PTX('sms')}</a>
+    <a class="btn btn-ghost" href="mailto:?subject=${e(subject)}&amp;body=${e(full)}">${PTX('email')}</a>
+    <button type="button" class="btn btn-ghost" data-act="prCopy" data-v="${esc(url)}">${PTX('copy')}</button>
+    <span class="copied" aria-live="polite"></span>
+  </div>`;
+}
+const segHTML = (act, cur, opts) => `<div class="pr-seg" role="group">${opts.map(([v, l]) => `<button type="button" data-act="${act}" data-v="${v}" aria-pressed="${cur === v}">${l}</button>`).join('')}</div>`;
+
+function sendTestBody() {
+  const l = pm.lang || state.lang, s = pm.subj, M = PT[l];
+  return `<p class="muted">${PTX('m_p')}</p>
+    <div class="pr-opts"><div><span class="lbl">${PTX('subj')}</span>${segHTML('prSubj', s, [['mat', subjName('mat')], ['dab', subjName('dab')]])}</div>
+    <div><span class="lbl">${PTX('lang')}</span>${segHTML('prLang', l, [['lv', PTX('lv')], ['ru', PTX('ru')]])}</div></div>
+    <blockquote class="pr-msg">${esc(M.msg[s])}<br><span>${esc(childLink(s, l))}</span></blockquote>
+    ${shareRowHTML(M.msg[s], childLink(s, l), M.mail_s, 'prNative')}`;
+}
+function sendTestModal() {
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal-card pr-modal" role="dialog" aria-modal="true" aria-labelledby="pr-h"><div class="modal-top"><h2 id="pr-h">${PTX('m_h')}</h2><button type="button" class="btn btn-ghost modal-x" data-act="close-modal" aria-label="${T('close')}">×</button></div><div id="pr-body">${sendTestBody()}</div></div>`;
+  m.hidden = false; track('parent_open');
+}
+
+// home page: link under the hero buttons and a 3-step band
+const parentHeroHTML = () => `<button type="button" class="pr-hero" data-act="prOpen"><span aria-hidden="true">👪</span> ${PTX('hero')} →</button>`;
+const parentBandHTML = () => `<section class="wrap sec pr-band" id="vecakiem"><div class="sheet pr-card">
+    <div class="sec-head"><h2>${PTX('band_h')}</h2></div>
+    <ol class="how2">${PTX('steps').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
+    <button type="button" class="btn btn-primary btn-lg" data-act="prOpen">${PTX('band_btn')} →</button></div></section>`;
+
+// test page: note for a child who came from a parent's link
+const kidNoteHTML = () => state.fromParent && !state.done ? `<p class="pr-kid"><span aria-hidden="true">👪</span> ${PTX('kid')}</p>` : '';
+
+// results page: send to parents (prominent for a child from a parent's link), or a note for the parent who opened it
+function resultShareHTML() {
+  if (state.gotResult) return `<div class="sheet pr-got"><p><span aria-hidden="true">👪</span> ${PTX('got')}</p></div>`;
+  const R = results(), l = pm.rlang || state.lang, M = PT[l], s = state.subj === 'dab' ? 'dab' : 'mat';
+  const text = M.rs_msg[s].replace('{s}', R.score).replace('{n}', DIAG.length);
+  return `<div class="sheet pr-res${state.fromParent ? ' kid' : ''}" id="pr-res"><h2>${PTX(state.fromParent ? 'rs_h_kid' : 'rs_h')}</h2><p class="muted">${PTX('rs_p')}</p>
+    <div class="pr-opts"><div><span class="lbl">${PTX('rs_lang')}</span>${segHTML('prRLang', l, [['lv', PTX('lv')], ['ru', PTX('ru')]])}</div></div>
+    ${shareRowHTML(text, resultLink(l), M.rs_mail_s, 'prNativeRes')}</div>`;
+}
+
+function prCopied(b) { const c = b.parentNode.querySelector('.copied'); if (c) { c.textContent = PTX('copied'); setTimeout(() => (c.textContent = ''), 2500); } }
+const PARENT_ACT = {
+  prOpen() { pm.subj = state.subj === 'dab' ? 'dab' : 'mat'; pm.lang = null; sendTestModal(); },
+  prSubj(b) { pm.subj = b.dataset.v; $('#pr-body').innerHTML = sendTestBody(); },
+  prLang(b) { pm.lang = b.dataset.v; $('#pr-body').innerHTML = sendTestBody(); },
+  prRLang(b) { pm.rlang = b.dataset.v; const el = $('#pr-res'); if (el) el.outerHTML = resultShareHTML(); },
+  prCopy(b) { copyText(b.dataset.v); prCopied(b); track('parent_copy'); },
+  prNative() { const l = pm.lang || state.lang; try { navigator.share({ title: PT[l].mail_s, text: PT[l].msg[pm.subj], url: childLink(pm.subj, l) }).catch(() => { }); } catch (e) { } track('parent_share'); },
+  prNativeRes() { const l = pm.rlang || state.lang, s = state.subj === 'dab' ? 'dab' : 'mat', R = results(); try { navigator.share({ title: PT[l].rs_mail_s, text: PT[l].rs_msg[s].replace('{s}', R.score).replace('{n}', DIAG.length), url: resultLink(l) }).catch(() => { }); } catch (e) { } track('result_share'); },
+};
+
 // ---------- App ----------
 const STORE = 'm9_state_v1';
 const state = { subj: 'mat', bySubj: {}, lang: 'lv', lead: null, answers: [], idx: 0, done: false, demo: {}, slide: {}, steps: {}, sel: null, reserve: null, utm: null, pvHidden: false, sentResults: false, survey: null, les: {}, days: [], hist: {}, last: null };
@@ -5374,6 +5512,7 @@ function viewLanding() {
         <h1>${T('hero2_h')}</h1>
         <p class="dh-lead">${T('hero2_p')}</p>
         <div class="hero2-cta"><button type="button" class="btn btn-primary btn-xl" data-act="subj" data-v="mat">${T('subj_mat_cta')}${arr}</button><button type="button" class="btn btn-white btn-xl" data-act="subj" data-v="dab">${T('subj_dab_cta')}</button></div>
+        ${parentHeroHTML()}
         ${false ? `<a class="hero-promo" href="#cenas" data-act="go" data-sec="cenas"><b>−${CONFIG.earlyDiscount} %</b><span>${T('promo_hero', { date: dateShort(CONFIG.launchDate) })}</span></a>` : ''}
         <ul class="hero2-trust">${T('hero2_trust').map(x => `<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${x}</li>`).join('')}</ul>
       </div>
@@ -5443,6 +5582,7 @@ function viewLanding() {
     <div class="sec-head"><h2>${T('how_h')}</h2></div>
     <ol class="how2">${T('how').map((h, i) => `<li><span class="hn">${i + 1}</span><b>${h[0]}</b><p>${h[1]}</p></li>`).join('')}</ol>
   </section>
+  ${parentBandHTML()}
   <section class="wrap sec inc" id="atskiriba">
     <div class="sec-head"><h2>${T('cmp_h')}</h2><p>${T('cmp_p')}</p></div>
     ${compareHTML()}
@@ -5566,6 +5706,7 @@ function viewTest() {
   const i = Math.min(state.idx, DIAG.length - 1), d = DIAG[i], a = state.answers[i];
   const unit = L(d.u);
   return `<section class="wrap narrow test">
+    ${kidNoteHTML()}
     <div class="test-top"><span class="tcount">${T('test_of', { i: i + 1, n: DIAG.length })}</span><span class="chip">${L(topicById(d.topic))}</span></div>
     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${DIAG.length}" aria-valuenow="${i}"><i style="width:${(i / DIAG.length) * 100}%"></i></div>
     <article class="sheet nb qcard">
@@ -5605,8 +5746,9 @@ function viewResults() {
   return `<section class="wrap mid results">
     <div class="sheet res-head">
       <div class="score"><b>${R.score}</b><span>/ ${n}</span></div>
-      <div><h1>${T('res_h', { s: R.score, n })}</h1><p class="lead">${T('band')[band]}</p><p class="muted">${T('res_p')}</p></div>
+      <div><h1>${state.gotResult ? PTX('res_h').replace('{s}', R.score).replace('{n}', n) : T('res_h', { s: R.score, n })}</h1><p class="lead">${T('band')[band]}</p><p class="muted">${T('res_p')}</p></div>
     </div>
+    ${state.fromParent || state.gotResult ? resultShareHTML() : ''}
     ${mailCapHTML()}
     <div class="res-grid">
       <div class="sheet"><h2>${T('res_topics_h')}</h2><ul class="trows">${rows}</ul></div>
@@ -5618,6 +5760,7 @@ function viewResults() {
         ${subjDone(state.subj === 'dab' ? 'mat' : 'dab') ? '' : `<p class="other-test">${T('res_other')} <button type="button" class="btn-link" data-act="subj" data-v="${state.subj === 'dab' ? 'mat' : 'dab'}">${subjName(state.subj === 'dab' ? 'mat' : 'dab')} →</button></p>`}
       </div>
     </div>
+    ${state.fromParent || state.gotResult ? '' : resultShareHTML()}
     ${surveyHTML()}
     <div class="sheet"><h2>${T('res_mistakes_h')}</h2><ul class="mis-list">${mistakes}</ul>${R.dk ? `<p class="muted">${TN('res_dk', R.dk, { n: R.dk })}</p>` : ''}</div>
     <details class="sheet review"><summary>${T('res_review')}</summary><ol class="rev">${review}</ol></details>
@@ -5656,7 +5799,7 @@ function viewExams() {
       <div class="sheet ex-know"><h2>${T('ex_know_h')}</h2><ul class="xknow">${know}</ul></div>
     </div>
     <section class="band ex-todo"><h2>${T('ex_todo_h')}</h2><ol class="how">${todo}</ol></section>
-    <div class="sheet parents ex-cta"><div><h2>${state.done ? T('ex_cta_done_h') : T('ex_cta_h')}</h2><p>${T('ex_cta_p')}</p></div><a class="btn btn-primary btn-lg" href="${state.done ? '#rezultati' : '#tests'}">${state.done ? T('ex_cta_done') : T('hero_cta')}</a></div>
+    <div class="sheet parents ex-cta"><div><h2>${state.done ? T('ex_cta_done_h') : T('ex_cta_h')}</h2><p>${T('ex_cta_p')}</p></div><div class="ex-cta-btns"><a class="btn btn-primary btn-lg" href="${state.done ? '#rezultati' : '#tests'}">${state.done ? T('ex_cta_done') : T('hero_cta')}</a><button type="button" class="btn btn-white btn-lg" data-act="prOpen">${PTX('band_btn')}</button></div></div>
     <div class="ex-share"><h2>${T('ex_share_h')}</h2>
       <div class="share-row">
         ${navigator.share ? `<button type="button" class="btn btn-primary" data-act="share-native">${T('ex_share_btn')}</button>` : ''}
@@ -6023,7 +6166,7 @@ const ACT = {
 };
 function currentTopic() { const h = location.hash.replace('#', ''); return h.startsWith('demo-') && LESSONS[h.slice(5)] ? h.slice(5) : (results().weak[0] || TOPICS[0].id); }
 
-Object.assign(ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT, MOCK_ACT, AI_ACT, PLUS_ACT);
+Object.assign(ACT, PARENT_ACT, PLATFORM_ACT, CONSENT_ACT, AUTH_ACT, LEGAL_ACT, PLAN_ACT, MOCK_ACT, AI_ACT, PLUS_ACT);
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-act]');
   if (!b || b.disabled || b.classList.contains('disabled')) { if (b && b.classList.contains('disabled')) e.preventDefault(); return; }
@@ -6135,10 +6278,14 @@ function boot() {
     const sj = q.get('s'); if (sj === 'mat' || sj === 'dab') setSubject(sj);
     const utm = {}; ['utm_source', 'utm_medium', 'utm_campaign'].forEach(k => { const v = q.get(k); if (v) utm[k] = v.slice(0, 60); });
     if (Object.keys(utm).length && !state.utm) state.utm = utm;
+    const no = q.get('no');
+    if (no === 'v') { state.fromParent = true; state.gotResult = false; }
+    if ((no === 'v' || no === 'r') && !state.utm) state.utm = { utm_source: no === 'v' ? 'parent' : 'child', utm_medium: 'share' };
     const r = q.get('r'), id = q.get('id');
     if (r && /^[0-4]+$/.test(r)) setSubject(sj === 'dab' ? 'dab' : 'mat');
     if (r && new RegExp(`^[0-4]{${DIAG.length}}$`).test(r)) {
       state.answers = r.split('').map(Number); state.done = true; state.idx = DIAG.length - 1; state.sentResults = true;
+      if (no === 'r') { state.gotResult = true; state.fromParent = false; }
       if (id && /^[0-9a-f-]{36}$/i.test(id)) state.lead = (state.lead && state.lead.id === id) ? state.lead : { id };
     }
   } catch (e) { }
